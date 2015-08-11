@@ -1,0 +1,7 @@
+.Rproj.user
+.Rhistory
+.RData
+*.tar.gz
+*.zip
+src-i386
+src-x64
