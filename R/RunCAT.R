@@ -10,7 +10,13 @@
 #' @import Rcpp
 #' @encoding UTF-8
 #' @export
-RunCAT <- function(infile = "", outfile = "", format = "")
+RunCAT <- function(infile, outfile, format = "[*:*]")
 {
-  rcpp_run_cat(infile, outfile, format)
+  if(missing(infile) || missing(outfile))
+    stop("File Missing!")
+  if(!file.exists(infile))
+    stop(sprintf("%s does not exists!", infile))
+  if(infile == outfile)
+    stop("Output file name should not be the same to Input file name!")
+  invisible(rcpp_run_cat(path.expand(infile), path.expand(outfile), format))
 }
