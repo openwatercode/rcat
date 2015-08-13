@@ -2,3 +2,6 @@
 ^\.Rproj\.user$
 ^doxygen\.*$
 ^test_data\.*$
+^README\.md$
+^.*.zip$
+^.*.gz$
