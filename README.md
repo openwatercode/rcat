@@ -18,7 +18,25 @@ This project is to porting CAT Hydrology model to R package.
 프로젝트를 설치하기 위해서는 Rstudio에서 다음과 같이 'devtools'를 먼저 설치하고 'install_github()' 함수를 이용해 설치합니다. 
 
 ```
+install.packages(Rcpp)
 install.packages(devtools)
 install_github("openwatercode/rcat", "user_name", auth_token = "user_pat")
 ```
+# run example
+예제를 수행하기 위해서 입력예제 파일을 다운로드 받습니다.
 
+```
+download.file("http://r.prj.kr/R/rcat/rcat.zip", "rcat.zip")
+```
+
+예제 파일의 압축을 해제합니다.
+
+```
+unzip("rcat.zip")
+```
+
+CAT을 실행합니다.
+
+```
+RunCAT("dist_101208.txt", "dist_101208.out")
+```
