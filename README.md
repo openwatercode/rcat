@@ -22,7 +22,7 @@ install.packages(Rcpp)
 install.packages(devtools)
 install_github("openwatercode/rcat", "user_name", auth_token = "user_pat")
 ```
-# run example
+## run example
 예제를 수행하기 위해서 입력예제 파일을 다운로드 받습니다.
 
 ```
