@@ -1,0 +1,355 @@
+#Catchment Assessment Tool by KICT from 2008
+Version = 2.0.0.1
+
+Title =
+StartTime = 2002, 01, 01, 00, 00
+EndTime = 2007, 12, 31, 23, 00
+Parameter = 3600, 10
+Range = -22, 82, 986, 868
+NodeCount = 34
+
+Node = Junction
+NodeID = 9
+Name = Junc 2
+Desc =
+Drain = 0, 0
+Position = 722, 464
+EndNode
+
+Node = Junction
+NodeID = 10
+Name = Junc 3
+Desc =
+Drain = 0, 0
+Position = 843, 499
+EndNode
+
+Node = Junction
+NodeID = 11
+Name = Junc 4
+Desc =
+Drain = 0, 0
+Position = 477, 650
+EndNode
+
+Node = Junction
+NodeID = 13
+Name = Junc 6
+Desc =
+Drain = 0, 0
+Position = 848, 557
+EndNode
+
+Node = Outlet
+NodeID = 14
+Name = Outlet 1
+Desc =
+Drain = 0, 0
+Position = 960, 520
+EndNode
+
+Node = Climate
+NodeID = 28
+Name = Climate 1
+Rainfall = test_data/P_climate_1209.dat
+Evaporation =
+Calculation = 1, 37.500000, 35.000000, 2.000000
+Position = 172, 118
+EndNode
+
+Node = WetLand
+NodeID = 29
+Name = Wetland
+Desc =
+Base = 500, 10000, 0.5, 0.0005
+Pipe = 300, 0.5, 0.6
+RateCount = 4
+WL = 0.1, 1, 2, 3
+VOL = 100, 3000, 8000, 10000
+AREA = 100, 3000, 5000, 8000
+Rainfall = 28
+EVA = 28
+Recharge = -1
+Position = 638, 436
+EndNode
+
+Node = Pond
+NodeID = 30
+Name = Pond
+Desc =
+Base = 10000, 50000, 5e-005
+Pipe = 2000, 1, 0.9
+Spill = 15000, 20000, 1.5
+Offline = 0.002, 0.8, 0.5
+Intake = 0, 2400, -1, -1
+Series =
+RateCount = 4
+WL = 1, 5, 10, 15
+VOL = 1000, 30000, 50000, 80000
+AREA = 1000, 3000, 10000, 40000
+Rainfall = 28
+EVA = 28
+Supply = -1
+Recharge = -1
+Position = 322, 633
+EndNode
+
+Node = Recycle
+NodeID = 31
+Name = Recycle
+Desc =
+Intake = 0.5, 48000
+Nodes = 2, 79:0.6, 48:0.4
+Position = 678, 656
+EndNode
+
+Node = RainTank
+NodeID = 32
+Name = RainTank
+Desc =
+Volume = 1000, 1000, 10000
+Use = 0, 10000, -1, -1
+Series =
+Supply = -1
+Position = 452, 454
+EndNode
+
+Node = Infiltro
+NodeID = 33
+Name = Infiltro
+Desc =
+Aquifer = 10000, 170000, 150000, 0.5, 10000, 46
+GWMove = 0, 1, 0.05, 1000, 3, 0.0005
+Position = 186, 586
+EndNode
+
+Node = Link
+NodeID = 42
+Name = Link 21
+Method = 0
+Muskingum = 1, 0.25, 1
+River = 0, 0, 0, 0, 0, 0, 0
+Connect = 31, 13
+EndNode
+
+Node = Forest
+NodeID = 46
+Name = Forest 1
+Desc =
+Topology = 1.17e+006, 0.3957, 0.06, 0.94, 0.8, 3, 2
+Soil = 0.25, 1800, 0.5, 0.2, 0.21, 0.25, 0.000105, 0.000315, 10
+Infiltro = 0, 1100, 0.000833333, 0.00555556, 0.00111111
+River = 243170, 243170, 500, 0.00042, 31500, 0.1, 253170, 233170
+Intake = 0, 0
+GWout = 0, 0, 0.2, 1000, 3, 5e-009
+Evaporation = 10000, 0, 0.5, 0.6, 0.6, 0.7, 0.7, 0.8, 0.8, 0.7, 0.7, 0.6, 0.6, 0.5
+Weather = 1, 28:100;100
+Position = 97, 510
+EndNode
+
+Node = Paddy
+NodeID = 48
+Name = Paddy
+Desc =
+Topology = 2.04e+006, 0.005, 0.15, 0.85, 0.8, 3, 2
+Soil = 0.25, 1800, 0.5, 0.2, 0.21, 0.25, 0.000105, 0.000315, 10
+River = 59550, 59550, 1200, 0.00042, 31500, 0.1, 69550, 49550
+Intake = 0, 0
+GWout = 0, 0, 0, 0, 0, 5e-009
+Evaporation = 10000, 0, 0.3, 0.3, 0.3, 0.3, 0.5, 0.5, 0.5, 0.5, 0.5, 0.3, 0.3, 0.3
+Weather = 1, 28:100;100
+Irrigation = 4, 1, 9, 30
+Coefficient = 5000, 5, 0, 0.5, 0.7
+Pipe = 25, 200, 0.8, 5
+Drain = 0, 0, 0, 100, 100, 100, 100, 100, 100, 0, 0, 0
+Position = 810, 421
+EndNode
+
+Node = Link
+NodeID = 49
+Name = Link 26
+Method = 0
+Muskingum = 1, 0.25, 1.67
+River = 0, 0, 0, 0, 0, 0, 0
+Connect = 48, 9
+EndNode
+
+Node = BioRetention
+NodeID = 52
+Name = BioRetention
+Desc =
+Aquifer = 50000, 25000, 15000, 0.5, 50000, 79
+GWMove = 0, 0, 0, 0, 0, 0
+Evaporation = 0.4, 0.5, 0.5, 0.6, 0.6, 0.7, 0.7, 0.6, 0.6, 0.5, 0.5, 0.4
+Rainfall = 28
+EVA = 28
+Position = 367, 395
+EndNode
+
+Node = Import
+NodeID = 55
+Name = Import
+Desc =
+Series =
+Table = -1, -1
+Leakage = 0
+Position = 886, 339
+EndNode
+
+Node = Link
+NodeID = 56
+Name = Link 30
+Method = 0
+Muskingum = 1, 0.25, 1.5
+River = 0.1, 1000, 0.005, 15, 10, 5, 0.03
+Connect = 55, 48
+EndNode
+
+Node = Link
+NodeID = 77
+Name = Link 43
+Method = 0
+Muskingum = 1, 0.25, 1.5
+River = 0.1, 1000, 0.005, 15, 10, 5, 0.03
+Connect = 13, 10
+EndNode
+
+Node = Link
+NodeID = 78
+Name = Link 44
+Method = 0
+Muskingum = 1, 0.25, 1.5
+River = 0.1, 1000, 0.005, 15, 10, 5, 0.03
+Connect = 10, 14
+EndNode
+
+Node = Urban
+NodeID = 79
+Name = Urban 5
+Desc =
+Topology = 200000, 0.1494, 0.1, 0.9, 0.8, 3, 2
+Soil = 0.25, 1800, 0.5, 0.2, 0.21, 0.25, 0.000105, 0.000315, 10
+Infiltro = 0, 110.1, 0.00175, 0, 0
+River = 236970, 236970, 1200, 0.00042, 31500, 0.1, 246970, 226970
+Intake = 0, 0
+GWout = 0, 0, 0, 0, 0, 0
+Evaporation = 10000, 0, 0.3, 0.3, 0.3, 0.3, 0.5, 0.5, 0.5, 0.5, 0.5, 0.3, 0.3, 0.3
+Weather = 1, 28:100;100
+Position = 174, 407
+EndNode
+
+Node = Link
+NodeID = 81
+Name = Link 46
+Method = 0
+Muskingum = 1, 0.25, 1.5
+River = 0.1, 1000, 0.005, 15, 10, 5, 0.03
+Connect = 11, 31
+EndNode
+
+Node = Link
+NodeID = 82
+Name = Link 47
+Method = 0
+Muskingum = 1, 0.25, 1.5
+River = 0.1, 1000, 0.005, 15, 10, 5, 0.03
+Connect = 46, 33
+EndNode
+
+Node = Link
+NodeID = 83
+Name = Link 48
+Method = 0
+Muskingum = 1, 0.25, 1.5
+River = 0.1, 1000, 0.005, 15, 10, 5, 0.03
+Connect = 33, 30
+EndNode
+
+Node = Link
+NodeID = 84
+Name = Link 49
+Method = 0
+Muskingum = 1, 0.25, 1.5
+River = 0.1, 1000, 0.005, 15, 10, 5, 0.03
+Connect = 30, 11
+EndNode
+
+Node = Link
+NodeID = 85
+Name = Link 50
+Method = 0
+Muskingum = 1, 0.25, 1.5
+River = 0.1, 1000, 0.005, 15, 10, 5, 0.03
+Connect = 79, 52
+EndNode
+
+Node = Junction
+NodeID = 87
+Name = Junc 7
+Desc =
+Drain = 0, 0
+Position = 472, 412
+EndNode
+
+Node = Link
+NodeID = 88
+Name = Link 51
+Method = 0
+Muskingum = 1, 0.25, 1.5
+River = 0.1, 1000, 0.005, 15, 10, 5, 0.03
+Connect = 52, 87
+EndNode
+
+Node = Link
+NodeID = 90
+Name = Link 53
+Method = 0
+Muskingum = 1, 0.25, 1.5
+River = 0.1, 1000, 0.005, 15, 10, 5, 0.03
+Connect = 29, 9
+EndNode
+
+Node = Link
+NodeID = 91
+Name = Link 54
+Method = 0
+Muskingum = 1, 0.25, 1.5
+River = 0.1, 1000, 0.005, 15, 10, 5, 0.03
+Connect = 9, 10
+EndNode
+
+Node = Junction
+NodeID = 94
+Name = Junc 8
+Desc =
+Drain = 0, 0
+Position = 579, 428
+EndNode
+
+Node = Link
+NodeID = 95
+Name = Link 55
+Method = 0
+Muskingum = 1, 0.25, 1.5
+River = 0.1, 1000, 0.005, 15, 10, 5, 0.03
+Connect = 32, 94
+EndNode
+
+Node = Link
+NodeID = 96
+Name = Link 56
+Method = 0
+Muskingum = 1, 0.25, 1.5
+River = 0.1, 1000, 0.005, 15, 10, 5, 0.03
+Connect = 87, 94
+EndNode
+
+Node = Link
+NodeID = 97
+Name = Link 57
+Method = 0
+Muskingum = 1, 0.25, 1.5
+River = 0.1, 1000, 0.005, 15, 10, 5, 0.03
+Connect = 94, 29
+EndNode
+
