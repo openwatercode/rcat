@@ -10,8 +10,9 @@
 #' License: \tab GPL-2\cr
 #' }
 #'
-#' CAT을 dll 형태로 컴파일하여 R 환경에서 스크립트 형태로 빠르게 실행할 수 있도록
-#' 작성된 함수입니다.
+#' CAT을 동적라이브러리 형태로 컴파일하여
+#' R 환경에서 스크립트 형태로 간편하게 사용할 수 있도록
+#' 작성된 패키지입니다.
 #' @docType package
 #' @name rcat-package
 #' @aliases rcat
