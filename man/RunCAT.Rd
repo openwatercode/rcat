@@ -4,19 +4,25 @@
 \alias{RunCAT}
 \title{RunCAT}
 \usage{
-RunCAT(infile = "", outfile = "", format = "")
+RunCAT(infile, outfile, format = "[*:*]")
 }
 \arguments{
 \item{infile}{입력파일의 경로}
 
 \item{outfile}{출력파일의 경로}
 
-\item{format}{포맷}
+\item{format}{포맷, "" 일 경우 바이너리 형태로 저장되며,
+"[*|*]" 일 경우 텍스트 형태로 저장됨}
 }
 \description{
 RunCAT 모형 구동 함수.
 }
+\examples{
+download.file("http://r.prj.kr/data/rcat/rcat.zip", "rcat.zip")
+unzip("rcat.zip")
+RunCAT("dist_101208.txt", "dist_101208.out")
+}
 \author{
-Heeseong Park \email{hspark90@i-fam.net}
+박희성 \email{hspark90@i-fam.net}
 }
 
