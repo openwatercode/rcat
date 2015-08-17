@@ -40,10 +40,10 @@ int __cdecl Run(char* infile, char* outfile, char* format)
 	MultiByteToWideChar(CP_ACP, 0, outfile, strlen(outfile), szOutFile, MAX_PATH);
 	MultiByteToWideChar(CP_ACP, 0, format, strlen(format), szFormat, MAX_PATH);
 #else
-	//strcpy_s(szOutFile, outfile);
-	//strcpy_s(szFormat, format);
-	strcpy(szOutFile, outfile);
-	strcpy(szFormat, format);
+	strcpy_s(szOutFile, sizeof(szOutFile), outfile);
+	strcpy_s(szFormat, sizeof(szFormat), format);
+	//strcpy(szOutFile, outfile);
+	//strcpy(szFormat, format);
 #endif
 
 	memset(szModule, 0, sizeof(szModule));
