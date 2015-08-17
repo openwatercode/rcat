@@ -21,7 +21,6 @@
 #define MAX_PATH 256
 #endif
 */
-//#include <WinDef.h>
 
 #define DATE_BASE_YEAR 1900
 #define FILEMAGICNO 0x0527
