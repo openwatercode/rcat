@@ -19,4 +19,8 @@
 #' @encoding utf-8
 #' @author \href{http://www.i-fam.net/water/}{박희성} \email{hspark90@@i-fam.net}
 #' @keywords package
+#' @examples
+#' download.file("http://r.prj.kr/data/rcat/rcat_ex.zip", "rcat_ex.zip")
+#' unzip("rcat_ex.zip")
+#' RunCAT("dist_101208.txt", "dist_101208.out")
 NULL

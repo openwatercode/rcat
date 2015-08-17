@@ -12,8 +12,8 @@
 #' @encoding UTF-8
 #' @export
 #' @examples
-#' download.file("http://r.prj.kr/data/rcat/rcat.zip", "rcat.zip")
-#' unzip("rcat.zip")
+#' download.file("http://r.prj.kr/data/rcat/rcat_ex.zip", "rcat_ex.zip")
+#' unzip("rcat_ex.zip")
 #' RunCAT("dist_101208.txt", "dist_101208.out")
 RunCAT <- function(infile, outfile, format = "[*:*]")
 {

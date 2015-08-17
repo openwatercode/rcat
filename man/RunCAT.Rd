@@ -18,8 +18,8 @@ RunCAT(infile, outfile, format = "[*:*]")
 RunCAT 모형 구동 함수.
 }
 \examples{
-download.file("http://r.prj.kr/data/rcat/rcat.zip", "rcat.zip")
-unzip("rcat.zip")
+download.file("http://r.prj.kr/data/rcat/rcat_ex.zip", "rcat_ex.zip")
+unzip("rcat_ex.zip")
 RunCAT("dist_101208.txt", "dist_101208.out")
 }
 \author{
