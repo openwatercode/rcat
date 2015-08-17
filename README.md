@@ -33,7 +33,7 @@ download.file("http://r.prj.kr/R/rcat/rcat_ex.zip", "rcat_ex.zip")
 예제 파일의 압축을 해제합니다.
 
 ```
-unzip("rcat.zip")
+unzip("rcat_ex.zip")
 ```
 
 CAT을 실행합니다.
