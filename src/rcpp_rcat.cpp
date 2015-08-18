@@ -1,7 +1,6 @@
 #include <Rcpp.h>
 #include "StdAfx.h"
 #include "include/ModelManager.h"
-#include "CATModel.h"
 
 using namespace Rcpp;
 
