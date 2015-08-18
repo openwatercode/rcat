@@ -1,6 +1,9 @@
 // CATModel.cpp : DLL 응용 프로그램에 대한 진입점을 정의합니다.
 //
 
+#define RLIB
+//#define WINDLL
+
 #include "stdafx.h"
 #include "include/ModelManager.h"
 
@@ -8,13 +11,15 @@
 #pragma managed(push, off)
 #endif
 
-// BOOL APIENTRY DllMain( HMODULE hModule,
-//                        DWORD  ul_reason_for_call,
-//                        LPVOID lpReserved
-// 					 )
-// {
-//     return TRUE;
-// }
+#ifdef DLL
+BOOL APIENTRY DllMain( HMODULE hModule,
+                       DWORD  ul_reason_for_call,
+                       LPVOID lpReserved
+					 )
+{
+    return TRUE;
+}
+#endif // WINDLL
 
 /**
 * 모형실행을 위한 외부 노출 함수
@@ -26,7 +31,11 @@
 *             [*:*] - 전체 결과를 테스트파일로 출력
 */
 
+#ifdef WINDLL
 int __cdecl Run(char* infile, char* outfile, char* format)
+#else
+int Run(char* infile, char* outfile, char* format)
+#endif
 {
 	TModelManager model;
 	int nRet = 0;
@@ -140,7 +149,11 @@ int __cdecl Run(char* infile, char* outfile, char* format)
 	return nRet;
 }
 
+#ifdef WINDLL
 int __cdecl RunR(char** infile, char** outfile, char** format)
+#else
+int RunR(char** infile, char** outfile, char** format)
+#endif
 {
 	char szIn[MAX_PATH], szOut[MAX_PATH], szFormat[MAX_PATH];
 
@@ -159,7 +172,11 @@ int __cdecl RunR(char** infile, char** outfile, char** format)
 	return Run(szIn, szOut, szFormat);
 }
 
+#ifdef WINDLL
 void __stdcall RunModelA(HWND hwnd, HINSTANCE hinst, LPSTR lpszCmdLine, int nCmdShow)
+#else
+void RunModelA(HWND hwnd, HINSTANCE hinst, LPSTR lpszCmdLine, int nCmdShow)
+#endif // WINDLL
 {
 	char szIn[MAX_PATH], szOut[MAX_PATH], szFormat[500], *cFind, *cFind2;
 	char szMsg[1024];
