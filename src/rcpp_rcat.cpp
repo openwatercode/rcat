@@ -1,5 +1,5 @@
 #include <Rcpp.h>
-#include "windef.h"
+#include "StdAfx.h"
 #include "include/ModelManager.h"
 #include "CATModel.h"
 
