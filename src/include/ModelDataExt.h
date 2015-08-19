@@ -1,11 +1,14 @@
 #pragma once
 
-#ifdef MODELDATA_EXPORTS
-//#define MODELDATA_CLASS __declspec(dllexport)
-#define MODELDATA_CLASS
+#include "../StdAfx.h"
+#ifdef WINDLL
+  #ifdef MODELDATA_EXPORTS
+    #define MODELDATA_CLASS __declspec(dllexport)
+  #else
+    #define MODELDATA_CLASS __declspec(dllimport)
+  #endif
 #else
-//#define MODELDATA_CLASS __declspec(dllimport)
-#define MODELDATA_CLASS
+	#define MODELDATA_CLASS
 #endif
 
 #define FT_PRECIP 1

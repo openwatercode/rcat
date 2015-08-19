@@ -1,11 +1,14 @@
 #pragma once
 
-#ifdef CATMODEL_EXPORTS
-//#define CATMODEL_CLASS __declspec(dllexport)
-#define CATMODEL_CLASS
+#include "../StdAfx.h"
+#ifdef WINDLL
+  #ifdef CATMODEL_EXPORTS
+    #define CATMODEL_CLASS __declspec(dllexport)
+  #else
+    #define CATMODEL_CLASS __declspec(dllimport)
+  #endif
 #else
-//#define CATMODEL_CLASS __declspec(dllimport)
-#define CATMODEL_CLASS
+  #define CATMODEL_CLASS
 #endif
 
 #include "SeriesData.h"

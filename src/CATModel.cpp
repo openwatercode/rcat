@@ -1,11 +1,6 @@
 // CATModel.cpp : DLL 응용 프로그램에 대한 진입점을 정의합니다.
 //
 
-#undef RLIB
-#undef WINDLL
-#define RLIB
-//#define WINDLL
-
 #include "stdafx.h"
 #include "include/ModelManager.h"
 
@@ -23,6 +18,7 @@ BOOL APIENTRY DllMain( HMODULE hModule,
 }
 #endif // WINDLL
 
+#ifdef WINDLL
 /**
 * 모형실행을 위한 외부 노출 함수
 * @param infile : 모형실행 입력파일(Text)
@@ -33,11 +29,7 @@ BOOL APIENTRY DllMain( HMODULE hModule,
 *             [*:*] - 전체 결과를 테스트파일로 출력
 */
 
-#ifdef WINDLL
 int __cdecl Run(char* infile, char* outfile, char* format)
-#else
-int Run(char* infile, char* outfile, char* format)
-#endif
 {
 	TModelManager model;
 	int nRet = 0;
@@ -51,10 +43,8 @@ int Run(char* infile, char* outfile, char* format)
 	MultiByteToWideChar(CP_ACP, 0, outfile, strlen(outfile), szOutFile, MAX_PATH);
 	MultiByteToWideChar(CP_ACP, 0, format, strlen(format), szFormat, MAX_PATH);
 #else
-	strcpy_s(szOutFile, sizeof(szOutFile), outfile);
-	strcpy_s(szFormat, sizeof(szFormat), format);
-	//strcpy(szOutFile, outfile);
-	//strcpy(szFormat, format);
+	strcpy_s(szOutFile, outfile);
+	strcpy_s(szFormat, format);
 #endif
 
 	memset(szModule, 0, sizeof(szModule));
@@ -70,27 +60,22 @@ int Run(char* infile, char* outfile, char* format)
 
 	if(cSlash == NULL)
 	{
-	  //strcpy_s(szInput, szModule);
-	  strcpy(szInput, szModule);
+	  strcpy_s(szInput, szModule);
 
 		cFind = strrchr(infile, '\\');
 		if(cFind == NULL)
 			cFind = strrchr(infile, '/');
 
 		if(cFind)
-		  //strcat_s(szInput, cFind);
-		  strcat(szInput, cFind);
+		  strcat_s(szInput, cFind);
 		else
 		{
-		  //strcat_s(szInput, "\\");
-		  //strcat_s(szInput, infile);
-		  strcat(szInput, "\\");
-		  strcat(szInput, infile);
+		  strcat_s(szInput, "\\");
+		  strcat_s(szInput, infile);
 		}
 	}
 	else
-	  //strcpy_s(szInput, infile);
-	  strcpy(szInput, infile);
+	  strcpy_s(szInput, infile);
 
 	cSlash = strstr(outfile, ":\\");
 	if(cSlash == NULL)
@@ -99,27 +84,22 @@ int Run(char* infile, char* outfile, char* format)
 	if(cSlash == NULL)
 	{
 
-	  //strcpy_s(szOutFile, szModule);
-	  strcpy(szOutFile, szModule);
+	  strcpy_s(szOutFile, szModule);
 
 		cFind = strrchr(outfile, '\\');
 		if(cFind == NULL)
 			cFind = strrchr(outfile, '/');
 
 		if(cFind)
-			//strcat_s(szOutFile, cFind);
-			strcat(szOutFile, cFind);
+			strcat_s(szOutFile, cFind);
 		else
 		{
-			//strcat_s(szOutFile, "\\");
-			//strcat_s(szOutFile, outfile);
-			strcat(szOutFile, "\\");
-			strcat(szOutFile, outfile);
+			strcat_s(szOutFile, "\\");
+			strcat_s(szOutFile, outfile);
 		}
 	}
 	else
-		//strcpy_s(szOutFile, infile);
-		strcpy(szOutFile, infile);
+		strcpy_s(szOutFile, infile);
 
 
 	model.LoadText(szInput);
@@ -151,11 +131,8 @@ int Run(char* infile, char* outfile, char* format)
 	return nRet;
 }
 
-#ifdef WINDLL
+
 int __cdecl RunR(char** infile, char** outfile, char** format)
-#else
-int RunR(char** infile, char** outfile, char** format)
-#endif
 {
 	char szIn[MAX_PATH], szOut[MAX_PATH], szFormat[MAX_PATH];
 
@@ -163,22 +140,16 @@ int RunR(char** infile, char** outfile, char** format)
 	memset(szOut, 0, sizeof(szOut));
 	memset(szFormat, 0, sizeof(szFormat));
 
-	//strcpy_s(szIn, *infile);
-	//strcpy_s(szOut, *outfile);
-	strcpy(szIn, *infile);
-	strcpy(szOut, *outfile);
+	strcpy_s(szIn, *infile);
+	strcpy_s(szOut, *outfile);
 	if(format)
-		//strcpy_s(szFormat, *format);
-		strcpy(szFormat, *format);
+		strcpy_s(szFormat, *format);
 
 	return Run(szIn, szOut, szFormat);
 }
 
-#ifdef WINDLL
+
 void __stdcall RunModelA(HWND hwnd, HINSTANCE hinst, LPSTR lpszCmdLine, int nCmdShow)
-#else
-void RunModelA(HWND hwnd, HINSTANCE hinst, LPSTR lpszCmdLine, int nCmdShow)
-#endif // WINDLL
 {
 	char szIn[MAX_PATH], szOut[MAX_PATH], szFormat[500], *cFind, *cFind2;
 	char szMsg[1024];
@@ -191,15 +162,14 @@ void RunModelA(HWND hwnd, HINSTANCE hinst, LPSTR lpszCmdLine, int nCmdShow)
 	strncpy_s(szIn, MAX_PATH - 1, lpszCmdLine, cFind - lpszCmdLine);
 	cFind2 = strchr(cFind + 1, ' ');
 	strncpy_s(szOut, MAX_PATH - 1, cFind + 1, cFind2 - cFind - 1);
-	//strcpy_s(szFormat, cFind2 + 1);
-	strcpy(szFormat, cFind2 + 1);
+	strcpy_s(szFormat, cFind2 + 1);
 
-	//sprintf_s(szMsg, "In = [%s]\nOut = [%s]\nFormat = [%s]", szIn, szOut, szFormat);
-	sprintf(szMsg, "In = [%s]\nOut = [%s]\nFormat = [%s]", szIn, szOut, szFormat);
+	sprintf_s(szMsg, "In = [%s]\nOut = [%s]\nFormat = [%s]", szIn, szOut, szFormat);
 
-	//MessageBox(NULL, szMsg, "Test", 0);
+	MessageBox(NULL, szMsg, "Test", 0);
 	Run(szIn, szOut, szFormat);
 }
+#endif // WINDLL
 
 #ifdef _MANAGED
 #pragma managed(pop)
