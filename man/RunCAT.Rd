@@ -12,6 +12,7 @@ RunCAT(infile, outfile, format = "[*:*]")
 \item{outfile}{출력파일의 경로}
 
 \item{format}{포맷, "" 일 경우 바이너리 형태로 저장되며,
+"[노드명:필드번호1,필드번호2...]" 노드명의 지정필드를 텍스트파일로 출력
 "[*|*]" 일 경우 텍스트 형태로 저장됨}
 }
 \description{
