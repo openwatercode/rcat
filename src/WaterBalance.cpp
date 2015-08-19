@@ -6,6 +6,28 @@ TNodeYear::TNodeYear(void)
 {
 //	Init();
 	m_nCount = 0;
+	m_nET_Per = 0.0;
+	m_nYear = 1900;
+	m_nTotalRunoff = 0.0;
+	m_nSurfaceRunoff = 0.0;
+	m_nSoilVariation = 0.0;
+	m_nReserv = 0.0;
+	m_nRecharge = 0.0;
+	m_nRain = 0.0;
+	m_nLastSoil = 0.0;
+	m_nLastGW = 0.0;
+	m_nInterflow = 0.0;
+	m_nInitSoil = 0.0;
+	m_nInitGW = 0.0;
+	m_nInfiltrate = 0.0;
+	m_nImport = 0.0;
+	m_nGWMove = 0.0;
+	m_nGroundwater = 0.0;
+	m_nGroundStorage = 0.0;
+	m_nET = 0.0;
+	m_nET_Imp = 0.0;
+	m_nErrorBalance = 0.0;
+
 }
 
 void TNodeYear::Init(float nGW, float nSoil)
@@ -84,6 +106,8 @@ TNodeBalance::TNodeBalance(int nNodeID)
 {
 	m_nNodeID = nNodeID;
 	m_nStartYear = m_nEndYear = -1;
+	m_nType = 0;
+	m_nArea = 0.0f;
 }
 
 TNodeBalance::~TNodeBalance()
@@ -158,7 +182,7 @@ int TWaterBalance::GetEndYear(void)
 
 TNodeBalance* TWaterBalance::FindNode(int nNodeID)
 {
-	TNodeBalance *pNode = NULL;
+	//TNodeBalance *pNode = NULL;
 	int nIndex, nCount = GetCount();
 
 	for(nIndex = 0; nIndex < nCount; nIndex++)

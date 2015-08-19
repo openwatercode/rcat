@@ -20,6 +20,11 @@ TBaseNode::TBaseNode(void)
 	m_pResult = NULL;
 	m_nSf = m_nGW = m_nInter = m_nInflow = 0;
 	m_pDate = NULL;
+	m_pBalance = NULL;
+	m_nLoop = 0;
+	m_nLeakage = 0.0f;
+	m_nImport = 0.0f;
+	m_nDT = 0;
 }
 
 TBaseNode::~TBaseNode(void)
@@ -162,6 +167,10 @@ float TBaseNode::CalcAETSwat(float nPev, float nLai, float covsol, float nETo, f
 TClimate::TClimate(void)
 {
 	m_nType = NODE_CLIMATE;
+	m_nWindHeight = 0.0f;
+	m_nHeight = 0.0f;
+	m_nLat = 0.0f;
+	m_bUseCalc = FALSE;
 }
 
 TClimate::~TClimate(void)
@@ -177,7 +186,7 @@ void TClimate::operator =(TBaseNode &node)
 	m_nLat = pClimate->m_nLat;
 	m_nWindHeight = pClimate->m_nWindHeight;
 	m_sClimate.Clear();
-	m_sClimateSrc;
+	//m_sClimateSrc;
 	memcpy(m_szClimate, pClimate->m_szClimate, sizeof(m_szClimate));
 	memcpy(m_szEva, pClimate->m_szEva, sizeof(m_szEva));
 

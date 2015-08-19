@@ -209,7 +209,7 @@ void TUrban::Init(void)
 	gw_leakage = 0;
 	intake_rate_dt = ConvertDay2Step(gw_intake_rate);
 	gw_move_t = 0;
-	flow_tot = flow_sf = flow_sf_per = flow_sf_imp = flow_inter = /*flow_inter_per = */flow_inter = flow_gw = 0;
+	flow_tot = flow_sf = flow_sf_per = flow_sf_imp = flow_inter = /*flow_inter_per = */ flow_gw = 0;
 	infiltrate = 0;
 	nAET_imp = nAET_per = nAET_tot = 0;
 	nRes_ETo = 0;
@@ -244,7 +244,7 @@ void TUrban::InitResult(unsigned long nTime, int nInterval, int nCount)
 	m_pResult->m_Header.nCount = nCount;
 
 	// 출력 요소별 설정
-	for(int nCol = 0; nCol < sizeof(pszItemHeader) / sizeof(char*); nCol++)
+	for(int nCol = 0; nCol < (int)(sizeof(pszItemHeader) / sizeof(char*)); nCol++)
 	{
 		TSeriesItem *pItem = m_pResult->AddItem();
 		strcpy_s(pItem->m_Header.szHeader, 50, pszItemHeader[nCol]);
@@ -635,7 +635,7 @@ void TUrban::CalcPumping()
 
 void TUrban::CalcAreaVal()
 {
-	float a_imp = Aratio_imp, a_per = Aratio_per;
+	//float a_imp = Aratio_imp, a_per = Aratio_per;
 
 	nAET_tot = nAET_imp + nAET_per;
 	flow_sf = flow_sf_imp + flow_sf_per;
@@ -777,7 +777,7 @@ void TPaddy::InitResult(unsigned long nTime, int nInterval, int nCount)
 	m_pResult->m_Header.nCount = nCount;
 
 	// 출력 요소별 설정
-	for(int nCol = 0; nCol < sizeof(pszItemHeader) / sizeof(char*); nCol++)
+	for(int nCol = 0; nCol < (int)(sizeof(pszItemHeader) / sizeof(char*)); nCol++)
 	{
 		TSeriesItem *pItem = m_pResult->AddItem();
 		strcpy_s(pItem->m_Header.szHeader, 50, pszItemHeader[nCol]);
@@ -1000,7 +1000,7 @@ void TPaddy::CalcPaddy(void)
 	// 토양층 암거배수
 	ku_per = CalcKU(theta, theta_s_per, theta_r_per, n_mualem);
 	if(m_nRain > 0 && bIrrigate) // 강우가 있을시
-		soil_dr_pipe = min((double)ku_per, udgw_dr_cf * sqrt(surf_dr_depth + soil_th_per * theta / theta_s_per));
+		soil_dr_pipe = min(ku_per, udgw_dr_cf * (float)sqrt(surf_dr_depth + soil_th_per * theta / theta_s_per));
 	else
 		soil_dr_pipe = 0;
 

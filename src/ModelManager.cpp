@@ -11,6 +11,11 @@ TModelManager::TModelManager(void)
 	m_ppImport = NULL;
 	m_hwndNotify = NULL;
 	m_pfPostMsg = &TModelManager::VoidMessage;
+	m_nTimes = 0;
+	m_nLoop = 0;
+	m_nInterval = 0;
+	m_nDT = 0;
+	m_bStop = 0;
 }
 
 TModelManager::~TModelManager(void)
@@ -46,7 +51,7 @@ int TModelManager::FindItem(TBaseNode *pNode)
 			return GetAt(nIndex)->GetID();
 	}
 
-	return 0;
+	return -1;
 }
 
 int TModelManager::GetNodeCount(int nType, BOOL bMajorOnly)
@@ -80,7 +85,7 @@ void TModelManager::SetRouteOrder(void)
 	int i, j, nIndex;
 	int *pDepth;
 	TBaseNode* pNext = NULL;
-	int nMax = 0, nOrder = 0, nCount = GetCount();
+	//int nMax = 0, nOrder = 0, nCount = GetCount();
 	int nPos;
 
 	if(m_nConnect <= 0)
@@ -697,7 +702,7 @@ void TModelManager::CheckBalanceOutlet(void)
 
 TJunc* TModelManager::FindOutlet(TBaseNode *pNode)
 {
-	int nCount = GetCount();
+	//int nCount = GetCount();
 	TBaseNode* pCur = pNode;
 
 	while(pCur->GetOutput())
@@ -930,7 +935,7 @@ int TModelManager::ChangeFilePathA(char* szPath)
 {
 	int nRet;
 	char szPath2[MAX_PATH];
-	int nLen = strlen(szPath);
+	//int nLen = strlen(szPath);
 
 	if(TBaseNode::IsFileExist(szPath))
 		nRet = 0;

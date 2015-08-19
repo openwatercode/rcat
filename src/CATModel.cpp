@@ -1,6 +1,8 @@
 // CATModel.cpp : DLL 응용 프로그램에 대한 진입점을 정의합니다.
 //
 
+#undef RLIB
+#undef WINDLL
 #define RLIB
 //#define WINDLL
 

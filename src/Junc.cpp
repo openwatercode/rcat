@@ -41,7 +41,7 @@ void TJunc::InitResult(unsigned long nTime, int nInterval, int nCount)
 	m_pResult->m_Header.nData = FT_USER;
 	m_pResult->m_Header.nCount = nCount;
 
-	for(int nCol = 0; nCol < sizeof(pszJunkHeader) / sizeof(char*); nCol++)
+	for(int nCol = 0; nCol < (int)(sizeof(pszJunkHeader) / sizeof(char*)); nCol++)
 	{
 		TSeriesItem *pItem = m_pResult->AddItem();
 		strcpy_s(pItem->m_Header.szHeader, 50, pszJunkHeader[nCol]);

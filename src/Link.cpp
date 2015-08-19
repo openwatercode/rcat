@@ -154,7 +154,7 @@ void TLink::InitResult(unsigned long nTime, int nInterval, int nCount)
 	m_pResult->m_Header.nData = FT_USER;
 	m_pResult->m_Header.nCount = nCount;
 
-	for(int nCol = 0; nCol < sizeof(pszLinkHeader) / sizeof(char*); nCol++)
+	for(int nCol = 0; nCol < (int)(sizeof(pszLinkHeader) / sizeof(char*)); nCol++)
 	{
 		TSeriesItem *pItem = m_pResult->AddItem();
 		strcpy_s(pItem->m_Header.szHeader, 50, pszLinkHeader[nCol]);
@@ -198,17 +198,17 @@ float TLink::Direct(int nData, float nInput)
 float TLink::Cunge(int nData, float nInput)
 {
 	float nQAve, nC, nC1, nC2, nC3;
-	const float csnVar1 = 5.0f / 3.0f;
-	float dt = m_nDT;
-	float nN, nDTN, nC0, nXo, nK;
-	int nIndex, nPos, nPosNext;
+	//const float csnVar1 = 5.0f / 3.0f;
+	//float dt = m_nDT;
+	//float nN, nDTN, nC0, nXo, nK;
+	int nIndex, nPos;//, nPosNext;
 	float nRivLen;
 
 	m_nPrevOut[nData] = m_nOutput[nData];
 	m_nPrevIn[nData] = m_nInput[nData];
 	m_nInput[nData] = nInput;
 
-	float nIn, nOut, nPrevIn, nPrevOut;
+	float nIn, nPrevIn, nPrevOut;//, nOut;
 
 	nIn = nInput;
 	nPrevIn = m_nPrevIn[nData];
@@ -328,7 +328,7 @@ float TLink::Kinematic2(int nData, float nInput)
 
 	m_nInput[nData] = nInput;
 
-	float nIn, nOut, nPrevIn, nPrevOut;
+	float nIn, nPrevIn, nPrevOut; //, nOut;
 
 	nIn = nInput;
 	nPrevIn = m_nPrevIn[nData];
@@ -362,9 +362,9 @@ float TLink::Kinematic2(int nData, float nInput)
 	return m_nOutput[nData];
 }
 
+// TODO: 어떤 일을 하는 함수 인지 확인 불가
 float TLink::Kinematic3(int nData, float nInput)
 {
-	float nCK;
 	float nQ = 0;
 
 	if(nInput == 0)
@@ -372,7 +372,7 @@ float TLink::Kinematic3(int nData, float nInput)
 	else if(nInput > m_nQMax[nData])
 		m_nQMax[nData] = nInput;
 
-	nCK = Celerity(m_nQMax[nData]);
+	float nCK = Celerity(m_nQMax[nData]);
 
 	return nQ;
 }
@@ -392,7 +392,7 @@ float TLink::Celerity(float nQMax)
 
 float TLink::Kinematic(int nData, float nInput)
 {
-	int nLoop, nIndex, nPos;
+	int nLoop; //, nIndex, nPos;
 	float nTempArea;
 
 	m_nInput[nData] = nInput;

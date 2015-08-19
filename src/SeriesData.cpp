@@ -374,6 +374,10 @@ TSeriesItem::TSeriesItem(void)
 {
 	m_pParent = NULL;
 	memset(&m_Header, 0, sizeof(m_Header));
+	m_pDate = NULL;
+	m_nYear = 1900.0f;
+	m_nFirst = 0L;
+	m_nCurrent = 0L;
 }
 
 TSeriesItem::~TSeriesItem(void)
@@ -423,7 +427,7 @@ BOOL TSeriesItem::Load10(FILE* pFile)
 	{
 		fread(m_pArray, sizeof(DATATYPE) * m_Header.nCount, 1, pFile);
 		m_Date.SetSize(m_Header.nCount);
-		for(int i = 0; i < m_Header.nCount; i++)
+		for(int i = 0; i < (int)m_Header.nCount; i++)
 			m_Date.m_pArray[i] = m_pArray[i];
 		m_Date.m_nCount = m_Header.nCount;
 		m_nCount = m_Header.nCount;
@@ -542,7 +546,7 @@ unsigned long TSeriesItem::CopyPart(unsigned long nStart, unsigned long nEnd, TS
 	nCount = (nNewEnd - nStart) / m_Header.nInterval + 1;
 	pNew->SetSize(nCount);
 
-	for(nIndex = 0; nIndex < GetCount(); nIndex++)
+	for(nIndex = 0; nIndex < (unsigned long)GetCount(); nIndex++)
 	{
 		if(nCurrent >= nStart && nCurrent <= nNewEnd)
 			pNew->Add(GetValue(nIndex));
@@ -786,7 +790,7 @@ BOOL TSeries::Save(FILE *fp)
 
 BOOL TSeries::SaveText(FILE *fp, int nCount, int nFieldNos[])
 {
-	int nIndex, nCol, nRows;
+	int nIndex, nCol;
 	int nFields[30];
 	TDate date;
 
@@ -807,7 +811,7 @@ BOOL TSeries::SaveText(FILE *fp, int nCount, int nFieldNos[])
 	}
 	fprintf_s(fp, "%s\n", GetSeries(nFields[nCount - 1])->m_Header.szHeader);
 
-	nRows = GetSeries(0)->GetCount();
+	//int nRows = GetSeries(0)->GetCount();
 	date = m_Header.nTime;
 
 	for(nIndex = 0; nIndex < GetSeries(0)->GetCount(); nIndex++)
@@ -1565,7 +1569,7 @@ BOOL TSerieses::Save(char* szFile)
 BOOL TSerieses::Open(char* szFile)
 {
 	FILE *fp;
-	int nRet = 0;
+	//int nRet = 0;
 
 #ifdef _UNICODE
 	if(_wfopen_s(&fp, szFile, L"rb") != 0)

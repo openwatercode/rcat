@@ -181,7 +181,8 @@ void TValidateCheck::CheckCatchment(TCatchment* pCatch)
 
 	for(nIndex = 0; nIndex < pCatch->m_nClimates; nIndex++)
 	{
-		if(m_pManager->FindItem(pCatch->m_Climates[nIndex].pNode) == NULL)
+		//if(m_pManager->FindItem(pCatch->m_Climates[nIndex].pNode) == NULL)
+		if(m_pManager->FindItem(pCatch->m_Climates[nIndex].pNode) == -1)
 		{
 			GetNodeName(pCatch, szName);
 			sprintf_s(szMsg, 200, "Error : '%s' %dnd(st)r weather data is not correct\r\n", szName, nIndex + 1);
