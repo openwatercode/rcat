@@ -744,6 +744,12 @@ BOOL TModelManager::CheckUpNode(TBaseNode* pStart, TBaseNode *pCurrent)
 	return FALSE;
 }
 
+/** @brief 텍스트 형태의 데이터를 로딩하는 함수
+ *
+ * @param szFile 데이터 파일 경로
+ * @return 최근 발생한 에러 번호(정상종료는 0)
+ *
+ */
 int TModelManager::LoadText(char* szFile)
 {
 	char szLine[1024];
