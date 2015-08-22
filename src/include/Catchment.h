@@ -5,7 +5,7 @@
 class TLink;
 
 /**
-* Urban, Forest, Paddy의 최상위 클래스
+* @brief Urban, Forest, Paddy의 최상위 클래스
 * @brief 소스노드의 최상위 클래스이다. 하위 클래스와 통합예정
 */
 class CATMODEL_CLASS TCatchment : public TBaseNode
@@ -16,7 +16,7 @@ public:
 
 public:
 	virtual void operator = (TBaseNode& node);
-	/** 지하수위 값을 돌려주기 위한 가상함수
+	/** @brief 지하수위 값을 돌려주기 위한 가상함수
 	* @brief 연관된 노드에서 현재 노드의 지하수위값을 확인하기 위한 가상함수 - 제거예정
 	*/
 	virtual float GetGWE(int nStep) {return 0;};
@@ -30,7 +30,7 @@ public:
 };
 
 /**
-* Urban, Forest 클래스
+* @brief Urban, Forest 클래스
 * @brief Urban, Forest는 내부적으로 동일한 처리를 함으로 하나의 클래스로 처리한다.
 */
 class CATMODEL_CLASS TUrban :
@@ -90,8 +90,8 @@ public:
 	float LAI[12];				//!< 증발산 계산 매개변수
 
 	// 지하수 pumping
-	float gw_intake_rate;		// 지하수 펌핑량
-	float leakage_rate;			// 지하수 누출량
+	float gw_intake_rate;		//!<  지하수 펌핑량
+	float leakage_rate;			//!< 지하수 누출량
 
 	int DT_loop;
 
@@ -110,7 +110,7 @@ public:
 	float bef_rate;
 	float inf_rate;
 	float excess_rain;
-//	float Ku; // 임시로 ku값 고정.
+//	float Ku; //!< 임시로 ku값 고정.
 
 	// Horton
 	float ht_fc;				//!< 종기 침투능
@@ -124,8 +124,8 @@ public:
 
 	float gwE_t;				//!< 계산된 지하수위
 
-	float m_dtInflow;			// 유입량 (mm/단위시간)
-//	float m_dtLeakage; // 누수량 (mm/단위시간)
+	float m_dtInflow;			//!< 유입량 (mm/단위시간)
+//	float m_dtLeakage; //!< 누수량 (mm/단위시간)
 
 // 공용 함수
 public:
@@ -144,59 +144,59 @@ public:
 
 // 계산에 필요한 지역 변수
 protected:
-	float nRes_ETo;					// 잠재 증발산
-	float nAET_per;					// 투수지역 증발산
-	float nAET_imp;					// 불투수지역 증발산
-	float nAET_tot;					// 증발산
+	float nRes_ETo;					//!< 잠재 증발산
+	float nAET_per;					//!< 투수지역 증발산
+	float nAET_imp;					//!< 불투수지역 증발산
+	float nAET_tot;					//!< 증발산
 
-	TSeriesItem* m_pRain;			// 강우 시계열 자료
-	TSeriesItem* m_pPev;			// 증발산 시계열 자료
-	float m_nTempETo;				// 증발산 계산용 임시 변수
+	TSeriesItem* m_pRain;			//!< 강우 시계열 자료
+	TSeriesItem* m_pPev;			//!< 증발산 시계열 자료
+	float m_nTempETo;				//!< 증발산 계산용 임시 변수
 	int m_nCount;
 
-	float dep_imp;					// 계산된 투수지역 저류능
-	float dep_per;					// 계산된 불투수지역 저류능
-	float flow_sf;					// 지표유출
-	float flow_sf_imp;				// 불투수 지표유출
-	float flow_sf_per;				// 투수 지표유출
-	float flow_inter;				// 중간유출
-	float flow_gw;					// 지하유출
-	float recharge;					// 대수 저장량
-	float flow_tot;					// 전체 유출량
-	float infiltrate;				// 침투량
-	float theta;					// 현재 토양 수분
+	float dep_imp;					//!< 계산된 투수지역 저류능
+	float dep_per;					//!< 계산된 불투수지역 저류능
+	float flow_sf;					//!< 지표유출
+	float flow_sf_imp;				//!< 불투수 지표유출
+	float flow_sf_per;				//!< 투수 지표유출
+	float flow_inter;				//!< 중간유출
+	float flow_gw;					//!< 지하유출
+	float recharge;					//!< 대수 저장량
+	float flow_tot;					//!< 전체 유출량
+	float infiltrate;				//!< 침투량
+	float theta;					//!< 현재 토양 수분
 
 	// gw pumping
-	float gw_intake;				// 지하수 사용량
-	float surf_add;					// 지하수 사용량중 지표로 반환된량
-	float gw_leakage;				// 지하수 누출량
-	float intake_rate_dt;			// 하루 사용 가능량
+	float gw_intake;				//!< 지하수 사용량
+	float surf_add;					//!< 지하수 사용량중 지표로 반환된량
+	float gw_leakage;				//!< 지하수 누출량
+	float intake_rate_dt;			//!< 하루 사용 가능량
 
-	float gw_move_t;				// 지하수 이동량
-	float gw_move_in;				// 지하수 유입량
-	float gw_move_out;				// 지하수 유출량
+	float gw_move_t;				//!< 지하수 이동량
+	float gw_move_in;				//!< 지하수 유입량
+	float gw_move_out;				//!< 지하수 유출량
 
 // 내부 계산 함수
 protected:
-	/** 불투수 지역의 유출을 계산한다.
+	/** @brief 불투수 지역의 유출을 계산한다.
 	* @brief Calculate 함수에서 호출된다.
 	*/
 	void CalcImpervious();
-	/** 불투수 지역의 유출을 계산한다.
+	/** @brief 불투수 지역의 유출을 계산한다.
 	* @brief Calculate 함수에서 호출된다.
 	*/
 	void CalcPervious();
-	/** 대수층 계산을 수행한다.
+	/** @brief 대수층 계산을 수행한다.
 	* @brief Calculate 함수에서 호출된다.
 	*/
 	void CalcGW();
-	/** 면적관련 계산을 수행한다. 강우량을 cms로 변환등*/
+	/** @brief 면적관련 계산을 수행한다. 강우량을 cms로 변환등*/
 	void CalcAreaVal();
-	/** 지하수 사용에 대한 계산을 수행한다. */
+	/** @brief 지하수 사용에 대한 계산을 수행한다. */
 	void CalcPumping();
-	/** 토양 침투중 Green&Ampt 계산을 수행한다.*/
+	/** @brief 토양 침투중 Green&Ampt 계산을 수행한다.*/
 	void CalcGA(float inf_capa);
-	/** 토양 침투중 Horton 계산을 수행한다.*/
+	/** @brief 토양 침투중 Horton 계산을 수행한다.*/
 	void CalcHorton(float inf_capa);
 	ADDRESULT m_pfnAddResult;
 	ADDBALANCE m_pfnAddBalance;
@@ -206,17 +206,17 @@ protected:
 	CALCSUB m_pfImpervious;
 	CALCSUB m_pfPervious;
 	CALCSUB m_pfGW;
-	/* 다음 계산 시간의 강우량을 반환한다*/
+	/** @brief 다음 계산 시간의 강우량을 반환한다*/
 	inline float GetNextRain(void);
-	/* 다음 계산 시간의 증발량을 반환한다*/
+	/** @brief 다음 계산 시간의 증발량을 반환한다*/
 	inline float GetNextEV(void);
-	/* 현재 시간의 LAI값을 반환한다.*/
+	/** @brief 현재 시간의 LAI값을 반환한다.*/
 	float GetLAI(void);
 	void VoidFunc(void);
 	virtual void AddResult(void);
 	virtual void AddBalance(void);
 	float VoidFloat(void);
-	/* 침투 계산법중 Newton-Raphson을 계산한다. */
+	/** @brief 침투 계산법중 Newton-Raphson을 계산한다. */
 	float NewtonRaphson(float nInfilt, float delta);
 };
 
@@ -234,8 +234,8 @@ public:
 
 public:
 	void Calculate(int nStep);
-	/*
-	* Urban의 계산에서 paddy의 계산이 추가되었다.
+	/**
+	* @brief Urban의 계산에서 paddy의 계산이 추가되었다.
 	*/
 	void CalcPaddy(void);
 	void Clear(void);

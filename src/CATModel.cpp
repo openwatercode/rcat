@@ -20,7 +20,7 @@ BOOL APIENTRY DllMain( HMODULE hModule,
 
 #ifdef WINDLL
 /**
-* 모형실행을 위한 외부 노출 함수
+* @brief 모형실행을 위한 외부 노출 함수
 * @param infile : 모형실행 입력파일(Text)
 * @param outfile : 모형결과 저장 파일
 * @param format : 모형결과 저장 형식

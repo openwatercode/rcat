@@ -33,13 +33,13 @@ public:
 	float Routing_N;
 	float Peak_t;
 	float Routing_B;
-	float mann; // Kinematic start
+	float mann; //!< Kinematic start
 	float init_route;
 	float slope_riv;
 	float length_riv;
 	float Bottom_riv;
 	float Top_riv;
-	float depth_riv; // 계산 가능?
+	float depth_riv; //!< 계산 가능?
 	int DT_loop;
 	int m_nStartID;
 	int m_nEndID;

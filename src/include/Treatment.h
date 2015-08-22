@@ -2,7 +2,7 @@
 #include "Catchment.h"
 
 /**
-* Import 노드
+* @brief Import 노드
 * @brief 지정한양만큼의 유량 또는 시계열 자료로 설정된 유량을 내보낸다.
 */
 class CATMODEL_CLASS TImport :
@@ -18,17 +18,17 @@ public:
 	void Init(void);
 	void Calculate(int nStep);
 	/**
-	* 시계열 자료 파일을 설정한다.
+	* @brief 시계열 자료 파일을 설정한다.
 	* @param szFile : 시계열 자료 파일명이며, 시계열 자료 포맷이어야 한다.
 	*/
 	void SetSeriesFileA(char* szFile);
 	/**
-	* 시계열 자료 파일을 설정한다.(유니코드)
+	* @brief 시계열 자료 파일을 설정한다.(유니코드)
 	* @param szFile : 시계열 자료 파일명이며, 시계열 자료 포맷이어야 한다.
 	*/
 	void SetSeriesFileW(wchar_t* szFile);
 	/**
-	* 시계열 자표 파일이 설정되어 있고, 유출 형태가 시계열인경우 자료를 읽는다.
+	* @brief 시계열 자표 파일이 설정되어 있고, 유출 형태가 시계열인경우 자료를 읽는다.
 	*/
 	void LoadSeries(void);
 	void InitResult(unsigned long nTime, int nInterval, int nCount);
@@ -37,15 +37,15 @@ public:
 
 protected:
 	/**
-	* 유출 형태가 Contant인 경우 호출되며 동일한 값으로 유출한다.
+	* @brief 유출 형태가 Contant인 경우 호출되며 동일한 값으로 유출한다.
 	*/
 	void CalcConst(int nStep);
 	/**
-	* 유출 형태가 Series인 경우 호출되며 파일에 저장되어 있는 값이 유출된다.
+	* @brief 유출 형태가 Series인 경우 호출되며 파일에 저장되어 있는 값이 유출된다.
 	*/
 	void CalcSeries(int nStep);
 	/**
-	* 아무 계산도 하지 않으며 유출값은 0이다.
+	* @brief 아무 계산도 하지 않으며 유출값은 0이다.
 	*/
 	void CalcNone(int nStep) {};
 
@@ -66,7 +66,7 @@ protected:
 };
 
 /**
-* Infiltro 노드 클래스
+* @brief Infiltro 노드 클래스
 * @brief 침투시설에 처리를 위한 클래스
 */
 
@@ -122,7 +122,7 @@ protected:	// 계산시 사용되는 변수
 };
 
 /**
-** BioRetential 노드 클래스
+** @brief BioRetential 노드 클래스
 * 침투녹지 처리 클래스. Infiltration에 식생이 포함되어 있는 형태와 유사하다.
 */
 class CATMODEL_CLASS TBioRetention : public TInfiltro
@@ -159,7 +159,7 @@ private:
 };
 
 /**
-* WetLand 노드 클래스
+* @brief WetLand 노드 클래스
 * 습지 노드. 유입량이 크면 초과분은 하류로 유출하고 나머지 보관
 */
 
@@ -176,7 +176,7 @@ public:
 	void Init(void);
 	void InitResult(unsigned long nTime, int nInterval, int nCount);
 	/**
-	* 저류지의 가능량을 계산하고 유출량을 계산한다.
+	* @brief 저류지의 가능량을 계산하고 유출량을 계산한다.
 	* @param in_vol : 유입량
 	* @param out_wl : 저수위
 	* @param out_area : 저수면적
@@ -228,7 +228,7 @@ protected:
 };
 
 /**
-* Pond 노드 클래스
+* @brief Pond 노드 클래스
 * 저류시설 노드이며, Offline 및 Online 저류시설로 나누어진다.
 */
 class CATMODEL_CLASS TPond :
@@ -237,7 +237,7 @@ class CATMODEL_CLASS TPond :
 	typedef void (TPond::*CALCULATE)(void);
 	typedef float (TPond::*GETINTAKE)(void);
 	/**
-	* 저류시설의 Offline 및 Online 계산에 사용할 수 있도록한 구조체
+	* @brief 저류시설의 Offline 및 Online 계산에 사용할 수 있도록한 구조체
 	*/
 	typedef struct {
 		float wl;			//!< 저수위
@@ -259,17 +259,17 @@ public:
 	void Clear(void);
 	void InitResult(unsigned long nTime, int nInterval, int nCount);
 	/**
-	* 취수량 시계열 자료 파일을 지정한다.
+	* @brief 취수량 시계열 자료 파일을 지정한다.
 	* @param szFile : 취수량이 저장된 시계열 자료 파일명
 	*/
 	void SetSeriesFileA(char* szFile);
 	/**
-	* 취수량 시계열 자료 파일을 지정한다.(유니코드)
+	* @brief 취수량 시계열 자료 파일을 지정한다.(유니코드)
 	* @param szFile : 취수량이 저장된 시계열 자료 파일명
 	*/
 	void SetSeriesFileW(wchar_t* szFile);
 	/**
-	* 취수방법을 시계열 자료로 선택하고 시계열 자료 파일을 지정했을 경우 자료를 읽어들인다.
+	* @brief 취수방법을 시계열 자료로 선택하고 시계열 자료 파일을 지정했을 경우 자료를 읽어들인다.
 	*/
 	void LoadSeries(void);
 	float GetArea() {return fullArea;};
@@ -280,29 +280,29 @@ protected:
 	CALCULATE m_pfCalculate;
 	GETINTAKE m_pfIntake;
 	/**
-	* Online 습지 방류를 계산한다.
+	* @brief Online 습지 방류를 계산한다.
 	* 습지종류에 따라 Calculate에서 호출된다.
 	*/
 	void CalcOnline(void);
 	/**
-	* Offline 습지 방류를 계산한다.
+	* @brief Offline 습지 방류를 계산한다.
 	* 습지종류에 따라 Calculate에서 호출된다.
 	*/
 	void CalcOffline(void);
 	/**
-	* 계산에 필요한 초기값을 계산한다.
+	* @brief 계산에 필요한 초기값을 계산한다.
 	*/
 	inline void CalcInitial(void);
 	/**
-	* 누출량을 계산한다.
+	* @brief 누출량을 계산한다.
 	*/
 	inline void CalcLoss(void);
 	/**
-	* 저수량에 따른 수위를 계산한다.
+	* @brief 저수량에 따른 수위를 계산한다.
 	*/
 	inline float CalcStorage(void);
 	/**
-	* 유입량에 따른 유출을 계산하고 저수위 및 저류량을 계산한다.
+	* @brief 유입량에 따른 유출을 계산하고 저수위 및 저류량을 계산한다.
 	* @param in_vol : 유입량
 	* @param out_wl : 계산된 저수위
 	* @param out_area : 계산된 저수면적
@@ -311,40 +311,40 @@ protected:
 	void AddResult(int nStep);
 	void AddBalance(void);
 	/**
-	* 수위에 따른 저수량을 계산한다.
+	* @brief 수위에 따른 저수량을 계산한다.
 	* @param nHeight : 수위
 	* @return nHeight에 따른 저수량
 	*/
 	float CalcVolByHeight(float nHeight);
 	/**
-	* Constant로 취수량을 지정한 경우 계산 시간에 맞는 취수량을 반환한다.
+	* @brief Constant로 취수량을 지정한 경우 계산 시간에 맞는 취수량을 반환한다.
 	*/
 	float GetIntakeConst(void);
 	/**
-	* 취수량을 시계열로 지정한 경우 저장된 시계열에서 취수량을 반환한다.
+	* @brief 취수량을 시계열로 지정한 경우 저장된 시계열에서 취수량을 반환한다.
 	*/
 	float GetIntakeSeries(void);
 	/**
-	* Puls를 이용한 저수량 산정을 위한 테이블을 만들어 둔다.
+	* @brief Puls를 이용한 저수량 산정을 위한 테이블을 만들어 둔다.
 	*/
 	void CalcPulsTable(void);
 	/**
-	* Puls 계산 테이블을 이용하여 저수량을 계산한다.
+	* @brief Puls 계산 테이블을 이용하여 저수량을 계산한다.
 	*/
 	void CalcPuls(void);
 	/**
-	* 유출량을 계산한다.
+	* @brief 유출량을 계산한다.
 	* @param spil : 물넘이 방류량
 	* @param pipe : 방류구 방류량
 	* @param total : 전체 방류량
 	*/
 	void CalcOutflow(float &spil, float &pipe, float &total);
 	/**
-	* Storage EQ.을 사용하여 저수량을 산정한다.
+	* @brief Storage EQ.을 사용하여 저수량을 산정한다.
 	*/
 	void CalcSI(float spil, float pipe, float total, float &si_spil, float &si_pipe, float &si_total);
 	/**
-	* Storage EQ.을 사용하여 유출량을 산정한다.
+	* @brief Storage EQ.을 사용하여 유출량을 산정한다.
 	* @param si_spil : 계산된 물넘이 유량
 	* @param si_pipe : 계산된 방류구 유량
 	* @param si_total : 계산전 전체 유량
@@ -424,7 +424,7 @@ private:
 };
 
 /**
-* RainTank 클래스
+* @brief RainTank 클래스
 * @brief 빗물저장 탱크의 처리 노드를 구현한다.
 */
 class CATMODEL_CLASS TRainTank :
@@ -482,7 +482,7 @@ public:
 };
 
 /**
-* Recycle 노드 클래스
+* @brief Recycle 노드 클래스
 * @brief 물의 재사용을 위한 처리를 구현한다.
 */
 class CATMODEL_CLASS TRecycle :

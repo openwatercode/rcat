@@ -19,8 +19,8 @@
 
 const unsigned short CATFILEVERSION = 0x0007;
 const unsigned short CATVERSION_KGW = 0x0006;
-const unsigned short CATBGRPOSVERSION = 0x0005; // 배경위치 정보 저장 전.
-const unsigned short CATOLDVERSION2 = 0x0004; // Climate에서 파일명 크기 변경 (TCHAR -> char)
+const unsigned short CATBGRPOSVERSION = 0x0005; //!< 배경위치 정보 저장 전.
+const unsigned short CATOLDVERSION2 = 0x0004; //!< Climate에서 파일명 크기 변경 (TCHAR -> char)
 const unsigned short CATOLDVERSION = 0x0003;
 
 /*

@@ -11,7 +11,7 @@ public:
 public:
 	TBaseNode *pOutput;
 	unsigned short nStep;
-	NODECOMPOSITE m_Drain;	// 합류식으로 가는 양의 입력값은 m3/day
+	NODECOMPOSITE m_Drain;	//!< 합류식으로 가는 양의 입력값은 m3/day
 
 public:
 	virtual void operator =(TBaseNode &node);

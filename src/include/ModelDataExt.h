@@ -43,10 +43,10 @@
 typedef struct _tagTimeData
 {
 	unsigned short nYear;
-	BYTE nMonth;	// 1-12
-	BYTE nDay;		// 1-31
-	BYTE nHour;		// 0-23
-	BYTE nMinute;	// 0-59
+	BYTE nMonth;	//!< 1-12
+	BYTE nDay;		//!< 1-31
+	BYTE nHour;		//!< 0-23
+	BYTE nMinute;	//!< 0-59
 } TIMEDATA;
 
 /*
@@ -69,25 +69,25 @@ DATACOUNT : 4BYTE
 // version 0.1
 typedef struct _tagSeriesDump
 {
-	unsigned short nFile;		// 파일종류
-	char szDescript[100];		// 파일설명
-	DWORD dwVersion;			// 파일버전
-	unsigned short nInterval;	// 시간간격
-	TIMEDATA date;				// 시작시간
-	unsigned int nCount;		// 데이타 수
+	unsigned short nFile;		//!< 파일종류
+	char szDescript[100];		//!< 파일설명
+	DWORD dwVersion;			//!< 파일버전
+	unsigned short nInterval;	//!< 시간간격
+	TIMEDATA date;				//!< 시작시간
+	unsigned int nCount;		//!< 데이타 수
 } SERIESDUMP;
 
 // version 0.2
 typedef struct _tagSeriesHeaderOld
 {
 	unsigned short nMagic;
-	unsigned short nFile;		// 파일종류
-	char szDescript[DESCRIPTSIZE];		// 파일설명
-	DWORD dwVersion;			// 파일버전
-	unsigned short nInterval;	// 시간간격
-	unsigned long date;				// 시작시간
-	unsigned short nColumn;		// column 수
-	unsigned int nCount;		// 데이타 수
+	unsigned short nFile;		//!< 파일종류
+	char szDescript[DESCRIPTSIZE];		//!< 파일설명
+	DWORD dwVersion;			//!< 파일버전
+	unsigned short nInterval;	//!< 시간간격
+	unsigned long date;				//!< 시작시간
+	unsigned short nColumn;		//!< column 수
+	unsigned int nCount;		//!< 데이타 수
 	BYTE Reserved[16];
 } SERIESHEADEROLD;
 
@@ -103,12 +103,12 @@ typedef struct _tagSeriesItemHeader
 
 typedef struct _tagSeriesHeader
 {
-	unsigned short nData;		// 데이타종류
-	unsigned short nInterval;	// 시간간격
+	unsigned short nData;		//!< 데이타종류
+	unsigned short nInterval;	//!< 시간간격
 	unsigned long nTime;
-	unsigned int nCount;		// 데이타 수
-	char szDescript[DESCRIPTSIZE];		// 파일설명
-	unsigned short nColumn;		// column 수
+	unsigned int nCount;		//!< 데이타 수
+	char szDescript[DESCRIPTSIZE];		//!< 파일설명
+	unsigned short nColumn;		//!< column 수
 	BYTE Reserved[26];
 } SERIESHEADER;
 
