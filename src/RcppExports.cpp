@@ -5,6 +5,17 @@
 
 using namespace Rcpp;
 
+// run_cat
+List run_cat(List params);
+RcppExport SEXP rcat_run_cat(SEXP paramsSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< List >::type params(paramsSEXP);
+    __result = Rcpp::wrap(run_cat(params));
+    return __result;
+END_RCPP
+}
 // rcpp_run_cat
 int rcpp_run_cat(CharacterVector input, CharacterVector report, CharacterVector bin);
 RcppExport SEXP rcat_rcpp_run_cat(SEXP inputSEXP, SEXP reportSEXP, SEXP binSEXP) {
