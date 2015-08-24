@@ -22,5 +22,6 @@
 #' @examples
 #' download.file("http://r.prj.kr/data/rcat/rcat_ex.zip", "rcat_ex.zip")
 #' unzip("rcat_ex.zip")
+#' # save the output to file
 #' RunCAT("dist_101208.txt", "dist_101208.out")
 NULL
