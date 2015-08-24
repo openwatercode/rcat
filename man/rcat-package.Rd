@@ -12,7 +12,7 @@ R 환경에서 CAT모형을 수행하기 위한 함수.
 \tabular{ll}{
 Package: \tab rcat\cr
 Type: \tab Package\cr
-Version: \tab 0.1.0\cr
+Version: \tab 0.1.1\cr
 Date: \tab 2015-08-12\cr
 License: \tab GPL-2\cr
 }

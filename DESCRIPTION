@@ -1,7 +1,7 @@
 Package: rcat
 Type: Package
 Title: It's the Hydrologic Model to simulate the catchment hydrology
-Version: 0.1.0
+Version: 0.1.1
 Date: 2015-08-11
 Author: Heeseong Park
 Maintainer: Heeseong Park <hspark90@i-fam.net>
