@@ -322,7 +322,7 @@ int TClimate::LoadSeries(void)
 		nRet = series.Load(szClimate);
 		if(nRet == 9)
 		{
-			if(MessageBox(NULL, "Convert previous data file?", "Convert", MB_YESNO) == IDYES)
+			//if(MessageBox(NULL, "Convert previous data file?", "Convert", MB_YESNO) == IDYES)
 //			if(AfxMessageBox(_T("Convert previous data file?"), MB_YESNO) == IDYES)
 				series.Save(NULL);
 			nRet = 0;
