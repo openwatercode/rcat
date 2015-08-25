@@ -7,6 +7,7 @@
 
 #undef RLIB
 #undef WINDLL
+//#define WINDLL
 //#define WINRLIB
 #ifndef WINRLIB
 #include <stdio.h>
@@ -39,4 +40,3 @@
 #endif
 
 // TODO: 프로그램에 필요한 추가 헤더는 여기에서 참조합니다.
-//#define WINDLL
