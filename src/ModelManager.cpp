@@ -779,6 +779,9 @@ int TModelManager::LoadText(char* szFile)
 		memset(szLine, 0, sizeof(szLine));
 		fgets(szLine, 1024, fp);
 
+		memset(szToken, 0, sizeof(szToken));
+		memset(szToken2, 0, sizeof(szToken2));
+
 		cFind = strchr(szLine, '=');
 		if(cFind)
 		{

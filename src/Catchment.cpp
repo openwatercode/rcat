@@ -1116,27 +1116,31 @@ int TUrban::LoadText(FILE *fp)
 		if(strcmp(szLine, "EndNode") == 0)
 			break;
 
+		memset(szToken, 0, sizeof(szToken));
+		memset(szToken2, 0, sizeof(szToken2));
+
 		cFind = strchr(szLine, '=');
 		//strncpy_s(szToken, szLine, (cFind - &szLine[0]));
 		//strcpy_s(szToken2, cFind + 1);
 		strncpy(szToken, szLine, (cFind - &szLine[0]));
 		strcpy(szToken2, cFind + 1);
 		Trim(szToken2);
+		Trim(szToken);
 
-		if(strcmp(szToken, "NodeID ") == 0)
+		if(strcmp(szToken, "NodeID") == 0)
 		{
 			ReadValue(szToken2, nVals, 1);
 			SetID(int(nVals[0]));
 		}
-		else if(strcmp(szToken, "Name ") == 0)
+		else if(strcmp(szToken, "Name") == 0)
 		{
 			SetName(szToken2);
 		}
-		else if(strcmp(szToken, "Desc ") == 0)
+		else if(strcmp(szToken, "Desc") == 0)
 		{
 			SetDesc(szToken2);
 		}
-		else if(strcmp(szToken, "Topology ") == 0)
+		else if(strcmp(szToken, "Topology") == 0)
 		{
 			ReadValue(szToken2, nVals, 7);
 
@@ -1147,7 +1151,7 @@ int TUrban::LoadText(FILE *fp)
 			depC_imp = nVals[5];
 			depC_per = nVals[6];
 		}
-		else if(strcmp(szToken, "Soil ") == 0)
+		else if(strcmp(szToken, "Soil") == 0)
 		{
 			ReadValue(szToken2, nVals, 9);
 
@@ -1161,7 +1165,7 @@ int TUrban::LoadText(FILE *fp)
 			ksi_per = nVals[7];
 			n_mualem = nVals[8];
 		}
-		else if(strcmp(szToken, "River ") == 0)
+		else if(strcmp(szToken, "River") == 0)
 		{
 			ReadValue(szToken2, nVals, 8);
 
@@ -1174,7 +1178,7 @@ int TUrban::LoadText(FILE *fp)
 			aqf_Top = nVals[6];
 			aqf_Bot = nVals[7];
 		}
-		else if(strcmp(szToken, "Infiltro ") == 0)
+		else if(strcmp(szToken, "Infiltro") == 0)
 		{
 			ReadValue(szToken2, nVals, 5);
 			infilt_method = nVals[0];
@@ -1183,14 +1187,14 @@ int TUrban::LoadText(FILE *fp)
 			ht_fo = nVals[3];
 			ht_k = nVals[4];
 		}
-		else if(strcmp(szToken, "Intake ") == 0)
+		else if(strcmp(szToken, "Intake") == 0)
 		{
 			ReadValue(szToken2, nVals, 2);
 
 			gw_intake_rate = nVals[0];
 			leakage_rate = nVals[1];
 		}
-		else if(strcmp(szToken, "GWout ") == 0)
+		else if(strcmp(szToken, "GWout") == 0)
 		{
 			ReadValue(szToken2, nVals, 6);
 
@@ -1201,7 +1205,7 @@ int TUrban::LoadText(FILE *fp)
 			conn_len = nVals[4];
 			Kgw = nVals[5];
 		}
-		else if(strcmp(szToken, "Evaporation ") == 0)
+		else if(strcmp(szToken, "Evaporation") == 0)
 		{
 			ReadValue(szToken2, nVals, 14);
 
@@ -1220,7 +1224,7 @@ int TUrban::LoadText(FILE *fp)
 			LAI[10] = nVals[12];
 			LAI[11] = nVals[13];
 		}
-		else if(strcmp(szToken, "Weather ") == 0)
+		else if(strcmp(szToken, "Weather") == 0)
 		{
 			char *cFind = strchr(szToken2, ',');
 			int nPos = 0;
@@ -1276,27 +1280,31 @@ int TPaddy::LoadText(FILE *fp)
 		if(strcmp(szLine, "EndNode") == 0)
 			break;
 
+		memset(szToken, 0, sizeof(szToken));
+		memset(szToken2, 0, sizeof(szToken2));
+
 		cFind = strchr(szLine, '=');
 		//strncpy_s(szToken, 100, szLine, (cFind - &szLine[0]));
 		//strcpy_s(szToken2, cFind + 1);
 		strncpy(szToken, szLine, min(100, (int)(cFind - &szLine[0])));
 		strcpy(szToken2, cFind + 1);
 		Trim(szToken2);
+		Trim(szToken);
 
-		if(strcmp(szToken, "NodeID ") == 0)
+		if(strcmp(szToken, "NodeID") == 0)
 		{
 			ReadValue(szToken2, nVals, 1);
 			SetID(int(nVals[0]));
 		}
-		else if(strcmp(szToken, "Name ") == 0)
+		else if(strcmp(szToken, "Name") == 0)
 		{
 			SetName(szToken2);
 		}
-		else if(strcmp(szToken, "Desc ") == 0)
+		else if(strcmp(szToken, "Desc") == 0)
 		{
 			SetDesc(szToken2);
 		}
-		else if(strcmp(szToken, "Topology ") == 0)
+		else if(strcmp(szToken, "Topology") == 0)
 		{
 			ReadValue(szToken2, nVals, 7);
 
@@ -1308,7 +1316,7 @@ int TPaddy::LoadText(FILE *fp)
 			depC_imp = nVals[5];
 			depC_per = nVals[6];
 		}
-		else if(strcmp(szToken, "Soil ") == 0)
+		else if(strcmp(szToken, "Soil") == 0)
 		{
 			ReadValue(szToken2, nVals, 9);
 
@@ -1322,7 +1330,7 @@ int TPaddy::LoadText(FILE *fp)
 			ksi_per = nVals[7];
 			n_mualem = nVals[8];
 		}
-		else if(strcmp(szToken, "River ") == 0)
+		else if(strcmp(szToken, "River") == 0)
 		{
 			ReadValue(szToken2, nVals, 8);
 
@@ -1335,7 +1343,7 @@ int TPaddy::LoadText(FILE *fp)
 			aqf_Top = nVals[6];
 			aqf_Bot = nVals[7];
 		}
-		else if(strcmp(szToken, "Intake ") == 0)
+		else if(strcmp(szToken, "Intake") == 0)
 		{
 			ReadValue(szToken2, nVals, 2);
 
@@ -1353,7 +1361,7 @@ int TPaddy::LoadText(FILE *fp)
 			conn_len = nVals[4];
 			Kgw = nVals[5];
 		}
-		else if(strcmp(szToken, "Evaporation ") == 0)
+		else if(strcmp(szToken, "Evaporation") == 0)
 		{
 			ReadValue(szToken2, nVals, 14);
 
@@ -1372,7 +1380,7 @@ int TPaddy::LoadText(FILE *fp)
 			LAI[10] = nVals[12];
 			LAI[11] = nVals[13];
 		}
-		else if(strcmp(szToken, "Weather ") == 0)
+		else if(strcmp(szToken, "Weather") == 0)
 		{
 			char *cFind = strchr(szToken2, ',');
 			int nPos = 0;
@@ -1396,7 +1404,7 @@ int TPaddy::LoadText(FILE *fp)
 			}
 			m_nClimates = nPos;
 		}
-		else if(strcmp(szToken, "Irrigation ") == 0)
+		else if(strcmp(szToken, "Irrigation") == 0)
 		{
 			ReadValue(szToken2, nVals, 4);
 
@@ -1405,7 +1413,7 @@ int TPaddy::LoadText(FILE *fp)
 			irr_end_mon = (int)nVals[2];
 			irr_end_day = (int)nVals[3];
 		}
-		else if(strcmp(szToken, "Coefficient ") == 0)
+		else if(strcmp(szToken, "Coefficient") == 0)
 		{
 			ReadValue(szToken2, nVals, 6);
 
@@ -1415,7 +1423,7 @@ int TPaddy::LoadText(FILE *fp)
 			soil_dr_cf = nVals[3];
 			udgw_dr_cf = nVals[4];
 		}
-		else if(strcmp(szToken, "Drain ") == 0)
+		else if(strcmp(szToken, "Drain") == 0)
 		{
 			ReadValue(szToken2, nVals, 12);
 			memcpy(surf_dr_ht, nVals, sizeof(float) * 12);

@@ -1424,41 +1424,42 @@ int TImport::LoadText(FILE *fp)
 		strncpy(szToken, szLine, min(100, (int)(cFind - &szLine[0])));
 		strcpy(szToken2, cFind + 1);
 		Trim(szToken2);
+		Trim(szToken);
 
-		if(strcmp(szToken, "NodeID ") == 0)
+		if(strcmp(szToken, "NodeID") == 0)
 		{
 			ReadValue(szToken2, nVals, 1);
 			SetID(int(nVals[0]));
 		}
-		else if(strcmp(szToken, "Name ") == 0)
+		else if(strcmp(szToken, "Name") == 0)
 		{
 			SetName(szToken2);
 		}
-		else if(strcmp(szToken, "Desc ") == 0)
+		else if(strcmp(szToken, "Desc") == 0)
 		{
 			SetDesc(szToken2);
 		}
-		else if(strcmp(szToken, "Type ") == 0)
+		else if(strcmp(szToken, "Type") == 0)
 		{
 			ReadValue(szToken2, nVals, 1);
 			type = (int)nVals[0];
 		}
-		else if(strcmp(szToken, "Constant ") == 0)
+		else if(strcmp(szToken, "Constant") == 0)
 		{
 			ReadValue(szToken2, nVals, 1);
 			m_nConst = nVals[0];
 		}
-		else if(strcmp(szToken, "Series ") == 0)
+		else if(strcmp(szToken, "Series") == 0)
 		{
 			SetSeriesFileA(szToken2);
 		}
-		else if(strcmp(szToken, "Table ") == 0)
+		else if(strcmp(szToken, "Table") == 0)
 		{
 			ReadValue(szToken2, nVals, 2);
 			m_nTable = nVals[0];
 			m_nData = nVals[1];
 		}
-		else if(strcmp(szToken, "Leakage ") == 0)
+		else if(strcmp(szToken, "Leakage") == 0)
 		{
 			ReadValue(szToken2, nVals, 1);
 			m_nLeakage = nVals[0];
@@ -1496,21 +1497,22 @@ int TInfiltro::LoadText(FILE *fp)
 		strncpy(szToken, szLine, min(100, (int)(cFind - &szLine[0])));
 		strcpy(szToken2, cFind + 1);
 		Trim(szToken2);
+		Trim(szToken);
 
-		if(strcmp(szToken, "NodeID ") == 0)
+		if(strcmp(szToken, "NodeID") == 0)
 		{
 			ReadValue(szToken2, nVals, 1);
 			SetID(int(nVals[0]));
 		}
-		else if(strcmp(szToken, "Name ") == 0)
+		else if(strcmp(szToken, "Name") == 0)
 		{
 			SetName(szToken2);
 		}
-		else if(strcmp(szToken, "Desc ") == 0)
+		else if(strcmp(szToken, "Desc") == 0)
 		{
 			SetDesc(szToken2);
 		}
-		else if(strcmp(szToken, "Aquifer ") == 0)
+		else if(strcmp(szToken, "Aquifer") == 0)
 		{
 			ReadValue(szToken2, nVals, 6);
 
@@ -1521,7 +1523,7 @@ int TInfiltro::LoadText(FILE *fp)
 			potential = nVals[4];
 			in_node_id = nVals[5];
 		}
-		else if(strcmp(szToken, "GWMove ") == 0)
+		else if(strcmp(szToken, "GWMove") == 0)
 		{
 			ReadValue(szToken2, nVals, 6);
 
@@ -1565,21 +1567,22 @@ int TBioRetention::LoadText(FILE *fp)
 		strncpy(szToken, szLine, min(100, (int)(cFind - &szLine[0])));
 		strcpy(szToken2, cFind + 1);
 		Trim(szToken2);
+		Trim(szToken);
 
-		if(strcmp(szToken, "NodeID ") == 0)
+		if(strcmp(szToken, "NodeID") == 0)
 		{
 			ReadValue(szToken2, nVals, 1);
 			SetID(int(nVals[0]));
 		}
-		else if(strcmp(szToken, "Name ") == 0)
+		else if(strcmp(szToken, "Name") == 0)
 		{
 			SetName(szToken2);
 		}
-		else if(strcmp(szToken, "Desc ") == 0)
+		else if(strcmp(szToken, "Desc") == 0)
 		{
 			SetDesc(szToken2);
 		}
-		else if(strcmp(szToken, "Aquifer ") == 0)
+		else if(strcmp(szToken, "Aquifer") == 0)
 		{
 			ReadValue(szToken2, nVals, 6);
 
@@ -1590,7 +1593,7 @@ int TBioRetention::LoadText(FILE *fp)
 			potential = nVals[4];
 			in_node_id = nVals[5];
 		}
-		else if(strcmp(szToken, "GWMove ") == 0)
+		else if(strcmp(szToken, "GWMove") == 0)
 		{
 			ReadValue(szToken2, nVals, 6);
 
@@ -1601,7 +1604,7 @@ int TBioRetention::LoadText(FILE *fp)
 			conn_len = nVals[4];
 			Kgw = nVals[5];
 		}
-		else if(strcmp(szToken, "Evaporation ") == 0)
+		else if(strcmp(szToken, "Evaporation") == 0)
 		{
 			ReadValue(szToken2, nVals, 12);
 
@@ -1618,13 +1621,13 @@ int TBioRetention::LoadText(FILE *fp)
 			LAI[10] = nVals[10];
 			LAI[11] = nVals[11];
 		}
-		else if(strcmp(szToken, "Rainfall ") == 0)
+		else if(strcmp(szToken, "Rainfall") == 0)
 		{
 			ReadValue(szToken2, nVals, 1);
 			m_Climates[0].nID = nVals[0];
 			m_Climates[0].nRain = 100;
 		}
-		else if(strcmp(szToken, "EVA ") == 0)
+		else if(strcmp(szToken, "EVA") == 0)
 		{
 			ReadValue(szToken2, nVals, 1);
 			m_Climates[1].nID = nVals[0];
@@ -1664,21 +1667,22 @@ int TWetLand::LoadText(FILE *fp)
 		strncpy(szToken, szLine, min(100,(int)(cFind - &szLine[0])));
 		strcpy(szToken2, cFind + 1);
 		Trim(szToken2);
+		Trim(szToken);
 
-		if(strcmp(szToken, "NodeID ") == 0)
+		if(strcmp(szToken, "NodeID") == 0)
 		{
 			ReadValue(szToken2, nVals, 1);
 			SetID(int(nVals[0]));
 		}
-		else if(strcmp(szToken, "Name ") == 0)
+		else if(strcmp(szToken, "Name") == 0)
 		{
 			SetName(szToken2);
 		}
-		else if(strcmp(szToken, "Desc ") == 0)
+		else if(strcmp(szToken, "Desc") == 0)
 		{
 			SetDesc(szToken2);
 		}
-		else if(strcmp(szToken, "Base ") == 0)
+		else if(strcmp(szToken, "Base") == 0)
 		{
 			ReadValue(szToken2, nVals, 4);
 
@@ -1687,7 +1691,7 @@ int TWetLand::LoadText(FILE *fp)
 			bypass = nVals[2];
 			aqf_ks = nVals[3];
 		}
-		else if(strcmp(szToken, "Pipe ") == 0)
+		else if(strcmp(szToken, "Pipe") == 0)
 		{
 			ReadValue(szToken2, nVals, 3);
 
@@ -1695,46 +1699,46 @@ int TWetLand::LoadText(FILE *fp)
 			pipe_area = nVals[1];
 			pipe_coef = nVals[2];
 		}
-		else if(strcmp(szToken, "RateCount ") == 0)
+		else if(strcmp(szToken, "RateCount") == 0)
 		{
 			ReadValue(szToken2, nVals, 1);
 
 			rate_count = nVals[0];
 		}
-		else if(strcmp(szToken, "WL ") == 0)
+		else if(strcmp(szToken, "WL") == 0)
 		{
 			ReadValue(szToken2, nVals, rate_count);
 
 			for(nIndex = 0; nIndex < rate_count; nIndex++)
 				wl_rate[nIndex][0] = nVals[nIndex];
 		}
-		else if(strcmp(szToken, "VOL ") == 0)
+		else if(strcmp(szToken, "VOL") == 0)
 		{
 			ReadValue(szToken2, nVals, rate_count);
 
 			for(nIndex = 0; nIndex < rate_count; nIndex++)
 				wl_rate[nIndex][1] = nVals[nIndex];
 		}
-		else if(strcmp(szToken, "AREA ") == 0)
+		else if(strcmp(szToken, "AREA") == 0)
 		{
 			ReadValue(szToken2, nVals, rate_count);
 
 			for(nIndex = 0; nIndex < rate_count; nIndex++)
 				wl_rate[nIndex][2] = nVals[nIndex];
 		}
-		else if(strcmp(szToken, "Rainfall ") == 0)
+		else if(strcmp(szToken, "Rainfall") == 0)
 		{
 			ReadValue(szToken2, nVals, 1);
 			m_Climates[0].nID = nVals[0];
 			m_Climates[0].nRain = 100;
 		}
-		else if(strcmp(szToken, "EVA ") == 0)
+		else if(strcmp(szToken, "EVA") == 0)
 		{
 			ReadValue(szToken2, nVals, 1);
 			m_Climates[1].nID = nVals[0];
 			m_Climates[1].nEva = 100;
 		}
-		else if(strcmp(szToken, "Recharge ") == 0)
+		else if(strcmp(szToken, "Recharge") == 0)
 		{
 			ReadValue(szToken2, nVals, 1);
 
@@ -1774,21 +1778,22 @@ int TPond::LoadText(FILE *fp)
 		strncpy(szToken, szLine, min(100, (int)(cFind - &szLine[0])));
 		strcpy(szToken2, cFind + 1);
 		Trim(szToken2);
+		Trim(szToken);
 
-		if(strcmp(szToken, "NodeID ") == 0)
+		if(strcmp(szToken, "NodeID") == 0)
 		{
 			ReadValue(szToken2, nVals, 1);
 			SetID(int(nVals[0]));
 		}
-		else if(strcmp(szToken, "Name ") == 0)
+		else if(strcmp(szToken, "Name") == 0)
 		{
 			SetName(szToken2);
 		}
-		else if(strcmp(szToken, "Desc ") == 0)
+		else if(strcmp(szToken, "Desc") == 0)
 		{
 			SetDesc(szToken2);
 		}
-		else if(strcmp(szToken, "Base ") == 0)
+		else if(strcmp(szToken, "Base") == 0)
 		{
 			ReadValue(szToken2, nVals, 3);
 
@@ -1796,7 +1801,7 @@ int TPond::LoadText(FILE *fp)
 			vol_eff = nVals[1];
 			aqf_ks = nVals[2];
 		}
-		else if(strcmp(szToken, "Pipe ") == 0)
+		else if(strcmp(szToken, "Pipe") == 0)
 		{
 			ReadValue(szToken2, nVals, 3);
 
@@ -1804,7 +1809,7 @@ int TPond::LoadText(FILE *fp)
 			pipe_area = nVals[1];
 			pipe_coef = nVals[2];
 		}
-		else if(strcmp(szToken, "Spill ") == 0)
+		else if(strcmp(szToken, "Spill") == 0)
 		{
 			ReadValue(szToken2, nVals, 3);
 
@@ -1812,7 +1817,7 @@ int TPond::LoadText(FILE *fp)
 			spill_length = nVals[1];
 			spill_coef = nVals[2];
 		}
-		else if(strcmp(szToken, "Offline ") == 0)
+		else if(strcmp(szToken, "Offline") == 0)
 		{
 			ReadValue(szToken2, nVals, 3);
 
@@ -1820,7 +1825,7 @@ int TPond::LoadText(FILE *fp)
 			offline_ratio = nVals[1];
 			offline_out = nVals[2];
 		}
-		else if(strcmp(szToken, "Intake ") == 0)
+		else if(strcmp(szToken, "Intake") == 0)
 		{
 			ReadValue(szToken2, nVals, 4);
 
@@ -1829,54 +1834,54 @@ int TPond::LoadText(FILE *fp)
 			m_nTable = nVals[2];
 			m_nData = nVals[3];
 		}
-		else if(strcmp(szToken, "Series ") == 0)
+		else if(strcmp(szToken, "Series") == 0)
 			SetSeriesFileA(szToken2);
-		else if(strcmp(szToken, "RateCount ") == 0)
+		else if(strcmp(szToken, "RateCount") == 0)
 		{
 			ReadValue(szToken2, nVals, 1);
 
 			rate_count = nVals[0];
 		}
-		else if(strcmp(szToken, "WL ") == 0)
+		else if(strcmp(szToken, "WL") == 0)
 		{
 			ReadValue(szToken2, nVals, rate_count);
 
 			for(nIndex = 0; nIndex < rate_count; nIndex++)
 				wl_rate[nIndex][0] = nVals[nIndex];
 		}
-		else if(strcmp(szToken, "VOL ") == 0)
+		else if(strcmp(szToken, "VOL") == 0)
 		{
 			ReadValue(szToken2, nVals, rate_count);
 
 			for(nIndex = 0; nIndex < rate_count; nIndex++)
 				wl_rate[nIndex][1] = nVals[nIndex];
 		}
-		else if(strcmp(szToken, "AREA ") == 0)
+		else if(strcmp(szToken, "AREA") == 0)
 		{
 			ReadValue(szToken2, nVals, rate_count);
 
 			for(nIndex = 0; nIndex < rate_count; nIndex++)
 				wl_rate[nIndex][2] = nVals[nIndex];
 		}
-		else if(strcmp(szToken, "Rainfall ") == 0)
+		else if(strcmp(szToken, "Rainfall") == 0)
 		{
 			ReadValue(szToken2, nVals, 1);
 			m_Climates[0].nID = nVals[0];
 			m_Climates[0].nRain = 100;
 		}
-		else if(strcmp(szToken, "EVA ") == 0)
+		else if(strcmp(szToken, "EVA") == 0)
 		{
 			ReadValue(szToken2, nVals, 1);
 			m_Climates[1].nID = nVals[0];
 			m_Climates[1].nEva = 100;
 		}
-		else if(strcmp(szToken, "Supply ") == 0)
+		else if(strcmp(szToken, "Supply") == 0)
 		{
 			ReadValue(szToken2, nVals, 1);
 
 			supply_id = nVals[0];
 		}
-		else if(strcmp(szToken, "Recharge ") == 0)
+		else if(strcmp(szToken, "Recharge") == 0)
 		{
 			ReadValue(szToken2, nVals, 1);
 
@@ -1915,21 +1920,22 @@ int TRainTank::LoadText(FILE *fp)
 		strncpy(szToken, szLine, min(100, (int)(cFind - &szLine[0])));
 		strcpy(szToken2, cFind + 1);
 		Trim(szToken2);
+		Trim(szToken);
 
-		if(strcmp(szToken, "NodeID ") == 0)
+		if(strcmp(szToken, "NodeID") == 0)
 		{
 			ReadValue(szToken2, nVals, 1);
 			SetID(int(nVals[0]));
 		}
-		else if(strcmp(szToken, "Name ") == 0)
+		else if(strcmp(szToken, "Name") == 0)
 		{
 			SetName(szToken2);
 		}
-		else if(strcmp(szToken, "Desc ") == 0)
+		else if(strcmp(szToken, "Desc") == 0)
 		{
 			SetDesc(szToken2);
 		}
-		else if(strcmp(szToken, "Volume ") == 0)
+		else if(strcmp(szToken, "Volume") == 0)
 		{
 			ReadValue(szToken2, nVals, 3);
 
@@ -1937,7 +1943,7 @@ int TRainTank::LoadText(FILE *fp)
 			vol_min = nVals[1];
 			cap = nVals[2];
 		}
-		else if(strcmp(szToken, "Use ") == 0)
+		else if(strcmp(szToken, "Use") == 0)
 		{
 			ReadValue(szToken2, nVals, 4);
 
@@ -1946,11 +1952,11 @@ int TRainTank::LoadText(FILE *fp)
 			m_nTable = nVals[2];
 			m_nData = nVals[3];
 		}
-		else if(strcmp(szToken, "Series ") == 0)
+		else if(strcmp(szToken, "Series") == 0)
 		{
 			SetSeriesFileA(szToken2);
 		}
-		else if(strcmp(szToken, "Supply ") == 0)
+		else if(strcmp(szToken, "Supply") == 0)
 		{
 			ReadValue(szToken2, nVals, 1);
 
@@ -1989,28 +1995,29 @@ int TRecycle::LoadText(FILE *fp)
 		strncpy(szToken, szLine, min(100, (int)(cFind - &szLine[0])));
 		strcpy(szToken2, cFind + 1);
 		Trim(szToken2);
+		Trim(szToken);
 
-		if(strcmp(szToken, "NodeID ") == 0)
+		if(strcmp(szToken, "NodeID") == 0)
 		{
 			ReadValue(szToken2, nVals, 1);
 			SetID(int(nVals[0]));
 		}
-		else if(strcmp(szToken, "Name ") == 0)
+		else if(strcmp(szToken, "Name") == 0)
 		{
 			SetName(szToken2);
 		}
-		else if(strcmp(szToken, "Desc ") == 0)
+		else if(strcmp(szToken, "Desc") == 0)
 		{
 			SetDesc(szToken2);
 		}
-		else if(strcmp(szToken, "Intake ") == 0)
+		else if(strcmp(szToken, "Intake") == 0)
 		{
 			ReadValue(szToken2, nVals, 2);
 
 			rec_cond = nVals[0];
 			rec_intake = nVals[1];
 		}
-		else if(strcmp(szToken, "Nodes ") == 0)
+		else if(strcmp(szToken, "Nodes") == 0)
 		{
 			char *cFind = strchr(szToken2, ',');
 			int nPos = 0;
