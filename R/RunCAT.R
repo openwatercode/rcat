@@ -37,6 +37,10 @@ RunCAT <- function(infile, outfile, format = "[*:*]")
     ret <-
       run_cat(list(infile = path.expand(infile), format = format))
     msg <- ret[["msg"]]
+    wmsg <- unlist(strsplit(msg, "\r\n"))
+    if(length(wmsg) > 0)
+      for (i in 1:length(wmsg))
+        warning(wmsg[i])
     retl <- lapply(ret[["ret"]], function(x) {
       Encoding(colnames(x)) <- "UTF-8"
       x
@@ -46,9 +50,9 @@ RunCAT <- function(infile, outfile, format = "[*:*]")
       stop("Output file name should not be the same to Input file name!")
     msg <-
       rcpp_run_cat(path.expand(infile), path.expand(outfile), format)
+    wmsg <- unlist(strsplit(msg, "\r\n"))
+    if(length(wmsg) > 0)
+      for (i in 1:length(wmsg))
+        warning(wmsg[i])
   }
-  wmsg <- unlist(strsplit(msg, "\r\n"))
-  for (i in 1:length(wmsg))
-    warning(wmsg[i])
-  retl
 }

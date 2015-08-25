@@ -104,8 +104,9 @@ string runCAT(char* infile, char* outfile, char* format)
 
   model.LoadText(infile);
   TValidateCheck chk;
-  chk.Check(&model);
-  string msg = string(chk.GetMessage()->GetBuffer());
+  nRet = chk.Check(&model);
+  string msg;
+  if(nRet != 0) msg = string(chk.GetMessage()->GetBuffer());
 
   model.Calculate(FALSE);
 
@@ -144,16 +145,18 @@ List run_cat(List params)
 
   model.LoadText(infile);
   TValidateCheck chk;
-  chk.Check(&model);
-  string msg = string(chk.GetMessage()->GetBuffer());
+  int nRet = chk.Check(&model);
+  string msg;
+  if(nRet != 0) msg = string(chk.GetMessage()->GetBuffer());
   model.Calculate(FALSE);
 
   TSerieses *pResult = model.GetResult();
 
   if(pResult->GetCount() > 0)
-    return List::create(_["msg"] = msg, _["ret"] = TSerieses2List(pResult, format));
+    return List::create(_["msg"] = StringVector::create(msg),
+                        _["ret"] = TSerieses2List(pResult, format));
   else
-    return List::create(_["msg"] = msg);
+    return List::create(_["msg"] = StringVector::create(msg));
 }
 
 // [[Rcpp::export]]
@@ -163,10 +166,8 @@ StringVector rcpp_run_cat(CharacterVector input,
   //    CharacterVector x = CharacterVector::create( "foo", "bar" )  ;
   //    NumericVector y   = NumericVector::create( 0.0, 1.0 ) ;
   //    List z            = List::create( x, y ) ;
-  StringVector err;
-  err = runCAT(input(0), report(0), bin(0));
-
-  return err;
+  string msg = runCAT(input(0), report(0), bin(0));
+  return StringVector::create(msg);
 }
 
 // [[Rcpp::export]]
