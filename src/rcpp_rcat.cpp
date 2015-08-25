@@ -2,6 +2,8 @@
 #include <string>
 #include "StdAfx.h"
 #include "include/ModelManager.h"
+#include "include/ValidateCheck.h"
+#include "include/LargeString.h"
 
 using namespace Rcpp;
 using namespace std;
@@ -86,7 +88,7 @@ List TSerieses2List(TSerieses *sr, char *szFields)
 }
 
 
-int runCAT(char* infile, char* outfile, char* format)
+string runCAT(char* infile, char* outfile, char* format)
 {
   TModelManager model;
   int nRet = 0;
@@ -101,6 +103,10 @@ int runCAT(char* infile, char* outfile, char* format)
 // #endif
 
   model.LoadText(infile);
+  TValidateCheck chk;
+  chk.Check(&model);
+  string msg = string(chk.GetMessage()->GetBuffer());
+
   model.Calculate(FALSE);
 
   TSerieses *pResult = model.GetResult();
@@ -126,7 +132,7 @@ int runCAT(char* infile, char* outfile, char* format)
   else
     nRet = 1;
 
-  return nRet;
+  return msg;
 }
 
 // [[Rcpp::export]]
@@ -137,24 +143,28 @@ List run_cat(List params)
   char *format = as<CharacterVector>(params["format"])(0);
 
   model.LoadText(infile);
+  TValidateCheck chk;
+  chk.Check(&model);
+  string msg = string(chk.GetMessage()->GetBuffer());
   model.Calculate(FALSE);
 
   TSerieses *pResult = model.GetResult();
 
   if(pResult->GetCount() > 0)
-    return TSerieses2List(pResult, format);
+    return List::create(_["msg"] = msg, _["ret"] = TSerieses2List(pResult, format));
   else
-    return List::create();
+    return List::create(_["msg"] = msg);
 }
 
 // [[Rcpp::export]]
-int rcpp_run_cat(CharacterVector input,
+StringVector rcpp_run_cat(CharacterVector input,
                     CharacterVector report,
                     CharacterVector bin) {
   //    CharacterVector x = CharacterVector::create( "foo", "bar" )  ;
   //    NumericVector y   = NumericVector::create( 0.0, 1.0 ) ;
   //    List z            = List::create( x, y ) ;
-  int err = runCAT(input(0), report(0), bin(0));
+  StringVector err;
+  err = runCAT(input(0), report(0), bin(0));
 
   return err;
 }

@@ -17,7 +17,7 @@ BEGIN_RCPP
 END_RCPP
 }
 // rcpp_run_cat
-int rcpp_run_cat(CharacterVector input, CharacterVector report, CharacterVector bin);
+StringVector rcpp_run_cat(CharacterVector input, CharacterVector report, CharacterVector bin);
 RcppExport SEXP rcat_rcpp_run_cat(SEXP inputSEXP, SEXP reportSEXP, SEXP binSEXP) {
 BEGIN_RCPP
     Rcpp::RObject __result;

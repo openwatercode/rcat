@@ -35,16 +35,20 @@ RunCAT <- function(infile, outfile, format = "[*:*]")
     stop(sprintf("%s does not exists!", infile))
   if (missing(outfile)) {
     ret <-
-      run_cat(list(
-        infile = path.expand(infile), format = format
-      ))
-    lapply(ret, function(x) {
+      run_cat(list(infile = path.expand(infile), format = format))
+    msg <- ret[["msg"]]
+    retl <- lapply(ret[["ret"]], function(x) {
       Encoding(colnames(x)) <- "UTF-8"
       x
     })
   } else {
     if (infile == outfile)
       stop("Output file name should not be the same to Input file name!")
-    invisible(rcpp_run_cat(path.expand(infile), path.expand(outfile), format))
+    msg <-
+      rcpp_run_cat(path.expand(infile), path.expand(outfile), format)
   }
+  wmsg <- unlist(strsplit(msg, "\r\n"))
+  for (i in 1:length(wmsg))
+    warning(wmsg[i])
+  retl
 }
