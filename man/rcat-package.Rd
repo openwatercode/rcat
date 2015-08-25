@@ -24,6 +24,7 @@ R 환경에서 스크립트 형태로 간편하게 사용할 수 있도록
 \examples{
 download.file("http://r.prj.kr/data/rcat/rcat_ex.zip", "rcat_ex.zip")
 unzip("rcat_ex.zip")
+# save the output to file
 RunCAT("dist_101208.txt", "dist_101208.out")
 }
 \author{

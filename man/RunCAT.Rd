@@ -23,7 +23,16 @@ RunCAT 모형 구동 함수.
 \examples{
 download.file("http://r.prj.kr/data/rcat/rcat_ex.zip", "rcat_ex.zip")
 unzip("rcat_ex.zip")
+# save the output to file
 RunCAT("dist_101208.txt", "dist_101208.out")
+# get the output to list of data.frame
+result <- RunCAT("dist_101208.txt")
+names(result)
+# create xts and plotting
+outlet1 <- result[["Outlet 1"]]
+library(xts)
+outlet1.flowtotal <- xts(outlet1[,1],as.POSIXct(rownames(outlet1)))
+plot(outlet1.flowtotal, type="l")
 }
 \author{
 박희성 \email{hspark90@i-fam.net}
