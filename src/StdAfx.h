@@ -5,6 +5,16 @@
 
 #pragma once
 
+#undef RLIB
+#undef WINDLL
+//#define WINRLIB
+#ifndef WINRLIB
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <cstring>
+#include "fake_windows.h"
+#else
 // 아래 지정된 플랫폼에 우선하는 플랫폼을 대상으로 하는 경우 다음 정의를 수정하십시오.
 // 다른 플랫폼에 사용되는 해당 값의 최신 정보는 MSDN을 참조하십시오.
 #ifndef WINVER				// Windows XP 이상에서만 기능을 사용할 수 있습니다.
@@ -26,9 +36,7 @@
 #define WIN32_LEAN_AND_MEAN		// 거의 사용되지 않는 내용은 Windows 헤더에서 제외합니다.
 // Windows 헤더 파일:
 #include <windows.h>
+#endif
 
 // TODO: 프로그램에 필요한 추가 헤더는 여기에서 참조합니다.
-#undef RLIB
-#undef WINDLL
-#define RLIB
 //#define WINDLL
