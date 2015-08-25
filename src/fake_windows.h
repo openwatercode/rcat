@@ -123,4 +123,17 @@ inline HWND GetForegroundWindow() { return 0; }
 
 #define MAX_PATH 260
 
+#ifndef CP_UTF8
+#define CP_UTF7	65000   /* UTF-7 translation.  */
+#define CP_UTF8	65001   /* UTF-8 translation.  */
+#endif
+#ifndef CP_UTF16
+#define CP_UTF16  65002	/* UTF-16 translation.  */
+#endif
+#ifndef CP_ACP
+#define CP_ACP	0	/* Default to ANSI code page.  */
+#endif
+#ifndef CP_OEM
+#define CP_OEM  1	/* Default OEM code page. */
+#endif
 #endif // __FAKE__WINDOWS_H__

@@ -63,7 +63,11 @@ void TBaseNode::SetName(wchar_t* szName)
 	char cszName[200];
 
 	memset(cszName, 0, sizeof(cszName));
+	#ifdef WINRLIB
 	WideCharToMultiByte(CP_ACP, WC_COMPOSITECHECK, szName, wcslen(szName), cszName, 200, NULL, NULL);
+	#else
+	wcs2mbs(CP_ACP, (const unsigned short*)szName, wcslen(szName), cszName, 200, NULL);
+	#endif
 	strcpy_s(m_szName, 100, cszName);
 }
 
@@ -72,7 +76,11 @@ void TBaseNode::SetDesc(wchar_t* szDesc)
 	char cszDesc[400];
 
 	memset(cszDesc, 0, sizeof(cszDesc));
+	#ifdef WINRLIB
 	WideCharToMultiByte(CP_ACP, WC_COMPOSITECHECK, szDesc, wcslen(szDesc), cszDesc, 400, NULL, NULL);
+	#else
+	wcs2mbs(CP_ACP, (const unsigned short*)szDesc, wcslen(szDesc), cszDesc, 400, NULL);
+	#endif
 	strcpy_s(m_szDesc, 100, cszDesc);
 }
 

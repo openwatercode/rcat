@@ -5,16 +5,16 @@
 
 #pragma once
 
-#undef RLIB
 #undef WINDLL
 //#define WINDLL
-//#define WINRLIB
+//#undef WINRLIB
 #ifndef WINRLIB
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <cstring>
 #include "fake_windows.h"
+#include "encoding.h"
 #else
 // 아래 지정된 플랫폼에 우선하는 플랫폼을 대상으로 하는 경우 다음 정의를 수정하십시오.
 // 다른 플랫폼에 사용되는 해당 값의 최신 정보는 MSDN을 참조하십시오.
