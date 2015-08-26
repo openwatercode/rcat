@@ -25,7 +25,7 @@ int mbs2wcs( unsigned int codepage, const char* src, int srclen, unsigned short*
   return MultiByteToWideChar(codepage, MB_COMPOSITE, src, srclen, (LPWSTR)dst, dstlen-1);
 }
 
-int wcs2mbs( unsigned int codepage, const unsigned short* src, int srclen, char* dst, int dstlen, bool* usedDefChar )
+int wcs2mbs( unsigned int codepage, const unsigned short* src, int srclen, char* dst, int dstlen, bool* usedDefChar)
 {
   BOOL usedDefaultChar = FALSE;
   int ret = WideCharToMultiByte(codepage, WC_COMPOSITECHECK, (LPCWSTR)src, srclen, dst, dstlen-1, "?", &usedDefaultChar);

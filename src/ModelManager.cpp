@@ -252,6 +252,7 @@ DWORD TModelManager::CalculateNode(LPVOID pData)
 //	if(pMan->m_hwndNotify)
 //		PostMessage(pMan->m_hwndNotify, UM_CALCULATE, 2, LPARAM(pMan->m_nTimes));
 
+#ifdef WINRLIB
 	if(pMan->m_hwndNotify)
 	{
 		if(nIndex == pMan->m_nTimes)
@@ -261,6 +262,7 @@ DWORD TModelManager::CalculateNode(LPVOID pData)
 			SendMessage(pMan->m_hwndNotify, UM_CALCULATE, 3, LPARAM(nIndex));
 //			pMan->PostSafeMessage(3, nIndex);
 	}
+#endif // WINRLIB
 
 	return 0;
 }
@@ -354,8 +356,11 @@ int TModelManager::SetModelData(void)
 //		m_ppImport = NULL;
 	}
 
+// TODO: need to change Message system
+#ifdef WINRDLL
 	if(m_nSource == 0 && m_nConnect == 0)
 		::MessageBox(NULL, "Node error!", "Error", 0);
+#endif // WINRDLL
 
 	m_ppSource = new TBaseNode*[m_nSource];
 	m_ppConnect = new TBaseNode*[m_nConnect];
@@ -713,9 +718,11 @@ TJunc* TModelManager::FindOutlet(TBaseNode *pNode)
 
 void TModelManager::PostProcessMessage(int nState, int nStep)
 {
+    #ifdef WINRLIB
 	if(m_hwndNotify)
 		//SendMessage(m_hwndNotify, UM_CALCULATE, WPARAM(nState), LPARAM(nStep));
 		PostMessage(m_hwndNotify, UM_CALCULATE, WPARAM(nState), LPARAM(nStep));
+    #endif // WINRLIB
 }
 
 void TModelManager::SetNotifyHwnd(HWND hwndNotify)
@@ -766,7 +773,11 @@ int TModelManager::LoadText(char* szFile)
 
 	fopen_s(&fp, szFile, "rt");
 	if(fp == NULL)
+	#ifndef WINRLIB
+        return -1;
+	#else
 		return GetLastError();
+    #endif // WINRLIB
 
 	//strcpy_s(m_szPath, szFile);
 	strcpy(m_szPath, szFile);

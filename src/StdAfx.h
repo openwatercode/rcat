@@ -7,12 +7,14 @@
 
 #undef WINDLL
 //#define WINDLL
-//#undef WINRLIB
+#undef WINRLIB
 #ifndef WINRLIB
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <cstring>
+#include <iostream>
+#include <fstream>
 #include "fake_windows.h"
 #include "encoding.h"
 #else
