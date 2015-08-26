@@ -258,7 +258,11 @@ void TClimate::SetEvaFileW(wchar_t* szFile)
 	char cszPath[MAX_PATH * 2];
 
 	memset(cszPath, 0, sizeof(cszPath));
+	#ifndef WINRLIB
+	wcs2mbs(CP_ACP, (const unsigned short*)szFile, wcslen(szFile), cszPath, sizeof(cszPath), NULL);
+	#else
 	WideCharToMultiByte(CP_ACP, WC_COMPOSITECHECK, szFile, wcslen(szFile), cszPath, MAX_PATH * 2, NULL, NULL);
+	#endif // WINRLIB
 	strcpy_s(m_szEva, MAX_PATH, cszPath);
 }
 
@@ -285,7 +289,11 @@ void TClimate::SetClimateFileW(wchar_t* szFile)
 	char cszPath[MAX_PATH * 2];
 
 	memset(cszPath, 0, sizeof(cszPath));
+	#ifndef WINRLIB
+	wcs2mbs(CP_ACP, (const unsigned short*)szFile, wcslen(szFile), cszPath, MAX_PATH * 2, NULL);
+	#else
 	WideCharToMultiByte(CP_ACP, WC_COMPOSITECHECK, szFile, wcslen(szFile), cszPath, MAX_PATH * 2, NULL, NULL);
+	#endif // WINRLIB
 	strcpy_s(m_szClimate, MAX_PATH, cszPath);
 }
 
@@ -500,6 +508,10 @@ int TClimate::LoadText(FILE* fp)
 
 BOOL TBaseNode::IsFileExist(char* szFile)
 {
+    #ifndef WINRLIB
+    std::ifstream ifile(szFile);
+    return ifile.good();
+    #else
 	WIN32_FIND_DATA find;
 	BOOL bFind;
 	HANDLE hFind;
@@ -516,4 +528,5 @@ BOOL TBaseNode::IsFileExist(char* szFile)
 	}
 
 	return bFind;
+    #endif // WINRLIB
 }

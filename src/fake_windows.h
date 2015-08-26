@@ -2,6 +2,7 @@
 #define __FAKE__WINDOWS_H__
 
 #include <stdio.h>
+#include <R_ext/Boolean.h>
 
 typedef unsigned char BYTE;
 typedef unsigned short WORD;
@@ -10,7 +11,7 @@ typedef long LONG;
 typedef unsigned long DWORD, ULONG, LRESULT, LPARAM, WPARAM;
 
 typedef int BOOL;
-enum { FALSE, TRUE };
+//enum { FALSE, TRUE };
 
 typedef struct _HANDLE {} *HANDLE;
 typedef struct _HBRUSH {} *HBRUSH;
@@ -136,4 +137,8 @@ inline HWND GetForegroundWindow() { return 0; }
 #ifndef CP_OEM
 #define CP_OEM  1	/* Default OEM code page. */
 #endif
+
+#define lstrlen _tcslen
+#define lstrcpy    _tcscpy
+
 #endif // __FAKE__WINDOWS_H__
