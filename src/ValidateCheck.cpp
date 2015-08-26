@@ -1,6 +1,7 @@
 #include "StdAfx.h"
 #include "include/ValidateCheck.h"
 #include <stdio.h>
+#include "encoding.h"
 //#include <CATAttr.h>
 //#include <Util.h>
 
@@ -106,7 +107,7 @@ void TValidateCheck::CheckInfiltro(TInfiltro* pInfilt)
 	{
 		GetNodeName(pInfilt, szName);
 
-		sprintf_s(szMsg, 100, "Erro : '%s''s water reuse node is not RainTank", szName);
+		sprintf_s(szMsg, 100, "Error : '%s''s water reuse node is not RainTank", szName);
 		m_Message.Add(szMsg);
 		m_nError++;
 	}
@@ -150,7 +151,8 @@ void TValidateCheck::CheckOrphanNode(TBaseNode* pNode)
 
 void TValidateCheck::GetNodeName(TBaseNode* pNode, char* szName)
 {
-	strcpy_s(szName, strlen(pNode->GetName()), pNode->GetName());
+    //memset(szName, 0, sizeof(szName));
+	strcpy_s(szName, 100, pNode->GetName());
 }
 
 void TValidateCheck::CheckLink(TLink* pLink)

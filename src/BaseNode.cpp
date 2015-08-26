@@ -68,7 +68,7 @@ void TBaseNode::SetName(wchar_t* szName)
 	#else
 	wcs2mbs(CP_ACP, (const unsigned short*)szName, wcslen(szName), cszName, 200, NULL);
 	#endif
-	strcpy_s(m_szName, 100, cszName);
+	strcpy_s(m_szName, sizeof(m_szName), cszName);
 }
 
 void TBaseNode::SetDesc(wchar_t* szDesc)
@@ -81,7 +81,7 @@ void TBaseNode::SetDesc(wchar_t* szDesc)
 	#else
 	wcs2mbs(CP_ACP, (const unsigned short*)szDesc, wcslen(szDesc), cszDesc, 400, NULL);
 	#endif
-	strcpy_s(m_szDesc, 100, cszDesc);
+	strcpy_s(m_szDesc, sizeof(m_szDesc), cszDesc);
 }
 
 void TBaseNode::SetDefName(int nNo)
