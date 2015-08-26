@@ -489,7 +489,7 @@ int TSeriesItem::SetFirstPos(unsigned long nTime)
 	else if(m_Header.nInterval == TI_MONTH)
 	{
 	}
-	else if(m_Header.nInterval == TI_YEAR)
+	else if(m_Header.nInterval == TI_YEAR) // TODO: 논리오류, nInterval이 short 타입, TI_YEAR이 525600으로 short범위를 넘어서므로 비교 불가
 	{
 	}
 
@@ -1011,29 +1011,43 @@ void TDate::IncreaseTime(BYTE nStep)
 
 void TDate::AddMonth(int nMonths)
 {
-	nMonth += nMonths;
-	if(nMonth > 12)
+    int nmonth = nMonth;
+    nmonth += nMonths;
+	//nMonth += nMonths;
+    if(nmonth > 12)
+	//if(nMonth > 12)
 	{
-		nYear += nMonth / 12;
-		nMonth = nMonth % 12;
+        nYear += nmonth / 12;
+		//nYear += nMonth / 12;
+		nmonth = nmonth %12;
+		//nMonth = nMonth % 12;
 	}
 
-	while(nMonth < 0)
+    while(nmonth < 0)
+	//while(nMonth < 0) // TODO: 논리오류, nMonth는 BYTE 타입. BYTE 타입은 0보다 작을 수 없으므로 항상 false
 	{
 		nYear--;
-		nMonth += 12;
+		nmonth += 12;
+		//nMonth += 12;
 	}
+	nMonth = nmonth;
 }
 
 void TDate::AddHour(int nHours)
 {
-	nHour += nHours;
+    int nhour = nHour;
+    nhour += nHours;
+	//nHour += nHours;
 
-	if(nHour >= 24 || nHour < 0)
+	if(nhour >= 24 || nhour < 0)
+	//if(nHour >= 24 || nHour < 0) // TODO: 논류오류, nHour는 BYTE 타입. BYTE 타입은 0보다 작을 수 없으므로 항상 false
 	{
-		nDay += (nHour / 24);
-		nHour %= 24;
+		nDay += (nhour / 24);
+		//nDay += (nHour / 24);
+		nhour %= 24;
+		//nHour %= 24;
 	}
+	nHour = nhour;
 
 	int nDays = GetMonthDays(nYear, nMonth);
 	if(nDay > nDays)
@@ -1051,19 +1065,30 @@ void TDate::AddHour(int nHours)
 
 void TDate::AddMinute(int nMinutes)
 {
-	nMinute += nMinutes;
+    int nminute = nMinute;
+    int nhour = nHour;
+    nminute += nMinutes;
+	//nMinute += nMinutes;
 
-	if(nMinute >= 60 || nMinute < 0)
+	if(nminute >= 60 || nminute < 0)
+	//if(nMinute >= 60 || nMinute < 0) // TODO: nMinute는 BYTE 타입, BYTE 타입은 0보다 작을 수 없어 항상 false
 	{
-		nHour += (nMinute / 60);
-		nMinute %= 60;
+	    nhour += (nminute / 60);
+		//nHour += (nMinute / 60);
+		nminute %= 60;
+		//nMinute %= 60;
 	}
 
-	if(nHour >= 24 || nHour < 0)
+	if(nhour >= 24 || nhour < 0)
+	//if(nHour >= 24 || nHour < 0) // TODO: nHour는 BYTE 타입, BYTE 타입은 0보다 작을 수 없어 항상 false
 	{
-		nDay += (nHour / 24);
-		nHour %= 24;
+	    nDay += (nhour / 24);
+		//nDay += (nHour / 24);
+		nhour %= 24;
+		//nHour %= 24;
 	}
+	nHour = nhour;
+	nMinute = nminute;
 
 	int nDays = GetMonthDays(nYear, nMonth);
 	if(nDay > nDays)
