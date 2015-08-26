@@ -140,6 +140,20 @@ inline HWND GetForegroundWindow() { return 0; }
 
 //#define lstrlen _tcslen
 //#define lstrcpy    _tcscpy
+size_t strcpy_s(char *d, size_t n, char const *s)
+{
+  return snprintf(d, n, "%s", s);
+}
+
+char * strncpy_s(char *d, size_t dn, char const *s, size_t sn)
+{
+  return strncpy(d, s, sn);
+}
+
+#define fopen_s(pFile,filename,mode) ((*(pFile))=fopen((filename),(mode)))==NULL
+#define errno_t bool
+#define sprintf_s snprintf
+#define fprintf_s fprintf
 
 #endif // __FAKE__WINDOWS_H__
 
