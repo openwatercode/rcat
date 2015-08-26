@@ -690,7 +690,7 @@ void TUrban::AddBalance(void)
 float TUrban::VoidFloat(void)
 {
 	return 1;
-};
+}
 
 float TUrban::NewtonRaphson(float nInfilt, float delta)
 {
