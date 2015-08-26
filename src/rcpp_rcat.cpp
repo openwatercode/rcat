@@ -18,16 +18,24 @@ using namespace std;
 //   http://gallery.rcpp.org/
 //
 
-DataFrame TSeries2DataFrame(TSeries *sr, int nCount, int nFieldNos[])
+/** @brief TSeries 객체를 DataFrame으로 변환하여 반환하는 함수
+ *
+ * @param sr TSeries 객체에 대한 포인터
+ * @param nCount
+ * @return
+ *
+ */
+DataFrame TSeries2DataFrame(TSeries *sr, int nFieldNos[])
+//DataFrame TSeries2DataFrame(TSeries *sr, int nCount, int nFieldNos[])
 {
     DataFrame df = DataFrame::create();
-	int nIndex, nCol;
+	int nIndex, nCol, nCount;
 	int nFields[30];
 	TDate date;
 
+    nCount = sr->GetCount();
 	if(nFieldNos[0] == -1)
 	{
-		nCount = sr->GetCount();
 		for(nIndex = 0; nIndex < nCount; nIndex++)
 			nFields[nIndex] = nIndex;
 	}
@@ -74,15 +82,16 @@ List TSerieses2List(TSerieses *sr, char *szFields)
 	{
 		FIELDITEM *pItem = list.GetItem(nIndex);
 
-		for(int nSeries = 0; nSeries < sr->GetCount(); nSeries++)
-		{
-			TSeries *pSeries = sr->GetAt(nSeries);
+        for(int nSeries = 0; nSeries < sr->GetCount(); nSeries++)
+        {
+            TSeries *pSeries = sr->GetAt(nSeries);
 
-			if(strcmp(pItem->szNode, "*") == 0 || strcmp(pSeries->m_Header.szDescript, pItem->szNode) == 0)
-			{
-			    ret[string(pSeries->m_Header.szDescript)] = TSeries2DataFrame(pSeries, pItem->nCount, pItem->nFieldNo);
-			}
-		}
+            if(strcmp(pItem->szNode, "*") == 0 || strcmp(pSeries->m_Header.szDescript, pItem->szNode) == 0)
+            {
+                //ret[string(pSeries->m_Header.szDescript)] = TSeries2DataFrame(pSeries, pItem->nCount, pItem->nFieldNo);
+                ret[string(pSeries->m_Header.szDescript)] = TSeries2DataFrame(pSeries, pItem->nFieldNo);
+            }
+        }
 	}
 	return ret;
 }

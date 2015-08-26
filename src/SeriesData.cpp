@@ -99,8 +99,9 @@ int TFieldList::Parsing(char* szFields)
 		{
 			if(bName)
 			{
+			  strcpy_s(pItem->szNode, sizeof(pItem->szNode), "*");
 			  //strcpy_s(pItem->szNode, "*");
-			  strcpy(pItem->szNode, "*");
+			  //strcpy(pItem->szNode, "*");
 			}
 			else
 			{
@@ -788,15 +789,18 @@ BOOL TSeries::Save(FILE *fp)
 	return TRUE;
 }
 
-BOOL TSeries::SaveText(FILE *fp, int nCount, int nFieldNos[])
+BOOL TSeries::SaveText(FILE *fp, int nFieldNos[])
+// TODO: nCount 인자의 삭제를 고려
+//BOOL TSeries::SaveText(FILE *fp, int nCount, int nFieldNos[])
 {
-	int nIndex, nCol;
+	int nIndex, nCol, nCount;
 	int nFields[30];
 	TDate date;
 
+    nCount = GetCount();
 	if(nFieldNos[0] == -1)
 	{
-		nCount = GetCount();
+	    nCount = GetCount();
 		for(nIndex = 0; nIndex < nCount; nIndex++)
 			nFields[nIndex] = nIndex;
 	}
@@ -1766,15 +1770,16 @@ void TSerieses::SaveText(char* szFile, char* szFields)
 	{
 		FIELDITEM *pItem = list.GetItem(nIndex);
 
-		for(int nSeries = 0; nSeries < GetCount(); nSeries++)
-		{
-			TSeries *pSeries = GetAt(nSeries);
+        for(int nSeries = 0; nSeries < GetCount(); nSeries++)
+        {
+            TSeries *pSeries = GetAt(nSeries);
 
-			if((pItem->nCount > 0) && (strcmp(pItem->szNode, "*") == 0 || strcmp(pSeries->m_Header.szDescript, pItem->szNode) == 0))
-			{
-				pSeries->SaveText(fp, pItem->nCount, pItem->nFieldNo);
-			}
-		}
+            if(strcmp(pItem->szNode, "*") == 0 || strcmp(pSeries->m_Header.szDescript, pItem->szNode) == 0)
+            {
+                pSeries->SaveText(fp, pItem->nFieldNo);
+                //pSeries->SaveText(fp, pItem->nCount, pItem->nFieldNo);
+            }
+        }
 	}
 
 	fclose(fp);
