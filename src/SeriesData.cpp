@@ -1770,7 +1770,7 @@ void TSerieses::SaveText(char* szFile, char* szFields)
 		{
 			TSeries *pSeries = GetAt(nSeries);
 
-			if(strcmp(pItem->szNode, "*") == 0 || strcmp(pSeries->m_Header.szDescript, pItem->szNode) == 0)
+			if((pItem->nCount > 0) && (strcmp(pItem->szNode, "*") == 0 || strcmp(pSeries->m_Header.szDescript, pItem->szNode) == 0))
 			{
 				pSeries->SaveText(fp, pItem->nCount, pItem->nFieldNo);
 			}
