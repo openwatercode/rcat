@@ -66,7 +66,7 @@ void TBaseNode::SetName(wchar_t* szName)
 	#ifdef WINRLIB
 	WideCharToMultiByte(CP_ACP, WC_COMPOSITECHECK, szName, wcslen(szName), cszName, 200, NULL, NULL);
 	#else
-	wcs2mbs(CP_ACP, (const unsigned short*)szName, wcslen(szName), cszName, 200, NULL);
+	wcstombs(cszName, szName, 200);
 	#endif
 	strcpy_s(m_szName, sizeof(m_szName), cszName);
 }
@@ -79,7 +79,7 @@ void TBaseNode::SetDesc(wchar_t* szDesc)
 	#ifdef WINRLIB
 	WideCharToMultiByte(CP_ACP, WC_COMPOSITECHECK, szDesc, wcslen(szDesc), cszDesc, 400, NULL, NULL);
 	#else
-	wcs2mbs(CP_ACP, (const unsigned short*)szDesc, wcslen(szDesc), cszDesc, 400, NULL);
+	wcstombs(cszDesc, szDesc, 400);
 	#endif
 	strcpy_s(m_szDesc, sizeof(m_szDesc), cszDesc);
 }
@@ -259,7 +259,7 @@ void TClimate::SetEvaFileW(wchar_t* szFile)
 
 	memset(cszPath, 0, sizeof(cszPath));
 	#ifndef WINRLIB
-	wcs2mbs(CP_ACP, (const unsigned short*)szFile, wcslen(szFile), cszPath, sizeof(cszPath), NULL);
+	wcstombs(cszPath, szFile, MAX_PATH * 2);
 	#else
 	WideCharToMultiByte(CP_ACP, WC_COMPOSITECHECK, szFile, wcslen(szFile), cszPath, MAX_PATH * 2, NULL, NULL);
 	#endif // WINRLIB
@@ -290,7 +290,7 @@ void TClimate::SetClimateFileW(wchar_t* szFile)
 
 	memset(cszPath, 0, sizeof(cszPath));
 	#ifndef WINRLIB
-	wcs2mbs(CP_ACP, (const unsigned short*)szFile, wcslen(szFile), cszPath, MAX_PATH * 2, NULL);
+	wcstombs(cszPath, szFile, MAX_PATH * 2);
 	#else
 	WideCharToMultiByte(CP_ACP, WC_COMPOSITECHECK, szFile, wcslen(szFile), cszPath, MAX_PATH * 2, NULL, NULL);
 	#endif // WINRLIB
