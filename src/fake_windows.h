@@ -83,44 +83,46 @@ typedef struct
     LPVOID lpCreateParams;
 } CREATESTRUCT, *LPCREATESTRUCT;
 
-inline HANDLE CreateEvent(LPVOID, BOOL, BOOL, LPVOID) { return 0; }
+/*
+//inline HANDLE CreateEvent(LPVOID, BOOL, BOOL, LPVOID) { return 0; }
 inline HANDLE CreateThread(LPVOID, int, DWORD WINAPI(*)(LPVOID), LPVOID, int, LPVOID) { return 0; }
 inline int WaitForSingleObject(HANDLE, int) { return 0; }
 inline int RegisterClassEx(WNDCLASSEX *) { return 0; }
-inline int SetWindowLong(HWND, int, LONG) { return 0; }
-inline LPARAM MAKELPARAM(unsigned short, unsigned short) { return 0; }
-inline HWND CreateWindow(LPCTSTR, LPVOID, DWORD, int, int, int, int, HWND, HMENU, HINSTANCE, LPVOID) { return 0; }
-inline LRESULT SendMessage(HWND, UINT, WPARAM, LPARAM) { return 0; }
-inline LONG GetSystemMetrics(int) { return 0; }
-inline int SetWindowPos(HWND, int, LONG, LONG, LONG, LONG, int) { return 0; }
-inline int SystemParametersInfo(int, int, LPVOID, int) { return 0; }
-inline int ShowWindow(HWND, int) { return 0; }
-inline int UpdateWindow(HWND) { return 0; }
-inline int SetEvent(HANDLE) { return 0; }
+//inline int SetWindowLong(HWND, int, LONG) { return 0; }
+//inline LPARAM MAKELPARAM(unsigned short, unsigned short) { return 0; }
+//inline HWND CreateWindow(LPCTSTR, LPVOID, DWORD, int, int, int, int, HWND, HMENU, HINSTANCE, LPVOID) { return 0; }
+//inline LRESULT SendMessage(HWND, UINT, WPARAM, LPARAM) { return 0; }
+//inline LONG GetSystemMetrics(int) { return 0; }
+//inline int SetWindowPos(HWND, int, LONG, LONG, LONG, LONG, int) { return 0; }
+//inline int SystemParametersInfo(int, int, LPVOID, int) { return 0; }
+//inline int ShowWindow(HWND, int) { return 0; }
+//inline int UpdateWindow(HWND) { return 0; }
+//inline int SetEvent(HANDLE) { return 0; }
 inline BOOL GetMessage(MSG *, LPVOID, int, int) { return FALSE; }
-inline int DispatchMessage(MSG *) { return 0; }
-inline int GetClientRect(HWND, RECT *) { return 0; }
-inline HICON LoadIcon(HINSTANCE, LPCTSTR) { return 0; }
-inline unsigned lstrlenA(LPCSTR) { return 0; }
-inline int lstrcmpA(LPCSTR, LPCSTR) { return 0; }
-inline int lstrcpyA(LPSTR, LPCSTR) { return 0; }
-inline int lstrcatA(LPSTR, LPCSTR) { return 0; }
-#define wsprintfA sprintf
-inline int SetWindowTextA(HWND, LPCSTR) { return 0; }
-inline LPVOID HeapAlloc(HEAP, int, ULONG) { return 0; }
-inline HEAP GetProcessHeap() { return 0; }
-inline int HeapFree(HEAP, int, LPVOID) { return 0; }
-inline int DestroyWindow(HWND) { return 0; }
-inline LONG GetWindowLong(HWND, int) { return 0; }
-inline LRESULT CALLBACK DefWindowProc(HWND, UINT, WPARAM, LPARAM) { return 0; }
-inline HMODULE LoadLibraryA(LPCSTR) { return 0; }
-inline LPPROC GetProcAddress(HMODULE, LPCSTR) { return 0; }
-inline int SetTimer(HWND, unsigned, unsigned, unsigned) { return 0; }
-inline int KillTimer(HWND, unsigned) { return 0; }
-inline DWORD GetTickCount() { return 0; }
-inline int ExitProcess(int) { return 0; }
-inline bool IsIconic(HWND) { return 0; }
-inline HWND GetForegroundWindow() { return 0; }
+//inline int DispatchMessage(MSG *) { return 0; }
+//inline int GetClientRect(HWND, RECT *) { return 0; }
+//inline HICON LoadIcon(HINSTANCE, LPCTSTR) { return 0; }
+//inline unsigned lstrlenA(LPCSTR) { return 0; }
+//inline int lstrcmpA(LPCSTR, LPCSTR) { return 0; }
+//inline int lstrcpyA(LPSTR, LPCSTR) { return 0; }
+//inline int lstrcatA(LPSTR, LPCSTR) { return 0; }
+//#define wsprintfA sprintf
+//inline int SetWindowTextA(HWND, LPCSTR) { return 0; }
+//inline LPVOID HeapAlloc(HEAP, int, ULONG) { return 0; }
+//inline HEAP GetProcessHeap() { return 0; }
+//inline int HeapFree(HEAP, int, LPVOID) { return 0; }
+//inline int DestroyWindow(HWND) { return 0; }
+//inline LONG GetWindowLong(HWND, int) { return 0; }
+//inline LRESULT CALLBACK DefWindowProc(HWND, UINT, WPARAM, LPARAM) { return 0; }
+//inline HMODULE LoadLibraryA(LPCSTR) { return 0; }
+//inline LPPROC GetProcAddress(HMODULE, LPCSTR) { return 0; }
+//inline int SetTimer(HWND, unsigned, unsigned, unsigned) { return 0; }
+//inline int KillTimer(HWND, unsigned) { return 0; }
+//inline DWORD GetTickCount() { return 0; }
+//inline int ExitProcess(int) { return 0; }
+//inline bool IsIconic(HWND) { return 0; }
+//inline HWND GetForegroundWindow() { return 0; }
+*/
 
 #define MAX_PATH 260
 
@@ -138,25 +140,24 @@ inline HWND GetForegroundWindow() { return 0; }
 #define CP_OEM  1	/* Default OEM code page. */
 #endif
 
-//#define lstrlen _tcslen
-//#define lstrcpy    _tcscpy
-#define strcpy_s(d, n, s) snprintf(d, n, "%s", s)
-#define strncpy_s(d, dn, s, sn) strncpy(d, s, sn)
-#define fopen_s(pFile,filename,mode) (int)(((*(pFile))=fopen((filename),(mode)))==NULL)
-#define errno_t bool
-#define sprintf_s snprintf
-#define fprintf_s fprintf
+#define strcpy_s(d, n, s)                   snprintf(d, n, "%s", s)
+#define strncpy_s(d, dn, s, sn)             strncpy(d, s, sn < dn ? sn : dn)
+#define fopen_s(pFile, filename, mode)      (int)(((*(pFile))=fopen((filename),(mode)))==NULL)
+#define errno_t                             bool
+#define sprintf_s                           snprintf
+#define fprintf_s                           fprintf
+#define lstrlen                             strlen
+#define lstrcpy                             strcpy
+#define lstrcmpi                            strcasecmp
 
 #endif // __FAKE__WINDOWS_H__
 
 
-
+/*
 #ifndef __WINDOWS2LINUX_H__
 #define __WINDOWS2LINUX_H__
 
-/*
- * LINUX SPECIFIC DEFINITIONS
-*/
+// LINUX SPECIFIC DEFINITIONS
 //
 // Data types conversions
 //
@@ -228,3 +229,4 @@ namespace avxsynth {
 #endif // __cplusplus
 
 #endif //  __WINDOWS2LINUX_H__
+*/

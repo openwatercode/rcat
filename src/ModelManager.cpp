@@ -173,6 +173,7 @@ int TModelManager::Calculate(BOOL bThread)
 
 	SetModelData();
 
+#ifdef WINRLIB
 	if(bThread)
 	{
 		DWORD dwThreadID = 0;
@@ -181,6 +182,7 @@ int TModelManager::Calculate(BOOL bThread)
 		hThread = CreateThread(NULL, 0, CalculateNode, (LPVOID)this, 0, &dwThreadID);
 	}
 	else
+#endif // WINRLIB
 		CalculateNode(this);
 
 	return 0;
@@ -796,7 +798,7 @@ int TModelManager::LoadText(char* szFile)
 		cFind = strchr(szLine, '=');
 		if(cFind)
 		{
-			strncpy_s(szToken, 100, szLine, (cFind - szLine));
+			strncpy_s(szToken, 100, szLine, (int)(cFind - szLine));
 			TBaseNode::Trim(szToken);
 
 			if(strcmp(szToken, "Node") == 0)
