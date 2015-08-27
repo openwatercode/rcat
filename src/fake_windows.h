@@ -142,7 +142,7 @@ inline HWND GetForegroundWindow() { return 0; }
 //#define lstrcpy    _tcscpy
 #define strcpy_s(d, n, s) snprintf(d, n, "%s", s)
 #define strncpy_s(d, dn, s, sn) strncpy(d, s, sn)
-#define fopen_s(pFile,filename,mode) ((*(pFile))=fopen((filename),(mode)))==NULL
+#define fopen_s(pFile,filename,mode) (int)(((*(pFile))=fopen((filename),(mode)))==NULL)
 #define errno_t bool
 #define sprintf_s snprintf
 #define fprintf_s fprintf
