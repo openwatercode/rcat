@@ -98,11 +98,11 @@ void TImport::SetSeriesFileW(wchar_t* szFile)
 	char cszPath[MAX_PATH * 2];
 
 	memset(cszPath, 0, sizeof(cszPath));
-	#ifndef WINRLIB
-	wcstombs(cszPath, szFile, MAX_PATH * 2);
-	#else
+	//#ifndef WINRLIB
+	//wcstombs(cszPath, szFile, MAX_PATH * 2);
+	//#else
 	WideCharToMultiByte(CP_ACP, WC_COMPOSITECHECK, szFile, wcslen(szFile), cszPath, MAX_PATH * 2, NULL, NULL);
-	#endif // WINRLIB
+	//#endif // WINRLIB
 	strcpy_s(m_szSeries, MAX_PATH, cszPath);
 }
 
@@ -1353,11 +1353,11 @@ void TPond::SetSeriesFileW(wchar_t* szFile)
 	char cszPath[MAX_PATH * 2];
 
 	memset(cszPath, 0, sizeof(cszPath));
-	#ifndef WINRLIB
-	wcstombs(cszPath, szFile, MAX_PATH * 2);
-	#else
+	//#ifndef WINRLIB
+	//wcstombs(cszPath, szFile, MAX_PATH * 2);
+	//#else
 	WideCharToMultiByte(CP_ACP, WC_COMPOSITECHECK, szFile, wcslen(szFile), cszPath, MAX_PATH * 2, NULL, NULL);
-	#endif // WINRLIB
+	//#endif // WINRLIB
 	strcpy_s(m_szIntake, MAX_PATH, cszPath);
 }
 
@@ -1387,11 +1387,11 @@ void TRainTank::SetSeriesFileW(wchar_t* szFile)
 	char cszPath[MAX_PATH * 2];
 
 	memset(cszPath, 0, sizeof(cszPath));
-	#ifndef WINRLIB
-	wcstombs(cszPath, szFile, MAX_PATH * 2);
-	#else
+	//#ifndef WINRLIB
+	//wcstombs(cszPath, szFile, MAX_PATH * 2);
+	//#else
 	WideCharToMultiByte(CP_ACP, WC_COMPOSITECHECK, szFile, wcslen(szFile), cszPath, MAX_PATH * 2, NULL, NULL);
-	#endif // WINRLIB
+	//#endif // WINRLIB
 	strcpy_s(m_szUse, MAX_PATH, cszPath);
 }
 

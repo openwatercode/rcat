@@ -140,6 +140,8 @@ inline BOOL GetMessage(MSG *, LPVOID, int, int) { return FALSE; }
 #define CP_OEM  1	/* Default OEM code page. */
 #endif
 
+#define MultiByteToWideChar(dm1, dm2, s, sc, d, mc) mbstowcs(d, s, sc > mc ? mc : sc)
+#define WideCharToMultiByte(dm1, dm2, s, sc, d, mc, dm3, dm4) wcstombs(d, s, sc > mc? mc : sc)
 #define strcpy_s(d, n, s)                   snprintf(d, n, "%s", s)
 #define strncpy_s(d, dn, s, sn)             strncpy(d, s, sn < dn ? sn : dn)
 #define fopen_s(pFile, filename, mode)      (int)(((*(pFile))=fopen((filename),(mode)))==NULL)

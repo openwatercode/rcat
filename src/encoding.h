@@ -16,3 +16,10 @@
 
 //int mbs2wcs( unsigned int codepage, const char* src, int srclen, unsigned short* dst, int dstlen );
 //int wcs2mbs( unsigned int codepage, const unsigned short* src, int srclen, char* dst, int dstlen, bool* usedDefChar);
+#ifndef WINRLIB
+//#define mbstowcs(d, s, mc) MultiByteToWideChar(CP_ACP, 0, s, strlen(s), d, mc)
+//#define wcstombs(d, s, mc) WideCharToMultiByte(CP_ACP, WC_COMPOSITECHECK, s, lstrlen(s), d, mc, NULL, NULL)
+#else
+//#define MultiByteToWideChar(dm1, dm2, s, sc, d, mc) mbstowcs(d, s, sc > mc ? mc : sc)
+//#define WideCharToMultiByte(dm1, dm2, s, sc, d, mc, dm3, dm4) wcstombs(d, s, sc > mc? mc : sc)
+#endif // WINRLIB
