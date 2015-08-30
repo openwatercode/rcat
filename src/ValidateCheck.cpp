@@ -1,9 +1,6 @@
 #include "StdAfx.h"
 #include "include/ValidateCheck.h"
-#include <stdio.h>
 //#include "encoding.h"
-//#include <CATAttr.h>
-//#include <Util.h>
 
 TValidateCheck::TValidateCheck(void)
 {

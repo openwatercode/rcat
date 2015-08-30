@@ -1,9 +1,8 @@
 #include "StdAfx.h"
 #include "include/Treatment.h"
-#include <math.h>
-#include <stdio.h>
 #include "include/Link.h"
-#include "algorithm"
+#include <math.h>
+#include <algorithm>
 
 using namespace std;
 
