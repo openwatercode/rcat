@@ -78,10 +78,10 @@ struct MSG
 {
 };
 
-typedef struct
-{
-    LPVOID lpCreateParams;
-} CREATESTRUCT, *LPCREATESTRUCT;
+//typedef struct
+//{
+//    LPVOID lpCreateParams;
+//} CREATESTRUCT, *LPCREATESTRUCT;
 
 /*
 //inline HANDLE CreateEvent(LPVOID, BOOL, BOOL, LPVOID) { return 0; }

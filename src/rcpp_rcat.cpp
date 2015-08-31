@@ -1,6 +1,6 @@
+#include "StdAfx.h"
 #include <Rcpp.h>
 #include <string>
-#include "StdAfx.h"
 #include "include/ModelManager.h"
 #include "include/ValidateCheck.h"
 #include "include/LargeString.h"
