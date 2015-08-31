@@ -145,7 +145,7 @@ inline BOOL GetMessage(MSG *, LPVOID, int, int) { return FALSE; }
 #define strcpy_s(d, n, s)                   snprintf(d, n, "%s", s)
 #define strncpy_s(d, dn, s, sn)             strncpy(d, s, sn < dn ? sn : dn)
 #define fopen_s(pFile, filename, mode)      (int)(((*(pFile))=fopen((filename),(mode)))==NULL)
-#define errno_t                             bool
+#define errno_t                             int
 #define sprintf_s                           snprintf
 #define fprintf_s                           fprintf
 #define lstrlen                             strlen
