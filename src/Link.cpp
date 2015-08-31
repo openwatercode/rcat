@@ -362,7 +362,7 @@ float TLink::Kinematic2(int nData, float nInput)
 	return m_nOutput[nData];
 }
 
-// TODO: 어떤 일을 하는 함수 인지 확인 불가
+// TODO (hspark#1#): 계산 결과를 반환하지 않고 무조건 0을 반환하고 있음. 오류 여부 확인 필요
 float TLink::Kinematic3(int nData, float nInput)
 {
 	float nQ = 0;

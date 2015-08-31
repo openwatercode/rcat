@@ -358,7 +358,7 @@ int TModelManager::SetModelData(void)
 //		m_ppImport = NULL;
 	}
 
-// TODO: need to change Message system
+// TODO (hspark#1#): 경고 에러 등 메시지 전달 방식을 바꿀 필요 있음
 #ifdef WINRDLL
 	if(m_nSource == 0 && m_nConnect == 0)
 		::MessageBox(NULL, "Node error!", "Error", 0);
