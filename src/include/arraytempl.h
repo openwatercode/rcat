@@ -88,7 +88,7 @@ public:
 		}
 		else
 		{
-		  // TODO:
+            // TODO (hspark#1#): 오류 반환방법 강구할 필요 있음
 			//DWORD nError = GetLastError();
 			m_nSize = m_nCount = 0;
 		}
