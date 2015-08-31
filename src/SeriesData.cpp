@@ -800,7 +800,7 @@ BOOL TSeries::SaveText(FILE *fp, int nFieldNos[])
     nCount = GetCount();
 	if(nFieldNos[0] == -1)
 	{
-	    nCount = GetCount();
+	    //nCount = GetCount();
 		for(nIndex = 0; nIndex < nCount; nIndex++)
 			nFields[nIndex] = nIndex;
 	}
