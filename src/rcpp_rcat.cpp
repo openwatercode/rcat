@@ -18,11 +18,147 @@ using namespace std;
 //   http://gallery.rcpp.org/
 //
 
+/** @brief
+ *
+ * @param model TModelManager*
+ * @return List
+ *
+ */
+List Model2List(TModelManager *model)
+{
+    std::map<string, SEXP> ret;
+    int loop_count = model->GetCount();
+    ret["Version"] = StringVector::create("2.0.0.1");
+    ret["Title"] = StringVector::create("RCAT");
+    ret["StartTime"] = IntegerVector::create(model->m_dtStart.GetYear(),
+                                             model->m_dtStart.GetMonth(),
+                                             model->m_dtStart.GetDay(),
+                                             model->m_dtStart.GetHour(),
+                                             model->m_dtStart.GetMinute());
+    ret["EndTime"] = IntegerVector::create(model->m_dtEnd.GetYear(),
+                                           model->m_dtEnd.GetMonth(),
+                                           model->m_dtEnd.GetDay(),
+                                           model->m_dtEnd.GetHour(),
+                                           model->m_dtEnd.GetMinute());
+    ret["Parameter"] = IntegerVector::create(model->m_nDT, model->m_nLoop);
+    //ret["Range"] = StringVector::create("2.0.0.1");
+    //ret["NodeCount"] = IntegerVector(loop_count);
+    std::map<int, SEXP> Nodes;
+    for(int i = 0; i < loop_count; i++)
+    {
+        TBaseNode *node = model->GetAt(i);
+        std::map<string, SEXP> nl;
+        string node_class;
+        nl["NodeID"] = IntegerVector::create(node->GetID());
+        nl["Name"] = StringVector::create(node->GetName());
+        nl["Desc"] = StringVector::create(node->GetDesc());
+
+        switch(node->m_nType)
+        {
+            case NODE_SOURCE:
+                node_class = string("Source");
+                nl["NodeID"] = IntegerVector(node->GetID());
+                break;
+            case NODE_TREATMENT:
+                node_class = string("Treatment");
+                nl["NodeID"] = IntegerVector(node->GetID());
+                break;
+            case NODE_JUNCTION:
+                node_class = string("Junction");
+                break;
+            case NODE_CLIMATE:
+                node_class = string("Climate");
+                break;
+
+            case NODE_URBAN:
+                node_class = string("Urban");
+                break;
+            case NODE_FOREST:
+                node_class = string("Forest");
+                break;
+            case NODE_PADDY:
+                node_class = string("Paddy");
+                break;
+
+            case NODE_IMPORT:
+                node_class = string("Import");
+                break;
+            case NODE_INFILTRO:
+                node_class = string("Infiltro");
+                break;
+            case NODE_WETLAND:
+                node_class = string("WetLand");
+                break;
+            case NODE_POND:
+                node_class = string("Pond");
+                break;
+            case NODE_RAINTANK:
+                node_class = string("RainTank");
+                break;
+            case NODE_RECYCLE:
+                node_class = string("Recycle");
+                {
+                    TRecycle *tn = (TRecycle *)node;
+                    nl["Intake"] = IntegerVector::create(tn->rec_cond, tn->rec_intake);
+                    IntegerVector nid(tn->m_nRecursive);
+                    NumericVector nrain(tn->m_nRecursive);
+                    for(int i = 0; i < tn->m_nRecursive; i++)
+                    {
+                        nid(i) = tn->m_Recursive[i].nID;
+                        nrain(i) = tn->m_Recursive[i].nRain;
+                    }
+                    nl["Nodes"] = DataFrame::create(_["nID"] = nid, _["nRain"] = nrain);
+                }
+                break;
+            case NODE_BIORETENTION:
+                node_class = string("Bioretention");
+                break;
+
+            case NODE_JUNC:
+                node_class = string("Junction");
+                break;
+            case NODE_OUTLET:
+                node_class = string("Outlet");
+                break;
+            case NODE_LINK:
+                node_class = string("Link");
+                break;
+            default:
+                break;
+        }
+        List ll = wrap(nl);
+        ll.attr("class") = "cat_" + node_class;
+        Nodes[i + 1] = ll;
+    }
+    ret["Nodes"] = wrap(Nodes);
+    return wrap(ret);
+}
+
+/** @brief
+ *
+ * @return TModelManager
+ *
+ */
+TModelManager List2Model(List ml)
+{
+    TModelManager model;
+    return model;
+}
+
+// [[Rcpp::export]]
+List getModel(StringVector input)
+{
+    TModelManager model;
+    model.LoadText(input(0));
+    return Model2List(&model);
+}
+
+
 /** @brief TSeries 객체를 DataFrame으로 변환하여 반환하는 함수
  *
- * @param sr TSeries 객체에 대한 포인터
- * @param nCount
- * @return
+ * @param sr TSeries* 값을 받아낼  TSeries 객체에 대한 포인터
+ * @param nFieldNos[] int 주어진 TSereis내에 복사할 필드번호 배열의 포인터
+ * @return DataFrame TSeries의 시간과 값들이 복사된 DataFrame
  *
  */
 DataFrame TSeries2DataFrame(TSeries *sr, int nFieldNos[])
@@ -71,6 +207,12 @@ DataFrame TSeries2DataFrame(TSeries *sr, int nFieldNos[])
     return df;
 }
 
+/** @brief TSerieses 객체를 DataFrame 에 대한 리스트 형태로 변환하여 반환
+ *
+ * @param sr TSerieses* 변환하고자 하는 TSereses 객체에 대한 포인터
+ * @param szFields char* 변환하고자하는 노드명과 필드에 대한 문자열 "[*:*]"(모든 노드의 모든 필드
+ * @return List 변환된 DataFrame의 List
+ */
 List TSerieses2List(TSerieses *sr, char *szFields)
 {
     List ret = List::create();
@@ -110,7 +252,6 @@ string runCAT(char* infile, char* outfile, char* format)
 // #else
 //   strcpy(szFormat, format);
 // #endif
-
   model.LoadText(infile);
   TValidateCheck chk;
   nRet = chk.Check(&model);

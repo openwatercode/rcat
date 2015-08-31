@@ -5,6 +5,17 @@
 
 using namespace Rcpp;
 
+// getModel
+List getModel(StringVector input);
+RcppExport SEXP rcat_getModel(SEXP inputSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< StringVector >::type input(inputSEXP);
+    __result = Rcpp::wrap(getModel(input));
+    return __result;
+END_RCPP
+}
 // run_cat
 List run_cat(List params);
 RcppExport SEXP rcat_run_cat(SEXP paramsSEXP) {
