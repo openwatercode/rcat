@@ -16,6 +16,17 @@ BEGIN_RCPP
     return __result;
 END_RCPP
 }
+// setnrun_cat
+List setnrun_cat(List input);
+RcppExport SEXP rcat_setnrun_cat(SEXP inputSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< List >::type input(inputSEXP);
+    __result = Rcpp::wrap(setnrun_cat(input));
+    return __result;
+END_RCPP
+}
 // run_cat
 List run_cat(List params);
 RcppExport SEXP rcat_run_cat(SEXP paramsSEXP) {

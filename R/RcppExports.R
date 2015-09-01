@@ -5,6 +5,10 @@ getModel <- function(input) {
     .Call('rcat_getModel', PACKAGE = 'rcat', input)
 }
 
+setnrun_cat <- function(input) {
+    .Call('rcat_setnrun_cat', PACKAGE = 'rcat', input)
+}
+
 run_cat <- function(params) {
     .Call('rcat_run_cat', PACKAGE = 'rcat', params)
 }

@@ -55,45 +55,117 @@ List Model2List(TModelManager *model)
 
         switch(node->m_nType)
         {
-            case NODE_SOURCE:
-                node_class = string("Source");
-                nl["NodeID"] = IntegerVector(node->GetID());
-                break;
-            case NODE_TREATMENT:
-                node_class = string("Treatment");
-                nl["NodeID"] = IntegerVector(node->GetID());
-                break;
-            case NODE_JUNCTION:
-                node_class = string("Junction");
-                break;
-            case NODE_CLIMATE:
-                node_class = string("Climate");
-                break;
-
-            case NODE_URBAN:
+           case NODE_URBAN:
                 node_class = string("Urban");
+                {
+                    TUrban *tn = (TUrban *)node;
+                }
                 break;
-            case NODE_FOREST:
+           case NODE_FOREST:
                 node_class = string("Forest");
+                {
+                    TUrban *tn = (TUrban *)node;
+                }
                 break;
             case NODE_PADDY:
                 node_class = string("Paddy");
+                {
+                    TPaddy *tn = (TPaddy *)node;
+                }
                 break;
-
+            case NODE_LINK:
+                node_class = string("Link");
+                {
+                    TLink *tn = (TLink *)node;
+                }
+                break;
+            case NODE_JUNC:
+                node_class = string("Junction");
+                {
+                    TJunc *tn = (TJunc *)node;
+                }
+                break;
+            case NODE_OUTLET:
+                node_class = string("Outlet");
+                {
+                    TJunc *tn = (TJunc *)node;
+                }
+                break;
+           case NODE_CLIMATE:
+                node_class = string("Climate");
+                {
+                    TClimate *tn = (TClimate *)node;
+                    nl["Rainfall"] = StringVector::create(tn->m_szClimate);
+                    nl["Evaporation"] = StringVector::create(tn->m_szEva);
+                    nl["Calculation"] = NumericVector::create(tn->m_bUseCalc,
+                                                              tn->m_nLat,
+                                                              tn->m_nHeight,
+                                                              tn->m_nWindHeight);
+                }
+                break;
             case NODE_IMPORT:
                 node_class = string("Import");
+                {
+                    TImport *tn = (TImport *)node;
+                }
                 break;
             case NODE_INFILTRO:
                 node_class = string("Infiltro");
+                {
+                    TInfiltro *tn = (TInfiltro *)node;
+                }
+                break;
+            case NODE_BIORETENTION:
+                node_class = string("Bioretention");
+                {
+                    TBioRetention *tn = (TBioRetention *)node;
+                }
                 break;
             case NODE_WETLAND:
                 node_class = string("WetLand");
+                {
+                    TWetLand *tn = (TWetLand *)node;
+                }
                 break;
             case NODE_POND:
                 node_class = string("Pond");
-                break;
-            case NODE_RAINTANK:
-                node_class = string("RainTank");
+                {
+                    TPond *tn = (TPond *)node;
+                    nl["Base"] = NumericVector::create(tn->vol_init,
+                                                       tn->vol_eff,
+                                                       tn->aqf_ks);
+                    nl["Pipe"] = NumericVector::create(tn->pipe_ht,
+                                                       tn->pipe_area,
+                                                       tn->pipe_coef);
+                    nl["Spill"] = NumericVector::create(tn->spill_ht,
+                                                        tn->spill_length,
+                                                        tn->spill_coef);
+                    nl["Offline"] = NumericVector::create(tn->offline_max,
+                                                          tn->offline_ratio,
+                                                          tn->offline_out);
+                    nl["Intake"] = NumericVector::create(tn->intake_type,
+                                                         tn->intake_vol,
+                                                         tn->m_nTable,
+                                                         tn->m_nData);
+                    nl["Series"] = StringVector::create(tn->m_szIntake);
+                    nl["RateCount"] = NumericVector::create(tn->rate_count);
+                    NumericVector wl(tn->rate_count);
+                    for(int j = 0; j < tn->rate_count; j++)
+                        wl(j) = tn->wl_rate[j][0];
+                    nl["WL"] = wl;
+                    for(int j = 0; j < tn->rate_count; j++)
+                        wl(j) = tn->wl_rate[j][1];
+                    nl["VOL"] = wl;
+                    for(int j = 0; j < tn->rate_count; j++)
+                        wl(j) = tn->wl_rate[j][2];
+                    nl["AREA"] = wl;
+                    nl["Rainfall"] = NumericVector::create(tn->m_Climates[0].nID,
+                                                           tn->m_Climates[0].nEva);
+                    nl["EVA"] = NumericVector::create(tn->m_Climates[1].nID,
+                                                      tn->m_Climates[1].nEva);
+                    nl["Supply"] = NumericVector::create(tn->supply_id);
+                    nl["Recharge"] = NumericVector::create(tn->recharge_id);
+                }
                 break;
             case NODE_RECYCLE:
                 node_class = string("Recycle");
@@ -102,26 +174,23 @@ List Model2List(TModelManager *model)
                     nl["Intake"] = IntegerVector::create(tn->rec_cond, tn->rec_intake);
                     IntegerVector nid(tn->m_nRecursive);
                     NumericVector nrain(tn->m_nRecursive);
-                    for(int i = 0; i < tn->m_nRecursive; i++)
+                    for(int j = 0; j < tn->m_nRecursive; j++)
                     {
-                        nid(i) = tn->m_Recursive[i].nID;
-                        nrain(i) = tn->m_Recursive[i].nRain;
+                        nid(j) = tn->m_Recursive[j].nID;
+                        nrain(j) = tn->m_Recursive[j].nRain;
                     }
                     nl["Nodes"] = DataFrame::create(_["nID"] = nid, _["nRain"] = nrain);
                 }
                 break;
-            case NODE_BIORETENTION:
-                node_class = string("Bioretention");
-                break;
-
-            case NODE_JUNC:
-                node_class = string("Junction");
-                break;
-            case NODE_OUTLET:
-                node_class = string("Outlet");
-                break;
-            case NODE_LINK:
-                node_class = string("Link");
+            case NODE_RAINTANK:
+                node_class = string("RainTank");
+                {
+                    TRainTank *tn = (TRainTank *)node;
+                    nl["Volume"] = NumericVector::create(tn->vol_init, tn->vol_min, tn->cap);
+                    nl["Use"] = NumericVector::create(tn->use_type, tn->use, tn->m_nTable, tn->m_nData);
+                    nl["Series"] = StringVector::create(tn->m_szUse);
+                    nl["Supply"] = IntegerVector::create(tn->supply_id);
+                }
                 break;
             default:
                 break;
@@ -131,18 +200,181 @@ List Model2List(TModelManager *model)
         Nodes[i + 1] = ll;
     }
     ret["Nodes"] = wrap(Nodes);
-    return wrap(ret);
+    List wret = wrap(ret);
+    wret.attr("class") = "rcat";
+    return wret;
 }
 
-/** @brief
+/** @brief CAT 모형의 입력자료를 CAT 모형에 투영하여 반환
  *
- * @return TModelManager
+ * @param ml List class 가 rcat 인 모형입력자료 리스트
+ * @return TModelManager 입력자료가 투영된 CAT 모형
  *
  */
-TModelManager List2Model(List ml)
+TModelManager *List2Model(List ml)
 {
-    TModelManager model;
-    return model;
+    //!< class 속성이 rcat 인지 확인
+    if(as<string>(ml.attr("class")) == "rcat" )
+    {
+        TModelManager *model = new TModelManager();
+        IntegerVector iv;
+        iv = as<IntegerVector>(ml["StartTime"]);
+        model->m_dtStart = TDate::ToMinute(iv.length() > 0 ? iv[0] : 0,
+                                           iv.length() > 1 ? iv[1] : 0,
+                                           iv.length() > 2 ? iv[2] : 0,
+                                           iv.length() > 3 ? iv[3] : 0,
+                                           iv.length() > 4 ? iv[4] : 0);
+        iv = as<IntegerVector>(ml["EndTime"]);
+        model->m_dtEnd = TDate::ToMinute(iv.length() > 0 ? iv[0] : 0,
+                                         iv.length() > 1 ? iv[1] : 0,
+                                         iv.length() > 2 ? iv[2] : 0,
+                                         iv.length() > 3 ? iv[3] : 0,
+                                         iv.length() > 4 ? iv[4] : 0);
+        iv = as<IntegerVector>(ml["Parameter"]);
+        model->m_nDT = iv.length() > 0 ? iv[0] : 0;
+        model->m_nLoop = iv.length() > 1 ? iv[1] : 0;
+        List Nodes = ml["Nodes"];
+        int loop_count = Nodes.length();
+        //model->m_nCount = loop_count = 10;
+        for(int i = 0; i < loop_count; i++)
+        {
+            List node = Nodes[i];
+            string node_class = node.attr("class");
+            TBaseNode *pNode = NULL;
+
+            if(node_class == "cat_Urban") //!< NODE_URBAN:
+            {
+                pNode = new TUrban;
+            }
+            else if(node_class == "cat_Forest") //!< NODE_FOREST:
+            {
+                pNode = new TUrban;
+                pNode->m_nType = NODE_FOREST;
+            }
+            else if(node_class == "cat_Paddy") //!< NODE_PADDY:
+            {
+                pNode = new TPaddy;
+            }
+            else if(node_class == "cat_Link") //!<  NODE_LINK:
+            {
+                pNode = new TLink;
+            }
+            else if(node_class == "cat_Junction") //!< NODE_JUNC:
+            {
+                pNode = new TJunc;
+            }
+            else if(node_class == "cat_Outlet") //!< NODE_OUTLET:
+            {
+                pNode = new TJunc;
+                pNode->m_nType = NODE_OUTLET;
+            }
+            else if(node_class == "cat_Climate") //!< NODE_CLIMATE:
+            {
+                TClimate *pn = new TClimate;
+                StringVector sv = as<StringVector>(node["Rainfall"]);
+                pn->SetClimateFile(sv.length() > 0 ? sv[0] : (char *)"");
+                sv = as<StringVector>(node["Evaporation"]);
+                pn->SetEvaFile(sv.length() > 0 ? sv[0] : (char *)"");
+                NumericVector nv = as<NumericVector>(node["Calculation"]);
+                pn->m_bUseCalc = nv.length() > 0 ? nv[0] != 0.0: false;
+                pn->m_nLat = nv.length() > 1 ? nv[1] : 0;
+                pn->m_nHeight = nv.length() > 2 ? nv[2] : 0;
+                pn->m_nWindHeight = nv.length() > 3 ? nv[3] : 0;
+                //{
+                //    TClimate *tn = (TClimate *)node;
+                //    nl["Rainfall"] = StringVector::create(tn->m_szClimate);
+                //    nl["Evaporation"] = StringVector::create(tn->m_szEva);
+                //    nl["Calculation"] = NumericVector::create(tn->m_bUseCalc,
+                //                                              tn->m_nLat,
+                //                                              tn->m_nHeight,
+                //                                              tn->m_nWindHeight);
+                //}
+                pNode = pn;
+            }
+            else if(node_class == "cat_Import") //!< NODE_IMPORT:
+            {
+                pNode = new TImport;
+            }
+            else if(node_class == "cat_Infiltro") //!< NODE_INFILTRO:
+            {
+                pNode = new TInfiltro;
+            }
+            else if(node_class == "cat_Bioretention") //!< NODE_BIORETENTION:
+            {
+                pNode = new TBioRetention;
+            }
+            else if(node_class == "cat_WetLand") //!< NODE_WETLAND:
+            {
+                pNode = new TWetLand;
+            }
+            else if(node_class == "cat_Pond") //!< NODE_POND:
+            {
+                pNode = new TPond;
+            }
+            else if(node_class == "cat_Recycle") //!< NODE_RECYCLE:
+            {
+                TRecycle *pn = new TRecycle;
+                iv = as<IntegerVector>(node["Intake"]);
+                pn->rec_cond = iv.length() > 0 ? iv[0] : 0;
+                pn->rec_intake = iv.length() > 1 ? iv[2] : 0;
+                DataFrame df = as<DataFrame>(node["Nodes"]);
+                pn->m_nRecursive = df.nrows();
+                // TODO (hspark#1#): 최대 5로 설정되어 있으므로 에러 발생 시켜야함
+                if(pn->m_nRecursive > 5) {}
+                IntegerVector nid = as<IntegerVector>(df["nID"]);
+                NumericVector nrain = as<NumericVector>(df["nRain"]);
+                for(int j = 0; j < pn->m_nRecursive; j++)
+                {
+                    pn->m_Recursive[j].nID = nid[j];
+                    pn->m_Recursive[j].nRain = nrain[j];
+                }
+                pNode = pn;
+            }
+            else if(node_class == "cat_RainTank") //!< NODE_RAINTANK:
+            {
+                TRainTank * pn = new TRainTank;
+                iv = as<NumericVector>(node["Volume"]);
+                pn->vol_init = iv.length() > 0 ? iv[0] : 0;
+                pn->vol_min = iv.length() > 1 ? iv[1] : 0;
+                pn->cap = iv.length() > 2 ? iv[2] : 0;
+                iv = as<NumericVector>(node["Use"]);
+                pn->use_type = iv.length() > 0 ? iv[0] : 0;
+                pn->use = iv.length() > 1 ? iv[1] : 0;
+                StringVector sv = as<StringVector>(node["Series"]);
+                pn->SetSeriesFileA(sv.length() > 0 ? sv[0] : (char *)"");
+                iv = as<IntegerVector>(node["Supply"]);
+                pn->supply_id = iv.length() > 0 ? iv[0] : 0;
+                //{
+                //    TRainTank *tn = (TRainTank *)node;
+                //    nl["Base"] = NumericVector::create(tn->vol_init, tn->vol_min, tn->cap);
+                //    nl["Use"] = NumericVector::create(tn->use_type, tn->use, tn->m_nTable, tn->m_nData);
+                //    nl["Series"] = StringVector::create(tn->m_szUse);
+                //    nl["Supply"] = IntegerVector::create(tn->supply_id);
+                //}
+                pNode = pn;
+            }
+
+            if(pNode)
+            {
+                pNode->SetName((char *)as<string>(node["Name"]).c_str());
+                pNode->SetDesc((char *)as<string>(node["Desc"]).c_str());
+                pNode->SetID(as<int>(node["NodeID"]));
+                model->Add(pNode);
+                switch(pNode->GetType())
+                {
+                    case NODE_IMPORT:
+                        //ChangeFilePathA
+                        break;
+                    case NODE_CLIMATE:
+                        //CheckClimateLoad
+                        break;
+                }
+            }
+        }
+        //model->CheckLoad();
+        return model;
+    }
+    return NULL;
 }
 
 // [[Rcpp::export]]
@@ -153,6 +385,15 @@ List getModel(StringVector input)
     return Model2List(&model);
 }
 
+// [[Rcpp::export]]
+List setnrun_cat(List input)
+{
+    TModelManager *model = List2Model(input);
+    if(model != NULL)
+        return Model2List(model);
+    else
+        return List();
+}
 
 /** @brief TSeries 객체를 DataFrame으로 변환하여 반환하는 함수
  *
