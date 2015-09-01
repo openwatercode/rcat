@@ -215,6 +215,7 @@ float TLink::Cunge(int nData, float nInput)
 	nPrevOut = m_nPrevOut[nData];
 	nRivLen = length_riv / m_nPartCount;
 
+// TODO (hspark#1#): m_nPartCount가 0보다 작아 for loop이 수행되지 않으면 nPos가 초기화 되지 않는 문제 발생
 	for(nIndex = 0; nIndex < m_nPartCount; nIndex++)
 	{
 		nPos = nIndex * 4 + nData;
