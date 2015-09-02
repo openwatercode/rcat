@@ -465,25 +465,225 @@ TModelManager *List2Model(List ml)
                 string node_class = node.attr("class");
                 TBaseNode *pNode = NULL;
 
-                if(node_class == "cat_Urban") //!< NODE_URBAN:
+                if(node_class == "cat_Urban" || //!< NODE_URBAN:
+                   node_class == "cat_Forest") //!< NODE_FOREST:
                 {
                     TUrban *pn = new TUrban;
+                    if(node.containsElementNamed("Topology"))
+                    {
+                        NumericVector nv = as<NumericVector>(node["Topology"]);
+                        pn->Area = nv.length() > 0 ? nv[0] : 0;
+                        pn->slope = nv.length() > 1 ? nv[1] : 0;
+                        pn->Aratio_imp = nv.length() > 2 ? nv[2] : 0;
+                        pn->Aratio_per_plant = nv.length() > 3 ? nv[3] : 0;
+                        pn->depC_imp = nv.length() > 4 ? nv[4] : 0;
+                        pn->depC_per = nv.length() > 5 ? nv[5]: 0;
+                    }
+                    if(node.containsElementNamed("Soil"))
+                    {
+                        NumericVector nv = as<NumericVector>(node["Soil"]);
+                        pn->theta_per = nv.length() > 0 ? nv[0] : 0;
+                        pn->soil_th_per = nv.length() > 1 ? nv[1] : 0;
+                        pn->theta_s_per = nv.length() > 2 ? nv[2] : 0;
+                        pn->theta_r_per = nv.length() > 3 ? nv[3] : 0;
+                        pn->theta_W_per = nv.length() > 4 ? nv[4] : 0;
+                        pn->theta_FC_per = nv.length() > 5 ? nv[5] : 0;
+                        pn->ks_per = nv.length() > 6 ? nv[6] : 0;
+                        pn->ksi_per = nv.length() > 7 ? nv[7] : 0;
+                        pn->n_mualem = nv.length() > 8 ? nv[8] : 0;
+                    }
+                    if(node.containsElementNamed("River"))
+                    {
+                        NumericVector nv = as<NumericVector>(node["River"]);
+                        pn->gwE = nv.length() > 0 ? nv[0] : 0;
+                        pn->rivE = nv.length() > 1 ? nv[1] : 0;
+                        pn->riv_th = nv.length() > 2 ? nv[2] : 0;
+                        pn->ku_riv = nv.length() > 3 ? nv[3] : 0;
+                        pn->Area_riv = nv.length() > 4 ? nv[4] : 0;
+                        pn->aqf_S = nv.length() > 5 ? nv[5] : 0;
+                        pn->aqf_Top = nv.length() > 6 ? nv[6] : 0;
+                        pn->aqf_Bot = nv.length() > 7 ? nv[7] : 0;
+                    }
+                    if(node.containsElementNamed("Infiltro"))
+                    {
+                        NumericVector nv = as<NumericVector>(node["Infiltro"]);
+                        pn->infilt_method = nv.length() > 0 ? nv[0] : 0;
+                        pn->PSI = nv.length() > 1 ? nv[1] : 0;
+                        pn->ht_fc = nv.length() > 2 ? nv[2] : 0;
+                        pn->ht_fo = nv.length() > 3 ? nv[3] : 0;
+                        pn->ht_k = nv.length() > 4 ? nv[4] : 0;
+                    }
+                    if(node.containsElementNamed("Intake"))
+                    {
+                        NumericVector nv = as<NumericVector>(node["Intake"]);
+                        pn->gw_intake_rate = nv.length() > 0 ? nv[0] : 0;
+                        pn->leakage_rate = nv.length() > 1 ? nv[1] : 0;
+                    }
+                    if(node.containsElementNamed("GWout"))
+                    {
+                        NumericVector nv = as<NumericVector>(node["GWout"]);
+                        pn->gw_move_node = nv.length() > 0 ? nv[0] : 0;
+                        pn->slope_method = nv.length() > 1 ? nv[1] : 0;
+                        pn->slope_aqf = nv.length() > 2 ? nv[2] : 0;
+                        pn->node_len = nv.length() > 3 ? nv[3] : 0;
+                        pn->conn_len = nv.length() > 4 ? nv[4] : 0;
+                        pn->Kgw = nv.length() > 5 ? nv[5] : 0;
+                    }
+                    if(node.containsElementNamed("Evaporation"))
+                    {
+                        NumericVector nv = as<NumericVector>(node["Evaporation"]);
+                        pn->solcov = nv.length() > 0 ? nv[0] : 0;
+                        pn->ET_method = nv.length() > 1 ? nv[1] : 0;
+                        for(int j = 0; j < 12; j++)
+                            pn->LAI[0] = nv.length() > 2 + j ? nv[2 + j] : 0;
+                    }
+                    if(node.containsElementNamed("Weather"))
+                    {
+                        DataFrame df = as<DataFrame>(node["Weather"]);
+                        pn->m_nClimates = df.nrows();
+                        for(int j = 0; j < pn->m_nClimates; j++)
+                        {
+                            pn->m_Climates[j].nID = df[j, "nID"];
+                            pn->m_Climates[j].nRain = df[j, "nRain"];
+                            pn->m_Climates[j].nEva = df[j, "nEva"];
+                        }
+                    }
                     pNode = pn;
-                }
-                else if(node_class == "cat_Forest") //!< NODE_FOREST:
-                {
-                    TUrban *pn = new TUrban;
-                    pNode = pn;
-                    pNode->m_nType = NODE_FOREST;
+                    if(node_class == "cat_Forest")
+                        pNode->m_nType = NODE_FOREST;
                 }
                 else if(node_class == "cat_Paddy") //!< NODE_PADDY:
                 {
                     TPaddy *pn = new TPaddy;
+                    if(node.containsElementNamed("Topology"))
+                    {
+                        NumericVector nv = as<NumericVector>(node["Topology"]);
+                        pn->Area = nv.length() > 0 ? nv[0] : 0;
+                        pn->slope = nv.length() > 1 ? nv[1] : 0;
+                        pn->Aratio_imp = nv.length() > 2 ? nv[2] : 0;
+                        pn->Aratio_per_plant = nv.length() > 3 ? nv[3] : 0;
+                        pn->depC_imp = nv.length() > 4 ? nv[4] : 0;
+                        pn->depC_per = nv.length() > 5 ? nv[5]: 0;
+                    }
+                    if(node.containsElementNamed("Soil"))
+                    {
+                        NumericVector nv = as<NumericVector>(node["Soil"]);
+                        pn->theta_per = nv.length() > 0 ? nv[0] : 0;
+                        pn->soil_th_per = nv.length() > 1 ? nv[1] : 0;
+                        pn->theta_s_per = nv.length() > 2 ? nv[2] : 0;
+                        pn->theta_r_per = nv.length() > 3 ? nv[3] : 0;
+                        pn->theta_W_per = nv.length() > 4 ? nv[4] : 0;
+                        pn->theta_FC_per = nv.length() > 5 ? nv[5] : 0;
+                        pn->ks_per = nv.length() > 6 ? nv[6] : 0;
+                        pn->ksi_per = nv.length() > 7 ? nv[7] : 0;
+                        pn->n_mualem = nv.length() > 8 ? nv[8] : 0;
+                    }
+                    if(node.containsElementNamed("River"))
+                    {
+                        NumericVector nv = as<NumericVector>(node["River"]);
+                        pn->gwE = nv.length() > 0 ? nv[0] : 0;
+                        pn->rivE = nv.length() > 1 ? nv[1] : 0;
+                        pn->riv_th = nv.length() > 2 ? nv[2] : 0;
+                        pn->ku_riv = nv.length() > 3 ? nv[3] : 0;
+                        pn->Area_riv = nv.length() > 4 ? nv[4] : 0;
+                        pn->aqf_S = nv.length() > 5 ? nv[5] : 0;
+                        pn->aqf_Top = nv.length() > 6 ? nv[6] : 0;
+                        pn->aqf_Bot = nv.length() > 7 ? nv[7] : 0;
+                    }
+                    if(node.containsElementNamed("Intake"))
+                    {
+                        NumericVector nv = as<NumericVector>(node["Intake"]);
+                        pn->gw_intake_rate = nv.length() > 0 ? nv[0] : 0;
+                        pn->leakage_rate = nv.length() > 1 ? nv[1] : 0;
+                    }
+                    if(node.containsElementNamed("GWout"))
+                    {
+                        NumericVector nv = as<NumericVector>(node["GWout"]);
+                        pn->gw_move_node = nv.length() > 0 ? nv[0] : 0;
+                        pn->slope_method = nv.length() > 1 ? nv[1] : 0;
+                        pn->slope_aqf = nv.length() > 2 ? nv[2] : 0;
+                        pn->node_len = nv.length() > 3 ? nv[3] : 0;
+                        pn->conn_len = nv.length() > 4 ? nv[4] : 0;
+                        pn->Kgw = nv.length() > 5 ? nv[5] : 0;
+                    }
+                    if(node.containsElementNamed("Evaporation"))
+                    {
+                        NumericVector nv = as<NumericVector>(node["Evaporation"]);
+                        pn->solcov = nv.length() > 0 ? nv[0] : 0;
+                        pn->ET_method = nv.length() > 1 ? nv[1] : 0;
+                        for(int j = 0; j < 12; j++)
+                            pn->LAI[0] = nv.length() > 2 + j ? nv[2 + j] : 0;
+                    }
+                    if(node.containsElementNamed("Weather"))
+                    {
+                        DataFrame df = as<DataFrame>(node["Weather"]);
+                        pn->m_nClimates = df.nrows();
+                        for(int j = 0; j < pn->m_nClimates; j++)
+                        {
+                            pn->m_Climates[j].nID = df[j, "nID"];
+                            pn->m_Climates[j].nRain = df[j, "nRain"];
+                            pn->m_Climates[j].nEva = df[j, "nEva"];
+                        }
+                    }
+                    if(node.containsElementNamed("Irrigation"))
+                    {
+                        IntegerVector iv = as<IntegerVector>(node["Irrigation"]);
+                        pn->irr_start_mon = iv.length() > 0 ? iv[0] : 0;
+                        pn->irr_start_day = iv.length() > 1 ? iv[1] : 0;
+                        pn->irr_end_mon = iv.length() > 2 ? iv[2] : 0;
+                        pn->irr_end_day = iv.length() > 3 ? iv[3] : 0;
+                    }
+                    if(node.containsElementNamed("Coefficient"))
+                    {
+                        NumericVector nv = as<NumericVector>(node["Coefficient"]);
+                        pn->irr_supply = nv.length() > 0 ? nv[0] : 0;
+                        pn->surf_dr_cf = nv.length() > 1 ? nv[1] : 0;
+                        pn->surf_dr_depth = nv.length() > 2 ? nv[2] : 0;
+                        pn->soil_dr_cf = nv.length() > 3 ? nv[3] : 0;
+                        pn->udgw_dr_cf = nv.length() > 4 ? nv[4] : 0;
+                    }
+                    if(node.containsElementNamed("Drain"))
+                    {
+                        NumericVector nv = as<NumericVector>(node["Drain"]);
+                        for(int j = 0; j < 12; j++)
+                            pn->surf_dr_ht[j] = nv.length() > j ? nv[j] : 0;
+                    }
                     pNode = pn;
                 }
                 else if(node_class == "cat_Link") //!<  NODE_LINK:
                 {
                     TLink *pn = new TLink;
+                    if(node.containsElementNamed("Method"))
+                    {
+                        IntegerVector iv = as<IntegerVector>(node["Method"]);
+                        pn->Method = iv.length() > 0 ? iv[0] : 0;
+                    }
+                    if(node.containsElementNamed("Cunge"))
+                    {
+                        NumericVector nv = as<NumericVector>(node["Cunge"]);
+                        pn->Delta_dis = nv.length() > 0 ? nv[0] : 0;
+                        pn->Routing_So = nv.length() > 1 ? nv[1] : 0;
+                        pn->Routing_N = nv.length() > 2 ? nv[2] : 0;
+                        pn->Routing_B = nv.length() > 3 ? nv[3] : 0;
+                        pn->Peak_t = nv.length() > 4 ? nv[4] : 0;
+                    }
+                    if(node.containsElementNamed("Kinematic"))
+                    {
+                        NumericVector nv = as<NumericVector>(node["Kinematic"]);
+                        pn->mann = nv.length() > 0 ? nv[0] : 0;
+                        pn->slope_riv = nv.length() > 1 ? nv[1] : 0;
+                        pn->length_riv = nv.length() > 2 ? nv[2] : 0;
+                        pn->Bottom_riv = nv.length() > 3 ? nv[3] : 0;
+                        pn->Top_riv = nv.length() > 4 ? nv[4] : 0;
+                        pn->depth_riv = nv.length() > 5 ? nv[5] : 0;
+                        pn->init_route = nv.length() > 6 ? nv[6] : 0;
+                    }
+                    if(node.containsElementNamed("Connect"))
+                    {
+                        IntegerVector iv = as<IntegerVector>(node["Connect"]);
+                        pn->m_nStartID = iv.length() > 0 ? iv[0] : 0;
+                        pn->m_nEndID = iv.length() > 1 ? iv[1] : 0;
+                    }
                     pNode = pn;
                 }
                 else if(node_class == "cat_Junction") //!< NODE_JUNC:
@@ -500,44 +700,193 @@ TModelManager *List2Model(List ml)
                 else if(node_class == "cat_Climate") //!< NODE_CLIMATE:
                 {
                     TClimate *pn = new TClimate;
-                    StringVector sv = as<StringVector>(node["Rainfall"]);
-                    pn->SetClimateFile(sv.length() > 0 ? sv[0] : (char *)"");
-                    sv = as<StringVector>(node["Evaporation"]);
-                    pn->SetEvaFile(sv.length() > 0 ? sv[0] : (char *)"");
-                    NumericVector nv = as<NumericVector>(node["Calculation"]);
-                    pn->m_bUseCalc = nv.length() > 0 ? nv[0] != 0.0: false;
-                    pn->m_nLat = nv.length() > 1 ? nv[1] : 0;
-                    pn->m_nHeight = nv.length() > 2 ? nv[2] : 0;
-                    pn->m_nWindHeight = nv.length() > 3 ? nv[3] : 0;
-                    //{
-                    //    TClimate *tn = (TClimate *)node;
-                    //    nl["Rainfall"] = StringVector::create(tn->m_szClimate);
-                    //    nl["Evaporation"] = StringVector::create(tn->m_szEva);
-                    //    nl["Calculation"] = NumericVector::create(tn->m_bUseCalc,
-                    //                                              tn->m_nLat,
-                    //                                              tn->m_nHeight,
-                    //                                              tn->m_nWindHeight);
-                    //}
+                    if(node.containsElementNamed("Rainfall"))
+                    {
+                        StringVector sv = as<StringVector>(node["Rainfall"]);
+                        pn->SetClimateFile(sv.length() > 0 ? sv[0] : (char *)"");
+                    }
+                    if(node.containsElementNamed("Evaporation"))
+                    {
+                        StringVector sv = as<StringVector>(node["Evaporation"]);
+                        pn->SetEvaFile(sv.length() > 0 ? sv[0] : (char *)"");
+                    }
+                    if(node.containsElementNamed("Calculation"))
+                    {
+                        NumericVector nv = as<NumericVector>(node["Calculation"]);
+                        pn->m_bUseCalc = nv.length() > 0 ? nv[0] != 0.0: false;
+                        pn->m_nLat = nv.length() > 1 ? nv[1] : 0;
+                        pn->m_nHeight = nv.length() > 2 ? nv[2] : 0;
+                        pn->m_nWindHeight = nv.length() > 3 ? nv[3] : 0;
+                    }
                     pNode = pn;
                 }
                 else if(node_class == "cat_Import") //!< NODE_IMPORT:
                 {
                     TImport *pn = new TImport;
+                    if(node.containsElementNamed("Type"))
+                    {
+                        IntegerVector iv = as<IntegerVector>(node["Type"]);
+                        pn->type = iv.length() > 0 ? iv[0] : 0;
+                    }
+                    if(node.containsElementNamed("Constant"))
+                    {
+                        NumericVector nv = as<NumericVector>(node["Constant"]);
+                        pn->m_nConst = nv.length() > 0 ? nv[0] : 0;
+                    }
+                    if(node.containsElementNamed("Series"))
+                    {
+                        StringVector sv = as<StringVector>(node["Series"]);
+                        pn->SetSeriesFileA(sv.length() > 0 ? sv[0] : (char *)"");
+                    }
+                    if(node.containsElementNamed("Table"))
+                    {
+                        IntegerVector iv = as<IntegerVector>(node["Table"]);
+                        pn->m_nTable = iv.length() > 0 ? iv[0] : 0;
+                        pn->m_nData = iv.length() > 1 ? iv[1] : 0;
+                    }
+                    if(node.containsElementNamed("Leakage"))
+                    {
+                        NumericVector nv = as<NumericVector>(node["Leakage"]);
+                        pn->m_nLeakage = nv.length() > 0 ? nv[0] : 0;
+                    }
                     pNode = pn;
                 }
                 else if(node_class == "cat_Infiltro") //!< NODE_INFILTRO:
                 {
                     TInfiltro *pn = new TInfiltro;
+                    if(node.containsElementNamed("Aquifer"))
+                    {
+                        NumericVector nv = as<NumericVector>(node["Aquifer"]);
+                        pn->area = nv.length() > 0 ? nv[0] : 0;
+                        pn->aqf_top = nv.length() > 1 ? nv[1] : 0;
+                        pn->aqf_bot = nv.length() > 2 ? nv[2] : 0;
+                        pn->aqf_S_coef = nv.length() > 3 ? nv[3] : 0;
+                        pn->potential = nv.length() > 4 ? nv[4] : 0;
+                        pn->in_node_id = nv.length() > 5 ? nv[5] : 0;
+                    }
+                    if(node.containsElementNamed("GWMove"))
+                    {
+                        NumericVector nv = as<NumericVector>(node["GWMove"]);
+                        pn->gw_node_id = nv.length() > 0 ? nv[0] : 0;
+                        pn->slope_method = nv.length() > 1 ? nv[1] : 0;
+                        pn->slope_aqf = nv.length() > 2 ? nv[2] : 0;
+                        pn->node_len = nv.length() > 3 ? nv[3] : 0;
+                        pn->conn_len = nv.length() > 4 ? nv[4] : 0;
+                        pn->Kgw = nv.length() > 5 ? nv[5] : 0;
+                    }
                     pNode = pn;
                 }
                 else if(node_class == "cat_Bioretention") //!< NODE_BIORETENTION:
                 {
                     TBioRetention *pn = new TBioRetention;
+                    if(node.containsElementNamed("Aquifer"))
+                    {
+                        NumericVector nv = as<NumericVector>(node["Aquifer"]);
+                        pn->area = nv.length() > 0 ? nv[0] : 0;
+                        pn->aqf_top = nv.length() > 1 ? nv[1] : 0;
+                        pn->aqf_bot = nv.length() > 2 ? nv[2] : 0;
+                        pn->aqf_S_coef = nv.length() > 3 ? nv[3] : 0;
+                        pn->potential = nv.length() > 4 ? nv[4] : 0;
+                        pn->in_node_id = nv.length() > 5 ? nv[5] : 0;
+                    }
+                    if(node.containsElementNamed("GWMove"))
+                    {
+                        NumericVector nv = as<NumericVector>(node["GWMove"]);
+                        pn->gw_node_id = nv.length() > 0 ? nv[0] : 0;
+                        pn->slope_method = nv.length() > 1 ? nv[1] : 0;
+                        pn->slope_aqf = nv.length() > 2 ? nv[2] : 0;
+                        pn->node_len = nv.length() > 3 ? nv[3] : 0;
+                        pn->conn_len = nv.length() > 4 ? nv[4] : 0;
+                        pn->Kgw = nv.length() > 5 ? nv[5] : 0;
+                    }
+                    if(node.containsElementNamed("Evaporation"))
+                    {
+                        NumericVector nv = as<NumericVector>(node["Evaporation"]);
+                        for(int j = 0; j < 12; j++)
+                            pn->LAI[j] = nv.length() > j ? nv[j] : 0;
+                    }
+                    if(node.containsElementNamed("Rainfall"))
+                    {
+                        NumericVector nv = as<NumericVector>(node["Rainfall"]);
+                        pn->m_Climates[0].nID = nv.length() > 0 ? nv[0] : 0;
+                        pn->m_Climates[0].nRain = nv.length() > 1 ? nv[1] : 0;
+                    }
+                    if(node.containsElementNamed("EVA"))
+                    {
+                        NumericVector nv = as<NumericVector>(node["EVA"]);
+                        pn->m_Climates[1].nID = nv.length() > 0 ? nv[0] : 0;
+                        pn->m_Climates[1].nEva = nv.length() > 1 ? nv[1] : 0;
+                    }
+
                     pNode = pn;
                 }
                 else if(node_class == "cat_WetLand") //!< NODE_WETLAND:
                 {
                     TWetLand *pn = new TWetLand;
+                    if(node.containsElementNamed("Base"))
+                    {
+                        NumericVector nv = as<NumericVector>(node["Base"]);
+                        pn->vol_init = nv.length() > 0 ? nv[0] : 0;
+                        pn->vol_max = nv.length() > 1 ? nv[1] : 0;
+                        pn->bypass = nv.length() > 2 ? nv[2] : 0;
+                        pn->aqf_ks = nv.length() > 3 ? nv[3] : 0;
+
+                    }
+                    if(node.containsElementNamed("Pipe"))
+                    {
+                        NumericVector nv = as<NumericVector>(node["Pipe"]);
+                        pn->pipe_ht = nv.length() > 0 ? nv[0] : 0;
+                        pn->pipe_area = nv.length() > 1 ? nv[1] : 0;
+                        pn->pipe_coef = nv.length() > 2 ? nv[2] : 0;
+
+                    }
+                    if(node.containsElementNamed("RateCount"))
+                    {
+                        IntegerVector iv = as<IntegerVector>(node["RateCount"]);
+                        pn->rate_count = iv.length() > 0 ? iv[0] : 0;
+                        if(node.containsElementNamed("WL"))
+                        {
+                            NumericVector nv = as<NumericVector>(node["WL"]);
+                            for(int j = 0; j < pn->rate_count; j++)
+                                pn->wl_rate[j][0] = nv.length() > j ? nv[j] : 0;
+
+                        }
+                        if(node.containsElementNamed("VOL"))
+                        {
+                            NumericVector nv = as<NumericVector>(node["VOL"]);
+                            for(int j = 0; j < pn->rate_count; j++)
+                                pn->wl_rate[j][1] = nv.length() > j ? nv[j] : 0;
+
+                        }
+                        if(node.containsElementNamed("AREA"))
+                        {
+                            NumericVector nv = as<NumericVector>(node["AREA"]);
+                            for(int j = 0; j < pn->rate_count; j++)
+                                pn->wl_rate[j][2] = nv.length() > j ? nv[j] : 0;
+
+                        }
+                    }
+                    if(node.containsElementNamed("Rainfall"))
+                    {
+                        NumericVector nv = as<NumericVector>(node["Rainfall"]);
+                        pn->m_Climates[0].nID = nv.length() > 0 ? nv[0] : 0;
+                        pn->m_Climates[0].nRain = nv.length() > 1 ? nv[1] : 0;
+
+                    }
+                    if(node.containsElementNamed("EVA"))
+                    {
+                        NumericVector nv = as<NumericVector>(node["EVA"]);
+                        pn->m_Climates[0].nID = nv.length() > 0 ? nv[0] : 0;
+                        pn->m_Climates[0].nEva = nv.length() > 1 ? nv[1] : 0;
+
+                    }
+                    if(node.containsElementNamed("Recharge"))
+                    {
+                        IntegerVector iv = as<IntegerVector>(node["Recharge"]);
+                        pn->recharge_id = iv.length() > 0 ? iv[0] : 0;
+
+                    }
+
                     pNode = pn;
                 }
                 else if(node_class == "cat_Pond") //!< NODE_POND:
@@ -628,43 +977,6 @@ TModelManager *List2Model(List ml)
                         IntegerVector nv = as<IntegerVector>(node["Recharge"]);
                         pn->recharge_id = nv.length() > 0 ? nv[0] : 0;
                     }
-                    //{
-                    //    TPond *tn = (TPond *)node;
-                    //    nl["Base"] = NumericVector::create(tn->vol_init,
-                    //                                       tn->vol_eff,
-                    //                                       tn->aqf_ks);
-                    //    nl["Pipe"] = NumericVector::create(tn->pipe_ht,
-                    //                                       tn->pipe_area,
-                    //                                       tn->pipe_coef);
-                    //    nl["Spill"] = NumericVector::create(tn->spill_ht,
-                    //                                        tn->spill_length,
-                    //                                        tn->spill_coef);
-                    //    nl["Offline"] = NumericVector::create(tn->offline_max,
-                    //                                          tn->offline_ratio,
-                    //                                          tn->offline_out);
-                    //    nl["Intake"] = NumericVector::create(tn->intake_type,
-                    //                                         tn->intake_vol,
-                    //                                         tn->m_nTable,
-                    //                                         tn->m_nData);
-                    //    nl["Series"] = StringVector::create(tn->m_szIntake);
-                    //    nl["RateCount"] = IntegerVector::create(tn->rate_count);
-                    //    NumericVector wl(tn->rate_count);
-                    //    for(int j = 0; j < tn->rate_count; j++)
-                    //        wl(j) = tn->wl_rate[j][0];
-                    //    nl["WL"] = wl;
-                    //    for(int j = 0; j < tn->rate_count; j++)
-                    //        wl(j) = tn->wl_rate[j][1];
-                    //    nl["VOL"] = wl;
-                    //    for(int j = 0; j < tn->rate_count; j++)
-                    //        wl(j) = tn->wl_rate[j][2];
-                    //    nl["AREA"] = wl;
-                    //    nl["Rainfall"] = IntegerVector::create(tn->m_Climates[0].nID,
-                    //                                           tn->m_Climates[0].nEva);
-                    //    nl["EVA"] = IntegerVector::create(tn->m_Climates[1].nID,
-                    //                                      tn->m_Climates[1].nEva);
-                    //    nl["Supply"] = IntegerVector::create(tn->supply_id);
-                    //    nl["Recharge"] = IntegerVector::create(tn->recharge_id);
-                    //}
                     pNode = pn;
                 }
                 else if(node_class == "cat_Recycle") //!< NODE_RECYCLE:
@@ -718,13 +1030,6 @@ TModelManager *List2Model(List ml)
                         IntegerVector iv = as<IntegerVector>(node["Supply"]);
                         pn->supply_id = iv.length() > 0 ? iv[0] : 0;
                     }
-                    //{
-                    //    TRainTank *tn = (TRainTank *)node;
-                    //    nl["Base"] = NumericVector::create(tn->vol_init, tn->vol_min, tn->cap);
-                    //    nl["Use"] = NumericVector::create(tn->use_type, tn->use, tn->m_nTable, tn->m_nData);
-                    //    nl["Series"] = StringVector::create(tn->m_szUse);
-                    //    nl["Supply"] = IntegerVector::create(tn->supply_id);
-                    //}
                     pNode = pn;
                 }
 
@@ -767,8 +1072,15 @@ List getModel(StringVector input)
 List setnrun_cat(List input)
 {
     TModelManager *model = List2Model(input);
+    TValidateCheck chk;
+    int chkn = chk.Check(model);
+    string msg;
+    if(chkn != 0) msg = string(chk.GetMessage()->GetBuffer());
+
     if(model != NULL)
-        return Model2List(model);
+        return List::create(_["ErrCount"] = chkn,
+                            _["ErrMsgs"] = StringVector::create(msg),
+                            _["CAT_INPUT"] = Model2List(model));
     else
         return List();
 }
