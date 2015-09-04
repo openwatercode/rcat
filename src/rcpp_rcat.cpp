@@ -1045,16 +1045,16 @@ TModelManager *List2Model(List ml)
                     switch(pNode->GetType())
                     {
                         case NODE_IMPORT:
-                            //ChangeFilePathA
+                            model->ChangeFilePathA(&(((TImport*)pNode)->m_szSeries[0]));
                             break;
                         case NODE_CLIMATE:
-                            //CheckClimateLoad
+                            //model->CheckClimateLoad((TClimate*)pNode);
                             break;
                     }
                 }
             }
         }
-        //model->CheckLoad();
+        model->CheckLoad();
         return model;
     }
     return NULL;
