@@ -1,3 +1,8 @@
+/* CAT 모형에 대한 R 인터페이스
+ * 작성자: 박희성(hspark90@kict.re.kr)
+ * 설명: 기존 CAT 모형을 R에서 구동할 수 있도록 해주는 인터페이스
+ * 2015. 8. 10
+ */
 #include "StdAfx.h"
 #include <Rcpp.h>
 #include <string>
@@ -248,6 +253,8 @@ List Model2List(TModelManager *model)
                                                               tn->m_nLat,
                                                               tn->m_nHeight,
                                                               tn->m_nWindHeight);
+                    // tn->m_sClimate
+                    // tn->m_sClimateSrc
                 }
                 break;
             case NODE_IMPORT:
@@ -426,7 +433,7 @@ List Model2List(TModelManager *model)
  */
 TModelManager *List2Model(List ml)
 {
-    //!< class 속성이 rcat 인지 확인
+    //!< class 속성이 rcat_input 인지 확인
     if(as<string>(ml.attr("class")) == "rcat_input" )
     {
         TModelManager *model = new TModelManager();
@@ -1048,6 +1055,8 @@ TModelManager *List2Model(List ml)
                             model->ChangeFilePathA(&(((TImport*)pNode)->m_szSeries[0]));
                             break;
                         case NODE_CLIMATE:
+// TODO (hspark#1#): Climate 노드에 데이터를 읽어들이는 부분 ...
+//데이터를 파일에서 읽어오는 것이 아니라 List로 부터 읽어오려면 List에 데이터를 저장하는 것 부터 작업해야함
                             //model->CheckClimateLoad((TClimate*)pNode);
                             break;
                     }
@@ -1088,54 +1097,94 @@ List setnrun_cat(List input)
 /** @brief TSeries 객체를 DataFrame으로 변환하여 반환하는 함수
  *
  * @param sr TSeries* 값을 받아낼  TSeries 객체에 대한 포인터
+ * @param nCount int nFieldNos에 저장된 유효한 필드의 갯수
  * @param nFieldNos[] int 주어진 TSereis내에 복사할 필드번호 배열의 포인터
  * @return DataFrame TSeries의 시간과 값들이 복사된 DataFrame
  *
  */
-DataFrame TSeries2DataFrame(TSeries *sr, int nFieldNos[])
-//DataFrame TSeries2DataFrame(TSeries *sr, int nCount, int nFieldNos[])
+DataFrame TSeries2DataFrame(TSeries *sr, int nCount, int nFieldNos[])
 {
     DataFrame df = DataFrame::create();
-	int nIndex, nCol, nCount;
+	int nIndex, nCol; //, nCount;
 	int nFields[30];
 	TDate date;
 
-    nCount = sr->GetCount();
 	if(nFieldNos[0] == -1)
 	{
+        nCount = sr->GetCount(); // + 1;
 		for(nIndex = 0; nIndex < nCount; nIndex++)
 			nFields[nIndex] = nIndex;
 	}
 	else
-		memcpy(nFields, nFieldNos, sizeof(int) * nCount);
+    {
+        // 범위를 벗어난 컬럼넘버를 제외하고 복사
+        int c = sr->GetCount(), j = 0;
+        for(int i = 0; i < nCount; i++)
+            if(nFieldNos[i] < c) nFields[j++] = nFieldNos[i];
+        nCount = j;
+		//memcpy(nFields, nFieldNos, sizeof(int) * nCount);
+    }
 
-	StringVector col_names(nCount - 1);
+	StringVector col_names(nCount);
 	int rowCount = sr->GetSeries(0)->GetCount();
-	StringVector row_names(rowCount);
+    IntegerVector rown(rowCount);
+	//StringVector row_names(rowCount);
 	char time_str[20];
 	memset(time_str, 0, 20);
-    date = sr->m_Header.nTime;
-    for(nIndex = 0; nIndex < rowCount; nIndex++)
-    {
-        sprintf(&(time_str[0]), "%04d/%02d/%02d %02d:%02d",
-                date.GetYear(), date.GetMonth(), date.GetDay(),
-                date.GetHour(), date.GetMinute());
-        row_names(nIndex) = string(time_str);
-        date += sr->m_Header.nInterval;
-    }
-	for(nCol = 0; nCol < nCount - 1; nCol++)
+    //date = sr->m_Header.nTime;
+    //for(nIndex = 0; nIndex < rowCount; nIndex++)
+    //{
+    //    sprintf(&(time_str[0]), "%04d/%02d/%02d %02d:%02d",
+    //            date.GetYear(), date.GetMonth(), date.GetDay(),
+    //            date.GetHour(), date.GetMinute());
+    //    row_names(nIndex) = string(time_str);
+    //    date += sr->m_Header.nInterval;
+    //}
+	for(nCol = 0; nCol < nCount; nCol++)
 	{
 	    col_names(nCol) = string(sr->GetSeries(nFields[nCol])->m_Header.szHeader);
 	    NumericVector val(rowCount);
+	    TSeriesItem *item = sr->GetSeries(nFields[nCol]);
    	    for(nIndex = 0; nIndex < rowCount; nIndex++)
 	    {
-	        val(nIndex) = sr->GetSeries(nFields[nCol])->GetValue(nIndex);
+	        val(nIndex) = item->GetValue(nIndex);
+	        rown(nIndex) = nIndex + 1;
 	    }
+	    TDate dt;
+	    dt.SetDate(item->m_Header.date);
+	    val.attr("StartDate") = IntegerVector::create(dt.GetYear(), dt.GetMonth(), dt.GetDay(),
+                                              dt.GetHour(), dt.GetMinute());
+	    val.attr("Interval") = item->m_Header.nInterval;
+	    val.attr("DataType") = item->m_Header.nData;
+	    //item->m_Header.szHeader: 컬럼 이름으로 대체
+	    //item->m_Header.nCount: 컬럼자료의 길이로 대체
         df[string(sr->GetSeries(nFields[nCol])->m_Header.szHeader)] = val;
 	}
-	df.attr("row.names") = row_names;
+	df.attr("row.names") = rown;
 	df.attr("class") = "data.frame";
     return df;
+}
+
+StringVector SeriesHeader2String(TSeries *sr)
+{
+    SERIESHEADER h = sr->m_Header;
+    char buff[2048];
+    sprintf_s(buff, 2048, "%u %u %u %u %lu %s",
+              h.nColumn, h.nCount,
+              h.nData, h.nInterval,
+              h.nTime, h.szDescript);
+    return StringVector::create(string(buff));
+}
+
+StringVector SeriesesHeader2String(TSerieses *sr)
+{
+    SERIESESHEADER h = sr->m_Header;
+    char buff[2048];
+    sprintf_s(buff, 2048, "%u %u %u %lu %u %s %s",
+              h.nPartNo, h.nPartTotal,
+              h.nSeries, h.nTime, h.nInterval,
+              h.szDescript, h.szName);
+    return StringVector::create(string(buff));
 }
 
 /** @brief TSerieses 객체를 DataFrame 에 대한 리스트 형태로 변환하여 반환
@@ -1147,6 +1196,7 @@ DataFrame TSeries2DataFrame(TSeries *sr, int nFieldNos[])
 List TSerieses2List(TSerieses *sr, char *szFields)
 {
     List ret = List::create();
+    List reth = List::create();
 	TFieldList list;
 
 	list.Parsing(szFields);
@@ -1161,14 +1211,23 @@ List TSerieses2List(TSerieses *sr, char *szFields)
 
             if(strcmp(pItem->szNode, "*") == 0 || strcmp(pSeries->m_Header.szDescript, pItem->szNode) == 0)
             {
+                DataFrame df = TSeries2DataFrame(pSeries, pItem->nCount, pItem->nFieldNo);
+                TDate dt;
+                dt.SetDate(pSeries->m_Header.nTime);
+                df.attr("StartDate") = IntegerVector::create(dt.GetYear(), dt.GetMonth(), dt.GetDay(),
+                                                             dt.GetHour(), dt.GetMinute());
+                df.attr("Interval") = pSeries->m_Header.nInterval;
+                df.attr("DataType") = pSeries->m_Header.nData;
+                ret[string(pSeries->m_Header.szDescript)] = df;
                 //ret[string(pSeries->m_Header.szDescript)] = TSeries2DataFrame(pSeries, pItem->nCount, pItem->nFieldNo);
-                ret[string(pSeries->m_Header.szDescript)] = TSeries2DataFrame(pSeries, pItem->nFieldNo);
+                //ret[string(pSeries->m_Header.szDescript)] = TSeries2DataFrame(pSeries, pItem->nFieldNo);
+                reth[string(pSeries->m_Header.szDescript)] = SeriesHeader2String(pSeries);
             }
         }
+        //ret["HeaderList"] = reth;
 	}
 	return ret;
 }
-
 
 string runCAT(char* infile, char* outfile, char* format)
 {

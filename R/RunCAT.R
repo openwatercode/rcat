@@ -123,7 +123,7 @@
 #' outlet1.flowtotal <- outlet1[,1]
 #' plot(outlet1.flowtotal, main = "Flow Total",
 #'      ylab = names(outlet1.flowtotal), xlab = "Time", type = "l")
-RunCAT <- function(infile, outfile, format = "[*:*]")
+RunCAT <- function(infile, outfile, format = "[*:*]", is.xts = TRUE)
 {
   if (missing(infile))
     stop("File Missing!")
@@ -138,8 +138,10 @@ RunCAT <- function(infile, outfile, format = "[*:*]")
       for (i in 1:length(wmsg))
         warning(wmsg[i])
     lapply(ret[["ret"]], function(x) {
-      Encoding(colnames(x)) <- "UTF-8"
-      x
+      if(!is.null(colnames(x))) Encoding(colnames(x)) <- "UTF-8"
+      sdt <- do.call("ISOdatetime", as.list(c(attr(x, "StartDate"), 0)))
+      dts <- seq(sdt, by = paste(attr(x, "Interval"), "min"), length.out = nrow(x))
+      if(is.xts) xts(x, dts) else x
     })
   } else {
     if (infile == outfile)
