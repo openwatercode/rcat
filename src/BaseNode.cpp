@@ -198,6 +198,7 @@ void TClimate::operator =(TBaseNode &node)
 	memcpy(m_szClimate, pClimate->m_szClimate, sizeof(m_szClimate));
 	memcpy(m_szEva, pClimate->m_szEva, sizeof(m_szEva));
 
+// TODO (hspark#1#): 파일에서 다시 로드 하지 않고 메모리에 있는 내용을 복사하도록 수정 필요
 	LoadSeries();
 
 	TBaseNode::operator =(node);
