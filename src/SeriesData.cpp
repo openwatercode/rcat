@@ -785,23 +785,27 @@ BOOL TSeries::Save(FILE *fp)
 	return TRUE;
 }
 
-BOOL TSeries::SaveText(FILE *fp, int nFieldNos[])
-// TODO: nCount 인자의 삭제를 고려
-//BOOL TSeries::SaveText(FILE *fp, int nCount, int nFieldNos[])
+BOOL TSeries::SaveText(FILE *fp, int nCount, int nFieldNos[])
 {
-	int nIndex, nCol, nCount;
+	int nIndex, nCol;
 	int nFields[30];
 	TDate date;
 
-    nCount = GetCount();
 	if(nFieldNos[0] == -1)
 	{
-	    //nCount = GetCount();
+	    nCount = GetCount(); // + 1;
 		for(nIndex = 0; nIndex < nCount; nIndex++)
 			nFields[nIndex] = nIndex;
 	}
 	else
-		memcpy(nFields, nFieldNos, sizeof(int) * nCount);
+    {
+        // 범위를 벗어난 컬럼 넘버 삭제하고 복사
+        int c = GetCount(), j = 0;
+        for(int i = 0; i < nCount; i++)
+            if(nFieldNos[i] < c) nFields[j++] = nFieldNos[i];
+        nCount = j;
+		//memcpy(nFields, nFieldNos, sizeof(int) * nCount);
+    }
 
 	fprintf_s(fp, "%s\n", m_Header.szDescript);
 	fprintf_s(fp, "TIME            \t");
@@ -1797,8 +1801,8 @@ void TSerieses::SaveText(char* szFile, char* szFields)
 
             if(strcmp(pItem->szNode, "*") == 0 || strcmp(pSeries->m_Header.szDescript, pItem->szNode) == 0)
             {
-                pSeries->SaveText(fp, pItem->nFieldNo);
-                //pSeries->SaveText(fp, pItem->nCount, pItem->nFieldNo);
+                //pSeries->SaveText(fp, pItem->nFieldNo);
+                pSeries->SaveText(fp, pItem->nCount, pItem->nFieldNo);
             }
         }
 	}
