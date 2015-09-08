@@ -154,8 +154,8 @@ public:
 public:
 //	BOOL Save(LPCTSTR szFile);
 	BOOL Save(FILE *fp);
-	BOOL SaveText(FILE *fp, int nFieldNos[]);
-//	BOOL SaveText(FILE *fp, int nCount, int nFieldNos[]);
+//	BOOL SaveText(FILE *fp, int nFieldNos[]);
+	BOOL SaveText(FILE *fp, int nCount, int nFieldNos[]);
 //	BOOL Load(LPCTSTR szFile);
 	BOOL Load(FILE *fp);
 	BOOL Load10(FILE *fp);
