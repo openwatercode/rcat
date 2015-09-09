@@ -28,7 +28,7 @@ BEGIN_RCPP
 END_RCPP
 }
 // run_cat
-List run_cat(List params);
+SEXP run_cat(List params);
 RcppExport SEXP rcat_run_cat(SEXP paramsSEXP) {
 BEGIN_RCPP
     Rcpp::RObject __result;
@@ -51,14 +51,26 @@ BEGIN_RCPP
     return __result;
 END_RCPP
 }
-// timesTwo
-NumericVector timesTwo(NumericVector x);
-RcppExport SEXP rcat_timesTwo(SEXP xSEXP) {
+// read_cat_serieses
+SEXP read_cat_serieses(StringVector filename);
+RcppExport SEXP rcat_read_cat_serieses(SEXP filenameSEXP) {
 BEGIN_RCPP
     Rcpp::RObject __result;
     Rcpp::RNGScope __rngScope;
-    Rcpp::traits::input_parameter< NumericVector >::type x(xSEXP);
-    __result = Rcpp::wrap(timesTwo(x));
+    Rcpp::traits::input_parameter< StringVector >::type filename(filenameSEXP);
+    __result = Rcpp::wrap(read_cat_serieses(filename));
+    return __result;
+END_RCPP
+}
+// write_cat_serieses
+SEXP write_cat_serieses(StringVector filename, List data);
+RcppExport SEXP rcat_write_cat_serieses(SEXP filenameSEXP, SEXP dataSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< StringVector >::type filename(filenameSEXP);
+    Rcpp::traits::input_parameter< List >::type data(dataSEXP);
+    __result = Rcpp::wrap(write_cat_serieses(filename, data));
     return __result;
 END_RCPP
 }

@@ -123,7 +123,7 @@
 #' outlet1.flowtotal <- outlet1[,1]
 #' plot(outlet1.flowtotal, main = "Flow Total",
 #'      ylab = names(outlet1.flowtotal), xlab = "Time", type = "l")
-RunCAT <- function(infile, outfile, format = "[*:*]", is.xts = TRUE)
+RunCAT <- function(infile, outfile, format = "[*:*]")
 {
   if (missing(infile))
     stop("File Missing!")
@@ -137,12 +137,10 @@ RunCAT <- function(infile, outfile, format = "[*:*]", is.xts = TRUE)
     if(length(wmsg) > 0)
       for (i in 1:length(wmsg))
         warning(wmsg[i])
-    lapply(ret[["ret"]], function(x) {
-      if(!is.null(colnames(x))) Encoding(colnames(x)) <- "UTF-8"
-      sdt <- do.call("ISOdatetime", as.list(c(attr(x, "StartDate"), 0)))
-      dts <- seq(sdt, by = paste(attr(x, "Interval"), "min"), length.out = nrow(x))
-      if(is.xts) xts(x, dts) else x
-    })
+    r <- ret[["ret"]]
+    for(i in 1:length(r))
+      if(!is.null(colnames(r[[i]]))) Encoding(colnames(r[[i]])) <- "UTF-8"
+    return(r)
   } else {
     if (infile == outfile)
       stop("Output file name should not be the same to Input file name!")

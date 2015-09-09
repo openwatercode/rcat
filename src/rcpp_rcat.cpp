@@ -23,11 +23,344 @@ using namespace std;
 //   http://gallery.rcpp.org/
 //
 
-/** @brief
+/** @brief 주어진 TSeiresItem을 복제
  *
- * @param model TModelManager*
- * @return List
+ * @param src TSeriesItem* 원본 TSeriesItem에 대한 포인터
+ * @return TSeriesItem 복제된 TSeriesItem
+ */
+TSeriesItem Clone(TSeriesItem *src)
+{
+    TSeriesItem ret;
+    int len = src->GetCount();
+    for(int i = 0; i < len; i++)
+        ret.SetValue(i, src->GetValue(i));
+    for(int i = 0; i < 12; i++)
+        ret.m_nMonth[i] = src->m_nMonth[i];
+    ret.m_dtStart = src->m_dtStart;
+    ret.m_Header = src->m_Header;
+    ret.m_nCount = src->m_nCount;
+    ret.m_nYear = src->m_nYear;
+    ret.m_nSize = src->m_nSize;
+    return ret;
+}
+
+/** @brief 주어진 TSeries를 복제
  *
+ * @param src TSeries* 원본 TSeries에 대한 포인터
+ * @return TSeries 복제된 TSeries
+ */
+TSeries Clone(TSeries *src)
+{
+    TSeries ret;
+    int len = src->GetCount();
+    for(int i = 0; i < len; i++)
+    {
+        TSeriesItem *s = src->GetAt(i);
+        TSeriesItem d = Clone(s);
+        //TSeriesItem d;
+        //s->Copy(&d);
+        ret.Add(&d);
+    }
+    ret.m_dtStart = src->m_dtStart;
+    ret.m_Header = src->m_Header;
+    ret.m_nCount = src->m_nCount;
+    ret.m_nSize = src->m_nSize;
+    return ret;
+}
+
+/** @brief 주어진 TSerieses를 복제
+ *
+ * @param src TSerieses* 원본 TSerieses에 대한 포인터
+ * @return TSerieses 복제된 TSerieses
+ */
+TSerieses Clone(TSerieses *src)
+{
+    TSerieses ret;
+    int len = src->GetCount();
+    for(int i = 0; i < len; i++)
+    {
+        TSeries *s = src->GetAt(i);
+        TSeries d = Clone(s);
+        //TSeries d;
+        //s->Copy(&d);
+        ret.Add(&d);
+    }
+    ret.m_Header = src->m_Header;
+    ret.m_nCount = src->m_nCount;
+    ret.m_nSize = src->m_nSize;
+    return ret;
+}
+
+void TSeriesClear(TSerieses *sr)
+{
+    int len = sr->GetCount();
+    for(int i = 0; i < len; i++)
+    {
+        TSeries *s = sr->GetAt(i);
+        int slen = s->GetCount();
+        for(int j = 0; j < slen; j++)
+        {
+            TSeriesItem *si = s->GetAt(j);
+            si->Clear();
+        }
+        s->Clear();
+    }
+    sr->Clear();
+}
+
+/** @brief 주어진 TSeries의 헤더에 대한 문자열을 반환
+ *
+ * @param sr TSeries* TSeries에 대한 포인터
+ * @return StringVector 주어진 TSeries에 대한 헤더를 문자열로 변환한 1차원 StringVector
+ */
+StringVector SeriesHeader2String(TSeries *sr)
+{
+    SERIESHEADER h = sr->m_Header;
+    char buff[2048];
+    sprintf_s(buff, 2048, "%u %u %u %u %lu %s",
+              h.nColumn, h.nCount,
+              h.nData, h.nInterval,
+              h.nTime, h.szDescript);
+    return StringVector::create(string(buff));
+}
+
+/** @brief 주어진 TSerieses의 헤더에 대한 문자열을 반환
+ *
+ * @param sr TSerieses* TSerieses에 대한 포인터
+ * @return StringVector 주어진 TSerieses에 대한 헤더를 문자열로 변환한 1차원 StringVector
+ */
+StringVector SeriesesHeader2String(TSerieses *sr)
+{
+    SERIESESHEADER h = sr->m_Header;
+    char buff[2048];
+    sprintf_s(buff, 2048, "%u %u %u %lu %u %s %s",
+              h.nPartNo, h.nPartTotal,
+              h.nSeries, h.nTime, h.nInterval,
+              h.szDescript, h.szName);
+    return StringVector::create(string(buff));
+}
+
+
+/** @brief TSeries 객체를 DataFrame으로 변환하여 반환하는 함수
+ *
+ * @param sr TSeries* 값을 받아낼  TSeries 객체에 대한 포인터
+ * @param nCount int nFieldNos에 저장된 유효한 필드의 갯수
+ * @param nFieldNos[] int 주어진 TSereis내에 복사할 필드번호 배열의 포인터
+ * @return DataFrame TSeries의 시간과 값들이 복사된 DataFrame
+ *
+ */
+DataFrame TSeries2DataFrame(TSeries *sr, int nCount, int nFieldNos[])
+{
+    std::map<string, SEXP> df;
+    //DataFrame df = DataFrame::create();
+	int nIndex, nCol; //, nCount;
+	int nFields[30];
+	TDate date;
+
+	if(nFieldNos[0] == -1)
+	{
+        nCount = sr->GetCount(); // + 1;
+		for(nIndex = 0; nIndex < nCount; nIndex++)
+			nFields[nIndex] = nIndex;
+	}
+	else
+    {
+        // 범위를 벗어난 컬럼넘버를 제외하고 복사
+        int  j = 0;
+        for(int i = 0, c = sr->GetCount(); i < c; i++)
+            if(nFieldNos[i] < c) nFields[j++] = nFieldNos[i];
+        nCount = j;
+		//memcpy(nFields, nFieldNos, sizeof(int) * nCount);
+    }
+
+	//StringVector col_names(nCount);
+	int rowCount = sr->GetSeries(0)->GetCount();
+    IntegerVector rown(rowCount);
+	//StringVector row_names(rowCount);
+	//char time_str[20];
+	//memset(time_str, 0, 20);
+    //date = sr->m_Header.nTime;
+    //for(nIndex = 0; nIndex < rowCount; nIndex++)
+    //{
+    //    sprintf(&(time_str[0]), "%04d/%02d/%02d %02d:%02d",
+    //            date.GetYear(), date.GetMonth(), date.GetDay(),
+    //            date.GetHour(), date.GetMinute());
+    //    row_names(nIndex) = string(time_str);
+    //    date += sr->m_Header.nInterval;
+    //}
+    TDate dt;
+	for(nCol = 0; nCol < nCount; nCol++)
+	{
+	    //col_names[nCol] = string(sr->GetSeries(nFields[nCol])->m_Header.szHeader);
+	    NumericVector val(rowCount);
+	    TSeriesItem *item = sr->GetSeries(nFields[nCol]);
+   	    for(nIndex = 0; nIndex < rowCount; nIndex++)
+	    {
+	        val(nIndex) = item->GetValue(nIndex);
+	        rown(nIndex) = nIndex + 1;
+	    }
+	    dt.SetDate(item->m_Header.date);
+	    val.attr("StartTime") = IntegerVector::create(dt.GetYear(), dt.GetMonth(), dt.GetDay(),
+                                              dt.GetHour(), dt.GetMinute());
+	    val.attr("Interval") = IntegerVector::create(item->m_Header.nInterval);
+	    val.attr("DataType") = IntegerVector::create(item->m_Header.nData);
+	    //item->m_Header.szHeader: 컬럼 이름으로 대체
+	    //item->m_Header.nCount: 컬럼자료의 길이로 대체
+        df[string(sr->GetSeries(nFields[nCol])->m_Header.szHeader)] = val;
+	}
+	List ret = wrap(df);
+	ret.attr("row.names") = rown;
+    dt.SetDate(sr->m_Header.nTime);
+    ret.attr("StartTime") = IntegerVector::create(dt.GetYear(), dt.GetMonth(), dt.GetDay(),
+                                          dt.GetHour(), dt.GetMinute());
+    ret.attr("Interval") = IntegerVector::create(sr->m_Header.nInterval);
+    ret.attr("DataType") = IntegerVector::create(sr->m_Header.nData);
+	ret.attr("class") = StringVector::create("rcat_series", "data.frame");
+    return ret;
+}
+
+/** @brief TSerieses 객체를 DataFrame 에 대한 리스트 형태로 변환하여 반환
+ *
+ * @param sr TSerieses* 변환하고자 하는 TSereses 객체에 대한 포인터
+ * @param szFields char* 변환하고자하는 노드명과 필드에 대한 문자열 "[*:*]"(모든 노드의 모든 필드
+ * @return List 변환된 DataFrame의 List
+ */
+List TSerieses2List(TSerieses *sr, char *szFields)
+{
+    std::map<string, SEXP> ret;
+    //List ret = List::create();
+    //List reth = List::create();
+	TFieldList list;
+
+	int lCount = list.Parsing(szFields);
+
+    TDate dt;
+	for(int nIndex = 0; nIndex < lCount; nIndex++)
+	{
+		FIELDITEM *pItem = list.GetItem(nIndex);
+        for(int nSeries = 0; nSeries < sr->GetCount(); nSeries++)
+        {
+            TSeries *pSeries = sr->GetAt(nSeries);
+            if(strcmp(pItem->szNode, "*") == 0 || strcmp(pSeries->m_Header.szDescript, pItem->szNode) == 0)
+            {
+                DataFrame df = TSeries2DataFrame(pSeries, pItem->nCount, pItem->nFieldNo);
+                dt.SetDate(pSeries->m_Header.nTime);
+                df.attr("StartTime") = IntegerVector::create(dt.GetYear(), dt.GetMonth(), dt.GetDay(),
+                                                             dt.GetHour(), dt.GetMinute());
+                df.attr("Interval") = pSeries->m_Header.nInterval;
+                df.attr("DataType") = pSeries->m_Header.nData;
+                ret[string(pSeries->m_Header.szDescript)] = df;
+                //ret[string(pSeries->m_Header.szDescript)] = TSeries2DataFrame(pSeries, pItem->nCount, pItem->nFieldNo);
+                //ret[string(pSeries->m_Header.szDescript)] = TSeries2DataFrame(pSeries, pItem->nFieldNo);
+                //reth[string(pSeries->m_Header.szDescript)] = SeriesHeader2String(pSeries);
+            }
+        }
+        //ret["HeaderList"] = reth;
+	}
+    //sr.m_Header.nMagic = FILEMAGICNO;
+    //sr.m_Header.nPartNo = 1;
+    //sr.m_Header.nPartTotal = 1;
+    //int len = sr.m_Header.nSeries = lst.length();
+    List wret = wrap(ret);
+    dt.SetDate(sr->m_Header.nTime);
+    wret.attr("StartTime") = IntegerVector::create(dt.GetYear(), dt.GetMonth(), dt.GetDay(),
+                                                  dt.GetHour(), dt.GetMinute());
+    wret.attr("Interval") = IntegerVector::create(sr->m_Header.nInterval);
+    wret.attr("Description") = StringVector::create(string(sr->m_Header.szDescript));
+    wret.attr("Name") = StringVector::create(string(sr->m_Header.szName));
+	wret.attr("class") = StringVector::create("rcat_serieses", "list");
+	return wret;
+}
+
+/** @brief DataFrame 형태의 데이터를 TSeries 객체로 변환
+ *
+ * @param df DataFrame 클래스 속성이 "rcat_series"인 데이터 프레임
+ * @return TSeries* 변환된 TSeries의 포인터
+ */
+TSeries *DataFrame2Series(DataFrame df, char * name) {
+    List lst = as<List>(df);
+    TSeries *sr = NULL;
+    // lst 의 타입 체크
+    StringVector att = as<StringVector>(df.attr("class"));
+    bool chk = false;
+    for(int i = 0; i < att.length(); i++)
+        if(chk |= (att[i] == "rcat_series")) break;
+    if(!chk) return sr;
+    // lst 헤더 sr로 복사
+    sr = new TSeries();
+    int ncol = sr->m_Header.nColumn = df.length();
+    int nrow = sr->m_Header.nCount = df.nrows();
+    sr->m_Header.nData = as<IntegerVector>(df.attr("DataType"))[0];
+    sr->m_Header.nInterval = as<IntegerVector>(df.attr("Interval"))[0];
+    IntegerVector iv = as<IntegerVector>(df.attr("StartTime"));
+    sr->m_Header.nTime = TDate::ToMinute(iv[0], iv[1], iv[2], iv[3], iv[4]);
+    memset(sr->m_Header.szDescript, 0, sizeof(sr->m_Header.szDescript));
+    strcpy_s(sr->m_Header.szDescript, sizeof(sr->m_Header.szDescript), name);
+    // lst Data를 sr로 복사
+    StringVector item_names = as<StringVector>(df.attr("names"));
+    for(int c = 0; c < ncol; c++)
+    {
+        NumericVector nv = as<NumericVector>(df[c]);
+        TSeriesItem *si = sr->AddItem();
+        iv = as<IntegerVector>(nv.attr("StartTime"));
+        si->m_Header.date = TDate::ToMinute(iv[0], iv[1], iv[2], iv[3], iv[4]);
+        si->m_Header.nInterval = as<IntegerVector>(nv.attr("Interval"))[0];
+        //si->m_Header.nCount = nrow;
+        si->m_Header.nData = as<IntegerVector>(nv.attr("DataType"))[0];
+        memset(si->m_Header.szHeader, 0, sizeof(si->m_Header.szHeader));
+        strcpy_s(si->m_Header.szHeader, sizeof(si->m_Header.szHeader), (char *)item_names[c]);
+        si->SetSize(nrow);
+
+        for(int r = 0, len = min(nrow, (int)nv.length()); r < len; r++)
+            si->SetValue(r, nv[r]);
+    }
+
+    return sr;
+}
+
+/** @brief List 형태의 데이터를 TSerieses 객체로 변환
+ *
+ * @param lst List 클래스 속성이 "rcat_serieses" 인 List
+ * @return TSerieses* 변환된 TSerieses의 포인터
+ */
+TSerieses *List2Serieses(List lst) {
+    TSerieses *sr = NULL;
+    // lst 의 타입 체크
+    StringVector att = as<StringVector>(lst.attr("class"));
+    bool chk = false;
+    for(int i = 0; i < att.length(); i++)
+        if(chk |= (att[i] == "rcat_serieses")) break;
+    if(!chk) return sr;
+    sr = new TSerieses();
+    // lst 헤더 sr로 복사
+    sr->m_Header.dwVersion = FILECURVERSION;
+    sr->m_Header.nInterval = as<IntegerVector>(lst.attr("Interval"))[0];
+    sr->m_Header.nMagic = FILEMAGICNO;
+    sr->m_Header.nPartNo = 1;
+    sr->m_Header.nPartTotal = 1;
+    int len = sr->m_Header.nSeries = lst.length();
+    IntegerVector iv = as<IntegerVector>(lst.attr("StartTime"));
+    sr->m_Header.nTime = TDate::ToMinute(iv[0], iv[1], iv[2], iv[3], iv[4]);
+    memset(sr->m_Header.szDescript, 0, sizeof(sr->m_Header.szDescript));
+    strcpy_s(sr->m_Header.szDescript, 100, (char *)as<StringVector>(lst.attr("Description"))[0]);
+    memset(sr->m_Header.szName, 0, sizeof(sr->m_Header.szName));
+    strcpy_s(sr->m_Header.szName, 100,  (char *)as<StringVector>(lst.attr("Name"))[0]);
+    // lst Series를 sr로 복사
+    StringVector names = as<StringVector>(lst.attr("names"));
+    for(int i = 0; i < len; i++)
+    {
+        DataFrame df = as<DataFrame>(lst[i]);
+        TSeries *s = DataFrame2Series(df, names[i]);
+        //s->m_Header.
+        if(s != NULL) sr->Add(s);
+    }
+    return sr;
+}
+
+/** @brief CAT 모형의 입력자료를 List 형태로 변환
+ *
+ * @param model TModelManager* 입력자료가 로딩된 CAT 모형
+ * @return List List 형태로 변환된 CAT 모형의 입력자료
  */
 List Model2List(TModelManager *model)
 {
@@ -1094,140 +1427,6 @@ List setnrun_cat(List input)
         return List();
 }
 
-/** @brief TSeries 객체를 DataFrame으로 변환하여 반환하는 함수
- *
- * @param sr TSeries* 값을 받아낼  TSeries 객체에 대한 포인터
- * @param nCount int nFieldNos에 저장된 유효한 필드의 갯수
- * @param nFieldNos[] int 주어진 TSereis내에 복사할 필드번호 배열의 포인터
- * @return DataFrame TSeries의 시간과 값들이 복사된 DataFrame
- *
- */
-DataFrame TSeries2DataFrame(TSeries *sr, int nCount, int nFieldNos[])
-{
-    DataFrame df = DataFrame::create();
-	int nIndex, nCol; //, nCount;
-	int nFields[30];
-	TDate date;
-
-	if(nFieldNos[0] == -1)
-	{
-        nCount = sr->GetCount(); // + 1;
-		for(nIndex = 0; nIndex < nCount; nIndex++)
-			nFields[nIndex] = nIndex;
-	}
-	else
-    {
-        // 범위를 벗어난 컬럼넘버를 제외하고 복사
-        int c = sr->GetCount(), j = 0;
-        for(int i = 0; i < nCount; i++)
-            if(nFieldNos[i] < c) nFields[j++] = nFieldNos[i];
-        nCount = j;
-		//memcpy(nFields, nFieldNos, sizeof(int) * nCount);
-    }
-
-	StringVector col_names(nCount);
-	int rowCount = sr->GetSeries(0)->GetCount();
-    IntegerVector rown(rowCount);
-	//StringVector row_names(rowCount);
-	char time_str[20];
-	memset(time_str, 0, 20);
-    //date = sr->m_Header.nTime;
-    //for(nIndex = 0; nIndex < rowCount; nIndex++)
-    //{
-    //    sprintf(&(time_str[0]), "%04d/%02d/%02d %02d:%02d",
-    //            date.GetYear(), date.GetMonth(), date.GetDay(),
-    //            date.GetHour(), date.GetMinute());
-    //    row_names(nIndex) = string(time_str);
-    //    date += sr->m_Header.nInterval;
-    //}
-	for(nCol = 0; nCol < nCount; nCol++)
-	{
-	    col_names(nCol) = string(sr->GetSeries(nFields[nCol])->m_Header.szHeader);
-	    NumericVector val(rowCount);
-	    TSeriesItem *item = sr->GetSeries(nFields[nCol]);
-   	    for(nIndex = 0; nIndex < rowCount; nIndex++)
-	    {
-	        val(nIndex) = item->GetValue(nIndex);
-	        rown(nIndex) = nIndex + 1;
-	    }
-	    TDate dt;
-	    dt.SetDate(item->m_Header.date);
-	    val.attr("StartDate") = IntegerVector::create(dt.GetYear(), dt.GetMonth(), dt.GetDay(),
-                                              dt.GetHour(), dt.GetMinute());
-	    val.attr("Interval") = item->m_Header.nInterval;
-	    val.attr("DataType") = item->m_Header.nData;
-	    //item->m_Header.szHeader: 컬럼 이름으로 대체
-	    //item->m_Header.nCount: 컬럼자료의 길이로 대체
-        df[string(sr->GetSeries(nFields[nCol])->m_Header.szHeader)] = val;
-	}
-	df.attr("row.names") = rown;
-	df.attr("class") = "data.frame";
-    return df;
-}
-
-StringVector SeriesHeader2String(TSeries *sr)
-{
-    SERIESHEADER h = sr->m_Header;
-    char buff[2048];
-    sprintf_s(buff, 2048, "%u %u %u %u %lu %s",
-              h.nColumn, h.nCount,
-              h.nData, h.nInterval,
-              h.nTime, h.szDescript);
-    return StringVector::create(string(buff));
-}
-
-StringVector SeriesesHeader2String(TSerieses *sr)
-{
-    SERIESESHEADER h = sr->m_Header;
-    char buff[2048];
-    sprintf_s(buff, 2048, "%u %u %u %lu %u %s %s",
-              h.nPartNo, h.nPartTotal,
-              h.nSeries, h.nTime, h.nInterval,
-              h.szDescript, h.szName);
-    return StringVector::create(string(buff));
-}
-
-/** @brief TSerieses 객체를 DataFrame 에 대한 리스트 형태로 변환하여 반환
- *
- * @param sr TSerieses* 변환하고자 하는 TSereses 객체에 대한 포인터
- * @param szFields char* 변환하고자하는 노드명과 필드에 대한 문자열 "[*:*]"(모든 노드의 모든 필드
- * @return List 변환된 DataFrame의 List
- */
-List TSerieses2List(TSerieses *sr, char *szFields)
-{
-    List ret = List::create();
-    List reth = List::create();
-	TFieldList list;
-
-	list.Parsing(szFields);
-
-	for(int nIndex = 0; nIndex < list.GetCount(); nIndex++)
-	{
-		FIELDITEM *pItem = list.GetItem(nIndex);
-
-        for(int nSeries = 0; nSeries < sr->GetCount(); nSeries++)
-        {
-            TSeries *pSeries = sr->GetAt(nSeries);
-
-            if(strcmp(pItem->szNode, "*") == 0 || strcmp(pSeries->m_Header.szDescript, pItem->szNode) == 0)
-            {
-                DataFrame df = TSeries2DataFrame(pSeries, pItem->nCount, pItem->nFieldNo);
-                TDate dt;
-                dt.SetDate(pSeries->m_Header.nTime);
-                df.attr("StartDate") = IntegerVector::create(dt.GetYear(), dt.GetMonth(), dt.GetDay(),
-                                                             dt.GetHour(), dt.GetMinute());
-                df.attr("Interval") = pSeries->m_Header.nInterval;
-                df.attr("DataType") = pSeries->m_Header.nData;
-                ret[string(pSeries->m_Header.szDescript)] = df;
-                //ret[string(pSeries->m_Header.szDescript)] = TSeries2DataFrame(pSeries, pItem->nCount, pItem->nFieldNo);
-                //ret[string(pSeries->m_Header.szDescript)] = TSeries2DataFrame(pSeries, pItem->nFieldNo);
-                reth[string(pSeries->m_Header.szDescript)] = SeriesHeader2String(pSeries);
-            }
-        }
-        //ret["HeaderList"] = reth;
-	}
-	return ret;
-}
 
 string runCAT(char* infile, char* outfile, char* format)
 {
@@ -1273,11 +1472,12 @@ string runCAT(char* infile, char* outfile, char* format)
   else
     nRet = 1;
 
+  TSeriesClear(pResult);
   return msg;
 }
 
 // [[Rcpp::export]]
-List run_cat(List params)
+SEXP run_cat(List params)
 {
   TModelManager model;
   char *infile = as<CharacterVector>(params["infile"])(0);
@@ -1292,11 +1492,14 @@ List run_cat(List params)
 
   TSerieses *pResult = model.GetResult();
 
+  List ret;
   if(pResult->GetCount() > 0)
-    return List::create(_["msg"] = StringVector::create(msg),
-                        _["ret"] = TSerieses2List(pResult, format));
+    ret = List::create(_["msg"] = StringVector::create(msg),
+                       _["ret"] = TSerieses2List(pResult, format));
   else
-    return List::create(_["msg"] = StringVector::create(msg));
+    ret = List::create(_["msg"] = StringVector::create(msg));
+  TSeriesClear(pResult);
+  return ret;
 }
 
 // [[Rcpp::export]]
@@ -1311,10 +1514,38 @@ StringVector rcpp_run_cat(CharacterVector input,
 }
 
 // [[Rcpp::export]]
-NumericVector timesTwo(NumericVector x) {
-  return x * 2;
+SEXP read_cat_serieses(StringVector filename) {
+    TSerieses *sr = new TSerieses();
+    char *fn = filename[0];
+    char *format = (char *)"[*|*]";
+    DWORD chk = TSerieses::GetVersion(fn);
+    if(chk == 0xffff || chk == 0)
+        return StringVector::create("Error: File is not binary rcat serieses file!!");
+    sr->Load(fn);
+    List ret = TSerieses2List(sr, format);
+    TSeriesClear(sr);
+    return ret;
 }
 
+// [[Rcpp::export]]
+SEXP write_cat_serieses(StringVector filename, List data) {
+    char *fn = filename[0];
+    TSerieses *sr = List2Serieses(data);
+    if(sr != NULL)
+    {
+        sr->Save(fn);
+        TSeriesClear(sr);
+        return StringVector::create(string(fn));
+    }
+    else
+        return StringVector::create(string("Error: Could not be serialized it!!"));
+}
+
+// [[Rcpp::export]]
+SEXP rcat_load()
+{
+    return 0;
+}
 
 // You can include R code blocks in C++ files processed with sourceCpp
 // (useful for testing and development). The R code will be automatically
@@ -1322,5 +1553,5 @@ NumericVector timesTwo(NumericVector x) {
 //
 
 /*** R
-timesTwo(42)
+rcat_load()
 */
