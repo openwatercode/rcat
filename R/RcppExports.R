@@ -17,7 +17,11 @@ rcpp_run_cat <- function(input, report, bin) {
     .Call('rcat_rcpp_run_cat', PACKAGE = 'rcat', input, report, bin)
 }
 
-timesTwo <- function(x) {
-    .Call('rcat_timesTwo', PACKAGE = 'rcat', x)
+read_cat_serieses <- function(filename) {
+    .Call('rcat_read_cat_serieses', PACKAGE = 'rcat', filename)
+}
+
+write_cat_serieses <- function(filename, data) {
+    .Call('rcat_write_cat_serieses', PACKAGE = 'rcat', filename, data)
 }
 

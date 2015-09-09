@@ -1513,6 +1513,8 @@ int TSerieses::Load(char* szFile)
 	Clear();
 
 	dwVersion = GetVersion(fp);
+    // TODO (hspark#1#): nMagic을 확인해 정확한 데이터 파일 체크 필요 dwVersion이 0xffff일 경우 데이터파일 아니므로 오류 내고 종료해야함
+
 
 	if(dwVersion == FILEVERSION09)
 	{
