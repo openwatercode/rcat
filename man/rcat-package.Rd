@@ -12,7 +12,7 @@ R 환경에서 CAT모형을 수행하기 위한 함수.
 \tabular{ll}{
 Package: \tab rcat\cr
 Type: \tab Package\cr
-Version: \tab 0.1.2\cr
+Version: \tab 0.1.3\cr
 Date: \tab 2015-08-12\cr
 License: \tab GPL-2\cr
 }
@@ -29,6 +29,17 @@ RunCAT("dist_101208.txt", "dist_101208.out")
 }
 \author{
 \href{http://www.i-fam.net/water/}{박희성} \email{hspark90@i-fam.net}
+}
+\references{
+수자원의지속적확보기술개발사업단(2008), 도시유역 물순환 해석기술 지침서(TR-2008-05)
+
+수자원의지속적확보기술개발사업단(2008), 도시유역 물순환계 정량화 방법(TR-2008-15)
+
+한국건설기술연구원(2005), 건강한 물순환체계 구축을 위한 유역진단기법 개발 연구보고서
+
+한국건설기술연구원(2005), 우수저류 및 활용기술개발 연구보고서
+
+한국건설기술연구원(2009), 도시유역 물순환 해석모형 개발 및 적용 연구보고서
 }
 \keyword{package}
 
