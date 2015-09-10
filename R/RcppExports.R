@@ -25,3 +25,7 @@ write_cat_serieses <- function(filename, data) {
     .Call('rcat_write_cat_serieses', PACKAGE = 'rcat', filename, data)
 }
 
+rcat_load <- function() {
+    .Call('rcat_rcat_load', PACKAGE = 'rcat')
+}
+
