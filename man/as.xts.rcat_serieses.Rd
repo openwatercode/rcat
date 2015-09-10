@@ -10,10 +10,10 @@ as.xts.rcat_serieses(x, ...)
 \item{x}{rcat 모형에서 사용하는 "rcat_serieses" 클래스의 변수}
 }
 \value{
-변환된 \code{\link{xts}} 변수
+변환된 \code{\link{xts}}를 포함하는 \code{\link{list}} 변수
 }
 \description{
-"rcat_serieses" 클래스 자료를 xts로 변환하는 함수.
+"rcat_serieses" 클래스 자료에 포함된 모든 "rcat_serires" 변수를 xts로 변환하는 함수.
 }
 \author{
 박희성 \email{hspark90@i-fam.net}
