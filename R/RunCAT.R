@@ -120,7 +120,7 @@
 #' # create xts and plotting
 #' library(xts)
 #' outlet1 <- as.xts(result[["Outlet 1"]])
-#' outlet1.flowtotal <- outlet1[,1]
+#' outlet1.flowtotal <- outlet1[,"flow_total(㎥/s)"]
 #' plot(outlet1.flowtotal, main = "Flow Total",
 #'      ylab = names(outlet1.flowtotal), xlab = "Time", type = "l")
 RunCAT <- function(infile, outfile, format = "[*:*]")

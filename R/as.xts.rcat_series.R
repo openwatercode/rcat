@@ -7,9 +7,16 @@
 #' @import xts
 #' @encoding UTF-8
 #' @export
+#' @examples
+#' download.file("http://r.prj.kr/data/rcat/rcat_ex.zip", "rcat_ex.zip")
+#' unzip("rcat_ex.zip")
+#'
+#' climate_data <- readBinCATSerieses("P_climate_1209.dat")
+#' clxts <- as.xts(climate_data[[1]])
+#' plot(clxts[,1])
 as.xts.rcat_series <- function(x, ...)
 {
   sdt <- do.call("ISOdatetime", as.list(c(attr(x, "StartTime"), 0)))
   dts <- seq(sdt, by = paste(attr(x, "Interval"), "min"), length.out = nrow(x))
-  xts(as.data.frame(x), dts, ...)
+  xts(x, dts, ...)
 }

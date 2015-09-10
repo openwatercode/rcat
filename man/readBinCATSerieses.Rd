@@ -18,6 +18,8 @@ CAT 모형에서 사용하는 변수계열을 저장한 Binary 파일을 읽어�
 \examples{
 download.file("http://r.prj.kr/data/rcat/rcat_ex.zip", "rcat_ex.zip")
 unzip("rcat_ex.zip")
+
+climate_data <- readBinCATSerieses("P_climate_1209.dat")
 }
 \author{
 박희성 \email{hspark90@i-fam.net}

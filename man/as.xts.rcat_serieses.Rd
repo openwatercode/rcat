@@ -4,7 +4,7 @@
 \alias{as.xts.rcat_serieses}
 \title{as.xts.rcat_serieses}
 \usage{
-as.xts.rcat_serieses(x, ...)
+\method{as.xts}{rcat_serieses}(x, ...)
 }
 \arguments{
 \item{x}{rcat 모형에서 사용하는 "rcat_serieses" 클래스의 변수}
@@ -14,6 +14,14 @@ as.xts.rcat_serieses(x, ...)
 }
 \description{
 "rcat_serieses" 클래스 자료에 포함된 모든 "rcat_serires" 변수를 xts로 변환하는 함수.
+}
+\examples{
+download.file("http://r.prj.kr/data/rcat/rcat_ex.zip", "rcat_ex.zip")
+unzip("rcat_ex.zip")
+
+climate_data <- readBinCATSerieses("P_climate_1209.dat")
+clxts <- as.xts(climate_data)
+plot(clxts[[1]][,1])
 }
 \author{
 박희성 \email{hspark90@i-fam.net}

@@ -11,6 +11,8 @@
 #' @examples
 #' download.file("http://r.prj.kr/data/rcat/rcat_ex.zip", "rcat_ex.zip")
 #' unzip("rcat_ex.zip")
+#'
+#' climate_data <- readBinCATSerieses("P_climate_1209.dat")
 readBinCATSerieses <- function(filename)
 {
   if(missing(filename))

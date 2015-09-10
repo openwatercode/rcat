@@ -7,6 +7,13 @@
 #' @import xts
 #' @encoding UTF-8
 #' @export
+#' @examples
+#' download.file("http://r.prj.kr/data/rcat/rcat_ex.zip", "rcat_ex.zip")
+#' unzip("rcat_ex.zip")
+#'
+#' climate_data <- readBinCATSerieses("P_climate_1209.dat")
+#' clxts <- as.xts(climate_data)
+#' plot(clxts[[1]][,1])
 as.xts.rcat_serieses <- function(x, ...)
 {
   lapply(x, function(y) as.xts(y, ...))
