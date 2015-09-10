@@ -151,32 +151,28 @@ StringVector SeriesesHeader2String(TSerieses *sr)
  */
 DataFrame TSeries2DataFrame(TSeries *sr, int nCount, int nFieldNos[])
 {
-    std::map<string, SEXP> df;
-    //DataFrame df = DataFrame::create();
-	int nIndex, nCol; //, nCount;
+    DataFrame rdf = DataFrame::create();
 	int nFields[30];
 	TDate date;
 
 	if(nFieldNos[0] == -1)
 	{
-        nCount = sr->GetCount(); // + 1;
-		for(nIndex = 0; nIndex < nCount; nIndex++)
-			nFields[nIndex] = nIndex;
+        nCount = sr->GetCount();
+		for(int i = 0; i < nCount; i++)
+			nFields[i] = i;
 	}
 	else
     {
         // 범위를 벗어난 컬럼넘버를 제외하고 복사
         int  j = 0;
-        for(int i = 0, c = sr->GetCount(); i < c; i++)
-            if(nFieldNos[i] < c) nFields[j++] = nFieldNos[i];
+        for(int i = 0, c = sr->GetCount(); i < nCount; i++)
+            if(nFieldNos[i] < c || nFieldNos[i] > -1)
+                nFields[j++] = nFieldNos[i];
         nCount = j;
 		//memcpy(nFields, nFieldNos, sizeof(int) * nCount);
     }
 
-	//StringVector col_names(nCount);
 	int rowCount = sr->GetSeries(0)->GetCount();
-    IntegerVector rown(rowCount);
-	//StringVector row_names(rowCount);
 	//char time_str[20];
 	//memset(time_str, 0, 20);
     //date = sr->m_Header.nTime;
@@ -189,34 +185,30 @@ DataFrame TSeries2DataFrame(TSeries *sr, int nCount, int nFieldNos[])
     //    date += sr->m_Header.nInterval;
     //}
     TDate dt;
-	for(nCol = 0; nCol < nCount; nCol++)
+	for(int nCol = 0; nCol < nCount; nCol++)
 	{
-	    //col_names[nCol] = string(sr->GetSeries(nFields[nCol])->m_Header.szHeader);
-	    NumericVector val(rowCount);
 	    TSeriesItem *item = sr->GetSeries(nFields[nCol]);
-   	    for(nIndex = 0; nIndex < rowCount; nIndex++)
-	    {
-	        val(nIndex) = item->GetValue(nIndex);
-	        rown(nIndex) = nIndex + 1;
-	    }
+	    NumericVector val(rowCount);
+   	    for(int i = 0; i < rowCount; i++)
+	        val(i) = item->GetValue(i);
 	    dt.SetDate(item->m_Header.date);
 	    val.attr("StartTime") = IntegerVector::create(dt.GetYear(), dt.GetMonth(), dt.GetDay(),
                                               dt.GetHour(), dt.GetMinute());
 	    val.attr("Interval") = IntegerVector::create(item->m_Header.nInterval);
 	    val.attr("DataType") = IntegerVector::create(item->m_Header.nData);
+	    val.attr("nFields[nCol]") = IntegerVector::create(nFields[nCol]);
 	    //item->m_Header.szHeader: 컬럼 이름으로 대체
 	    //item->m_Header.nCount: 컬럼자료의 길이로 대체
-        df[string(sr->GetSeries(nFields[nCol])->m_Header.szHeader)] = val;
+        rdf[string(item->m_Header.szHeader)] = val;
 	}
-	List ret = wrap(df);
-	ret.attr("row.names") = rown;
+	rdf.attr("row.names") = seq(1, rowCount);
     dt.SetDate(sr->m_Header.nTime);
-    ret.attr("StartTime") = IntegerVector::create(dt.GetYear(), dt.GetMonth(), dt.GetDay(),
+    rdf.attr("StartTime") = IntegerVector::create(dt.GetYear(), dt.GetMonth(), dt.GetDay(),
                                           dt.GetHour(), dt.GetMinute());
-    ret.attr("Interval") = IntegerVector::create(sr->m_Header.nInterval);
-    ret.attr("DataType") = IntegerVector::create(sr->m_Header.nData);
-	ret.attr("class") = StringVector::create("rcat_series", "data.frame");
-    return ret;
+    rdf.attr("Interval") = IntegerVector::create(sr->m_Header.nInterval);
+    rdf.attr("DataType") = IntegerVector::create(sr->m_Header.nData);
+	rdf.attr("class") = StringVector::create("rcat_series", "data.frame");
+    return rdf;
 }
 
 /** @brief TSerieses 객체를 DataFrame 에 대한 리스트 형태로 변환하여 반환
@@ -227,49 +219,33 @@ DataFrame TSeries2DataFrame(TSeries *sr, int nCount, int nFieldNos[])
  */
 List TSerieses2List(TSerieses *sr, char *szFields)
 {
-    std::map<string, SEXP> ret;
-    //List ret = List::create();
-    //List reth = List::create();
-	TFieldList list;
-
-	int lCount = list.Parsing(szFields);
-
+    List ret = List::create();
+	TFieldList flst;
     TDate dt;
-	for(int nIndex = 0; nIndex < lCount; nIndex++)
+	for(int fli = 0, rmi = 0, flc = flst.Parsing(szFields); fli < flc; fli++)
 	{
-		FIELDITEM *pItem = list.GetItem(nIndex);
-        for(int nSeries = 0; nSeries < sr->GetCount(); nSeries++)
+		FIELDITEM *pItem = flst.GetItem(fli);
+        for(int sii = 0, sic = sr->GetCount(); sii < sic; sii++)
         {
-            TSeries *pSeries = sr->GetAt(nSeries);
-            if(strcmp(pItem->szNode, "*") == 0 || strcmp(pSeries->m_Header.szDescript, pItem->szNode) == 0)
+            TSeries *pSeries = sr->GetAt(sii);
+            if(strcmp(pItem->szNode, "*") == 0 || strcmp(pItem->szNode, pSeries->m_Header.szDescript) == 0)
             {
-                DataFrame df = TSeries2DataFrame(pSeries, pItem->nCount, pItem->nFieldNo);
-                dt.SetDate(pSeries->m_Header.nTime);
-                df.attr("StartTime") = IntegerVector::create(dt.GetYear(), dt.GetMonth(), dt.GetDay(),
-                                                             dt.GetHour(), dt.GetMinute());
-                df.attr("Interval") = pSeries->m_Header.nInterval;
-                df.attr("DataType") = pSeries->m_Header.nData;
-                ret[string(pSeries->m_Header.szDescript)] = df;
-                //ret[string(pSeries->m_Header.szDescript)] = TSeries2DataFrame(pSeries, pItem->nCount, pItem->nFieldNo);
-                //ret[string(pSeries->m_Header.szDescript)] = TSeries2DataFrame(pSeries, pItem->nFieldNo);
-                //reth[string(pSeries->m_Header.szDescript)] = SeriesHeader2String(pSeries);
+                DataFrame rdf = TSeries2DataFrame(pSeries, pItem->nCount, pItem->nFieldNo);
+                ret[string(pSeries->m_Header.szDescript)] = rdf;
             }
         }
-        //ret["HeaderList"] = reth;
 	}
     //sr.m_Header.nMagic = FILEMAGICNO;
     //sr.m_Header.nPartNo = 1;
     //sr.m_Header.nPartTotal = 1;
-    //int len = sr.m_Header.nSeries = lst.length();
-    List wret = wrap(ret);
     dt.SetDate(sr->m_Header.nTime);
-    wret.attr("StartTime") = IntegerVector::create(dt.GetYear(), dt.GetMonth(), dt.GetDay(),
+    ret.attr("StartTime") = IntegerVector::create(dt.GetYear(), dt.GetMonth(), dt.GetDay(),
                                                   dt.GetHour(), dt.GetMinute());
-    wret.attr("Interval") = IntegerVector::create(sr->m_Header.nInterval);
-    wret.attr("Description") = StringVector::create(string(sr->m_Header.szDescript));
-    wret.attr("Name") = StringVector::create(string(sr->m_Header.szName));
-	wret.attr("class") = StringVector::create("rcat_serieses", "list");
-	return wret;
+    ret.attr("Interval") = IntegerVector::create(sr->m_Header.nInterval);
+    ret.attr("Description") = StringVector::create(string(sr->m_Header.szDescript));
+    ret.attr("Name") = StringVector::create(string(sr->m_Header.szName));
+	ret.attr("class") = StringVector::create("rcat_serieses", "list");
+	return ret;
 }
 
 /** @brief DataFrame 형태의 데이터를 TSeries 객체로 변환
@@ -351,7 +327,6 @@ TSerieses *List2Serieses(List lst) {
     {
         DataFrame df = as<DataFrame>(lst[i]);
         TSeries *s = DataFrame2Series(df, names[i]);
-        //s->m_Header.
         if(s != NULL) sr->Add(s);
     }
     return sr;
@@ -364,7 +339,7 @@ TSerieses *List2Serieses(List lst) {
  */
 List Model2List(TModelManager *model)
 {
-    std::map<string, SEXP> ret;
+    map<string, SEXP> ret;
     int loop_count = model->GetCount();
     ret["Version"] = StringVector::create("2.0.0.1");
     ret["Title"] = StringVector::create("RCAT");
@@ -381,11 +356,11 @@ List Model2List(TModelManager *model)
     ret["Parameter"] = IntegerVector::create(model->m_nDT, model->m_nLoop);
     //ret["Range"] = StringVector::create("2.0.0.1");
     //ret["NodeCount"] = IntegerVector(loop_count);
-    std::map<int, SEXP> Nodes;
+    map<int, SEXP> Nodes;
     for(int i = 0; i < loop_count; i++)
     {
         TBaseNode *node = model->GetAt(i);
-        std::map<string, SEXP> nl;
+        map<string, SEXP> nl;
         string node_class;
         nl["NodeID"] = IntegerVector::create(node->GetID());
         nl["Name"] = StringVector::create(node->GetName());
@@ -1498,7 +1473,6 @@ SEXP run_cat(List params)
                        _["ret"] = TSerieses2List(pResult, format));
   else
     ret = List::create(_["msg"] = StringVector::create(msg));
-  TSeriesClear(pResult);
   return ret;
 }
 
@@ -1517,12 +1491,11 @@ StringVector rcpp_run_cat(CharacterVector input,
 SEXP read_cat_serieses(StringVector filename) {
     TSerieses *sr = new TSerieses();
     char *fn = filename[0];
-    char *format = (char *)"[*|*]";
     DWORD chk = TSerieses::GetVersion(fn);
     if(chk == 0xffff || chk == 0)
         return StringVector::create("Error: File is not binary rcat serieses file!!");
     sr->Load(fn);
-    List ret = TSerieses2List(sr, format);
+    List ret = TSerieses2List(sr, (char *)"[*:*]");
     TSeriesClear(sr);
     return ret;
 }

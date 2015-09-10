@@ -74,3 +74,13 @@ BEGIN_RCPP
     return __result;
 END_RCPP
 }
+// rcat_load
+SEXP rcat_load();
+RcppExport SEXP rcat_rcat_load() {
+BEGIN_RCPP
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    __result = Rcpp::wrap(rcat_load());
+    return __result;
+END_RCPP
+}

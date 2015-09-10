@@ -62,8 +62,7 @@ int TFieldList::Parsing(char* szFields)
 		if(*sz == '[')
 		{
 			MakeRoom();
-			m_nCount++;
-			pItem = GetItem(m_nCount - 1);
+			pItem = GetItem(m_nCount++);
 			szName = pItem->szNode;
 			bName = TRUE;
 		}
