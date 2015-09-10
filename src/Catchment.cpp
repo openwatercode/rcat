@@ -1350,7 +1350,7 @@ int TPaddy::LoadText(FILE *fp)
 			gw_intake_rate = nVals[0];
 			leakage_rate = nVals[1];
 		}
-		else if(strcmp(szToken, "GWout ") == 0)
+		else if(strcmp(szToken, "GWout") == 0)
 		{
 			ReadValue(szToken2, nVals, 6);
 
