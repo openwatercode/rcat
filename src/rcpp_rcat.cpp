@@ -222,7 +222,7 @@ List TSerieses2List(TSerieses *sr, char *szFields)
     List ret = List::create();
 	TFieldList flst;
     TDate dt;
-	for(int fli = 0, rmi = 0, flc = flst.Parsing(szFields); fli < flc; fli++)
+	for(int fli = 0, flc = flst.Parsing(szFields); fli < flc; fli++)
 	{
 		FIELDITEM *pItem = flst.GetItem(fli);
         for(int sii = 0, sic = sr->GetCount(); sii < sic; sii++)
@@ -526,6 +526,8 @@ List Model2List(TModelManager *model)
                 {
                     TLink *tn = (TLink *)node;
                     nl["Method"] = IntegerVector::create(tn->Method);
+// TODO (hspark#1#): Method 번호에 따라 선택적으로 매개변수를 설정할 필요있음
+
                     nl["Muskingum"] = NumericVector::create(tn->DT,
                                                             tn->X,
                                                             tn->K);
@@ -681,14 +683,16 @@ List Model2List(TModelManager *model)
                     for(int j = 0; j < tn->rate_count; j++)
                         wl(j) = tn->wl_rate[j][0];
                     nl["WL"] = wl;
+                    NumericVector vol(tn->rate_count);
                     for(int j = 0; j < tn->rate_count; j++)
-                        wl(j) = tn->wl_rate[j][1];
-                    nl["VOL"] = wl;
+                        vol(j) = tn->wl_rate[j][1];
+                    nl["VOL"] = vol;
+                    NumericVector area(tn->rate_count);
                     for(int j = 0; j < tn->rate_count; j++)
-                        wl(j) = tn->wl_rate[j][2];
-                    nl["AREA"] = wl;
+                        area(j) = tn->wl_rate[j][2];
+                    nl["AREA"] = area;
                     nl["Rainfall"] = IntegerVector::create(tn->m_Climates[0].nID,
-                                                           tn->m_Climates[0].nEva);
+                                                           tn->m_Climates[0].nRain);
                     nl["EVA"] = IntegerVector::create(tn->m_Climates[1].nID,
                                                       tn->m_Climates[1].nEva);
                     nl["Supply"] = IntegerVector::create(tn->supply_id);
@@ -699,7 +703,7 @@ List Model2List(TModelManager *model)
                 node_class = string("Recycle");
                 {
                     TRecycle *tn = (TRecycle *)node;
-                    nl["Intake"] = IntegerVector::create(tn->rec_cond, tn->rec_intake);
+                    nl["Intake"] = NumericVector::create(tn->rec_cond, tn->rec_intake);
                     IntegerVector nid(tn->m_nRecursive);
                     NumericVector nrain(tn->m_nRecursive);
                     for(int j = 0; j < tn->m_nRecursive; j++)
@@ -724,7 +728,7 @@ List Model2List(TModelManager *model)
                 break;
         }
         List ll = wrap(nl);
-        ll.attr("class") = "cat_" + node_class;
+        ll.attr("class") = StringVector::create("cat_" + node_class, "list");
         Nodes[i + 1] = ll;
     }
     ret["Nodes"] = wrap(Nodes);
@@ -777,7 +781,7 @@ TModelManager *List2Model(List ml)
             for(int i = 0; i < loop_count; i++)
             {
                 List node = Nodes[i];
-                string node_class = node.attr("class");
+                string node_class = as<string>(as<StringVector>(node.attr("class"))[0]);
                 TBaseNode *pNode = NULL;
 
                 if(node_class == "cat_Urban" || //!< NODE_URBAN:
@@ -850,7 +854,7 @@ TModelManager *List2Model(List ml)
                         pn->solcov = nv.length() > 0 ? nv[0] : 0;
                         pn->ET_method = nv.length() > 1 ? nv[1] : 0;
                         for(int j = 0; j < 12; j++)
-                            pn->LAI[0] = nv.length() > 2 + j ? nv[2 + j] : 0;
+                            pn->LAI[j] = nv.length() > 2 + j ? nv[2 + j] : 0;
                     }
                     if(node.containsElementNamed("Weather"))
                     {
@@ -876,9 +880,10 @@ TModelManager *List2Model(List ml)
                         pn->Area = nv.length() > 0 ? nv[0] : 0;
                         pn->slope = nv.length() > 1 ? nv[1] : 0;
                         pn->Aratio_imp = nv.length() > 2 ? nv[2] : 0;
-                        pn->Aratio_per_plant = nv.length() > 3 ? nv[3] : 0;
-                        pn->depC_imp = nv.length() > 4 ? nv[4] : 0;
-                        pn->depC_per = nv.length() > 5 ? nv[5]: 0;
+                        pn->Aratio_per = nv.length() > 3 ? nv[3] : 0;
+                        pn->Aratio_per_plant = nv.length() > 4 ? nv[4] : 0;
+                        pn->depC_imp = nv.length() > 5 ? nv[5] : 0;
+                        pn->depC_per = nv.length() > 6 ? nv[6]: 0;
                     }
                     if(node.containsElementNamed("Soil"))
                     {
@@ -927,7 +932,7 @@ TModelManager *List2Model(List ml)
                         pn->solcov = nv.length() > 0 ? nv[0] : 0;
                         pn->ET_method = nv.length() > 1 ? nv[1] : 0;
                         for(int j = 0; j < 12; j++)
-                            pn->LAI[0] = nv.length() > 2 + j ? nv[2 + j] : 0;
+                            pn->LAI[j] = nv.length() > 2 + j ? nv[2 + j] : 0;
                     }
                     if(node.containsElementNamed("Weather"))
                     {
@@ -972,6 +977,13 @@ TModelManager *List2Model(List ml)
                     {
                         IntegerVector iv = as<IntegerVector>(node["Method"]);
                         pn->Method = iv.length() > 0 ? iv[0] : 0;
+                    }
+                    if(node.containsElementNamed("Muskingum"))
+                    {
+                        NumericVector nv = as<NumericVector>(node["Muskingum"]);
+                        pn->DT = nv.length() > 0 ? nv[0] : 0;
+                        pn->X = nv.length() > 1 ? nv[1] : 0;
+                        pn->K = nv.length() > 2 ? nv[2] : 0;
                     }
                     if(node.containsElementNamed("Cunge"))
                     {
@@ -1191,8 +1203,8 @@ TModelManager *List2Model(List ml)
                     if(node.containsElementNamed("EVA"))
                     {
                         NumericVector nv = as<NumericVector>(node["EVA"]);
-                        pn->m_Climates[0].nID = nv.length() > 0 ? nv[0] : 0;
-                        pn->m_Climates[0].nEva = nv.length() > 1 ? nv[1] : 0;
+                        pn->m_Climates[1].nID = nv.length() > 0 ? nv[0] : 0;
+                        pn->m_Climates[1].nEva = nv.length() > 1 ? nv[1] : 0;
 
                     }
                     if(node.containsElementNamed("Recharge"))
@@ -1217,8 +1229,9 @@ TModelManager *List2Model(List ml)
                     if(node.containsElementNamed("Pipe"))
                     {
                         NumericVector nv = as<NumericVector>(node["Pipe"]);
-                        pn->pipe_area = nv.length() > 0 ? nv[0] : 0;
-                        pn->pipe_coef = nv.length() > 1 ? nv[1] : 0;
+                        pn->pipe_ht = nv.length() > 0 ? nv[0] : 0;
+                        pn->pipe_area = nv.length() > 1 ? nv[1] : 0;
+                        pn->pipe_coef = nv.length() > 2 ? nv[2] : 0;
                     }
                     if(node.containsElementNamed("Spill"))
                     {
@@ -1274,7 +1287,7 @@ TModelManager *List2Model(List ml)
                     {
                         IntegerVector nv = as<IntegerVector>(node["Rainfall"]);
                         pn->m_Climates[0].nID = nv.length() > 0 ? nv[0] : 0;
-                        pn->m_Climates[0].nEva = nv.length() > 1 ? nv[1] : 0;
+                        pn->m_Climates[0].nRain = nv.length() > 1 ? nv[1] : 0;
                     }
                     if(node.containsElementNamed("EVA"))
                     {
@@ -1299,9 +1312,9 @@ TModelManager *List2Model(List ml)
                     TRecycle *pn = new TRecycle;
                     if(node.containsElementNamed("Intake"))
                     {
-                        IntegerVector iv = as<IntegerVector>(node["Intake"]);
+                        NumericVector iv = as<NumericVector>(node["Intake"]);
                         pn->rec_cond = iv.length() > 0 ? iv[0] : 0;
-                        pn->rec_intake = iv.length() > 1 ? iv[2] : 0;
+                        pn->rec_intake = iv.length() > 1 ? iv[1] : 0;
                     }
                     if(node.containsElementNamed("Nodes"))
                     {
@@ -1334,6 +1347,8 @@ TModelManager *List2Model(List ml)
                         NumericVector nv = as<NumericVector>(node["Use"]);
                         pn->use_type = nv.length() > 0 ? nv[0] : 0;
                         pn->use = nv.length() > 1 ? nv[1] : 0;
+                        pn->m_nTable = nv.length() > 2 ? nv[2] : 0;
+                        pn->m_nData = nv.length() > 3 ? nv[3] : 0;
                     }
                     if(node.containsElementNamed("Series"))
                     {
@@ -1365,6 +1380,9 @@ TModelManager *List2Model(List ml)
                         case NODE_CLIMATE:
 // TODO (hspark#1#): Climate 노드에 데이터를 읽어들이는 부분 ...
 //데이터를 파일에서 읽어오는 것이 아니라 List로 부터 읽어오려면 List에 데이터를 저장하는 것 부터 작업해야함
+                            TClimate *pclm = (TClimate *)pNode;
+                            model->ChangeFilePathA(pclm->m_szClimate);
+                            pclm->LoadSeries();
                             //model->CheckClimateLoad((TClimate*)pNode);
                             break;
                     }
@@ -1388,6 +1406,7 @@ List getModel(StringVector input)
 // [[Rcpp::export]]
 List setnrun_cat(List input)
 {
+    List ret;
     TModelManager *model = List2Model(input);
     TValidateCheck chk;
     int chkn = chk.Check(model);
@@ -1395,11 +1414,21 @@ List setnrun_cat(List input)
     if(chkn != 0) msg = string(chk.GetMessage()->GetBuffer());
 
     if(model != NULL)
-        return List::create(_["ErrCount"] = chkn,
+    {
+        model->Calculate(FALSE);
+        TSerieses *result = model->GetResult();
+        ret = List::create(_["ErrCount"] = chkn,
                             _["ErrMsgs"] = StringVector::create(msg),
-                            _["CAT_INPUT"] = Model2List(model));
+                            _["CAT_INPUT"] = Model2List(model),
+                            _["CAT_RESULT"] = TSerieses2List(result, "[*:*]"));
+        TSeriesClear(result);
+    }
     else
-        return List();
+    {
+        ret = List::create();
+    }
+    //delete model;
+    return ret;
 }
 
 
@@ -1517,7 +1546,7 @@ SEXP write_cat_serieses(StringVector filename, List data) {
 // [[Rcpp::export]]
 SEXP rcat_load()
 {
-    return 0;
+    return IntegerVector::create(0);
 }
 
 // You can include R code blocks in C++ files processed with sourceCpp
