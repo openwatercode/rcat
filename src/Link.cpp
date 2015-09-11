@@ -201,7 +201,7 @@ float TLink::Cunge(int nData, float nInput)
 	//const float csnVar1 = 5.0f / 3.0f;
 	//float dt = m_nDT;
 	//float nN, nDTN, nC0, nXo, nK;
-	int nIndex, nPos;//, nPosNext;
+	int nIndex, nPos = 0;//, nPosNext;
 	float nRivLen;
 
 	m_nPrevOut[nData] = m_nOutput[nData];
@@ -431,7 +431,7 @@ float TLink::KinematicSub(float nIn, float nOut, float nPrevIn, float nPrevOut)
 
 	for(int l = 0; l < m_nKIMAX; l++)
 	{
-		float nTemp, FK, F1, F;
+		float nTemp, FK, F1, F = 0;
 
 		FK = DT / m_nUnitRiv * nOutTemp + m_nALFA * (nOutTemp == 0 ? 0 : pow(nOutTemp, csnBeta)) - C;
 		F1 = DT / m_nUnitRiv + m_nALFA * csnBeta * (nOutTemp == 0 ? 0 : pow(nOutTemp, csnBeta - 1));
@@ -486,7 +486,7 @@ void TLink::KinematicSub(int nData)
 
 	for(int l = 0; l < m_nKIMAX; l++)
 	{
-		float nTemp, FK, F1, F;
+		float nTemp, FK, F1, F = 0;
 
 		FK = DT / length_riv * nOutTemp + m_nALFA * pow(nOutTemp, csnBeta) - C;
 		F1 = DT / length_riv + m_nALFA * csnBeta * pow(nOutTemp, csnBeta - 1);

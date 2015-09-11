@@ -862,9 +862,9 @@ TModelManager *List2Model(List ml)
                         pn->m_nClimates = df.nrows();
                         for(int j = 0; j < pn->m_nClimates; j++)
                         {
-                            pn->m_Climates[j].nID = df[j, "nID"];
-                            pn->m_Climates[j].nRain = df[j, "nRain"];
-                            pn->m_Climates[j].nEva = df[j, "nEva"];
+                            pn->m_Climates[j].nID = as<IntegerVector>(df["nID"])[j];
+                            pn->m_Climates[j].nRain = as<IntegerVector>(df["nRain"])[j];
+                            pn->m_Climates[j].nEva = as<IntegerVector>(df["nEva"])[j];
                         }
                     }
                     pNode = pn;
@@ -941,9 +941,9 @@ TModelManager *List2Model(List ml)
                         pn->m_nClimates = df.nrows();
                         for(int j = 0; j < pn->m_nClimates; j++)
                         {
-                            pn->m_Climates[j].nID = df[j, "nID"];
-                            pn->m_Climates[j].nRain = df[j, "nRain"];
-                            pn->m_Climates[j].nEva = df[j, "nEva"];
+                            pn->m_Climates[j].nID = as<IntegerVector>(df["nID"])[j];
+                            pn->m_Climates[j].nRain = as<IntegerVector>(df["nRain"])[j];
+                            pn->m_Climates[j].nEva = as<IntegerVector>(df["nEva"])[j];
                         }
                     }
                     if(node.containsElementNamed("Irrigation"))

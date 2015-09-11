@@ -37,11 +37,11 @@ void TFieldList::MakeRoom()
 
 int TFieldList::Parsing(char* szFields)
 {
-	char* sz;
-	char* szName;
+	char* sz = NULL;
+	char* szName = NULL;
 	BOOL bName = FALSE;
-	char szVal[100], *s;
-	FIELDITEM* pItem;
+	char szVal[100], *s = NULL;
+	FIELDITEM* pItem = NULL;
 /*
 #ifdef _UNICODE
 	char mbszFields[200];
