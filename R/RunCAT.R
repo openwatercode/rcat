@@ -131,7 +131,7 @@ RunCAT <- function(infile, outfile, format = "[*:*]")
     stop(sprintf("%s does not exists!", infile))
   if (missing(outfile)) {
     ret <-
-      run_cat(list(infile = path.expand(infile), format = format))
+      run_cat1(list(infile = path.expand(infile), format = format))
     msg <- ret[["msg"]]
     wmsg <- unlist(strsplit(msg, "\r\n"))
     if(length(wmsg) > 0)
@@ -145,7 +145,7 @@ RunCAT <- function(infile, outfile, format = "[*:*]")
     if (infile == outfile)
       stop("Output file name should not be the same to Input file name!")
     msg <-
-      rcpp_run_cat(path.expand(infile), path.expand(outfile), format)
+      run_cat0(path.expand(infile), path.expand(outfile), format)
     wmsg <- unlist(strsplit(msg, "\r\n"))
     if(length(wmsg) > 0)
       for (i in 1:length(wmsg))

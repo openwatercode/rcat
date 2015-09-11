@@ -5,49 +5,50 @@
 
 using namespace Rcpp;
 
-// getModel
-List getModel(StringVector input);
-RcppExport SEXP rcat_getModel(SEXP inputSEXP) {
+// readInput
+List readInput(StringVector input);
+RcppExport SEXP rcat_readInput(SEXP inputSEXP) {
 BEGIN_RCPP
     Rcpp::RObject __result;
     Rcpp::RNGScope __rngScope;
     Rcpp::traits::input_parameter< StringVector >::type input(inputSEXP);
-    __result = Rcpp::wrap(getModel(input));
+    __result = Rcpp::wrap(readInput(input));
     return __result;
 END_RCPP
 }
-// setnrun_cat
-List setnrun_cat(List input);
-RcppExport SEXP rcat_setnrun_cat(SEXP inputSEXP) {
+// run_cat2
+List run_cat2(List input, CharacterVector filter);
+RcppExport SEXP rcat_run_cat2(SEXP inputSEXP, SEXP filterSEXP) {
 BEGIN_RCPP
     Rcpp::RObject __result;
     Rcpp::RNGScope __rngScope;
     Rcpp::traits::input_parameter< List >::type input(inputSEXP);
-    __result = Rcpp::wrap(setnrun_cat(input));
+    Rcpp::traits::input_parameter< CharacterVector >::type filter(filterSEXP);
+    __result = Rcpp::wrap(run_cat2(input, filter));
     return __result;
 END_RCPP
 }
-// run_cat
-SEXP run_cat(List params);
-RcppExport SEXP rcat_run_cat(SEXP paramsSEXP) {
+// run_cat1
+SEXP run_cat1(List params);
+RcppExport SEXP rcat_run_cat1(SEXP paramsSEXP) {
 BEGIN_RCPP
     Rcpp::RObject __result;
     Rcpp::RNGScope __rngScope;
     Rcpp::traits::input_parameter< List >::type params(paramsSEXP);
-    __result = Rcpp::wrap(run_cat(params));
+    __result = Rcpp::wrap(run_cat1(params));
     return __result;
 END_RCPP
 }
-// rcpp_run_cat
-StringVector rcpp_run_cat(CharacterVector input, CharacterVector report, CharacterVector bin);
-RcppExport SEXP rcat_rcpp_run_cat(SEXP inputSEXP, SEXP reportSEXP, SEXP binSEXP) {
+// run_cat0
+StringVector run_cat0(CharacterVector input, CharacterVector output, CharacterVector filter);
+RcppExport SEXP rcat_run_cat0(SEXP inputSEXP, SEXP outputSEXP, SEXP filterSEXP) {
 BEGIN_RCPP
     Rcpp::RObject __result;
     Rcpp::RNGScope __rngScope;
     Rcpp::traits::input_parameter< CharacterVector >::type input(inputSEXP);
-    Rcpp::traits::input_parameter< CharacterVector >::type report(reportSEXP);
-    Rcpp::traits::input_parameter< CharacterVector >::type bin(binSEXP);
-    __result = Rcpp::wrap(rcpp_run_cat(input, report, bin));
+    Rcpp::traits::input_parameter< CharacterVector >::type output(outputSEXP);
+    Rcpp::traits::input_parameter< CharacterVector >::type filter(filterSEXP);
+    __result = Rcpp::wrap(run_cat0(input, output, filter));
     return __result;
 END_RCPP
 }

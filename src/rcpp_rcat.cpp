@@ -933,6 +933,7 @@ TModelManager *List2Model(List ml)
                         pn->ET_method = nv.length() > 1 ? nv[1] : 0;
                         for(int j = 0; j < 12; j++)
                             pn->LAI[j] = nv.length() > 2 + j ? nv[2 + j] : 0;
+// TODO (hspark#1#): 읽어온 값과 내보낸 값이 틀려지는 이유는 뭘까?
                     }
                     if(node.containsElementNamed("Weather"))
                     {
@@ -1396,7 +1397,7 @@ TModelManager *List2Model(List ml)
 }
 
 // [[Rcpp::export]]
-List getModel(StringVector input)
+List readInput(StringVector input)
 {
     TModelManager model;
     model.LoadText(input(0));
@@ -1404,7 +1405,7 @@ List getModel(StringVector input)
 }
 
 // [[Rcpp::export]]
-List setnrun_cat(List input)
+List run_cat2(List input, CharacterVector filter)
 {
     List ret;
     TModelManager *model = List2Model(input);
@@ -1420,19 +1421,19 @@ List setnrun_cat(List input)
         ret = List::create(_["ErrCount"] = chkn,
                             _["ErrMsgs"] = StringVector::create(msg),
                             _["CAT_INPUT"] = Model2List(model),
-                            _["CAT_RESULT"] = TSerieses2List(result, "[*:*]"));
+                            _["CAT_RESULT"] = TSerieses2List(result, (char *)filter(0)));
         TSeriesClear(result);
     }
     else
     {
         ret = List::create();
     }
-    //delete model;
+    delete model;
     return ret;
 }
 
 
-string runCAT(char* infile, char* outfile, char* format)
+string runcat(char* infile, char* outfile, char* format)
 {
   TModelManager model;
   int nRet = 0;
@@ -1481,7 +1482,7 @@ string runCAT(char* infile, char* outfile, char* format)
 }
 
 // [[Rcpp::export]]
-SEXP run_cat(List params)
+SEXP run_cat1(List params)
 {
   TModelManager model;
   char *infile = as<CharacterVector>(params["infile"])(0);
@@ -1506,13 +1507,13 @@ SEXP run_cat(List params)
 }
 
 // [[Rcpp::export]]
-StringVector rcpp_run_cat(CharacterVector input,
-                    CharacterVector report,
-                    CharacterVector bin) {
+StringVector run_cat0(CharacterVector input,
+                    CharacterVector output,
+                    CharacterVector filter) {
   //    CharacterVector x = CharacterVector::create( "foo", "bar" )  ;
   //    NumericVector y   = NumericVector::create( 0.0, 1.0 ) ;
   //    List z            = List::create( x, y ) ;
-  string msg = runCAT(input(0), report(0), bin(0));
+  string msg = runcat(input(0), output(0), filter(0));
   return StringVector::create(msg);
 }
 
