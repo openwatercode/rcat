@@ -192,7 +192,7 @@ DataFrame TSeries2DataFrame(TSeries *sr, int nCount, int nFieldNos[])
                                               dt.GetHour(), dt.GetMinute());
 	    val.attr("Interval") = IntegerVector::create(item->m_Header.nInterval);
 	    val.attr("DataType") = IntegerVector::create(item->m_Header.nData);
-	    val.attr("nFields[nCol]") = IntegerVector::create(nFields[nCol]);
+	    //val.attr("nFields[nCol]") = IntegerVector::create(nFields[nCol]);
 	    //item->m_Header.szHeader: 컬럼 이름으로 대체
 	    //item->m_Header.nCount: 컬럼자료의 길이로 대체
         rdf[string(item->m_Header.szHeader)] = val;
