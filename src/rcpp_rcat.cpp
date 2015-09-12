@@ -3,6 +3,11 @@
  * 설명: 기존 CAT 모형을 R에서 구동할 수 있도록 해주는 인터페이스
  * 2015. 8. 10
  */
+//   Rcpp Reference
+//   http://www.rcpp.org/
+//   http://adv-r.had.co.nz/Rcpp.html
+//   http://gallery.rcpp.org/
+//
 #include "StdAfx.h"
 #include <Rcpp.h>
 #include <string>
@@ -13,15 +18,6 @@
 using namespace Rcpp;
 using namespace std;
 
-// This is a simple example of exporting a C++ function to R. You can
-// source this function into an R session using the Rcpp::sourceCpp
-// function (or via the Source button on the editor toolbar). Learn
-// more about Rcpp at:
-//
-//   http://www.rcpp.org/
-//   http://adv-r.had.co.nz/Rcpp.html
-//   http://gallery.rcpp.org/
-//
 
 /** @brief 주어진 TSeiresItem을 복제
  *
