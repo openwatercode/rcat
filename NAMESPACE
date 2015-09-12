@@ -2,10 +2,12 @@
 
 S3method(as.xts,rcat_series)
 S3method(as.xts,rcat_serieses)
+S3method(plot,rcat_input)
 export(RunCAT)
 export(readBinCATSerieses)
 export(readCATInput)
 export(writeBinCATSerieses)
 import(Rcpp)
+import(igraph)
 import(xts)
 useDynLib(rcat)
