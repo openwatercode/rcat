@@ -45,7 +45,7 @@ plot.rcat_input <- function(x)
     vertices(name = nodes.name,
              size = nodes.size,
              color = nodes.color) +
-    edges(links.edges)
+    edges(links.edges, arrow.size = 0.3)
   plot(g, layout = layout.kamada.kawai)
   #plot(g, layout = layout.gem)
   #plot(g, layout = layout.graphopt)
