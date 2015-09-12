@@ -2,7 +2,7 @@
 \encoding{UTF-8}
 \name{as.xts.rcat_series}
 \alias{as.xts.rcat_series}
-\title{as.xts.rcat_series}
+\title{as.xts.rcat_series: rcat_sereis class data convert to xts calss}
 \usage{
 \method{as.xts}{rcat_series}(x, ...)
 }

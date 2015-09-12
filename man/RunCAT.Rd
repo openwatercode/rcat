@@ -2,7 +2,7 @@
 \encoding{UTF-8}
 \name{RunCAT}
 \alias{RunCAT}
-\title{RunCAT}
+\title{RunCAT: run the cat model}
 \usage{
 RunCAT(infile, outfile, format = "[*:*]")
 }

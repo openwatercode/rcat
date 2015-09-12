@@ -1,4 +1,4 @@
-#' writeBinCATSerieses
+#' writeBinCATSerieses: write the CAT rcat_serieses class data to a binary file
 #'
 #' CAT 모형에서 사용하는 변수계열을 Binary 파일로 저장하는 함수 .
 #' @param x rcat 모형에서 사용하는 "rcat_serieses" 클래스의 변수

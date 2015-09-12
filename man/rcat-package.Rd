@@ -4,7 +4,7 @@
 \name{rcat-package}
 \alias{rcat}
 \alias{rcat-package}
-\title{rcat-package: Run CAT Model on R Environment}
+\title{rcat-package: use the CAT(Catchment hylological cycle Assessmet Tool) Model on R Environment}
 \description{
 R 환경에서 CAT모형을 수행하기 위한 함수.
 }

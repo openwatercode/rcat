@@ -1,4 +1,4 @@
-#' as.xts.rcat_series
+#' as.xts.rcat_series: rcat_sereis class data convert to xts calss
 #'
 #' "rcat_series" 클래스 자료를 xts로 변환하는 함수.
 #' @param x rcat 모형에서 사용하는 "rcat_series" 클래스의 변수

@@ -2,7 +2,7 @@
 \encoding{UTF-8}
 \name{readBinCATSerieses}
 \alias{readBinCATSerieses}
-\title{readBinCATSerieses}
+\title{readBinCATSerieses: read the binary data of CAT model to R variable which is rcat_serieses class}
 \usage{
 readBinCATSerieses(filename)
 }

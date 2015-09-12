@@ -1,4 +1,4 @@
-#' readBinCATSerieses
+#' readBinCATSerieses: read the binary data of CAT model to R variable which is rcat_serieses class
 #'
 #' CAT 모형에서 사용하는 변수계열을 저장한 Binary 파일을 읽어오는 함수.
 #' @param filename 출력파일의 경로

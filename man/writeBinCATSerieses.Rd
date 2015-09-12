@@ -2,7 +2,7 @@
 \encoding{UTF-8}
 \name{writeBinCATSerieses}
 \alias{writeBinCATSerieses}
-\title{writeBinCATSerieses}
+\title{writeBinCATSerieses: write the CAT rcat_serieses class data to a binary file}
 \usage{
 writeBinCATSerieses(x, filename)
 }

@@ -1,4 +1,4 @@
-#' RunCAT
+#' RunCAT: run the cat model
 #'
 #' RunCAT 모형 구동 함수.
 #' @param infile 입력파일의 경로
