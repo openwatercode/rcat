@@ -11,5 +11,11 @@ src/*.so
 src/*.dll
 rcat.pdf
 *.bak
+test*
 bin
 obj
+rcat.bib
+P_climate_1209.dat
+climate3.txt
+dist_101208.out
+dist_101208.txt
