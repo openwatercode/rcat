@@ -1,0 +1,1331 @@
+# depslib dependency file v1.0
+1439305459 source:e:\hspark\documents\r-projects\rcat\src\basedata.cpp
+	"StdAfx.h"
+	"include/BaseData.h"
+
+1441126860 e:\hspark\documents\r-projects\rcat\src\stdafx.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<iostream>
+	<fstream>
+	"fake_windows.h"
+	<windows.h>
+
+1210831428 e:\hspark\documents\r-projects\rcat\src\include\basedata.h
+	"ModelDataExt.h"
+
+1440225796 e:\hspark\documents\r-projects\rcat\src\include\modeldataext.h
+	"../StdAfx.h"
+
+1441528323 source:e:\hspark\documents\r-projects\rcat\src\basenode.cpp
+	"StdAfx.h"
+	"include/BaseNode.h"
+	"include/Link.h"
+	"include/Evaporation.h"
+	<math.h>
+	<algorithm>
+
+1440139089 e:\hspark\documents\r-projects\rcat\src\include\basenode.h
+	"CatModelExt.h"
+	"SeriesData.h"
+	"WaterBalance.h"
+
+1440003273 e:\hspark\documents\r-projects\rcat\src\include\catmodelext.h
+	"../StdAfx.h"
+	"SeriesData.h"
+	"WaterBalance.h"
+
+1441539680 e:\hspark\documents\r-projects\rcat\src\include\seriesdata.h
+	"arraytempl.h"
+	<stdio.h>
+	"ModelDataExt.h"
+
+1441025952 e:\hspark\documents\r-projects\rcat\src\include\arraytempl.h
+	<stdlib.h>
+
+1305513902 e:\hspark\documents\r-projects\rcat\src\include\waterbalance.h
+	"ModelDataExt.h"
+	"arraytempl.h"
+
+1440225718 e:\hspark\documents\r-projects\rcat\src\include\link.h
+	"BaseNode.h"
+
+1440225677 e:\hspark\documents\r-projects\rcat\src\include\evaporation.h
+	"SeriesData.h"
+	"EvaCvtBase.h"
+
+1218098636 e:\hspark\documents\r-projects\rcat\src\include\evacvtbase.h
+	"ModelDataExt.h"
+	"SeriesData.h"
+
+1441905843 source:e:\hspark\documents\r-projects\rcat\src\catchment.cpp
+	"StdAfx.h"
+	"include/SeriesData.h"
+	"include/Catchment.h"
+	"include/Link.h"
+	<math.h>
+	<algorithm>
+
+1440224976 e:\hspark\documents\r-projects\rcat\src\include\catchment.h
+	"BaseNode.h"
+
+1439305502 source:e:\hspark\documents\r-projects\rcat\src\evacvtbase.cpp
+	"StdAfx.h"
+	"include/EvaCvtBase.h"
+	<math.h>
+
+1439305492 source:e:\hspark\documents\r-projects\rcat\src\evaporation.cpp
+	"StdAfx.h"
+	"include/Evaporation.h"
+	<math.h>
+
+1439975391 source:e:\hspark\documents\r-projects\rcat\src\junc.cpp
+	"StdAfx.h"
+	"include/Junc.h"
+	"include/Link.h"
+
+1440225699 e:\hspark\documents\r-projects\rcat\src\include\junc.h
+	"BaseNode.h"
+
+1439305616 source:e:\hspark\documents\r-projects\rcat\src\largestring.cpp
+	"StdAfx.h"
+	"include/LargeString.h"
+
+1439305675 e:\hspark\documents\r-projects\rcat\src\include\largestring.h
+	"CatModelExt.h"
+
+1441957728 source:e:\hspark\documents\r-projects\rcat\src\link.cpp
+	"StdAfx.h"
+	"include/SeriesData.h"
+	"include/Link.h"
+	"include/BaseNode.h"
+	<math.h>
+
+1440778859 source:e:\hspark\documents\r-projects\rcat\src\modelmanager.cpp
+	"StdAfx.h"
+	"include/ModelManager.h"
+	"include/CATMsg.h"
+	<wchar.h>
+	"include/ValidateCheck.h"
+
+1441349977 e:\hspark\documents\r-projects\rcat\src\include\modelmanager.h
+	"CatModelExt.h"
+	"arraytempl.h"
+	"Catchment.h"
+	"Link.h"
+	"Junc.h"
+	"WaterBalance.h"
+	"Treatment.h"
+
+1440225950 e:\hspark\documents\r-projects\rcat\src\include\treatment.h
+	"Catchment.h"
+
+1440225650 e:\hspark\documents\r-projects\rcat\src\include\catmsg.h
+
+1439305834 e:\hspark\documents\r-projects\rcat\src\include\validatecheck.h
+	"CatModelExt.h"
+	"ModelManager.h"
+	"LargeString.h"
+
+1441935249 source:e:\hspark\documents\r-projects\rcat\src\rcpp_rcat.cpp
+	"StdAfx.h"
+	<Rcpp.h>
+	<string>
+	"include/ModelManager.h"
+	"include/ValidateCheck.h"
+	"include/LargeString.h"
+
+1439828222 e:\hspark\documents\r-projects\rcat\src\catmodel.h
+	"stdafx.h"
+	"include/ModelManager.h"
+
+1441935225 source:e:\hspark\documents\r-projects\rcat\src\rcppexports.cpp
+	<Rcpp.h>
+
+1441957728 source:e:\hspark\documents\r-projects\rcat\src\seriesdata.cpp
+	"StdAfx.h"
+	"include/SeriesData.h"
+
+1440778183 source:e:\hspark\documents\r-projects\rcat\src\stdafx.cpp
+	"StdAfx.h"
+
+1440979436 source:e:\hspark\documents\r-projects\rcat\src\treatment.cpp
+	"StdAfx.h"
+	"include/Treatment.h"
+	"include/Link.h"
+	<math.h>
+	<algorithm>
+
+1440979436 source:e:\hspark\documents\r-projects\rcat\src\validatecheck.cpp
+	"StdAfx.h"
+	"include/ValidateCheck.h"
+
+1439980322 source:e:\hspark\documents\r-projects\rcat\src\waterbalance.cpp
+	"StdAfx.h"
+	"include/SeriesData.h"
+	"include/WaterBalance.h"
+
+1441935280 source:e:\hspark\documents\code_blocks\cat\rcat\main.cpp
+	"../../../R-Projects/rcat/src/StdAfx.h"
+	<string>
+	"../../../R-Projects/rcat/src/include/SeriesData.h"
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp.h
+	<RcppCommon.h>
+	<Rcpp/RObject.h>
+	<Rcpp/S4.h>
+	<Rcpp/Reference.h>
+	<Rcpp/clone.h>
+	<Rcpp/grow.h>
+	<Rcpp/Dimension.h>
+	<Rcpp/Environment.h>
+	<Rcpp/Vector.h>
+	<Rcpp/sugar/nona/nona.h>
+	<Rcpp/Fast.h>
+	<Rcpp/Extractor.h>
+	<Rcpp/Promise.h>
+	<Rcpp/XPtr.h>
+	<Rcpp/Symbol.h>
+	<Rcpp/DottedPairImpl.h>
+	<Rcpp/Function.h>
+	<Rcpp/Language.h>
+	<Rcpp/DottedPair.h>
+	<Rcpp/Pairlist.h>
+	<Rcpp/StretchyList.h>
+	<Rcpp/WeakReference.h>
+	<Rcpp/StringTransformer.h>
+	<Rcpp/Formula.h>
+	<Rcpp/DataFrame.h>
+	<Rcpp/Date.h>
+	<Rcpp/DateVector.h>
+	<Rcpp/Datetime.h>
+	<Rcpp/DatetimeVector.h>
+	<Rcpp/Na_Proxy.h>
+	<Rcpp/Module.h>
+	<Rcpp/InternalFunction.h>
+	<Rcpp/sugar/sugar.h>
+	<Rcpp/stats/stats.h>
+	<Rcpp/Rmath.h>
+	<Rcpp/internal/wrap_end.h>
+	<Rcpp/platform/solaris.h>
+	<Rcpp/api/meat/meat.h>
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcppcommon.h
+	<Rcpp/r/headers.h>
+	<iterator>
+	<exception>
+	<iostream>
+	<sstream>
+	<string>
+	<list>
+	<map>
+	<set>
+	<stdexcept>
+	<vector>
+	<deque>
+	<functional>
+	<numeric>
+	<algorithm>
+	<complex>
+	<limits>
+	<typeinfo>
+	<Rcpp/sprintf.h>
+	<R_ext/Callbacks.h>
+	<R_ext/Visibility.h>
+	<Rcpp/utils/tinyformat.h>
+	<Rmath.h>
+	<Rcpp/sugar/undoRmath.h>
+	<Rcpp/storage/storage.h>
+	<Rcpp/protection/protection.h>
+	<Rcpp/routines.h>
+	<Rcpp/exceptions.h>
+	<Rcpp/proxy/proxy.h>
+	<Rcpp/lang.h>
+	<Rcpp/complex.h>
+	<Rcpp/barrier.h>
+	<Rcpp/exceptions.h>
+	<Rcpp/Interrupt.h>
+	<Rcpp/longlong.h>
+	<Rcpp/internal/na.h>
+	<Rcpp/internal/NAComparator.h>
+	<Rcpp/internal/NAEquals.h>
+	<Rcpp/traits/traits.h>
+	<Rcpp/Named.h>
+	<Rcpp/internal/caster.h>
+	<Rcpp/internal/r_vector.h>
+	<Rcpp/r_cast.h>
+	<Rcpp/api/bones/bones.h>
+	<Rcpp/internal/export.h>
+	<Rcpp/internal/r_coerce.h>
+	<Rcpp/as.h>
+	<Rcpp/InputParameter.h>
+	<Rcpp/is.h>
+	<Rcpp/vector/VectorBase.h>
+	<Rcpp/vector/MatrixBase.h>
+	<Rcpp/internal/ListInitialization.h>
+	<Rcpp/internal/Proxy_Iterator.h>
+	<Rcpp/internal/SEXP_Iterator.h>
+	<Rcpp/internal/converter.h>
+	<Rcpp/print.h>
+	<Rcpp/algo.h>
+	<Rcpp/sugar/sugar_forward.h>
+	<Rcpp/iostream/Rstreambuf.h>
+	<Rcpp/internal/wrap.h>
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\r\headers.h
+	<Rcpp/platform/compiler.h>
+	<Rcpp/config.h>
+	<Rcpp/macros/macros.h>
+	<R.h>
+	<Rinternals.h>
+	<R_ext/Complex.h>
+	<R_ext/Parse.h>
+	<R_ext/Rdynload.h>
+	<Rversion.h>
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\platform\compiler.h
+	<cmath>
+	<initializer_list>
+	<unordered_map>
+	<map>
+	<unordered_set>
+	<set>
+	<tr1/unordered_map>
+	<map>
+	<tr1/unordered_set>
+	<set>
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\config.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\macros\macros.h
+	<Rcpp/macros/debug.h>
+	<Rcpp/macros/unroll.h>
+	<Rcpp/macros/dispatch.h>
+	<Rcpp/macros/xp.h>
+	<Rcpp/macros/traits.h>
+	<Rcpp/macros/config.hpp>
+	<Rcpp/macros/cat.hpp>
+	<Rcpp/macros/module.h>
+	<Rcpp/macros/interface.h>
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\macros\debug.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\macros\unroll.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\macros\dispatch.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\macros\xp.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\macros\traits.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\macros\config.hpp
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\macros\cat.hpp
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\macros\module.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\macros\interface.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\sprintf.h
+	<cstdio>
+	<cstdarg>
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\utils\tinyformat.h
+	<algorithm>
+	<iostream>
+	<sstream>
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\sugar\undormath.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\storage\storage.h
+	<Rcpp/storage/PreserveStorage.h>
+	<Rcpp/storage/NoProtectStorage.h>
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\storage\preservestorage.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\storage\noprotectstorage.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\protection\protection.h
+	<Rcpp/protection/Shield.h>
+	<Rcpp/protection/Shelter.h>
+	<Rcpp/protection/Armor.h>
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\protection\shield.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\protection\shelter.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\protection\armor.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\routines.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\exceptions.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\proxy\proxy.h
+	<Rcpp/proxy/GenericProxy.h>
+	<Rcpp/proxy/NamesProxy.h>
+	<Rcpp/proxy/RObjectMethods.h>
+	<Rcpp/proxy/AttributeProxy.h>
+	<Rcpp/proxy/TagProxy.h>
+	<Rcpp/proxy/ProtectedProxy.h>
+	<Rcpp/proxy/SlotProxy.h>
+	<Rcpp/proxy/Binding.h>
+	<Rcpp/proxy/FieldProxy.h>
+	<Rcpp/proxy/DottedPairProxy.h>
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\proxy\genericproxy.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\proxy\namesproxy.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\proxy\robjectmethods.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\proxy\attributeproxy.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\proxy\tagproxy.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\proxy\protectedproxy.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\proxy\slotproxy.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\proxy\binding.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\proxy\fieldproxy.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\proxy\dottedpairproxy.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\lang.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\complex.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\barrier.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\interrupt.h
+	<R_ext/GraphicsEngine.h>
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\longlong.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\internal\na.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\internal\nacomparator.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\internal\naequals.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\traits\traits.h
+	<Rcpp/traits/integral_constant.h>
+	<Rcpp/traits/same_type.h>
+	<Rcpp/traits/enable_if.h>
+	<Rcpp/traits/is_wide_string.h>
+	<Rcpp/traits/is_arithmetic.h>
+	<Rcpp/traits/char_type.h>
+	<Rcpp/traits/named_object.h>
+	<Rcpp/traits/is_convertible.h>
+	<Rcpp/traits/has_iterator.h>
+	<Rcpp/traits/expands_to_logical.h>
+	<Rcpp/traits/matrix_interface.h>
+	<Rcpp/traits/is_sugar_expression.h>
+	<Rcpp/traits/is_eigen_base.h>
+	<Rcpp/traits/has_na.h>
+	<Rcpp/traits/storage_type.h>
+	<Rcpp/traits/r_sexptype_traits.h>
+	<Rcpp/traits/r_type_traits.h>
+	<Rcpp/traits/un_pointer.h>
+	<Rcpp/traits/is_pointer.h>
+	<Rcpp/traits/wrap_type_traits.h>
+	<Rcpp/traits/longlong.h>
+	<Rcpp/traits/module_wrap_traits.h>
+	<Rcpp/traits/is_na.h>
+	<Rcpp/traits/is_finite.h>
+	<Rcpp/traits/is_infinite.h>
+	<Rcpp/traits/is_nan.h>
+	<Rcpp/traits/is_bool.h>
+	<Rcpp/traits/if_.h>
+	<Rcpp/traits/get_na.h>
+	<Rcpp/traits/is_trivial.h>
+	<Rcpp/traits/init_type.h>
+	<Rcpp/traits/is_const.h>
+	<Rcpp/traits/is_reference.h>
+	<Rcpp/traits/remove_const.h>
+	<Rcpp/traits/remove_reference.h>
+	<Rcpp/traits/remove_const_and_reference.h>
+	<Rcpp/traits/result_of.h>
+	<Rcpp/traits/is_module_object.h>
+	<Rcpp/traits/is_primitive.h>
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\traits\integral_constant.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\traits\same_type.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\traits\enable_if.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\traits\is_wide_string.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\traits\is_arithmetic.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\traits\char_type.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\traits\named_object.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\traits\is_convertible.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\traits\has_iterator.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\traits\expands_to_logical.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\traits\matrix_interface.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\traits\is_sugar_expression.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\traits\is_eigen_base.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\traits\has_na.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\traits\storage_type.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\traits\r_sexptype_traits.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\traits\r_type_traits.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\traits\un_pointer.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\traits\is_pointer.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\traits\wrap_type_traits.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\traits\longlong.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\traits\module_wrap_traits.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\traits\is_na.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\traits\is_finite.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\traits\is_infinite.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\traits\is_nan.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\traits\is_bool.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\traits\if_.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\traits\get_na.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\traits\is_trivial.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\traits\init_type.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\traits\is_const.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\traits\is_reference.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\traits\remove_const.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\traits\remove_reference.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\traits\remove_const_and_reference.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\traits\result_of.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\traits\is_module_object.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\traits\is_primitive.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\named.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\internal\caster.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\internal\r_vector.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\r_cast.h
+	<Rcpp/exceptions.h>
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\api\bones\bones.h
+	<Rcpp/api/bones/wrap_extra_steps.h>
+	<Rcpp/api/bones/Date.h>
+	<Rcpp/api/bones/Datetime.h>
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\api\bones\wrap_extra_steps.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\api\bones\date.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\api\bones\datetime.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\internal\export.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\internal\r_coerce.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\as.h
+	<Rcpp/internal/Exporter.h>
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\internal\exporter.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\inputparameter.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\is.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\vector\vectorbase.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\vector\matrixbase.h
+	<Rcpp/sugar/matrix/tools.h>
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\sugar\matrix\tools.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\internal\listinitialization.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\internal\proxy_iterator.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\internal\sexp_iterator.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\internal\converter.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\print.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\algo.h
+	<iterator>
+	<algorithm>
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\sugar\sugar_forward.h
+	<Rcpp/sugar/operators/r_binary_op.h>
+	<Rcpp/sugar/logical/logical.h>
+	<Rcpp/sugar/Range.h>
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\sugar\operators\r_binary_op.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\sugar\logical\logical.h
+	<Rcpp/sugar/logical/can_have_na.h>
+	<Rcpp/sugar/logical/SingleLogicalResult.h>
+	<Rcpp/sugar/logical/not.h>
+	<Rcpp/sugar/logical/and.h>
+	<Rcpp/sugar/logical/or.h>
+	<Rcpp/sugar/logical/is.h>
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\sugar\logical\can_have_na.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\sugar\logical\singlelogicalresult.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\sugar\logical\not.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\sugar\logical\and.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\sugar\logical\or.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\sugar\logical\is.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\sugar\range.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\iostream\rstreambuf.h
+	<cstdio>
+	<streambuf>
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\internal\wrap.h
+	<iterator>
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\robject.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\s4.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\reference.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\clone.h
+	<RcppCommon.h>
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\grow.h
+	<RcppCommon.h>
+	<Rcpp/Named.h>
+	<Rcpp/generated/grow__pairlist.h>
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\generated\grow__pairlist.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\dimension.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\environment.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\vector.h
+	<RcppCommon.h>
+	<Rcpp/exceptions.h>
+	<Rcpp/r_cast.h>
+	<Rcpp/vector/00_forward_Vector.h>
+	<Rcpp/vector/no_init.h>
+	<Rcpp/vector/00_forward_proxy.h>
+	<Rcpp/vector/vector_from_string.h>
+	<Rcpp/vector/converter.h>
+	<Rcpp/vector/RangeIndexer.h>
+	<Rcpp/vector/Vector.h>
+	<Rcpp/vector/proxy.h>
+	<Rcpp/vector/traits.h>
+	<Rcpp/vector/DimNameProxy.h>
+	<Rcpp/vector/Matrix.h>
+	<Rcpp/vector/SubMatrix.h>
+	<Rcpp/vector/MatrixRow.h>
+	<Rcpp/vector/MatrixColumn.h>
+	<Rcpp/vector/instantiation.h>
+	<Rcpp/vector/string_proxy.h>
+	<Rcpp/vector/const_string_proxy.h>
+	<Rcpp/vector/generic_proxy.h>
+	<Rcpp/vector/const_generic_proxy.h>
+	<Rcpp/String.h>
+	<Rcpp/vector/LazyVector.h>
+	<Rcpp/vector/swap.h>
+	<Rcpp/vector/ChildVector.h>
+	<Rcpp/vector/ListOf.h>
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\vector\00_forward_vector.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\vector\no_init.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\vector\00_forward_proxy.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\vector\vector_from_string.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\vector\converter.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\vector\rangeindexer.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\vector\vector.h
+	<Rcpp/vector/Subsetter.h>
+	<Rcpp/generated/Vector__create.h>
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\vector\subsetter.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\generated\vector__create.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\vector\proxy.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\vector\traits.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\vector\dimnameproxy.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\vector\matrix.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\vector\submatrix.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\vector\matrixrow.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\vector\matrixcolumn.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\vector\instantiation.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\vector\string_proxy.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\vector\const_string_proxy.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\vector\generic_proxy.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\vector\const_generic_proxy.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\string.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\vector\lazyvector.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\vector\swap.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\vector\childvector.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\vector\listof.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\sugar\nona\nona.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\fast.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\extractor.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\promise.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\xptr.h
+	<RcppCommon.h>
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\symbol.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\dottedpairimpl.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\function.h
+	<RcppCommon.h>
+	<Rcpp/grow.h>
+	<Rcpp/generated/Function__operator.h>
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\generated\function__operator.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\language.h
+	<Rcpp/generated/Language__ctors.h>
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\generated\language__ctors.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\dottedpair.h
+	<Rcpp/generated/DottedPair__ctors.h>
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\generated\dottedpair__ctors.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\pairlist.h
+	<RcppCommon.h>
+	<Rcpp/DottedPair.h>
+	<Rcpp/r_cast.h>
+	<Rcpp/generated/Pairlist__ctors.h>
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\generated\pairlist__ctors.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\stretchylist.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\weakreference.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\stringtransformer.h
+	<RcppCommon.h>
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\formula.h
+	<RcppCommon.h>
+	<Rcpp/Language.h>
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\dataframe.h
+	<Rcpp/generated/DataFrame_generated.h>
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\generated\dataframe_generated.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\date.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\datevector.h
+	<RcppCommon.h>
+	<Rcpp/internal/GreedyVector.h>
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\internal\greedyvector.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\datetime.h
+	<RcppCommon.h>
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\datetimevector.h
+	<RcppCommon.h>
+	<Rcpp/internal/GreedyVector.h>
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\na_proxy.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\module.h
+	<Rcpp/config.h>
+	<Rcpp/module/CppFunction.h>
+	<Rcpp/module/get_return_type.h>
+	<Rcpp/module/Module_generated_get_signature.h>
+	<Rcpp/module/Module_generated_CppFunction.h>
+	<Rcpp/module/class_Base.h>
+	<Rcpp/module/Module.h>
+	<Rcpp/module/Module_generated_ctor_signature.h>
+	<Rcpp/module/Module_generated_Constructor.h>
+	<Rcpp/module/Module_generated_Factory.h>
+	<Rcpp/module/Module_generated_class_signature.h>
+	<Rcpp/module/Module_generated_CppMethod.h>
+	<Rcpp/module/Module_generated_Pointer_CppMethod.h>
+	<Rcpp/module/Module_Property.h>
+	<Rcpp/module/class.h>
+	<Rcpp/module/Module_generated_function.h>
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\module\cppfunction.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\module\get_return_type.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\module\module_generated_get_signature.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\module\module_generated_cppfunction.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\module\class_base.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\module\module.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\module\module_generated_ctor_signature.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\module\module_generated_constructor.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\module\module_generated_factory.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\module\module_generated_class_signature.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\module\module_generated_cppmethod.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\module\module_generated_pointer_cppmethod.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\module\module_property.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\module\class.h
+	<Rcpp/module/Module_generated_class_constructor.h>
+	<Rcpp/module/Module_generated_class_factory.h>
+	<Rcpp/module/Module_generated_method.h>
+	<Rcpp/module/Module_generated_Pointer_method.h>
+	<Rcpp/module/Module_Field.h>
+	<Rcpp/module/Module_Add_Property.h>
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\module\module_generated_class_constructor.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\module\module_generated_class_factory.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\module\module_generated_method.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\module\module_generated_pointer_method.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\module\module_field.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\module\module_add_property.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\module\module_generated_function.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\internalfunction.h
+	<RcppCommon.h>
+	<Rcpp/grow.h>
+	<Rcpp/InternalFunctionWithStdFunction.h>
+	<Rcpp/generated/InternalFunction__ctors.h>
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\internalfunctionwithstdfunction.h
+	<functional>
+	<Rcpp/generated/InternalFunctionWithStdFunction_call.h>
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\generated\internalfunctionwithstdfunction_call.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\generated\internalfunction__ctors.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\sugar\sugar.h
+	<Rcpp/sugar/tools/iterator.h>
+	<Rcpp/sugar/block/block.h>
+	<Rcpp/hash/hash.h>
+	<Rcpp/sugar/operators/operators.h>
+	<Rcpp/sugar/functions/functions.h>
+	<Rcpp/sugar/matrix/matrix_functions.h>
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\sugar\tools\iterator.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\sugar\block\block.h
+	<Rcpp/sugar/block/SugarBlock_1.h>
+	<Rcpp/sugar/block/SugarBlock_2.h>
+	<Rcpp/sugar/block/SugarBlock_3.h>
+	<Rcpp/sugar/block/SugarMath.h>
+	<Rcpp/sugar/block/Vectorized_Math.h>
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\sugar\block\sugarblock_1.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\sugar\block\sugarblock_2.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\sugar\block\sugarblock_3.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\sugar\block\sugarmath.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\sugar\block\vectorized_math.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\hash\hash.h
+	<inttypes.h>
+	<Rcpp/hash/IndexHash.h>
+	<Rcpp/hash/SelfHash.h>
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\hash\indexhash.h
+	<mach/mach_time.h>
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\hash\selfhash.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\sugar\operators\operators.h
+	<Rcpp/sugar/operators/Comparator.h>
+	<Rcpp/sugar/operators/Comparator_With_One_Value.h>
+	<Rcpp/sugar/operators/logical_operators__Vector__Vector.h>
+	<Rcpp/sugar/operators/logical_operators__Vector__primitive.h>
+	<Rcpp/sugar/operators/plus.h>
+	<Rcpp/sugar/operators/minus.h>
+	<Rcpp/sugar/operators/times.h>
+	<Rcpp/sugar/operators/divides.h>
+	<Rcpp/sugar/operators/not.h>
+	<Rcpp/sugar/operators/unary_minus.h>
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\sugar\operators\comparator.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\sugar\operators\comparator_with_one_value.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\sugar\operators\logical_operators__vector__vector.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\sugar\operators\logical_operators__vector__primitive.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\sugar\operators\plus.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\sugar\operators\minus.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\sugar\operators\times.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\sugar\operators\divides.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\sugar\operators\not.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\sugar\operators\unary_minus.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\sugar\functions\functions.h
+	<cmath>
+	<Rcpp/sugar/functions/Lazy.h>
+	<Rcpp/sugar/functions/math.h>
+	<Rcpp/sugar/functions/complex.h>
+	<Rcpp/sugar/functions/any.h>
+	<Rcpp/sugar/functions/all.h>
+	<Rcpp/sugar/functions/is_na.h>
+	<Rcpp/sugar/functions/is_finite.h>
+	<Rcpp/sugar/functions/is_infinite.h>
+	<Rcpp/sugar/functions/is_nan.h>
+	<Rcpp/sugar/functions/na_omit.h>
+	<Rcpp/sugar/functions/seq_along.h>
+	<Rcpp/sugar/functions/sapply.h>
+	<Rcpp/sugar/functions/mapply.h>
+	<Rcpp/sugar/functions/lapply.h>
+	<Rcpp/sugar/functions/ifelse.h>
+	<Rcpp/sugar/functions/pmin.h>
+	<Rcpp/sugar/functions/pmax.h>
+	<Rcpp/sugar/functions/clamp.h>
+	<Rcpp/sugar/functions/min.h>
+	<Rcpp/sugar/functions/max.h>
+	<Rcpp/sugar/functions/range.h>
+	<Rcpp/sugar/functions/sign.h>
+	<Rcpp/sugar/functions/diff.h>
+	<Rcpp/sugar/functions/pow.h>
+	<Rcpp/sugar/functions/rep.h>
+	<Rcpp/sugar/functions/rep_len.h>
+	<Rcpp/sugar/functions/rep_each.h>
+	<Rcpp/sugar/functions/rev.h>
+	<Rcpp/sugar/functions/head.h>
+	<Rcpp/sugar/functions/tail.h>
+	<Rcpp/sugar/functions/sum.h>
+	<Rcpp/sugar/functions/mean.h>
+	<Rcpp/sugar/functions/var.h>
+	<Rcpp/sugar/functions/sd.h>
+	<Rcpp/sugar/functions/cumsum.h>
+	<Rcpp/sugar/functions/which_min.h>
+	<Rcpp/sugar/functions/which_max.h>
+	<Rcpp/sugar/functions/unique.h>
+	<Rcpp/sugar/functions/match.h>
+	<Rcpp/sugar/functions/table.h>
+	<Rcpp/sugar/functions/duplicated.h>
+	<Rcpp/sugar/functions/self_match.h>
+	<Rcpp/sugar/functions/setdiff.h>
+	<Rcpp/sugar/functions/strings/strings.h>
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\sugar\functions\lazy.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\sugar\functions\math.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\sugar\functions\complex.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\sugar\functions\any.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\sugar\functions\all.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\sugar\functions\is_na.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\sugar\functions\is_finite.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\sugar\functions\is_infinite.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\sugar\functions\is_nan.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\sugar\functions\na_omit.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\sugar\functions\seq_along.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\sugar\functions\sapply.h
+	<type_traits>
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\sugar\functions\mapply.h
+	<Rcpp/sugar/functions/mapply/mapply_3.h>
+	<Rcpp/sugar/functions/mapply/mapply_2.h>
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\sugar\functions\mapply\mapply_3.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\sugar\functions\mapply\mapply_2.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\sugar\functions\lapply.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\sugar\functions\ifelse.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\sugar\functions\pmin.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\sugar\functions\pmax.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\sugar\functions\clamp.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\sugar\functions\min.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\sugar\functions\max.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\sugar\functions\range.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\sugar\functions\sign.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\sugar\functions\diff.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\sugar\functions\pow.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\sugar\functions\rep.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\sugar\functions\rep_len.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\sugar\functions\rep_each.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\sugar\functions\rev.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\sugar\functions\head.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\sugar\functions\tail.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\sugar\functions\sum.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\sugar\functions\mean.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\sugar\functions\var.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\sugar\functions\sd.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\sugar\functions\cumsum.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\sugar\functions\which_min.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\sugar\functions\which_max.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\sugar\functions\unique.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\sugar\functions\match.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\sugar\functions\table.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\sugar\functions\duplicated.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\sugar\functions\self_match.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\sugar\functions\setdiff.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\sugar\functions\strings\strings.h
+	<Rcpp/sugar/functions/strings/collapse.h>
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\sugar\functions\strings\collapse.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\sugar\matrix\matrix_functions.h
+	<Rcpp/sugar/matrix/outer.h>
+	<Rcpp/sugar/matrix/row.h>
+	<Rcpp/sugar/matrix/col.h>
+	<Rcpp/sugar/matrix/lower_tri.h>
+	<Rcpp/sugar/matrix/upper_tri.h>
+	<Rcpp/sugar/matrix/diag.h>
+	<Rcpp/sugar/matrix/as_vector.h>
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\sugar\matrix\outer.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\sugar\matrix\row.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\sugar\matrix\col.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\sugar\matrix\lower_tri.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\sugar\matrix\upper_tri.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\sugar\matrix\diag.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\sugar\matrix\as_vector.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\stats\stats.h
+	<Rcpp/stats/dpq/dpq.h>
+	<Rcpp/stats/unif.h>
+	<Rcpp/stats/norm.h>
+	<Rcpp/stats/gamma.h>
+	<Rcpp/stats/chisq.h>
+	<Rcpp/stats/beta.h>
+	<Rcpp/stats/t.h>
+	<Rcpp/stats/lnorm.h>
+	<Rcpp/stats/weibull.h>
+	<Rcpp/stats/logis.h>
+	<Rcpp/stats/f.h>
+	<Rcpp/stats/exp.h>
+	<Rcpp/stats/cauchy.h>
+	<Rcpp/stats/geom.h>
+	<Rcpp/stats/hyper.h>
+	<Rcpp/stats/nt.h>
+	<Rcpp/stats/nchisq.h>
+	<Rcpp/stats/nbeta.h>
+	<Rcpp/stats/nf.h>
+	<Rcpp/stats/nbinom.h>
+	<Rcpp/stats/nbinom_mu.h>
+	<Rcpp/stats/binom.h>
+	<Rcpp/stats/pois.h>
+	<Rcpp/stats/random/random.h>
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\stats\dpq\dpq.h
+	<Rcpp/stats/dpq/macros.h>
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\stats\dpq\macros.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\stats\unif.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\stats\norm.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\stats\gamma.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\stats\chisq.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\stats\beta.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\stats\t.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\stats\lnorm.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\stats\weibull.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\stats\logis.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\stats\f.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\stats\exp.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\stats\cauchy.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\stats\geom.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\stats\hyper.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\stats\nt.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\stats\nchisq.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\stats\nbeta.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\stats\nf.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\stats\nbinom.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\stats\nbinom_mu.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\stats\binom.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\stats\pois.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\stats\random\random.h
+	<Rcpp/stats/random/rnorm.h>
+	<Rcpp/stats/random/runif.h>
+	<Rcpp/stats/random/rgamma.h>
+	<Rcpp/stats/random/rbeta.h>
+	<Rcpp/stats/random/rlnorm.h>
+	<Rcpp/stats/random/rchisq.h>
+	<Rcpp/stats/random/rnchisq.h>
+	<Rcpp/stats/random/rf.h>
+	<Rcpp/stats/random/rt.h>
+	<Rcpp/stats/random/rbinom.h>
+	<Rcpp/stats/random/rcauchy.h>
+	<Rcpp/stats/random/rexp.h>
+	<Rcpp/stats/random/rgeom.h>
+	<Rcpp/stats/random/rnbinom.h>
+	<Rcpp/stats/random/rnbinom_mu.h>
+	<Rcpp/stats/random/rpois.h>
+	<Rcpp/stats/random/rweibull.h>
+	<Rcpp/stats/random/rlogis.h>
+	<Rcpp/stats/random/rwilcox.h>
+	<Rcpp/stats/random/rsignrank.h>
+	<Rcpp/stats/random/rhyper.h>
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\stats\random\rnorm.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\stats\random\runif.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\stats\random\rgamma.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\stats\random\rbeta.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\stats\random\rlnorm.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\stats\random\rchisq.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\stats\random\rnchisq.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\stats\random\rf.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\stats\random\rt.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\stats\random\rbinom.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\stats\random\rcauchy.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\stats\random\rexp.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\stats\random\rgeom.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\stats\random\rnbinom.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\stats\random\rnbinom_mu.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\stats\random\rpois.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\stats\random\rweibull.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\stats\random\rlogis.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\stats\random\rwilcox.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\stats\random\rsignrank.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\stats\random\rhyper.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\rmath.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\internal\wrap_end.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\platform\solaris.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\api\meat\meat.h
+	<Rcpp/api/meat/Rcpp_eval.h>
+	<Rcpp/api/meat/Dimension.h>
+	<Rcpp/api/meat/Date.h>
+	<Rcpp/api/meat/Datetime.h>
+	<Rcpp/api/meat/DataFrame.h>
+	<Rcpp/api/meat/S4.h>
+	<Rcpp/api/meat/Environment.h>
+	<Rcpp/api/meat/proxy.h>
+	<Rcpp/api/meat/DottedPairImpl.h>
+	<Rcpp/api/meat/StretchyList.h>
+	<Rcpp/api/meat/Vector.h>
+	<Rcpp/api/meat/is.h>
+	<Rcpp/api/meat/as.h>
+	<Rcpp/api/meat/export.h>
+	<Rcpp/api/meat/protection.h>
+	<Rcpp/api/meat/wrap.h>
+	<Rcpp/api/meat/module/Module.h>
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\api\meat\rcpp_eval.h
+	<Rcpp/Interrupt.h>
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\api\meat\dimension.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\api\meat\date.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\api\meat\datetime.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\api\meat\dataframe.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\api\meat\s4.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\api\meat\environment.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\api\meat\proxy.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\api\meat\dottedpairimpl.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\api\meat\stretchylist.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\api\meat\vector.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\api\meat\is.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\api\meat\as.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\api\meat\export.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\api\meat\protection.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\api\meat\wrap.h
+
+1438761034 e:\hspark\documents\r\win-library\3.2\rcpp\include\rcpp\api\meat\module\module.h
+
+1440615302 source:e:\hspark\documents\r-projects\rcat\src\catmodel.cpp
+	"StdAfx.h"
+	"include/ModelManager.h"
+
+1440979436 e:\hspark\documents\r-projects\rcat\src\fake_windows.h
+	<stdio.h>
+	<R_ext/Boolean.h>
+	<stdlib.h>
+	<string.h>
+
+1440643415 source:e:\hspark\documents\r-projects\rcat\src\encoding.cpp
+	"encoding.h"
+	<Windows.h>
+	<iconv.h>
+
+1440748971 e:\hspark\documents\r-projects\rcat\src\encoding.h
+

@@ -6,3 +6,9 @@
 ^.*.zip$
 ^.*.gz$
 ^.*.bak$
+^bin\.*$
+^obj\.*$
+^.*\.cbp$
+^.*\.depend$
+^.*\.layout$
+^.*\.cscope_file_list$

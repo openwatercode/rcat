@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="rcat" />
+		<Option pch_mode="2" />
+		<Option compiler="rtools_gcc_compiler" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/rcat" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="rtools_gcc_compiler" />
+				<Compiler>
+					<Add option="-Wunreachable-code" />
+					<Add option="-pedantic" />
+					<Add option="-g" />
+					<Add option="-Wstrict-aliasing" />
+					<Add option="-Wtype-limits" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/rcat" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="rtools_gcc_compiler" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+			<Add option="-DWINRLIB" />
+			<Add option="-DCODEBLOCK" />
+		</Compiler>
+		<Unit filename="src/BaseData.cpp" />
+		<Unit filename="src/BaseNode.cpp" />
+		<Unit filename="src/CATModel.cpp" />
+		<Unit filename="src/Catchment.cpp" />
+		<Unit filename="src/EvaCvtBase.cpp" />
+		<Unit filename="src/Evaporation.cpp" />
+		<Unit filename="src/Junc.cpp" />
+		<Unit filename="src/LargeString.cpp" />
+		<Unit filename="src/Link.cpp" />
+		<Unit filename="src/ModelManager.cpp" />
+		<Unit filename="src/RcppExports.cpp" />
+		<Unit filename="src/SeriesData.cpp" />
+		<Unit filename="src/StdAfx.cpp" />
+		<Unit filename="src/StdAfx.h" />
+		<Unit filename="src/Treatment.cpp" />
+		<Unit filename="src/ValidateCheck.cpp" />
+		<Unit filename="src/WaterBalance.cpp" />
+		<Unit filename="src/fake_windows.h" />
+		<Unit filename="src/include/BaseData.h" />
+		<Unit filename="src/include/BaseNode.h" />
+		<Unit filename="src/include/CATDef.h" />
+		<Unit filename="src/include/CATMsg.h" />
+		<Unit filename="src/include/CatModelExt.h" />
+		<Unit filename="src/include/Catchment.h" />
+		<Unit filename="src/include/EvaCvtBase.h" />
+		<Unit filename="src/include/Evaporation.h" />
+		<Unit filename="src/include/Junc.h" />
+		<Unit filename="src/include/LargeString.h" />
+		<Unit filename="src/include/Link.h" />
+		<Unit filename="src/include/ModelDataExt.h" />
+		<Unit filename="src/include/ModelManager.h" />
+		<Unit filename="src/include/SeriesData.h" />
+		<Unit filename="src/include/Treatment.h" />
+		<Unit filename="src/include/ValidateCheck.h" />
+		<Unit filename="src/include/WaterBalance.h" />
+		<Unit filename="src/include/arraytempl.h" />
+		<Unit filename="src/rcpp_rcat.cpp" />
+		<Unit filename="main.cpp" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger>
+				<search_path add="src" />
+				<search_path add="." />
+			</debugger>
+			<lib_finder disable_auto="1" />
+			<DoxyBlocks>
+				<comment_style block="0" line="1" />
+				<doxyfile_project output_language="Korean" />
+				<doxyfile_build />
+				<doxyfile_warnings />
+				<doxyfile_output html_help="1" />
+				<doxyfile_dot />
+				<general use_at_in_tags="1" />
+			</DoxyBlocks>
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

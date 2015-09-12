@@ -11,3 +11,5 @@ src/*.so
 src/*.dll
 rcat.pdf
 *.bak
+bin
+obj
