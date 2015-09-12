@@ -61,13 +61,22 @@ names(result)
 
 ### 수행결과 리스트에서 결과 그려보기
 수행결과중 원하는 노드나 링크의 결과("Outlet 1")를 따로 변수로 받아 xts 객체로 변환하여 그래프를 그려 봅니다.
+
 ```
-outlet1 <- result[["Outlet 1"]]
 library(xts)
-outlet1.flowtotal <- xts(outlet1[,1],as.POSIXct(rownames(outlet1)))
+outlet1 <- as.xts(result[["Outlet 1"]])
+outlet1.flowtotal <- outlet1[,1]
 plot(outlet1.flowtotal, type="l")
 ```
 
+## 개발계획
+다음 내용은 개략적인 개발 계획으로 연구팀의 사정에 따라 예고없이 변경될 수 있습니다.
 
+* 모형 출력내용을 객체화하고 해당 객체에 최적화된 출력함수 개발
+* 모형 입력내용을 객체화하고 이를 R에서 구성하거나 표현 함수 개발
+* 매개변수에 대한 최적화 모형 결합 및 병렬 최적화 개발
+* 모형실행 샘플 개발
+* Windows와 Linux 등 멀티 플랫폼에서 작동할 수 있도록 개선
 
-
+## 배포계획
+현재 개발버전은 한국건설기술연구원 내부 개발팀만 사용이 가능합니다. 외부로 배포하는 것은 저작권법에 위배되므로 개발팀 관계자외 사용과 배포를 금지합니다.
