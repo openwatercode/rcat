@@ -3,6 +3,12 @@ This project is to porting CAT Hydrology model to R package.
 
 한국건설기술연구원에서 개발한 수문모형인 CAT 모형을 R 패키지 형태로 포팅하기 위한 프로젝트입니다.
 
+현재 프로젝트 진행버전: 0.1.1
+
+향후 Linux 등에도 구동될 수 있도록 멀티플랫폼화 계획있지만 현재 버전은 **Windows에서 수행되는 R에서만 구동이 가능**합니다.
+
+[윈도우즈용 CAT 사이트](http://watercycle.re.kr/)
+
 
 ## install rcat
 본 프로젝트를 설치하여 테스트 하기 위해서는 바이너리 형태로 설치하거나 소스형태로 내려 받아 컴파일 해야할 필요가 있습니다.
