@@ -10,8 +10,8 @@
 #' @examples
 #' download.file("http://r.prj.kr/data/rcat/rcat_ex.zip", "rcat_ex.zip")
 #' unzip("rcat_ex.zip")
-#' model <- readCATInput("dist_101208.txt")
-#' plot(model)
+#' iseri <- readBinCATSerieses("P_climate_1209.dat")
+#' plot(iseri[[1]])
 plot.rcat_series <- function(x, ...)
 {
   plot_type = getNodeType(x)
@@ -19,178 +19,180 @@ plot.rcat_series <- function(x, ...)
   bak <- par("mfrow")
   st <- do.call("ISOdatetime", as.list(c(attr(x, "StartTime"), 0)))
   tseq <- seq(st, by = paste(attr(x, "Interval"), "min"), length.out = nrow(x))
-  switch(
-    plot_type,
-    Junc =  {
-      n <- ncol(x)
-      c <- ceiling(sqrt(n))
-      r <- ceiling(n / c)
-      par(mfrow = c(c, r))
-      for (i in 1:n)
-      {
-        plot(
-          tseq, x[, i], main = names(x)[i], xlab = "Time", ylab = names(x)[i],
-          type = "l", ...
-        )
-      }
-    },
-    Wetland = {
-      n <- ncol(x)
-      c <- ceiling(sqrt(n))
-      r <- ceiling(n / c)
-      par(mfrow = c(c, r))
-      for (i in 1:n)
-      {
-        plot(
-          tseq, x[, i], main = names(x)[i], xlab = "Time", ylab = names(x)[i],
-          type = "l", ...
-        )
-      }
-    },
-    Pond = {
-      n <- ncol(x)
-      c <- ceiling(sqrt(n))
-      r <- ceiling(n / c)
-      par(mfrow = c(c, r))
-      for (i in 1:n)
-      {
-        plot(
-          tseq, x[, i], main = names(x)[i], xlab = "Time", ylab = names(x)[i],
-          type = "l", ...
-        )
-      }
-    },
-    Recycle = {
-      n <- ncol(x)
-      c <- ceiling(sqrt(n))
-      r <- ceiling(n / c)
-      par(mfrow = c(c, r))
-      for (i in 1:n)
-      {
-        plot(
-          tseq, x[, i], main = names(x)[i], xlab = "Time", ylab = names(x)[i],
-          type = "l", ...
-        )
-      }
-    },
-    RainTank =  {
-      n <- ncol(x)
-      c <- ceiling(sqrt(n))
-      r <- ceiling(n / c)
-      par(mfrow = c(c, r))
-      for (i in 1:n)
-      {
-        plot(
-          tseq, x[, i], main = names(x)[i], xlab = "Time", ylab = names(x)[i],
-          type = "l", ...
-        )
-      }
-    },
-    Infiltro = {
-      n <- ncol(x)
-      c <- ceiling(sqrt(n))
-      r <- ceiling(n / c)
-      par(mfrow = c(c, r))
-      for (i in 1:n)
-      {
-        plot(
-          tseq, x[, i], main = names(x)[i], xlab = "Time", ylab = names(x)[i],
-          type = "l", ...
-        )
-      }
-    },
-    Link =  {
-      n <- ncol(x)
-      c <- ceiling(sqrt(n))
-      r <- ceiling(n / c)
-      par(mfrow = c(c, r))
-      for (i in 1:n)
-      {
-        plot(
-          tseq, x[, i], main = names(x)[i], xlab = "Time", ylab = names(x)[i],
-          type = "l", ...
-        )
-      }
-    },
-    Forest =  {
-      n <- ncol(x)
-      c <- ceiling(sqrt(n))
-      r <- ceiling(n / c)
-      par(mfrow = c(c, r))
-      for (i in 1:n)
-      {
-        plot(
-          tseq, x[, i], main = names(x)[i], xlab = "Time", ylab = names(x)[i],
-          type = "l", ...
-        )
-      }
-    },
-    Paddy = {
-      n <- ncol(x)
-      c <- ceiling(sqrt(n))
-      r <- ceiling(n / c)
-      par(mfrow = c(c, r))
-      for (i in 1:n)
-      {
-        plot(
-          tseq, x[, i], main = names(x)[i], xlab = "Time", ylab = names(x)[i],
-          type = "l", ...
-        )
-      }
-    },
-    BioRetention =  {
-      n <- ncol(x)
-      c <- ceiling(sqrt(n))
-      r <- ceiling(n / c)
-      par(mfrow = c(c, r))
-      for (i in 1:n)
-      {
-        plot(
-          tseq, x[, i], main = names(x)[i], xlab = "Time", ylab = names(x)[i],
-          type = "l", ...
-        )
-      }
-    },
-    Import = {
-      n <- ncol(x)
-      c <- ceiling(sqrt(n))
-      r <- ceiling(n / c)
-      par(mfrow = c(c, r))
-      for (i in 1:n)
-      {
-        plot(
-          tseq, x[, i], main = names(x)[i], xlab = "Time", ylab = names(x)[i],
-          type = "l", ...
-        )
-      }
-    },
-    Urban = {
-      n <- ncol(x)
-      c <- ceiling(sqrt(n))
-      r <- ceiling(n / c)
-      par(mfrow = c(c, r))
-      for (i in 1:n)
-      {
-        plot(
-          tseq, x[, i], main = names(x)[i], xlab = "Time", ylab = names(x)[i],
-          type = "l", ...
-        )
-      }
-    },
+  if(length(plot_type) == 0)
+  {
+    n <- ncol(x)
+    c <- ceiling(sqrt(n))
+    r <- ceiling(n / c)
+    par(mfrow = c(c, r))
+    for (i in 1:n)
     {
-      n <- ncol(x)
-      c <- ceiling(sqrt(n))
-      r <- ceiling(n / c)
-      par(mfrow = c(c, r))
-      for (i in 1:n)
-      {
-        plot(
-          tseq, x[, i], main = names(x)[i], xlab = "Time", ylab = names(x)[i],
-          type = "l", ...
-        )
-      }
+      plot(
+        tseq, x[, i], main = names(x)[i], xlab = "Time", ylab = names(x)[i],
+        type = "l", ...
+      )
     }
-  )
+  } else {
+    switch(
+      plot_type,
+      Junc =  {
+        n <- ncol(x)
+        c <- ceiling(sqrt(n))
+        r <- ceiling(n / c)
+        par(mfrow = c(c, r))
+        for (i in 1:n)
+        {
+          plot(
+            tseq, x[, i], main = names(x)[i], xlab = "Time", ylab = names(x)[i],
+            type = "l", ...
+          )
+        }
+      },
+      Wetland = {
+        n <- ncol(x)
+        c <- ceiling(sqrt(n))
+        r <- ceiling(n / c)
+        par(mfrow = c(c, r))
+        for (i in 1:n)
+        {
+          plot(
+            tseq, x[, i], main = names(x)[i], xlab = "Time", ylab = names(x)[i],
+            type = "l", ...
+          )
+        }
+      },
+      Pond = {
+        n <- ncol(x)
+        c <- ceiling(sqrt(n))
+        r <- ceiling(n / c)
+        par(mfrow = c(c, r))
+        for (i in 1:n)
+        {
+          plot(
+            tseq, x[, i], main = names(x)[i], xlab = "Time", ylab = names(x)[i],
+            type = "l", ...
+          )
+        }
+      },
+      Recycle = {
+        n <- ncol(x)
+        c <- ceiling(sqrt(n))
+        r <- ceiling(n / c)
+        par(mfrow = c(c, r))
+        for (i in 1:n)
+        {
+          plot(
+            tseq, x[, i], main = names(x)[i], xlab = "Time", ylab = names(x)[i],
+            type = "l", ...
+          )
+        }
+      },
+      RainTank =  {
+        n <- ncol(x)
+        c <- ceiling(sqrt(n))
+        r <- ceiling(n / c)
+        par(mfrow = c(c, r))
+        for (i in 1:n)
+        {
+          plot(
+            tseq, x[, i], main = names(x)[i], xlab = "Time", ylab = names(x)[i],
+            type = "l", ...
+          )
+        }
+      },
+      Infiltro = {
+        n <- ncol(x)
+        c <- ceiling(sqrt(n))
+        r <- ceiling(n / c)
+        par(mfrow = c(c, r))
+        for (i in 1:n)
+        {
+          plot(
+            tseq, x[, i], main = names(x)[i], xlab = "Time", ylab = names(x)[i],
+            type = "l", ...
+          )
+        }
+      },
+      Link =  {
+        n <- ncol(x)
+        c <- ceiling(sqrt(n))
+        r <- ceiling(n / c)
+        par(mfrow = c(c, r))
+        for (i in 1:n)
+        {
+          plot(
+            tseq, x[, i], main = names(x)[i], xlab = "Time", ylab = names(x)[i],
+            type = "l", ...
+          )
+        }
+      },
+      Forest =  {
+        n <- ncol(x)
+        c <- ceiling(sqrt(n))
+        r <- ceiling(n / c)
+        par(mfrow = c(c, r))
+        for (i in 1:n)
+        {
+          plot(
+            tseq, x[, i], main = names(x)[i], xlab = "Time", ylab = names(x)[i],
+            type = "l", ...
+          )
+        }
+      },
+      Paddy = {
+        n <- ncol(x)
+        c <- ceiling(sqrt(n))
+        r <- ceiling(n / c)
+        par(mfrow = c(c, r))
+        for (i in 1:n)
+        {
+          plot(
+            tseq, x[, i], main = names(x)[i], xlab = "Time", ylab = names(x)[i],
+            type = "l", ...
+          )
+        }
+      },
+      BioRetention = {
+        n <- ncol(x)
+        c <- ceiling(sqrt(n))
+        r <- ceiling(n / c)
+        par(mfrow = c(c, r))
+        for (i in 1:n)
+        {
+          plot(
+            tseq, x[, i], main = names(x)[i], xlab = "Time", ylab = names(x)[i],
+            type = "l", ...
+          )
+        }
+      },
+      Import = {
+        n <- ncol(x)
+        c <- ceiling(sqrt(n))
+        r <- ceiling(n / c)
+        par(mfrow = c(c, r))
+        for (i in 1:n)
+        {
+          plot(
+            tseq, x[, i], main = names(x)[i], xlab = "Time", ylab = names(x)[i],
+            type = "l", ...
+          )
+        }
+      },
+      Urban = {
+        n <- ncol(x)
+        c <- ceiling(sqrt(n))
+        r <- ceiling(n / c)
+        par(mfrow = c(c, r))
+        for (i in 1:n)
+        {
+          plot(
+            tseq, x[, i], main = names(x)[i], xlab = "Time", ylab = names(x)[i],
+            type = "l", ...
+          )
+        }
+      }
+    )
+  }
   par(mfrow = bak)
 }
 

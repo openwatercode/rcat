@@ -15,8 +15,8 @@
 \examples{
 download.file("http://r.prj.kr/data/rcat/rcat_ex.zip", "rcat_ex.zip")
 unzip("rcat_ex.zip")
-model <- readCATInput("dist_101208.txt")
-plot(model)
+iseri <- readBinCATSerieses("P_climate_1209.dat")
+plot(iseri[[1]])
 }
 \author{
 박희성 \email{hspark90@i-fam.net}
