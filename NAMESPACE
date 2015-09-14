@@ -3,6 +3,7 @@
 S3method(as.xts,rcat_series)
 S3method(as.xts,rcat_serieses)
 S3method(plot,rcat_input)
+S3method(plot,rcat_series)
 export(RunCAT)
 export(readBinCATSerieses)
 export(readCATInput)
