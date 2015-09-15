@@ -19,11 +19,11 @@ NULL
 #' @export
 '[.rcat_serieses' <- function(x, i, ...)
 {
-  y <- x[i, ...]
-  attr(y, "StartTime") <- attr(y, "StartTime")
-  attr(y, "Interval") <- attr(y, "Interval")
-  attr(y, "Description") <- attr(y, "Description")
-  attr(y, "Name") <- attr(y, "Name")
+  y <- NextMethod(x)
+  attr(y, "StartTime") <- attr(x, "StartTime")
+  attr(y, "Interval") <- attr(x, "Interval")
+  attr(y, "Description") <- attr(x, "Description")
+  attr(y, "Name") <- attr(x, "Name")
   class(y) <- class(x)
   y
 }
