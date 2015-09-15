@@ -11,6 +11,7 @@
 				<Option object_output="obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="rtools_gcc_compiler" />
+				<Option parameters='&quot;test_data/dist_101208-1.txt&quot; &quot;test_data/dist_101208-1.out&quot; &quot;[*:*]&quot;' />
 				<Compiler>
 					<Add option="-Wunreachable-code" />
 					<Add option="-pedantic" />
@@ -24,6 +25,7 @@
 				<Option object_output="obj/Release/" />
 				<Option type="1" />
 				<Option compiler="rtools_gcc_compiler" />
+				<Option parameters='&quot;test_data/dist_101208-1.txt&quot; &quot;test_data/dist_101208-1.out&quot; &quot;[*:*]&quot;' />
 				<Compiler>
 					<Add option="-O2" />
 				</Compiler>
@@ -38,6 +40,7 @@
 			<Add option="-DWINRLIB" />
 			<Add option="-DCODEBLOCK" />
 		</Compiler>
+		<Unit filename="main.cpp" />
 		<Unit filename="src/BaseData.cpp" />
 		<Unit filename="src/BaseNode.cpp" />
 		<Unit filename="src/CATModel.cpp" />
@@ -75,7 +78,6 @@
 		<Unit filename="src/include/WaterBalance.h" />
 		<Unit filename="src/include/arraytempl.h" />
 		<Unit filename="src/rcpp_rcat.cpp" />
-		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />
