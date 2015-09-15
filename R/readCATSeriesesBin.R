@@ -17,6 +17,8 @@ readBinCATSerieses <- function(filename)
 {
   if(missing(filename))
     stop("filename must be needed!")
+  if(!file.exists(filename))
+    stop(sprintf("Error: '%s' file does not exists!!", filename))
   ret <- read_cat_serieses(path.expand(filename[1]))
   for(i in 1:length(ret))
     if(!is.null(colnames(ret[[i]]))) Encoding(colnames(ret[[i]])) <- "UTF-8"
