@@ -15,7 +15,9 @@
 #' model <- readCATInput("dist_101208.txt")
 readCATInput <- function(filename)
 {
+  if(missing(filename))
+    stop("filename must be needed!")
   if(!file.exists(filename))
-    stop(sprintf("Error: '%s' file does not exists!!"))
+    stop(sprintf("Error: '%s' file does not exists!!", filename))
   readInput(filename)
 }
