@@ -1,4 +1,4 @@
-#' readCATInput2: read from CAT input file to r varialble which is rcat_input class
+#' readCATInput: read from CAT input file to r varialble which is rcat_input class
 #'
 #' 텍스트로 구성된 CAT 모형을 읽어 "rcat_input" 클래스의 변수로 반환
 #' @param filename CAT 모형의 텍스트형 입력자료
@@ -11,8 +11,8 @@
 #' download.file("http://r.prj.kr/data/rcat/rcat_ex.zip", "rcat_ex.zip")
 #' unzip("rcat_ex.zip")
 #'
-#' model <- readCATInput2("dist_101208.txt")
-readCATInput2 <- function(file, ...)
+#' model <- readCATInput("dist_101208.txt")
+readCATInput <- function(file, ...)
 {
   f <- file(file, ...)
   l <- readLines(f)

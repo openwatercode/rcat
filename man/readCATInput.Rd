@@ -4,7 +4,7 @@
 \alias{readCATInput}
 \title{readCATInput: read from CAT input file to r varialble which is rcat_input class}
 \usage{
-readCATInput(filename)
+readCATInput(file, ...)
 }
 \arguments{
 \item{filename}{CAT 모형의 텍스트형 입력자료}
