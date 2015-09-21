@@ -30,3 +30,13 @@
 #' # save the output to file
 #' RunCAT("dist_101208.txt", "dist_101208.out")
 NULL
+
+getVariableName <- function(v)
+{
+  s <- substitute(v)
+  browser()
+  if (length(s) == 1)
+    deparse(s)
+  else
+    sub("\\(.", "", s[2])
+}

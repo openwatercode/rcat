@@ -15,5 +15,7 @@ Depends:
     Rcpp (>= 0.11.0),
     rskrpatch,
     xts,
+    stringr,
+    plyr,
     igraph
 LinkingTo: Rcpp
