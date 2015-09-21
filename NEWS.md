@@ -1,8 +1,13 @@
 # rcat 개발 소식
 
 ## ver 0.1.3
+### 2015-09-21
+  * readCATInput 함수로 읽은 결과와 파일에서 직접 읽어 실행한 결과가 다른 문제 해결
+  * 순수 R script 버전인 readCATInput2 함수 개발 및 plot.rcat_input함수내에 Position 속성을 이용한 Schematic View 구현
+### 2015-09-14
+  * CAT 모의 결과 등을 보여줄 수 있는 S3 함수(plot.rcat_series) 추가
 ### 2015-09-12
-  * igraph를 이용해 R 입력자료에 대한 개념도를 보여주는 함수(plot.rcat_input) 추가
+  * igraph를 이용해 R 입력자료에 대한 개념도를 보여주는 S3 함수(plot.rcat_input) 추가
   
 ### 2015-09-11
   * CAT 모형 입력파일 읽어오는 함수(readCATInput) 추가
