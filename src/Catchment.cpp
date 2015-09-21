@@ -1147,6 +1147,7 @@ int TUrban::LoadText(FILE *fp)
 			Area = nVals[0];
 			slope = nVals[1];
 			Aratio_imp = nVals[2];
+// TODO (hspark#1#): 3번 배열 생략된 것이 의도된 것인지?
 			Aratio_per_plant = nVals[4];
 			depC_imp = nVals[5];
 			depC_per = nVals[6];
@@ -1159,6 +1160,7 @@ int TUrban::LoadText(FILE *fp)
 			soil_th_per = nVals[1];
 			theta_s_per = nVals[2];
 			theta_r_per = nVals[3];
+// TODO (hspark#1#): 인덱스번호 4, 5가 바뀐 것이 의도된 것인지?
 			theta_W_per = nVals[5];
 			theta_FC_per = nVals[4];
 			ks_per = nVals[6];
