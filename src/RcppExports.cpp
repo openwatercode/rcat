@@ -16,6 +16,28 @@ BEGIN_RCPP
     return __result;
 END_RCPP
 }
+// listmodel2listmodel
+List listmodel2listmodel(List input);
+RcppExport SEXP rcat_listmodel2listmodel(SEXP inputSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< List >::type input(inputSEXP);
+    __result = Rcpp::wrap(listmodel2listmodel(input));
+    return __result;
+END_RCPP
+}
+// chekModel
+StringVector chekModel(List input);
+RcppExport SEXP rcat_chekModel(SEXP inputSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< List >::type input(inputSEXP);
+    __result = Rcpp::wrap(chekModel(input));
+    return __result;
+END_RCPP
+}
 // run_cat2
 List run_cat2(List input, CharacterVector filter);
 RcppExport SEXP rcat_run_cat2(SEXP inputSEXP, SEXP filterSEXP) {

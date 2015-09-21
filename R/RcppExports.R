@@ -5,6 +5,14 @@ readInput <- function(input) {
     .Call('rcat_readInput', PACKAGE = 'rcat', input)
 }
 
+listmodel2listmodel <- function(input) {
+    .Call('rcat_listmodel2listmodel', PACKAGE = 'rcat', input)
+}
+
+chekModel <- function(input) {
+    .Call('rcat_chekModel', PACKAGE = 'rcat', input)
+}
+
 run_cat2 <- function(input, filter) {
     .Call('rcat_run_cat2', PACKAGE = 'rcat', input, filter)
 }
