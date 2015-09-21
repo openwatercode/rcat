@@ -27,17 +27,9 @@ readCATInput2 <- function(file, ...)
                  nl <- str_split(l2[x[1]:x[2]], "[ ]*=[ ]*")
                  cls <- paste0("cat_", nl[[1]][2])
                  nl1 <- nl[2:(length(nl) - 1)]
-                 ret <- mapply(function(c, v) {
-                   switch(v[1],
-                    NodeID = as.integer(v[2]),
-                    Name = v[2],
-                    Desc = v[2],
-                    Position = as.integer(comma_split(v[2])),
-                    cat_input_parse(c, v[1], v[2])
-                   )
-                 }, c = cls, v = nl1, SIMPLIFY = F)
+                 ret <- mapply(function(c, v) cat_input_parse(c, v[1], v[2]),
+                               c = cls, v = nl1, SIMPLIFY = F)
                  names(ret) <- unlist(lapply(nl1, function(y) y[1]))
-                 ret$Desc <- ""
                  ret <- plyr::compact(ret)
                  class(ret) <- paste0("cat_", nl[[1]][2])
                  ret
@@ -88,116 +80,156 @@ cat_input_parse <- function(c, k, x) {
 }
 
 getInputNodeType <- function (c, k) {
-  switch(
-    c,
-    cat_Climate = switch(
-      k,
-      Calculation = "numeric",
-      Evaporation = "character",
-      Rainfall = "character"
-    ),
-    cat_WetLand = switch(
-      k,
-      AREA = "numeric",
-      Base = "numeric",
-      EVA = "numeric",
-      Pipe = "numeric",
-      Rainfall = "numeric",
-      RateCount = "integer",
-      Recharge = "integer",
-      VOL = "numeric",
-      WL = "numeric"
-    ),
-    cat_Pond = switch(
-      k,
-      AREA = "numeric",
-      Base = "numeric",
-      EVA = "integer",
-      Intake = "numeric",
-      Offline = "numeric",
-      Pipe = "numeric",
-      Rainfall = "integer",
-      RateCount = "integer",
-      Recharge = "integer",
-      Series = "character",
-      Spill = "numeric",
-      Supply = "integer",
-      VOL = "numeric",
-      WL = "numeric"
-    ),
-    cat_Recycle = switch(k,
-                         Intake = "numeric",
-                         Nodes = "data.frame"),
-    cat_RainTank = switch(
-      k,
-      Series = "character",
-      Supply = "integer",
-      Use = "numeric",
-      Volume = "numeric"
-    ),
-    cat_Infiltro = switch(k,
-                          Aquifer = "numeric",
-                          GWMove = "numeric"),
-    cat_Link = switch(
-      k,
-      Connect = "integer",
-      Cunge = "numeric",
-      Kinematic = "numeric",
-      Method = "integer",
-      Muskingum = "numeric"
-    ),
-    cat_Forest = switch(
-      k,
-      Evaporation = "numeric",
-      GWout = "numeric",
-      Infiltro = "numeric",
-      Intake = "numeric",
-      River = "numeric",
-      Soil = "numeric",
-      Topology = "numeric",
-      Weather = "data.frame"
-    ),
-    cat_Paddy = switch(
-      k,
-      Coefficient = "numeric",
-      Drain = "numeric",
-      Evaporation = "numeric",
-      GWout = "numeric",
-      Intake = "numeric",
-      Irrigation = "integer",
-      River = "numeric",
-      Soil = "numeric",
-      Topology = "numeric",
-      Weather = "data.frame"
-    ),
-    cat_BioRetention = switch(
-      k,
-      Aquifer = "numeric",
-      EVA = "numeric",
-      Evaporation = "numeric",
-      GWMove = "numeric",
-      Rainfall = "numeric"
-    ),
-    cat_Import = switch(
-      k,
-      Constant = "numeric",
-      Leakage = "numeric",
-      Series = "character",
-      Table = "integer",
-      Type = "integer"
-    ),
-    cat_Urban = switch(
-      k,
-      Evaporation = "numeric",
-      GWout = "numeric",
-      Infiltro = "numeric",
-      Intake = "numeric",
-      River = "numeric",
-      Soil = "numeric",
-      Topology = "numeric",
-      Weather = "data.frame"
-    ),
-    NULL
+  switch(k,
+    NodeID = "integer",
+    Name = "character",
+    Desc = "character",
+    switch(
+      c,
+      cat_Junction = switch(
+        k,
+        Position = "integer",
+        NULL
+      ),
+      cat_Outlet = switch(
+        k,
+        Position = "integer",
+        NULL
+      ),
+      cat_Climate = switch(
+        k,
+        Calculation = "numeric",
+        Evaporation = "character",
+        Rainfall = "character",
+        Position = "integer",
+        NULL
+      ),
+      cat_WetLand = switch(
+        k,
+        AREA = "numeric",
+        Base = "numeric",
+        EVA = "numeric",
+        Pipe = "numeric",
+        Rainfall = "numeric",
+        RateCount = "integer",
+        Recharge = "integer",
+        VOL = "numeric",
+        WL = "numeric",
+        Position = "integer",
+        NULL
+      ),
+      cat_Pond = switch(
+        k,
+        AREA = "numeric",
+        Base = "numeric",
+        EVA = "integer",
+        Intake = "numeric",
+        Offline = "numeric",
+        Pipe = "numeric",
+        Rainfall = "integer",
+        RateCount = "integer",
+        Recharge = "integer",
+        Series = "character",
+        Spill = "numeric",
+        Supply = "integer",
+        VOL = "numeric",
+        WL = "numeric",
+        Position = "integer",
+        NULL
+      ),
+      cat_Recycle = switch(k,
+        Intake = "numeric",
+        Nodes = "data.frame",
+        Position = "integer",
+        NULL
+      ),
+      cat_RainTank = switch(
+        k,
+        Series = "character",
+        Supply = "integer",
+        Use = "numeric",
+        Volume = "numeric",
+        Position = "integer",
+        NULL
+      ),
+      cat_Infiltro = switch(k,
+        Aquifer = "numeric",
+        GWMove = "numeric",
+        Position = "integer",
+        NULL
+      ),
+      cat_Link = switch(
+        k,
+        Connect = "integer",
+        Cunge = "numeric",
+        Kinematic = "numeric",
+        Method = "integer",
+        Muskingum = "numeric",
+        NULL
+      ),
+      cat_Forest = switch(
+        k,
+        Evaporation = "numeric",
+        GWout = "numeric",
+        Infiltro = "numeric",
+        Intake = "numeric",
+        River = "numeric",
+        Soil = "numeric",
+        Topology = "numeric",
+        Weather = "data.frame",
+        Position = "integer",
+        NULL
+      ),
+      cat_Paddy = switch(
+        k,
+        Coefficient = "numeric",
+        Drain = "numeric",
+        Evaporation = "numeric",
+        GWout = "numeric",
+        Intake = "numeric",
+        Irrigation = "integer",
+        River = "numeric",
+        Soil = "numeric",
+        Topology = "numeric",
+        Weather = "data.frame",
+        Position = "integer",
+        NULL
+      ),
+      cat_BioRetention = switch(
+        k,
+        Aquifer = "numeric",
+        EVA = "numeric",
+        Evaporation = "numeric",
+        GWMove = "numeric",
+        Rainfall = "numeric",
+        Position = "integer",
+        NULL
+      ),
+      cat_Import = switch(
+        k,
+        Constant = "numeric",
+        Leakage = "numeric",
+        Series = "character",
+        Table = "integer",
+        Type = "integer",
+        Position = "integer",
+        NULL
+      ),
+      cat_Urban = switch(
+        k,
+        Evaporation = "numeric",
+        GWout = "numeric",
+        Infiltro = "numeric",
+        Intake = "numeric",
+        River = "numeric",
+        Soil = "numeric",
+        Topology = "numeric",
+        Weather = "data.frame",
+        Position = "integer",
+        NULL
+      ),
+      NULL
+    )
   )
 }
 

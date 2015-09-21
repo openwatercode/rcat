@@ -18,9 +18,9 @@ plot.rcat_input <- function(x)
 {
   #Nodes <- x
   links.no <- which(unlist(lapply(x, function(x) class(x)[1])) == "cat_Link")
-  clims.no <- which(unlist(lapply(x, function(x) class(x)[1])) == "cat_Climate")
+  #clims.no <- which(unlist(lapply(x, function(x) class(x)[1])) == "cat_Climate")
   outlet.no <- which(unlist(lapply(x, function(x) class(x)[1])) == "cat_Outlet")
-  nodes <- x[-c(links.no, clims.no)]
+  nodes <- x[-c(links.no)] #, clims.no)]
   links <- x[links.no]
   nntab <- 1:length(nodes)
   nctab <- c(cat_Junction = "gray",
