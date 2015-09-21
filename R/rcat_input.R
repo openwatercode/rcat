@@ -55,3 +55,43 @@ print.rcat_input <- function(x, ...)
   y
 }
 
+#' @encoding UTF-8
+#' @export
+StartTime <- function(x) UseMethod("StartTime")
+
+#' StartTime.rcat_input: get rcat_input StartTime
+#'
+#' \code{\link{rcat_input}} 클래스의 StartTime 속성을 가져온다.
+#' @param x \code{\link{rcat_input}} 클래스의 변수
+#' @return \code{\link{POSIXt}} 형태의 시간 변수
+#' @author 박희성 \email{hspark90@@i-fam.net}
+#' @encoding UTF-8
+#' @export
+StartTime.rcat_input <- function(x)
+{
+  do.call("ISOdatetime", as.list(c(attr(x, "StartTime"), 0)))
+}
+
+
+#' @encoding UTF-8
+#' @export
+`StartTime<-` <- function(x, value) UseMethod("StartTime<-")
+
+#' StartTime.rcat_input: set rcat_input StartTime
+#'
+#' \code{\link{rcat_input}} 클래스의 StartTime 속성을 가져온다.
+#' @param x \code{\link{rcat_input}} 클래스의 변수
+#' @param value \code{\link{POSIXt}} 클래스의 변수
+#' @return \code{\link{ract_input}} 형태의 시간 변수
+#' @author 박희성 \email{hspark90@@i-fam.net}
+#' @encoding UTF-8
+#' @export
+`StartTime<-.rcat_input` <- function(x, value)
+{
+  if(is.timeBased(value))
+  {
+    t <- as.POSIXlt(value)
+    attr(x, "StartTime") <- c(1900 + t$year, 1 + t$mon, t$mday, t$hour, t$min)
+    x
+  }
+}
