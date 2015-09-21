@@ -14,7 +14,7 @@
 #' plot(iseri[[1]])
 plot.rcat_series <- function(x, ...)
 {
-  plot_type = getNodeType(x)
+  plot_type = getOutputNodeType(x)
 
   bak <- par("mfrow")
   st <- do.call("ISOdatetime", as.list(c(attr(x, "StartTime"), 0)))
@@ -196,7 +196,7 @@ plot.rcat_series <- function(x, ...)
   par(mfrow = bak)
 }
 
-getNodeType <- function (x) {
+getOutputNodeType <- function (x) {
   names(which(sapply(reflst[which(sapply(reflst, length) == length(x))],
                      function(y) all(y == names(x)))))
 }

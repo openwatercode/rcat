@@ -55,7 +55,40 @@ readCATInput2 <- function(file, ...)
 comma_split <- function(x) str_trim(str_split(x, ",")[[1]])
 
 cat_input_parse <- function(c, k, x) {
-  type <- switch(
+  if(is.null(type <- getInputNodeType(c, k)))
+    return(NULL);
+  r <- switch(
+    type,
+    character = x,
+    integer = as.integer(comma_split(x)),
+    numeric = as.numeric(comma_split(x)),
+    data.frame = switch(k,
+                        Nodes = {
+                          df <- parse2df(x)
+                          colnames(df) <- c("nID", "nRain")
+                          df$nID <- as.integer(df$nID)
+                          df$nRain <- as.numeric(df$nRain)
+                          df
+                        },
+                        Weather = {
+                          df <- parse2df(x)
+                          colnames(df) <-
+                            c("nID", "nRain", "nEva")
+                          df$nID <- as.integer(df$nID)
+                          df$nRain <- as.numeric(df$nRain)
+                          df$nEva <- as.numeric(df$nEva)
+                          df
+                        },
+                        x)
+  )
+  if ((length(r) == 1 && is.na(r)) || is.null(r))
+    x
+  else
+    r
+}
+
+getInputNodeType <- function (c, k) {
+  switch(
     c,
     cat_Climate = switch(
       k,
@@ -166,37 +199,6 @@ cat_input_parse <- function(c, k, x) {
     ),
     NULL
   )
-
-  if(is.null(type)) return(NULL);
-
-  r <- switch(
-    type,
-    character = x,
-    integer = as.integer(comma_split(x)),
-    numeric = as.numeric(comma_split(x)),
-    data.frame = switch(k,
-                        Nodes = {
-                          df <- parse2df(x)
-                          colnames(df) <- c("nID", "nRain")
-                          df$nID <- as.integer(df$nID)
-                          df$nRain <- as.numeric(df$nRain)
-                          df
-                        },
-                        Weather = {
-                          df <- parse2df(x)
-                          colnames(df) <-
-                            c("nID", "nRain", "nEva")
-                          df$nID <- as.integer(df$nID)
-                          df$nRain <- as.numeric(df$nRain)
-                          df$nEva <- as.numeric(df$nEva)
-                          df
-                        },
-                        x)
-  )
-  if ((length(r) == 1 && is.na(r)) || is.null(r))
-    x
-  else
-    r
 }
 
 parse2df <- function(x)
