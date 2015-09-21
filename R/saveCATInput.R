@@ -13,8 +13,14 @@ saveCATInput <- function(x, file)
   hs_vcat("Version", attr(x, "Version"), file = f)
   cat("\n", file = f)
   hs_vcat("Title", attr(x, "Title"), file = f)
-  hs_vcat("StartTime", attr(x, "StartTime"), file = f)
-  hs_vcat("EndTime", attr(x, "EndTime"), file = f)
+  starr <- attr(x, "StartTime")
+  hs_vcat("StartTime", c(formatC(starr[1], width = 4, flag = "0"),
+                         formatC(starr[-1], width = 2, flag = "0")),
+          file = f)
+  etarr <- attr(x, "EndTime")
+  hs_vcat("EndTime", c(formatC(etarr[1], width = 4, flag = "0"),
+                       formatC(etarr[-1], width = 2, flag = "0")),
+          file = f)
   hs_vcat("Parameter", attr(x, "Parameter"), file = f)
   rng <- attr(x, "Range")
   len <- length(x)
@@ -65,14 +71,15 @@ save_node <- function(x, file)
 
 hs_vcat <- function(key, x = NULL, ...)
 {
-  cat(key, ...)
-  if(!is.null(x)) cat(" = ", ...)
-  switch(class(x),
-    character = cat(do.call("paste", append(as.list(x), list(sep = ", "))), ...),
-    integer = cat(do.call("paste", append(as.list(x), list(sep = ", "))), ...),
-    numeric = cat(do.call("paste", append(as.list(x), list(sep = ", "))), ...),
+  s <- switch(class(x),
+    character = do.call("paste", append(as.list(x), list(sep = ", "))),
+    integer = do.call("paste", append(as.list(x), list(sep = ", "))),
+    numeric = do.call("paste", append(as.list(x), list(sep = ", "))),
     NULL
   )
+  cat(key, ...)
+  if(!is.null(x)) cat(" =", ...)
+  if(!is.null(s) && nchar(s) != 0) { cat(" ", ...); cat(s, ...) }
   cat("\n", ...)
 #  if(!is.null(x))
 #    cat(do.call("sprintf", append(paste0(key, " = ", format, "\n"),
