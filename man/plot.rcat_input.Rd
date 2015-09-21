@@ -15,8 +15,10 @@
 \examples{
 download.file("http://r.prj.kr/data/rcat/rcat_ex.zip", "rcat_ex.zip")
 unzip("rcat_ex.zip")
-model <- readCATInput("dist_101208.txt")
-plot(model)
+model1 <- readCATInput("dist_101208.txt")
+plot(model1)
+model2 <- readCATInput2("dist_101208.txt")
+plot(model2)
 }
 \author{
 박희성 \email{hspark90@i-fam.net}

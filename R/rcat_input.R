@@ -11,8 +11,8 @@ NULL
 #' print.rcat_input: print rcat_input contents
 #'
 #' \code{\link{rcat_input}} 클래스 자료의 간단한 내용을 보여주는 함수
-#' @param x \code{\link{rcat_serieses}} 클래스의 변수
-#' @return \code{\link{rcat_serieses}} 형태의 자료
+#' @param x \code{\link{rcat_input}} 클래스의 변수
+#' @return \code{\link{rcat_input}} 형태의 자료
 #' @author 박희성 \email{hspark90@@i-fam.net}
 #' @encoding UTF-8
 #' @export

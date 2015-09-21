@@ -7,10 +7,10 @@
 \method{print}{rcat_input}(x, ...)
 }
 \arguments{
-\item{x}{\code{\link{rcat_serieses}} 클래스의 변수}
+\item{x}{\code{\link{rcat_input}} 클래스의 변수}
 }
 \value{
-\code{\link{rcat_serieses}} 형태의 자료
+\code{\link{rcat_input}} 형태의 자료
 }
 \description{
 \code{\link{rcat_input}} 클래스 자료의 간단한 내용을 보여주는 함수
