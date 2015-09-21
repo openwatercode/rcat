@@ -20,3 +20,4 @@ climate3.txt
 dist_101208.out
 dist_101208.txt
 *.layout
+*.depend
