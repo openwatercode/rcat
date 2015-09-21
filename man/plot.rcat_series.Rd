@@ -4,7 +4,7 @@
 \alias{plot.rcat_series}
 \title{plot.rcat_series: plot the rcat_series}
 \usage{
-\method{plot}{rcat_series}(x, ...)
+plot.rcat_series(x, ...)
 }
 \arguments{
 \item{x}{rcat 모형에서 사용하는 "rcat_series" 클래스의 변수}

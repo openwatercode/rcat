@@ -4,7 +4,7 @@
 \alias{plot.rcat_input}
 \title{plot.rcat_input: plot the sechmatic view of CAT model}
 \usage{
-\method{plot}{rcat_input}(x)
+plot.rcat_input(x)
 }
 \arguments{
 \item{x}{rcat 모형에서 사용하는 "rcat_input" 클래스의 변수}
