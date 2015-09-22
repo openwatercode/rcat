@@ -38,6 +38,7 @@ readCATInput <- function(file, ...)
          function(x) attr(n1, x[1]) <<- switch(x[1],
                           Version = x[2],
                           Title = x[2],
+                          Background = x[2],
                           as.integer(comma_split(x[2]))))
   names(n1) <- 1:length(n1)
   class(n1) <- "rcat_input"
