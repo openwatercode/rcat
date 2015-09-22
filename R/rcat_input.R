@@ -8,6 +8,16 @@
 #' @keywords class
 NULL
 
+#' is.rcat_input
+#'
+#' \code{\link{rcat_input}} 클래스인지 아닌지 알려주는 함수
+#' @param x \code{\link{rcat_input}} 클래스인지 확인 하고자하는 임의의 변수
+#' @return \code{\link{rcat_input}} 클래스 자료여부를 알려주는 \code{\link{logical}} 변수
+#' @author 박희성 \email{hspark90@@i-fam.net}
+#' @encoding UTF-8
+#' @export
+is.rcat_input <- function(x) inherits(x, "rcat_input")
+
 #' print.rcat_input: print rcat_input contents
 #'
 #' \code{\link{rcat_input}} 클래스 자료의 간단한 내용을 보여주는 함수

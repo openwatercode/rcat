@@ -8,6 +8,16 @@
 #' @keywords class
 NULL
 
+#' is.rcat_serieses
+#'
+#' \code{\link{rcat_serieses}} 클래스인지 아닌지 알려주는 함수
+#' @param x \code{\link{rcat_serieses}} 클래스인지 확인 하고자하는 임의의 변수
+#' @return \code{\link{rcat_serieses}} 클래스 자료여부를 알려주는 \code{\link{logical}} 변수
+#' @author 박희성 \email{hspark90@@i-fam.net}
+#' @encoding UTF-8
+#' @export
+is.rcat_serieses <- function(x) inherits(x, "rcat_serieses")
+
 
 #' print.rcat_serieses: print rcat_serieses contents
 #'
