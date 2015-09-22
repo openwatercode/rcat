@@ -27,14 +27,14 @@ BEGIN_RCPP
     return __result;
 END_RCPP
 }
-// chekModel
-StringVector chekModel(List input);
-RcppExport SEXP rcat_chekModel(SEXP inputSEXP) {
+// checkModel
+StringVector checkModel(List input);
+RcppExport SEXP rcat_checkModel(SEXP inputSEXP) {
 BEGIN_RCPP
     Rcpp::RObject __result;
     Rcpp::RNGScope __rngScope;
     Rcpp::traits::input_parameter< List >::type input(inputSEXP);
-    __result = Rcpp::wrap(chekModel(input));
+    __result = Rcpp::wrap(checkModel(input));
     return __result;
 END_RCPP
 }

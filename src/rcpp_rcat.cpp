@@ -1421,7 +1421,7 @@ List listmodel2listmodel(List input)
 }
 
 // [[Rcpp::export]]
-StringVector chekModel(List input)
+StringVector checkModel(List input)
 {
     List ret;
     TModelManager *model = List2Model(input);
