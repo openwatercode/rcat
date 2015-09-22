@@ -192,10 +192,11 @@ DataFrame TSeries2DataFrame(TSeries *sr, int nCount, int nFieldNos[])
                                               dt.GetHour(), dt.GetMinute());
 	    val.attr("Interval") = IntegerVector::create(item->m_Header.nInterval);
 	    val.attr("DataType") = IntegerVector::create(item->m_Header.nData);
+	    val.attr("class") = StringVector::create("rcat_seriesItem", "numeric");
 	    //val.attr("nFields[nCol]") = IntegerVector::create(nFields[nCol]);
 	    //item->m_Header.szHeader: 컬럼 이름으로 대체
 	    //item->m_Header.nCount: 컬럼자료의 길이로 대체
-        rdf[string(item->m_Header.szHeader)] = val;
+      rdf[string(item->m_Header.szHeader)] = val;
 	}
 	rdf.attr("row.names") = seq(1, rowCount);
     dt.SetDate(sr->m_Header.nTime);
@@ -240,7 +241,7 @@ List TSerieses2List(TSerieses *sr, char *szFields)
     ret.attr("Interval") = IntegerVector::create(sr->m_Header.nInterval);
     ret.attr("Description") = StringVector::create(string(sr->m_Header.szDescript));
     ret.attr("Name") = StringVector::create(string(sr->m_Header.szName));
-	ret.attr("class") = StringVector::create("rcat_serieses", "list");
+	ret.attr("class") = StringVector::create("rcat_serieses");
 	return ret;
 }
 
@@ -1447,9 +1448,10 @@ List run_cat2(List input, CharacterVector filter)
     {
         model->Calculate(FALSE);
         TSerieses *result = model->GetResult();
+
         ret = List::create(_["ErrCount"] = chkn,
                             _["ErrMsgs"] = StringVector::create(msg),
-                            _["CAT_INPUT"] = Model2List(model),
+                            //_["CAT_INPUT"] = Model2List(model),
                             _["CAT_RESULT"] = TSerieses2List(result, (char *)filter(0)));
         TSeriesClear(result);
     }
