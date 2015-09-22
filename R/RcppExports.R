@@ -9,8 +9,8 @@ listmodel2listmodel <- function(input) {
     .Call('rcat_listmodel2listmodel', PACKAGE = 'rcat', input)
 }
 
-chekModel <- function(input) {
-    .Call('rcat_chekModel', PACKAGE = 'rcat', input)
+checkModel <- function(input) {
+    .Call('rcat_checkModel', PACKAGE = 'rcat', input)
 }
 
 run_cat2 <- function(input, filter) {
