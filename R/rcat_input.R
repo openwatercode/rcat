@@ -66,6 +66,7 @@ StartTime <- function(x) UseMethod("StartTime")
 #' @return \code{\link{POSIXt}} 형태의 시간 변수
 #' @author 박희성 \email{hspark90@@i-fam.net}
 #' @encoding UTF-8
+#' @method StartTime rcat_input
 #' @export
 StartTime.rcat_input <- function(x)
 {
