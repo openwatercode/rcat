@@ -4,7 +4,7 @@
 \alias{+.rcat_serieses}
 \title{+.rcat_serieses: connect two rcat_serieses}
 \usage{
-\method{+}{rcat_serieses}(e1, e2)
+\method{+}{rcat_serieses}(e1, e2, ...)
 }
 \arguments{
 \item{e1}{\code{\link{rcat_serieses}} 클래스의 변수}

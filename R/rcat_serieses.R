@@ -66,9 +66,9 @@ print.rcat_serieses <- function(x, ...)
 #' @author 박희성 \email{hspark90@@i-fam.net}
 #' @encoding UTF-8
 #' @export
-`+.rcat_serieses` <- function(e1, e2)
+`+.rcat_serieses` <- function(e1, e2, ...)
 {
-  if(!inherits(e2, "rcat_serieses"))
+  if(!is.rcat_serieses(e2))
     stop(sprintf("'%s' is not rcat_serieses class!!", deparse(substitute(e2))))
   if (any(attr(e1, "StartTime") != attr(e2, "StartTime")))
     stop("StartTime must be the same!!")
@@ -86,13 +86,34 @@ print.rcat_serieses <- function(x, ...)
     n2 <- paste0(n2, "2")
   }
   r <- c(e1, e2)
-  attr(r, "StartTime") <- attr(e1, "StartTime")
-  attr(r, "Interval") <- attr(e1, "Interval")
-  attr(r, "Name") <- paste(n1, n2, sep = ".")
-  attr(r, "Description") <-
-    paste(attr(e1, "Description"), attr(e2, "Description"), sep = ",")
-  names(r) <-
-    c(paste(n1, names(e1), sep = "."), paste(n2, names(e2), sep = "."))
-  class(r) <- class(e1)
-  r
+  structure(r,
+            StartTime = attr(e1, "StartTime"),
+            Interval = attr(e1, "Interval"),
+            Name = paste(n1, n2, sep = "."),
+            Description = paste(attr(e1, "Description"),
+                                attr(e2, "Description"), sep = ","),
+            names = c(paste(n1, names(e1), sep = "."),
+                      paste(n2, names(e2), sep = ".")),
+            class = class(e1))
 }
+
+
+#' c.rcat_serieses: combine rcat_serieses
+#'
+#' \code{\link{rcat_serieses}} 클래스 자료를 더해 하나로 만드는 함수
+#' @param ...
+#' @return \code{\link{rcat_serieses}} 형태의 자료
+#' @author 박희성 \email{hspark90@@i-fam.net}
+#' @encoding UTF-8
+#' @export
+`c.rcat_serieses` <- function(...)
+{
+  structure(do.call("c", lapply(list(...), function(x) structure(x, class = "list"))),
+            StartTime = attr(..1, "StartTime"),
+            Interval = attr(..1, "Interval"),
+            Name = attr(..1, "Name"),
+            Description = attr(..1, "Description"),
+            names = unlist(lapply(list(...), names)),
+            class = class(..1))
+}
+

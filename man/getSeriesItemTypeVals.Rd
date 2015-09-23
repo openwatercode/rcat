@@ -2,20 +2,57 @@
 \encoding{UTF-8}
 \name{getSeriesItemTypeVals}
 \alias{getSeriesItemTypeVals}
-\title{getSeriesItemTypeVals: convert seriesItem type string to seriesItem type number.}
+\title{getSeriesItemTypeVals: get seriesItem type numbers.}
 \usage{
-getSeriesItemTypeVals(type_strs)
+getSeriesItemTypeVals(precip, eva, rhumi, solar, tempavg, wind, user, tempmin,
+  tempmax, evacalc, date, observe)
 }
 \arguments{
-\item{type_str}{seriesItemType을 구분하는 문자열 배열}
+\item{precip}{강우에 대한 컬럼 번호}
+
+\item{eva}{증발산에 대한 컬럼 번호}
+
+\item{rhumi}{상대습도에 대한 컬럼 번호}
+
+\item{solar}{일조시간에 대한 컬럼 번호}
+
+\item{tempavg}{평균기온에 대한 컬럼 번호}
+
+\item{wind}{평균풍속에 대한 컬럼 번호}
+
+\item{user}{사용자 데이터에 대한 컬럼 번호}
+
+\item{tempmin}{최저기온에 대한 컬럼 번호}
+
+\item{tempmax}{최고기온에 대한 컬럼 번호}
+
+\item{evacalc}{계산된 증발산에 대한 컬럼 번호}
+
+\item{date}{날짜에 대한 컬럼 번호}
+
+\item{observe}{관측값에 대한 컬럼 번호}
 }
 \value{
-주어진 seriesItemType에 해당하는 정수
+주어진 seriesItemType에 해당하는 정수 배열
 }
 \description{
-getSeriesItemTypeVals: convert seriesItem type string to seriesItem type number.
+series의 각 컬럼에 대한 seriesItem의 번호를 얻어오는 함수로서
+\code{\link{as.rcat_series}}함수의 매개변수를 구하는데 사용됩니다.
+}
+\details{
+각 변수별로 해당 컬럼의 번호를 입력하고 각 컬럼의 번호는 중복되면 안됩니다.
+
+컬럼의 번호는 배열을 사용할 수 없으며 배열을 사용하면 해당 배열을 첫번째
+숫자만 인식됩니다.
+즉, 변수들은 테이블 상에 1회씩만 포함될 수 있음에 유의해야합니다.
+}
+\examples{
+getSeriesItemTypeVals(precip = 1, tempavg = 2, rhumi = 3, wind = 4, solar = 5)
 }
 \author{
 박희성 \email{hspark90@i-fam.net}
+}
+\seealso{
+\code{\link{as.rcat_series}}
 }
 
