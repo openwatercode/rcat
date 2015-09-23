@@ -21,5 +21,8 @@ writeBinCATSerieses <- function(x, filename)
     stop("filename must be needed!")
   if(!(any(class(x) == "rcat_serieses")))
     stop("Error: x is not 'rcat_serieses' object!!")
+  if(length(attr(x, "Name")) == 0) attr(x, "Name") <- ""
+  if(length(attr(x, "Description")) == 0) attr(x, "Description") <- ""
+  if(length(attr(x, "names")) == 0) attr(x, "names") <- rep("", length(x))
   invisible(write_cat_serieses(path.expand(filename[1]), x))
 }
