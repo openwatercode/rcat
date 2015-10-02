@@ -374,8 +374,8 @@ List Model2List(TModelManager *model)
                                                        tn->soil_th_per,
                                                        tn->theta_s_per,
                                                        tn->theta_r_per,
-                                                       tn->theta_FC_per,
                                                        tn->theta_W_per,
+                                                       tn->theta_FC_per,
                                                        tn->ks_per,
                                                        tn->ksi_per,
                                                        tn->n_mualem);
@@ -801,7 +801,7 @@ TModelManager *List2Model(List ml)
                     pn->Area = nv.length() > 0 ? nv[0] : 0;
                     pn->slope = nv.length() > 1 ? nv[1] : 0;
                     pn->Aratio_imp = nv.length() > 2 ? nv[2] : 0;
-                    //pn->Aratio_per = nv.length() > 3 ? nv[3] : 0;
+                    pn->Aratio_per = nv.length() > 3 ? nv[3] : 0;
                     pn->Aratio_per_plant = nv.length() > 4 ? nv[4] : 0;
                     pn->depC_imp = nv.length() > 5 ? nv[5] : 0;
                     pn->depC_per = nv.length() > 6 ? nv[6]: 0;
@@ -813,8 +813,8 @@ TModelManager *List2Model(List ml)
                     pn->soil_th_per = nv.length() > 1 ? nv[1] : 0;
                     pn->theta_s_per = nv.length() > 2 ? nv[2] : 0;
                     pn->theta_r_per = nv.length() > 3 ? nv[3] : 0;
-                    pn->theta_W_per = nv.length() > 5 ? nv[5] : 0;
-                    pn->theta_FC_per = nv.length() > 4 ? nv[4] : 0;
+                    pn->theta_W_per = nv.length() > 4 ? nv[4] : 0;
+                    pn->theta_FC_per = nv.length() > 5 ? nv[5] : 0;
                     pn->ks_per = nv.length() > 6 ? nv[6] : 0;
                     pn->ksi_per = nv.length() > 7 ? nv[7] : 0;
                     pn->n_mualem = nv.length() > 8 ? nv[8] : 0;
