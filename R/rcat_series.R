@@ -91,7 +91,7 @@ getSeriesItemTypeVals   <-
     stop("Error: numbers should not be duplicated!!")
   i <- t > 0
   v <- (2^(0:11))[i]
-  v[order(t[i])]
+  as.integer(v[order(t[i])])
 }
 
 #' as.rcat_series: convert  a object to rcat_series
