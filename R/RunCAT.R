@@ -126,7 +126,20 @@
 RunCAT <- function(infile, outfile, format = "[*:*]")
 {
   if (missing(infile))
-    stop("File Missing!")
+    stop("File or InputData Missing!")
+  if (is.rcat_input(infile)) {
+    ret <-
+      run_cat2(infile, format)
+    msg <- ret[["ErrMsgs"]]
+    wmsg <- unlist(strsplit(msg, "\r\n"))
+    if(length(wmsg) > 0)
+      for (i in 1:length(wmsg))
+        warning(wmsg[i])
+    r <- ret[["CAT_RESULT"]]
+    for(i in 1:length(r))
+      if(!is.null(colnames(r[[i]]))) Encoding(colnames(r[[i]])) <- "UTF-8"
+    return(r)
+  }
   if (!file.exists(infile))
     stop(sprintf("%s does not exists!", infile))
   if (missing(outfile)) {
