@@ -4,7 +4,7 @@
 \alias{plot.rcat_seriesItem}
 \title{plot.rcat_seriesItem: plot the rcat_seriesItem}
 \usage{
-plot.rcat_seriesItem(x, type = "l", xlab = "Time",
+\method{plot}{rcat_seriesItem}(x, type = "l", xlab = "Time",
   ylab = deparse(substitute(x)), main = deparse(substitute(x)), ...)
 }
 \arguments{
