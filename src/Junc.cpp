@@ -30,7 +30,7 @@ void TJunc::Init(void)
 	flow_drain = 0;
 }
 
-void TJunc::InitResult(unsigned long nTime, int nInterval, int nCount)
+void TJunc::InitResult(ULONG nTime, int nInterval, int nCount)
 {
 	const char* pszJunkHeader[] = {"flow_total(㎥/s)", "flow_sf(㎥/s)", "flow_inter(㎥/s)", "flow_gw(㎥/s)", "flow_drain(㎥/s)"};
 

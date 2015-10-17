@@ -230,7 +230,7 @@ void TUrban::Init(void)
 	Ke = ks_per / 2;
 }
 
-void TUrban::InitResult(unsigned long nTime, int nInterval, int nCount)
+void TUrban::InitResult(ULONG nTime, int nInterval, int nCount)
 {
 	const char* pszItemHeader[] = {"Inflow(㎥)", "Rainfall(mm)", "Actual Evapotranspiration(mm)", "Potential Evapotranspiration(mm)", "Flow_Surface(mm)",
 				"Flow_Inter(mm)", "Flow_Groundwater(mm)", "Flow_Total(mm)", "Infiltrate(mm)", "Recharge(mm)", "Groundwater Movement(mm)",
@@ -763,7 +763,7 @@ void TPaddy::Init(void)
 	flow_pipe = 0;
 }
 
-void TPaddy::InitResult(unsigned long nTime, int nInterval, int nCount)
+void TPaddy::InitResult(ULONG nTime, int nInterval, int nCount)
 {
 	const char* pszItemHeader[] = {"Inflow(㎥)", "Rainfall(mm)", "Actual Evapotranspiration(mm)", "Potential Evapotranspiration(mm)", "Flow_Surface(mm)",
 									"Flow_Inter(mm)", "Flow_Groundwater(mm)", "Surf Drainage Culvert(mm)", "Surf Drainage Pipe(mm)", "Flow_Total(mm)",

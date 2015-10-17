@@ -31,7 +31,7 @@ public:
 	* @brief 시계열 자표 파일이 설정되어 있고, 유출 형태가 시계열인경우 자료를 읽는다.
 	*/
 	void LoadSeries(void);
-	void InitResult(unsigned long nTime, int nInterval, int nCount);
+	void InitResult(ULONG nTime, int nInterval, int nCount);
 	int IsBalance() {return 0;}
 	virtual int LoadText(FILE *fp);
 
@@ -83,7 +83,7 @@ public:
 	void Init(void);
 //	void AddValue(int nIndex, float nSf, float nGW, float nInter, float nTotal);
 //	void CalcGWMove(void);
-	void InitResult(unsigned long nTime, int nInterval, int nCount);
+	void InitResult(ULONG nTime, int nInterval, int nCount);
 	virtual float GetArea() {return area;};
 	int IsBalance() {return 2;};
 	virtual int LoadText(FILE *fp);
@@ -135,7 +135,7 @@ public:
 	void Calculate(int nStep);
 	void Clear(void);
 	void Init(void);
-	void InitResult(unsigned long nTime, int nInterval, int nCount);
+	void InitResult(ULONG nTime, int nInterval, int nCount);
 	int IsBalance() {return 2;};
 	virtual int LoadText(FILE *fp);
 
@@ -174,7 +174,7 @@ public:
 	void Calculate(int nStep);
 	void Clear(void);
 	void Init(void);
-	void InitResult(unsigned long nTime, int nInterval, int nCount);
+	void InitResult(ULONG nTime, int nInterval, int nCount);
 	/**
 	* @brief 저류지의 가능량을 계산하고 유출량을 계산한다.
 	* @param in_vol : 유입량
@@ -257,7 +257,7 @@ public:
 	void Calculate(int nStep);
 	void Init(void);
 	void Clear(void);
-	void InitResult(unsigned long nTime, int nInterval, int nCount);
+	void InitResult(ULONG nTime, int nInterval, int nCount);
 	/**
 	* @brief 취수량 시계열 자료 파일을 지정한다.
 	* @param szFile : 취수량이 저장된 시계열 자료 파일명
@@ -440,7 +440,7 @@ public:
 	void Clear(void);
 	void Init(void);
 //	void AddValue(int nIndex, float nSf, float nGW, float nInter, float nTotal);
-	void InitResult(unsigned long nTime, int nInterval, int nCount);
+	void InitResult(ULONG nTime, int nInterval, int nCount);
 	int IsBalance() {return 2;};
 	virtual int LoadText(FILE *fp);
 
@@ -496,7 +496,7 @@ public:
 	void Calculate(int nStep);
 	void Clear(void);
 	void Init(void);
-	void InitResult(unsigned long nTime, int nInterval, int nCount);
+	void InitResult(ULONG nTime, int nInterval, int nCount);
 	int IsBalance() {return 2;};
 	virtual int LoadText(FILE *fp);
 

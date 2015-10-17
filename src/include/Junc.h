@@ -15,7 +15,7 @@ public:
 
 public:
 	virtual void operator =(TBaseNode &node);
-	void InitResult(unsigned long nTime, int nInterval, int nCount);
+	void InitResult(ULONG nTime, int nInterval, int nCount);
 	void Calculate(int nStep);
 	void Init(void);
 	void Clear(void);

@@ -144,7 +144,7 @@ void TLink::Init(void)
 	}
 }
 
-void TLink::InitResult(unsigned long nTime, int nInterval, int nCount)
+void TLink::InitResult(ULONG nTime, int nInterval, int nCount)
 {
 	const char* pszLinkHeader[] = {"flow_in(㎥/s)", "flow_out(㎥/s)"};
 

@@ -1583,7 +1583,14 @@ SEXP write_cat_serieses(StringVector filename, List data) {
 // [[Rcpp::export]]
 SEXP rcat_load()
 {
-    return IntegerVector::create(0);
+    return IntegerVector::create(_["BYTE"] = sizeof(BYTE),
+                                 _["WORD"] = sizeof(WORD),
+                                 _["DWORD"] = sizeof(DWORD),
+                                 _["short"] = sizeof(short),
+                                 _["int"] = sizeof(int),
+                                 _["long"] = sizeof(long),
+                                 _["float"] = sizeof(float),
+                                 _["double"] = sizeof(double));
 }
 
 // You can include R code blocks in C++ files processed with sourceCpp

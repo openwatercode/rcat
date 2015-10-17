@@ -18,7 +18,7 @@ public:
 	TBaseNode* GetEnd() {return m_pEnd;};
 	BOOL SetNode(TBaseNode* pStart, TBaseNode* pEnd);
 	virtual void operator =(TBaseNode &node);
-	void InitResult(unsigned long nTime, int nInterval, int nCount);
+	void InitResult(ULONG nTime, int nInterval, int nCount);
 	int IsBalance(void) {return 0;};
 	virtual int LoadText(FILE* fp);
 

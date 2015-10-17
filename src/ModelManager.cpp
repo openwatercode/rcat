@@ -143,7 +143,7 @@ void TModelManager::SetRouteOrder(void)
 int TModelManager::Calculate(BOOL bThread)
 {
 	m_nInterval = m_nDT / 60;
-	unsigned long nStartTime, nEndTime;
+	ULONG nStartTime, nEndTime;
 
 	m_bStop = FALSE;
 	if(m_nInterval < 60)
@@ -192,7 +192,7 @@ DWORD TModelManager::CalculateNode(LPVOID pData)
 {
 	int nIndex;
 	TModelManager *pMan = (TModelManager*)pData;
-	unsigned long nTime = TDate::GetMinutes(pMan->m_dtStart);
+	ULONG nTime = TDate::GetMinutes(pMan->m_dtStart);
 
 	pMan->m_Date = nTime;
 
@@ -274,8 +274,8 @@ int TModelManager::SetModelData(void)
 	int nIndex, nCount = GetCount();
 	int nUrban = 0, nJunc = 0, nImport = 0;
 	int nMaxRec = 0;
-	unsigned long nStartTime = TDate::GetMinutes(m_dtStart);
-	unsigned long nEndTime = nStartTime + m_nInterval * m_nTimes;
+	ULONG nStartTime = TDate::GetMinutes(m_dtStart);
+	ULONG nEndTime = nStartTime + m_nInterval * m_nTimes;
 
 	m_Result.Clear();
 
@@ -438,7 +438,7 @@ void TModelManager::SetClimateData(TCatchment *pCatch)
 	TSeries* pClimate = &(pCatch->m_sClimate);
 	TSeriesItem *pPrecip, *pEva;
 	int nClimate, nIndex;
-	unsigned long nTime = TDate::ToMinute(m_dtStart.nYear, m_dtStart.nMonth, m_dtStart.nDay, m_dtStart.nHour, m_dtStart.nMinute);
+	ULONG nTime = TDate::ToMinute(m_dtStart.nYear, m_dtStart.nMonth, m_dtStart.nDay, m_dtStart.nHour, m_dtStart.nMinute);
 
 	pClimate->Clear();
 
@@ -498,7 +498,7 @@ void TModelManager::SetClimateData(TPond *pPond)
 	TSeries* pClimate = &(pPond->m_sClimate);
 	TSeriesItem *pPrecip, *pEva;
 	int nClimate, nIndex;
-	unsigned long nTime = TDate::ToMinute(m_dtStart.nYear, m_dtStart.nMonth, m_dtStart.nDay, m_dtStart.nHour, m_dtStart.nMinute);
+	ULONG nTime = TDate::ToMinute(m_dtStart.nYear, m_dtStart.nMonth, m_dtStart.nDay, m_dtStart.nHour, m_dtStart.nMinute);
 
 	pClimate->Clear();
 
@@ -562,7 +562,7 @@ void TModelManager::SetClimateData(TWetLand *pLand)
 	TSeries* pClimate = &(pLand->m_sClimate);
 	TSeriesItem *pPrecip, *pEva;
 	int nClimate, nIndex;
-	unsigned long nTime = TDate::ToMinute(m_dtStart.nYear, m_dtStart.nMonth, m_dtStart.nDay, m_dtStart.nHour, m_dtStart.nMinute);
+	ULONG nTime = TDate::ToMinute(m_dtStart.nYear, m_dtStart.nMonth, m_dtStart.nDay, m_dtStart.nHour, m_dtStart.nMinute);
 
 	pClimate->Clear();
 
@@ -626,7 +626,7 @@ void TModelManager::SetClimateData(TBioRetention *pRetention)
 	TSeries* pClimate = &(pRetention->m_sClimate);
 	TSeriesItem *pPrecip, *pEva;
 	int nClimate, nIndex;
-	unsigned long nTime = TDate::ToMinute(m_dtStart.nYear, m_dtStart.nMonth, m_dtStart.nDay, m_dtStart.nHour, m_dtStart.nMinute);
+	ULONG nTime = TDate::ToMinute(m_dtStart.nYear, m_dtStart.nMonth, m_dtStart.nDay, m_dtStart.nHour, m_dtStart.nMinute);
 
 	pClimate->Clear();
 

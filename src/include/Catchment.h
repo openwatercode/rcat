@@ -134,7 +134,7 @@ public:
 	void Clear();
 	void CalcGWMove();				//!< 지하수 이동을 계산한다.
 	virtual void operator =(TBaseNode &node);
-	void InitResult(unsigned long nTime, int nInterval, int nCount);
+	void InitResult(ULONG nTime, int nInterval, int nCount);
 	float GetGWE(int nStep) {return gwE_t;};	//!< 현재 계산된 지하수위를 반환한다.
 	void AddRecharge(float nRecharge);			//!< 다른 노드에서 지하수를 유입시킨다.
 	virtual float GetArea() {return Area;};		//!< 노드의 면적을 반환한다.
@@ -241,7 +241,7 @@ public:
 	void Clear(void);
 	virtual void Init(void);
 	float GetGWE(int nStep) {return gwE;};
-	void InitResult(unsigned long nTime, int nInterval, int nCount);
+	void InitResult(ULONG nTime, int nInterval, int nCount);
 	void AddBalance(void);
 	void AddResult(void);
 	float CalcKU2(float theta_t, float theta_s, float theta_r, int mualem);

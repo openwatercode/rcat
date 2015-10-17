@@ -7,8 +7,10 @@
 typedef unsigned char BYTE;
 typedef unsigned short WORD;
 typedef unsigned int UINT;
-typedef long LONG;
-typedef unsigned long DWORD, ULONG, LRESULT, LPARAM, WPARAM;
+//typedef long LONG;
+//typedef unsigned long DWORD, ULONG, LRESULT, LPARAM, WPARAM;
+typedef int LONG;
+typedef unsigned int DWORD, ULONG, LRESULT, LPARAM, WPARAM;
 
 typedef int BOOL;
 //enum { FALSE, TRUE };

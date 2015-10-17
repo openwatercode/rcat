@@ -120,7 +120,7 @@ public:
 	* @param nInterval : 계산 간격
 	* @param nCount :
 	*/
-	virtual void InitResult(unsigned long nTime, int nInterval, int nCount) {};
+	virtual void InitResult(ULONG nTime, int nInterval, int nCount) {};
 	/**
 	* @brief 지하수 이동을 계산한다.
 	*/
@@ -322,7 +322,7 @@ public:
 	* @param nEnd : 모형 종료 시간
 	* @param nInterval : 모형 실행 간격
 	*/
-	void SetModelEnv(unsigned long nStart, unsigned long nEnd, unsigned short nInterval);
+	void SetModelEnv(ULONG nStart, ULONG nEnd, unsigned short nInterval);
 	/**
 	* @brief 기상자료 파일에서 값을 읽어온다.
 	* @param szFile : 기상자료가 저장된 파일명

@@ -85,7 +85,7 @@ typedef struct _tagSeriesHeaderOld
 	char szDescript[DESCRIPTSIZE];		//!< 파일설명
 	DWORD dwVersion;			//!< 파일버전
 	unsigned short nInterval;	//!< 시간간격
-	unsigned long date;				//!< 시작시간
+	ULONG date;				//!< 시작시간
 	unsigned short nColumn;		//!< column 수
 	unsigned int nCount;		//!< 데이타 수
 	BYTE Reserved[16];
@@ -95,7 +95,7 @@ typedef struct _tagSeriesItemHeader
 {
 	unsigned short nData;
 	unsigned short nInterval;
-	unsigned long date;
+	ULONG date;
 	unsigned int nCount;
 	char szHeader[HEADERSIZE];
 	BYTE Reserved[18];
@@ -105,7 +105,7 @@ typedef struct _tagSeriesHeader
 {
 	unsigned short nData;		//!< 데이타종류
 	unsigned short nInterval;	//!< 시간간격
-	unsigned long nTime;
+	ULONG nTime;
 	unsigned int nCount;		//!< 데이타 수
 	char szDescript[DESCRIPTSIZE];		//!< 파일설명
 	unsigned short nColumn;		//!< column 수
@@ -116,7 +116,7 @@ typedef struct _tagSeriesesHeader
 {
 	unsigned short nMagic;
 	DWORD dwVersion;
-	unsigned long nTime;
+	ULONG nTime;
 	unsigned short nInterval;
 	unsigned char nPartNo;
 	unsigned char nPartTotal;

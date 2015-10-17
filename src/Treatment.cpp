@@ -72,7 +72,7 @@ void TImport::Init()
 		m_pfCalc = &TImport::CalcNone;
 }
 
-void TImport::InitResult(unsigned long nTime, int nInterval, int nCount)
+void TImport::InitResult(ULONG nTime, int nInterval, int nCount)
 {
 	m_pResult->Clear();
 	m_pResult->m_dtStart = nTime;
@@ -180,7 +180,7 @@ void TInfiltro::Init(void)
 	potential_L = ConvertDay2Step(potential * 1000 / area);
 }
 
-void TInfiltro::InitResult(unsigned long nTime, int nInterval, int nCount)
+void TInfiltro::InitResult(ULONG nTime, int nInterval, int nCount)
 {
 	const char* pszItemHeader[] = {"Inflow(㎥)", "Import(㎥)", "Infiltrate(㎥)", "Outflow(㎥)"};
 
@@ -306,7 +306,7 @@ void TBioRetention::Init(void)
 	m_pPev = m_sClimate.FindSeries(FT_EVA);
 }
 
-void TBioRetention::InitResult(unsigned long nTime, int nInterval, int nCount)
+void TBioRetention::InitResult(ULONG nTime, int nInterval, int nCount)
 {
 	const char* pszItemHeader[] = {"Inflow(㎥)", "Rainfall(mm)", "Total Inflow(㎥)", "Evapotranspiration(mm)", "Infiltrate(㎥)", "Outflow(㎥)"};
 
@@ -470,7 +470,7 @@ void TWetLand::Init()
 	}
 }
 
-void TWetLand::InitResult(unsigned long nTime, int nInterval, int nCount)
+void TWetLand::InitResult(ULONG nTime, int nInterval, int nCount)
 {
 	const char* pszItemHeader[] = {"Inflow(㎥)", "Rainfall(mm)", "Evaporation Water surface(mm)", "Bypass Volume(㎥)", "Spillway Outflow(㎥)",
 								"Pipe Outflow(㎥)", "Aquifer Loss(㎥)", "Volume(㎥)", "Water Level(m)"};
@@ -709,7 +709,7 @@ void TPond::Init(void)
 	}
 }
 
-void TPond::InitResult(unsigned long nTime, int nInterval, int nCount)
+void TPond::InitResult(ULONG nTime, int nInterval, int nCount)
 {
 	const char* pszItemHeader[] = {"Inflow(㎥)", "Rainfall(mm)", "Evaporation Water surface(mm)", "Intake(㎥)", "Downstream Outflow(㎥)", "Spillway Outflow(㎥)",
 								"Pipe Outflow(㎥)", "Aquifer Loss(㎥)", "Volume(㎥)", "Water Level(m)"};
@@ -1127,7 +1127,7 @@ void TRainTank::Init(void)
 	}
 }
 
-void TRainTank::InitResult(unsigned long nTime, int nInterval, int nCount)
+void TRainTank::InitResult(ULONG nTime, int nInterval, int nCount)
 {
 	const char* pszItemHeader[] = {"Inflow(㎥)", "Rain Tank Inflow(㎥)", "Water Use(㎥)", "Spillway Outflow(㎥)", "Downstream Outflow(㎥)", "Volume(㎥)"};
 
@@ -1252,7 +1252,7 @@ void TRecycle::Init(void)
 	rec_intake_dt = ConvertDay2Step(rec_intake);
 }
 
-void TRecycle::InitResult(unsigned long nTime, int nInterval, int nCount)
+void TRecycle::InitResult(ULONG nTime, int nInterval, int nCount)
 {
 	const char* pszItemHeader[] = {"Inflow(㎥)", "Intake(㎥)", "Downstream Outflow(㎥)"};
 	int nCol;

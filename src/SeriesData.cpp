@@ -217,9 +217,9 @@ void TDate::Increase(int nSpan)
 //	}
 }
 
-unsigned long TDate::ToMinute(int nYear2, int nMonth2, int nDay2, int nHour2, int nMinute2)
+ULONG TDate::ToMinute(int nYear2, int nMonth2, int nDay2, int nHour2, int nMinute2)
 {
-	unsigned long nMin = 0;
+	ULONG nMin = 0;
 	const int csnDayMinute = 24 * 60;
 	int nIndex;
 
@@ -233,12 +233,12 @@ unsigned long TDate::ToMinute(int nYear2, int nMonth2, int nDay2, int nHour2, in
 	return nMin;
 }
 
-unsigned long TDate::GetMinutes(TIMEDATA& time)
+ULONG TDate::GetMinutes(TIMEDATA& time)
 {
 	return ToMinute(time.nYear, time.nMonth, time.nDay, time.nHour, time.nMinute);
 }
 
-unsigned long TDate::GetMinutes()
+ULONG TDate::GetMinutes()
 {
 	return ToMinute(nYear, nMonth, nDay, nHour, nMinute);
 }
@@ -252,7 +252,7 @@ void TDate::SetDate(unsigned short nY, unsigned short nM, unsigned short nD, uns
 	nMinute = nm;
 }
 
-void TDate::SetDate(unsigned long nMinutes)
+void TDate::SetDate(ULONG nMinutes)
 {
 //	int nTempYear;
 	unsigned int nYearDays, nMonthDays;
@@ -278,7 +278,7 @@ void TDate::SetDate(unsigned long nMinutes)
 	nDay = BYTE(nMinutes + 1);
 }
 
-void TDate::operator =(unsigned long date)
+void TDate::operator =(ULONG date)
 {
 	SetDate(date);
 }
@@ -292,9 +292,9 @@ void TDate::operator =(TDate& date)
 	nMinute = date.nMinute;
 }
 
-void TDate::operator +=(long span)
+void TDate::operator +=(LONG span)
 {
-	unsigned long nTime = ToMinute(nYear, nMonth, nDay, nHour, nMinute);
+	ULONG nTime = ToMinute(nYear, nMonth, nDay, nHour, nMinute);
 
 	nTime += span;
 	SetDate(nTime);
@@ -351,12 +351,12 @@ unsigned int TDate::GetDays(int nYear, int nMonth, int nDay)
 	return nDays;
 }
 
-unsigned long TDate::GetYearMinutes(int nYear)
+ULONG TDate::GetYearMinutes(int nYear)
 {
 	return GetYearDays(nYear) * 1440;
 }
 
-unsigned long TDate::GetMonthMinutes(int nYear, int nMonth)
+ULONG TDate::GetMonthMinutes(int nYear, int nMonth)
 {
 	int nMonthDays[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
@@ -386,7 +386,7 @@ BOOL TSeriesItem::Save(FILE* pFile)
 //	fwrite(&m_Header, sizeof(SERIESDUMP), 1, pFile);
 	fwrite(&m_Header, sizeof(SERIESITEMHEADER), 1, pFile);
 	if(m_Header.nData == FT_DATE)
-		fwrite(m_Date.m_pArray, sizeof(unsigned long) * GetCount(), 1, pFile);
+		fwrite(m_Date.m_pArray, sizeof(ULONG) * GetCount(), 1, pFile);
 	else
 		fwrite(m_pArray, sizeof(DATATYPE) * GetCount(), 1, pFile);
 
@@ -402,7 +402,7 @@ BOOL TSeriesItem::Load(FILE* pFile)
 		if(m_Header.nData == FT_DATE)
 		{
 			m_Date.SetSize(m_Header.nCount);
-			fread(m_Date.m_pArray, sizeof(unsigned long) * m_Header.nCount, 1, pFile);
+			fread(m_Date.m_pArray, sizeof(ULONG) * m_Header.nCount, 1, pFile);
 			m_Date.m_nCount = m_Header.nCount;
 		}
 		else
@@ -464,16 +464,16 @@ void TSeriesItem::SetValue(int nIndex, DATATYPE val)
 		m_nCount = nIndex + 1;
 }
 
-void TSeriesItem::SetDate(int nIndex, unsigned long nDate)
+void TSeriesItem::SetDate(int nIndex, ULONG nDate)
 {
 	m_Date.m_pArray[nIndex] = nDate;
 	if(nIndex >= m_Date.m_nCount)
 		m_Date.m_nCount = nIndex + 1;
 }
 
-int TSeriesItem::SetFirstPos(unsigned long nTime)
+int TSeriesItem::SetFirstPos(ULONG nTime)
 {
-	unsigned long nFirst = m_dtStart.GetMinutes();
+	ULONG nFirst = m_dtStart.GetMinutes();
 
 	if(nTime == 0)
 		m_nCurrent = -1;
@@ -497,7 +497,7 @@ int TSeriesItem::SetFirstPos(TIMEDATA& time)
 		m_nCurrent = 0;
 	else
 	{
-		unsigned long nTime = TDate::ToMinute(time.nYear, time.nMonth, time.nDay, time.nHour, time.nMinute);
+		ULONG nTime = TDate::ToMinute(time.nYear, time.nMonth, time.nDay, time.nHour, time.nMinute);
 		SetFirstPos(nTime);
 	}
 
@@ -514,20 +514,20 @@ DATATYPE TSeriesItem::GetCurVal()
 	return GetValue(m_nCurrent);
 }
 
-unsigned long TSeriesItem::GetNextDate()
+ULONG TSeriesItem::GetNextDate()
 {
 	return (m_nCurrent < m_Date.GetCount() - 1 ? GetDate(++m_nCurrent) : 0);
 }
 
-unsigned long TSeriesItem::GetCurDate()
+ULONG TSeriesItem::GetCurDate()
 {
 	return GetDate(m_nCurrent);
 }
 
-unsigned long TSeriesItem::CopyPart(unsigned long nStart, unsigned long nEnd, TSeriesItem *pNew)
+ULONG TSeriesItem::CopyPart(ULONG nStart, ULONG nEnd, TSeriesItem *pNew)
 {
-	unsigned long nNewEnd, nCurrent = m_Header.date;
-	unsigned long nIndex, nCount = GetCount();
+	ULONG nNewEnd, nCurrent = m_Header.date;
+	ULONG nIndex, nCount = GetCount();
 
 	pNew->Clear();
 
@@ -542,7 +542,7 @@ unsigned long TSeriesItem::CopyPart(unsigned long nStart, unsigned long nEnd, TS
 	nCount = (nNewEnd - nStart) / m_Header.nInterval + 1;
 	pNew->SetSize(nCount);
 
-	for(nIndex = 0; nIndex < (unsigned long)GetCount(); nIndex++)
+	for(nIndex = 0; nIndex < (ULONG)GetCount(); nIndex++)
 	{
 		if(nCurrent >= nStart && nCurrent <= nNewEnd)
 			pNew->Add(GetValue(nIndex));
@@ -1118,7 +1118,7 @@ TSeriesItem* TSeries::AddItem(void)
 	return pItem;
 }
 
-int TSeries::SetFirstPos(unsigned long nTime)
+int TSeries::SetFirstPos(ULONG nTime)
 {
 	int nIndex, nRet = 0;
 
@@ -1268,7 +1268,7 @@ int TSeriesItem::ConvertInterval(unsigned short nNewInter, unsigned short nMetho
 		if(m_Header.nInterval == TI_MONTH)
 		{
 			TDate date;
-			unsigned long nS, nE;
+			ULONG nS, nE;
 
 			date.SetDate(m_Header.date);
 			nS = date.GetMinutes();

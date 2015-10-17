@@ -70,24 +70,24 @@ public:
 	static unsigned int GetYearDays(int nYear);
 	static unsigned int GetMonthDays(int nYear, int nMonth);
 	static unsigned int GetDays(int nYear, int nMonth, int nDay);
-	static unsigned long ToMinute(int nYear, int nMonth, int nDay, int nHour, int nMinute);
-	static unsigned long GetMinutes(TIMEDATA &time);
-	static unsigned long GetYearMinutes(int nYear);
-	static unsigned long GetMonthMinutes(int nYear, int nMonth);
+	static ULONG ToMinute(int nYear, int nMonth, int nDay, int nHour, int nMinute);
+	static ULONG GetMinutes(TIMEDATA &time);
+	static ULONG GetYearMinutes(int nYear);
+	static ULONG GetMonthMinutes(int nYear, int nMonth);
 
 public:
-	unsigned long GetMinutes();
+	ULONG GetMinutes();
 	unsigned short GetYear() {return nYear;};
 	unsigned short GetMonth() {return nMonth;};
 	unsigned short GetDay() {return nDay;};
 	unsigned short GetHour() {return nHour;};
 	unsigned short GetMinute() {return nMinute;};
 	void Increase(int nSpan);
-	void SetDate(unsigned long nMinutes);
+	void SetDate(ULONG nMinutes);
 	void SetDate(unsigned short nY, unsigned short nM, unsigned short nD, unsigned short nH, unsigned short nm);
-	void operator =(unsigned long date);
+	void operator =(ULONG date);
 	void operator =(TDate& date);
-	void operator +=(long span);
+	void operator +=(LONG span);
 	void IncreaseTime(BYTE nStep);
 	void AddMonth(int nMonth);
 	void AddYear(int nYear);
@@ -112,7 +112,7 @@ public:
 	BOOL Load10(FILE* pFile);
 	BOOL Load09(FILE *fp);
 	int SetFirstPos(TIMEDATA& time);
-	int SetFirstPos(unsigned long nTime);
+	int SetFirstPos(ULONG nTime);
 	DATATYPE GetNext();
 	DATATYPE GetCurVal();
 	unsigned short GetDataType() {return m_Header.nData;};
@@ -122,20 +122,20 @@ public:
 	int ConvertInterval(unsigned short nNewInter, unsigned short nMethod, BOOL bMul = TRUE);
 	void AddValue(int nIndex, float nVal);
 	TSeries* GetParent() {return m_pParent;};
-	unsigned long CopyPart(unsigned long nStart, unsigned long nEnd, TSeriesItem *pNew);
+	ULONG CopyPart(ULONG nStart, ULONG nEnd, TSeriesItem *pNew);
 	void Sort(int nMethod = 0);
 	void CalcAnnualStatic(int nYear);
-	unsigned long GetDate(int nIndex) {return m_Date.GetAt(nIndex);};
-	void SetDate(int nIndex, unsigned long nDate);
-	unsigned long GetNextDate();
-	unsigned long GetCurDate();
+	ULONG GetDate(int nIndex) {return m_Date.GetAt(nIndex);};
+	void SetDate(int nIndex, ULONG nDate);
+	ULONG GetNextDate();
+	ULONG GetCurDate();
 	void SetDateSize(int nSize) {m_Date.SetSize(nSize);};
 
 protected:
-	long m_nFirst;
-	long m_nCurrent;
-	ARRAY<unsigned long, 100> m_Date;
-	unsigned long *m_pDate;
+	LONG m_nFirst;
+	LONG m_nCurrent;
+	ARRAY<ULONG, 100> m_Date;
+	ULONG *m_pDate;
 
 public:
 	SERIESITEMHEADER m_Header;
@@ -165,7 +165,7 @@ public:
 	TSeriesItem* GetSeries(int nSeries) {return GetAt(nSeries);};
 	TSeriesItem* FindSeries(unsigned short nType);
 	TSeriesItem* AddItem(void);
-	int SetFirstPos(unsigned long nTime);
+	int SetFirstPos(ULONG nTime);
 	BOOL MoveNext();
 	void SetName(char* szName);
 	int Copy(TSeries* pCopy);

@@ -204,7 +204,7 @@ void TClimate::operator =(TBaseNode &node)
 	TBaseNode::operator =(node);
 }
 
-void TClimate::SetModelEnv(unsigned long nStart, unsigned long nEnd, unsigned short nInterval)
+void TClimate::SetModelEnv(ULONG nStart, ULONG nEnd, unsigned short nInterval)
 {
 	TSeriesItem *pNew = NULL;
 
