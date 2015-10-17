@@ -187,7 +187,7 @@ DataFrame TSeries2DataFrame(TSeries *sr, int nCount, int nFieldNos[])
 	    NumericVector val(rowCount);
 	    DATATYPE tmp;
    	    for(int i = 0; i < rowCount; i++)
-            val(i) = (tmp = item->GetValue(i)) ? NA_REAL : tmp;
+            val(i) = isnan(tmp = item->GetValue(i)) ? NA_REAL : tmp;
 	        //if(isnan(tmp = item->GetValue(i)))
             //    val(i) = NA_REAL;
             //else
