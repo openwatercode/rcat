@@ -6,7 +6,7 @@ Date: 2015-08-11
 Author: Heeseong Park
 Maintainer: Heeseong Park <hspark90@i-fam.net>
 Description: R Interface of CAT(Catchment hydrologic cycle Assessment Tool).
-License: GPL-2
+License: file LICENSE
 LazyData: TRUE
 Encoding: UTF-8
 Imports:
@@ -19,3 +19,4 @@ Depends:
     plyr,
     igraph
 LinkingTo: Rcpp
+RoxygenNote: 5.0.0
