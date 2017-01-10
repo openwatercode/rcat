@@ -5,9 +5,9 @@
 #' \tabular{ll}{
 #' Package: \tab rcat\cr
 #' Type: \tab Package\cr
-#' Version: \tab 0.1.4\cr
-#' Date: \tab 2015-08-12\cr
-#' License: \tab GPL-2\cr
+#' Version: \tab 0.1.5\cr
+#' Date: \tab 2017-01-11\cr
+#' License: \tab AGPL-3\cr
 #' }
 #'
 #' CAT을 동적라이브러리 형태로 컴파일하여

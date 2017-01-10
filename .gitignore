@@ -21,3 +21,4 @@ dist_101208.out
 dist_101208.txt
 *.layout
 *.depend
+.RDataTmp

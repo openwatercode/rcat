@@ -20,9 +20,9 @@ getYmDHMS <- function(x)
   else  r
 }
 
-#' getYmDHM: get integer array about time
+#' getYmDHM: get integer array(years, mongths, days, hours, minutes) about time
 #'
-#' @describeIn getYmDHMS
+#' @describeIn getYmDHMS get integer array about time
 #' @encoding UTF-8
 #' @export
 getYmDHM <- function(x)
