@@ -7,31 +7,26 @@ This project is to porting CAT Hydrology model to R package.
 
 현재 버전은 Windows와 Linux에서 구동 가능합니다.
 
-[윈도우즈용 CAT 사이트](http://watercycle.re.kr/)
-
-
 ## install rcat
-본 프로젝트를 설치하여 테스트 하기 위해서는 바이너리 형태로 설치하거나 소스형태로 내려 받아 컴파일 해야할 필요가 있습니다.
+본 프로젝트에서 제공하는 rcat 패키지를 설치하여 테스트 하기 위해서는 소스형태로 내려 받아 컴파일(Linux) 해야할 필요가 있습니다.
 
-프로젝트를 설치하기 위해서는 다음과 같은 프로그램들이 필요합니다.
+패키지를 컴파일하기 위해서는 다음과 같은 프로그램들이 필요합니다.
 (참고: 현재 Windows Rtools 환경에서만 컴파일이 확인됨)
 
   * R - https://cran.r-project.org/bin/windows/ 에서 내려 받을 수 있습니다.
   * RTools(Windows 환경인 경우) - https://cran.r-project.org/bin/windows/ 에서 내려 받을 수 있습니다.
   * Rstudio - https://www.rstudio.com/products/rstudio/download/ 에서 내려 받을 수 있습니다.
-  * user_name: 프로젝트에 참가하고 있는 사용자의 이름
-  * user_pat: 사용자 토큰(사용자 토큰은 https://github.com/settings/tokens 에서 발급 받을 수 있습니다.)
 
-프로젝트를 설치하기 위해서는 Rstudio에서 다음과 같이 'devtools' 등 관련 패키지를 먼저 설치하고 'install_github()' 함수를 이용해 'rcat'을 설치합니다. 
+패키지를 설치하기 위해서는 Rstudio에서 다음과 같이 'devtools' 등 관련 패키지를 먼저 설치하고 'install_github()' 함수를 이용해 'rcat'을 설치합니다. 
 
 ```
-install.packages("rskrpatch", repos = "http://r.prj.kr/pkg")
+install.packages("rskrpatch", repos = "http://kict-r.prj.kr/")
 install.packages(Rcpp)
 install.packages(devtools)
-install_github("openwatercode/rcat", "user_name", auth_token = "user_pat")
+install_github("openwatercode/rcat")
 ```
-## run example
 
+## run example
 예제를 수행하기 위해서 입력예제 파일을 다운로드 받습니다.
 
 ```
@@ -71,4 +66,4 @@ plot(outlet1.flowtotal, type="l")
 
 ## License
 본 프로그램의 라이센스는 AGPL-3를 따릅니다.
-
+상업적인 이용을 위해서는 저작권자인 한국건설기술연구원의 허가를 받아야합니다.
