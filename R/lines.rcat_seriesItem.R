@@ -7,6 +7,7 @@
 #' @seealso \code{\link{plot.rcat_seriesItem}}
 #' @author 박희성 \email{hspark90@@i-fam.net}
 #' @import xts
+#' @importFrom graphics lines
 #' @encoding UTF-8
 #' @export
 #' @examples

@@ -3,13 +3,24 @@
 \encoding{UTF-8}
 \name{as.rcat_series}
 \alias{as.rcat_series}
+\alias{as.rcat_series.data.frame}
+\alias{as.rcat_series.matrix}
+\alias{as.rcat_series.xts}
 \title{as.rcat_series: convert  a object to rcat_series}
 \usage{
-as.rcat_series(x, start_time, interval = c(1440, 60, 30, 10, 1),
-  data_type_vals, ...)
+as.rcat_series(x, ...)
+
+\method{as.rcat_series}{data.frame}(x, start_time, interval = c(1440, 60, 30,
+  10, 1), data_type_vals, ...)
+
+\method{as.rcat_series}{xts}(x, ...)
+
+\method{as.rcat_series}{matrix}(x, ...)
 }
 \arguments{
 \item{x}{변환하고자 하는 변수}
+
+\item{...}{기타 매개변수}
 
 \item{start_time}{\code{\link{rcat_series}}의 시작시각}
 
@@ -25,6 +36,14 @@ as.rcat_series(x, start_time, interval = c(1440, 60, 30, 10, 1),
 주어진 객체에 부가적인 사항들을 덧붙여
 \code{\link{rcat_series}} 클래스로 변환한다.
 }
+\section{Methods (by class)}{
+\itemize{
+\item \code{data.frame}: convert data as \code{\link{data.frame}} type to \code{\link{rcat_series}} type
+
+\item \code{xts}: convert data as \code{\link{xts}} type to \code{\link{rcat_series}} type
+
+\item \code{matrix}: convert data as \code{\link{matrix}} type to \code{\link{rcat_series}} type
+}}
 \author{
 박희성 \email{hspark90@i-fam.net}
 }

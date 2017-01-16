@@ -5,10 +5,12 @@
 \alias{readCATInput}
 \title{readCATInput: read from CAT input file to r varialble which is rcat_input class}
 \usage{
-readCATInput(file, ...)
+readCATInput(filename, ...)
 }
 \arguments{
 \item{filename}{CAT 모형의 텍스트형 입력자료}
+
+\item{...}{\code{\link{file}} 함수 참조}
 }
 \value{
 입력파일의 내용이 들어 있는 \code{\link{rcat_input}} 클래스의 변수

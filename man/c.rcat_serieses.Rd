@@ -7,6 +7,9 @@
 \usage{
 \method{c}{rcat_serieses}(...)
 }
+\arguments{
+\item{...}{더하고자 하는 \code{\link{rcat_serieses}} 클래스 자료를 나열}
+}
 \value{
 \code{\link{rcat_serieses}} 형태의 자료
 }

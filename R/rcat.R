@@ -29,6 +29,7 @@
 #' unzip("rcat_ex.zip")
 #' # save the output to file
 #' RunCAT("dist_101208.txt", "dist_101208.out")
+#' @import rskrpatch
 NULL
 
 getVariableName <- function(v)

@@ -13,7 +13,7 @@
 \item{value}{\code{\link{POSIXt}} 클래스의 변수}
 }
 \value{
-\code{\link{ract_input}} 형태의 시간 변수
+\code{\link{rcat_input}} 형태의 시간 변수
 }
 \description{
 \code{\link{rcat_input}} 클래스의 StartTime 속성을 가져온다.

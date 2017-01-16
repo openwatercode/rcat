@@ -10,6 +10,7 @@
 ^bin\.*$
 ^obj\.*$
 ^pres\.*$
+^olc_pkg\.*$
 ^.*\.cbp$
 ^.*\.inp$
 ^.*\.dat$
@@ -26,3 +27,4 @@
 ^.*test\.R$
 ^LICENSE$
 ^main\.cpp$
+^rcat\.bib$

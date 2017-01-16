@@ -1,8 +1,18 @@
 #' rcat_series class
 #'
-#' rcat_serieses class 를 구성하는 세부 클래스입니다.
+#' \code{\link{rcat_serieses}} class 를 구성하는 세부 class
 #' @docType class
 #' @name rcat_series
+#' @encoding utf-8
+#' @author \href{http://www.i-fam.net/water/}{박희성} \email{hspark90@@i-fam.net}
+#' @keywords class
+NULL
+
+#' rcat_seriesItem
+#'
+#' \code{\link{rcat_series}} class에 포함되는 Item class
+#' @docType class
+#' @name rcat_seriesItem
 #' @encoding utf-8
 #' @author \href{http://www.i-fam.net/water/}{박희성} \email{hspark90@@i-fam.net}
 #' @keywords class
@@ -18,15 +28,14 @@ NULL
 #' @export
 is.rcat_series <- function(x) inherits(x, "rcat_series")
 
-
 #' seriesItemType:  kinds of seriesItem
 #'
 #' seriesItem의 종류를 구분하는 정수
 #' @author 박희성 \email{hspark90@@i-fam.net}
 #' @encoding UTF-8
 #' @docType data
+#' @export
 #' @examples with(seriesItemType, c(precip, rhumi, tempavg, wind, solar))
-#' @noRd
 seriesItemType <- list(precip = 1L,
                        eva = 2L,
                        rhumi = 4L,
@@ -103,15 +112,16 @@ getSeriesItemTypeVals   <-
 #' @param interval \code{\link{rcat_series}}의 시간간격
 #' @param data_type_vals \code{\link{data.frame}}의 각 컬럼에 대한
 #' \code{\link{seriesItemType}} 정수의 배열
+#' @param ... 기타 매개변수
 #' @return 변환된 \code{\link{rcat_series}} 객체
 #' @author 박희성 \email{hspark90@@i-fam.net}
 #' @encoding UTF-8
 #' @seealso \code{\link{seriesItemType}}
 #' @export
-as.rcat_series <- function(x, start_time, interval = c(1440, 60, 30, 10, 1),
-                           data_type_vals, ...) UseMethod("as.rcat_series")
+as.rcat_series <- function(x, ...) UseMethod("as.rcat_series")
 
 #' @describeIn as.rcat_series
+#' convert data as \code{\link{data.frame}} type to \code{\link{rcat_series}} type
 #' @encoding UTF-8
 #' @export
 as.rcat_series.data.frame <-
@@ -144,6 +154,7 @@ as.rcat_series.data.frame <-
 
 
 #' @describeIn as.rcat_series
+#' convert data as \code{\link{xts}} type to \code{\link{rcat_series}} type
 #' @encoding UTF-8
 #' @export
 as.rcat_series.xts <- function(x, ...)
@@ -151,6 +162,7 @@ as.rcat_series.xts <- function(x, ...)
 }
 
 #' @describeIn as.rcat_series
+#' convert data as \code{\link{matrix}} type to \code{\link{rcat_series}} type
 #' @encoding UTF-8
 #' @export
 as.rcat_series.matrix <- function(x, ...)
@@ -160,8 +172,9 @@ as.rcat_series.matrix <- function(x, ...)
 
 #' c.rcat_series: combine rcat_series
 #'
-#' \code{\link{rcat_series}} 클래스 자료를 더해 하나로 만드는 함수
-#' @param ...
+#' \code{\link{rcat_series}} 클래스 자료를 더해 하나의
+#' \code{\link{rcat_serieses}} 형태의 자료로 만드는 함수
+#' @param ... 더하고자 하는 \code{\link{rcat_series}} 클래스 자료를 나열
 #' @return \code{\link{rcat_serieses}} 형태의 자료
 #' @author 박희성 \email{hspark90@@i-fam.net}
 #' @encoding UTF-8

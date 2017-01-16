@@ -7,11 +7,15 @@
 \usage{
 \method{c}{rcat_series}(...)
 }
+\arguments{
+\item{...}{더하고자 하는 \code{\link{rcat_series}} 클래스 자료를 나열}
+}
 \value{
 \code{\link{rcat_serieses}} 형태의 자료
 }
 \description{
-\code{\link{rcat_series}} 클래스 자료를 더해 하나로 만드는 함수
+\code{\link{rcat_series}} 클래스 자료를 더해 하나의
+\code{\link{rcat_serieses}} 형태의 자료로 만드는 함수
 }
 \author{
 박희성 \email{hspark90@i-fam.net}

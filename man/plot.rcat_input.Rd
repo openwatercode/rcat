@@ -5,10 +5,12 @@
 \alias{plot.rcat_input}
 \title{plot.rcat_input: plot the sechmatic view of CAT model}
 \usage{
-\method{plot}{rcat_input}(x)
+\method{plot}{rcat_input}(x, ...)
 }
 \arguments{
 \item{x}{rcat 모형에서 사용하는 "rcat_input" 클래스의 변수}
+
+\item{...}{\code{\link{plot}} 함수 참조}
 }
 \description{
 "rcat_input" 클래스 자료를 그래프 형태로 보여주는 함수.

@@ -9,6 +9,8 @@
 }
 \arguments{
 \item{x}{rcat 모형에서 사용하는 "rcat_series" 클래스의 변수}
+
+\item{...}{\code{\link{xts}}에 사용되는 기타 매개변수}
 }
 \value{
 변환된 \code{\link{xts}} 변수

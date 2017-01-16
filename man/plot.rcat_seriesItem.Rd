@@ -11,6 +11,14 @@
 \arguments{
 \item{x}{rcat 모형에서 사용하는 \code{\link{rcat_seriesItem}} 클래스의 변수}
 
+\item{type}{\code{\link{plot}} 참조}
+
+\item{xlab}{\code{\link{plot}} 참조}
+
+\item{ylab}{\code{\link{plot}} 참조}
+
+\item{main}{\code{\link{plot}} 참조}
+
 \item{...}{\code{\link{plot}} 함수의 매개변수 참조}
 }
 \description{

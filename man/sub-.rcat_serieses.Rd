@@ -5,7 +5,7 @@
 \alias{[.rcat_serieses}
 \title{[.rcat_serieses: Select from items of rcat_serieses}
 \usage{
-\method{[}{rcat_serieses}(x, i, ...)
+\method{[}{rcat_serieses}(x, i)
 }
 \arguments{
 \item{x}{\code{\link{rcat_serieses}} 클래스의 변수}

@@ -2,6 +2,10 @@
 #'
 #' \code{\link{rcat_seriesItem}} 클래스 자료를 그래프 형태로 보여주는 함수.
 #' @param x rcat 모형에서 사용하는 \code{\link{rcat_seriesItem}} 클래스의 변수
+#' @param type \code{\link{plot}} 참조
+#' @param xlab \code{\link{plot}} 참조
+#' @param ylab \code{\link{plot}} 참조
+#' @param main \code{\link{plot}} 참조
 #' @param ... \code{\link{plot}} 함수의 매개변수 참조
 #' @return NULL
 #' @seealso \code{\link{lines.rcat_seriesItem}}

@@ -22,6 +22,7 @@ is.rcat_input <- function(x) inherits(x, "rcat_input")
 #'
 #' \code{\link{rcat_input}} 클래스 자료의 간단한 내용을 보여주는 함수
 #' @param x \code{\link{rcat_input}} 클래스의 변수
+#' @param ... \code{\link{print}} 함수 참조
 #' @return \code{\link{rcat_input}} 형태의 자료
 #' @author 박희성 \email{hspark90@@i-fam.net}
 #' @encoding UTF-8
@@ -51,7 +52,7 @@ print.rcat_input <- function(x, ...)
 #' @author 박희성 \email{hspark90@@i-fam.net}
 #' @encoding UTF-8
 #' @export
-`[.rcat_input` <- function(x, i, ...)
+`[.rcat_input` <- function(x, i)
 {
   y <- NextMethod(x)
   attr(y, "Version") <- attr(x, "Version")
@@ -65,6 +66,10 @@ print.rcat_input <- function(x, ...)
   y
 }
 
+#' get StartTime: get the start time of \code{\link{rcat_input}}
+#'
+#' get the start time of \code{\link{rcat_input}}
+#' @param x \code{\link{rcat_input}}
 #' @encoding UTF-8
 #' @export
 StartTime <- function(x) UseMethod("StartTime")
@@ -84,6 +89,11 @@ StartTime.rcat_input <- function(x)
 }
 
 
+#' set StartTime: set the start time of \code{\link{rcat_input}}
+#'
+#' set the start time of \code{\link{rcat_input}}
+#' @param x 설정대상 \code{\link{rcat_input}} 클래스의 변수
+#' @param value \code{\link{POSIXt}} 클래스의 변수
 #' @encoding UTF-8
 #' @export
 `StartTime<-` <- function(x, value) UseMethod("StartTime<-")
@@ -93,7 +103,7 @@ StartTime.rcat_input <- function(x)
 #' \code{\link{rcat_input}} 클래스의 StartTime 속성을 가져온다.
 #' @param x \code{\link{rcat_input}} 클래스의 변수
 #' @param value \code{\link{POSIXt}} 클래스의 변수
-#' @return \code{\link{ract_input}} 형태의 시간 변수
+#' @return \code{\link{rcat_input}} 형태의 시간 변수
 #' @author 박희성 \email{hspark90@@i-fam.net}
 #' @encoding UTF-8
 #' @export

@@ -2,11 +2,11 @@
 % Please edit documentation in R/rcat_series.R
 \docType{class}
 \encoding{utf-8}
-\name{rcat_series}
-\alias{rcat_series}
-\title{rcat_series class}
+\name{rcat_seriesItem}
+\alias{rcat_seriesItem}
+\title{rcat_seriesItem}
 \description{
-\code{\link{rcat_serieses}} class 를 구성하는 세부 class
+\code{\link{rcat_series}} class에 포함되는 Item class
 }
 \author{
 \href{http://www.i-fam.net/water/}{박희성} \email{hspark90@i-fam.net}

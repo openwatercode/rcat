@@ -5,7 +5,7 @@
 \alias{[.rcat_input}
 \title{[.rcat_input: Select from items of rcat_input}
 \usage{
-\method{[}{rcat_input}(x, i, ...)
+\method{[}{rcat_input}(x, i)
 }
 \arguments{
 \item{x}{\code{\link{rcat_input}} 클래스의 변수}

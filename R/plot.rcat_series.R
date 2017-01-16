@@ -2,9 +2,11 @@
 #'
 #' "rcat_series" 클래스 자료를 그래프 형태로 보여주는 함수.
 #' @param x rcat 모형에서 사용하는 "rcat_series" 클래스의 변수
+#' @param ... \code{\link{plot}} 참조
 #' @return NULL
 #' @author 박희성 \email{hspark90@@i-fam.net}
 #' @import xts
+#' @importFrom graphics par plot
 #' @encoding UTF-8
 #' @export
 #' @examples

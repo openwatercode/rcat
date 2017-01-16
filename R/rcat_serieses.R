@@ -23,6 +23,7 @@ is.rcat_serieses <- function(x) inherits(x, "rcat_serieses")
 #'
 #' \code{\link{rcat_series}} 클래스 자료의 간단한 내용을 보여주는 함수
 #' @param x \code{\link{rcat_serieses}} 클래스의 변수
+#' @param ... \code{\link{print}} 함수 참조
 #' @return \code{\link{rcat_serieses}} 형태의 자료
 #' @author 박희성 \email{hspark90@@i-fam.net}
 #' @encoding UTF-8
@@ -46,7 +47,7 @@ print.rcat_serieses <- function(x, ...)
 #' @author 박희성 \email{hspark90@@i-fam.net}
 #' @encoding UTF-8
 #' @export
-`[.rcat_serieses` <- function(x, i, ...)
+`[.rcat_serieses` <- function(x, i)
 {
   y <- NextMethod(x)
   attr(y, "StartTime") <- attr(x, "StartTime")
@@ -65,8 +66,9 @@ print.rcat_serieses <- function(x, ...)
 #' @return \code{\link{rcat_serieses}} 형태의 자료
 #' @author 박희성 \email{hspark90@@i-fam.net}
 #' @encoding UTF-8
+#' @importFrom stringr str_trim
 #' @export
-`+.rcat_serieses` <- function(e1, e2, ...)
+`+.rcat_serieses` <- function(e1, e2)
 {
   if(!is.rcat_serieses(e2))
     stop(sprintf("'%s' is not rcat_serieses class!!", deparse(substitute(e2))))
@@ -101,7 +103,7 @@ print.rcat_serieses <- function(x, ...)
 #' c.rcat_serieses: combine rcat_serieses
 #'
 #' \code{\link{rcat_serieses}} 클래스 자료를 더해 하나로 만드는 함수
-#' @param ...
+#' @param ... 더하고자 하는 \code{\link{rcat_serieses}} 클래스 자료를 나열
 #' @return \code{\link{rcat_serieses}} 형태의 자료
 #' @author 박희성 \email{hspark90@@i-fam.net}
 #' @encoding UTF-8

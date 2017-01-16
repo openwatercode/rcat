@@ -2,6 +2,7 @@
 #'
 #' "rcat_input" 클래스 자료를 그래프 형태로 보여주는 함수.
 #' @param x rcat 모형에서 사용하는 "rcat_input" 클래스의 변수
+#' @param ... \code{\link{plot}} 함수 참조
 #' @return NULL
 #' @author 박희성 \email{hspark90@@i-fam.net}
 #' @import igraph
@@ -14,7 +15,7 @@
 #' plot(model1)
 #' model2 <- readCATInput2("dist_101208.txt")
 #' plot(model2)
-plot.rcat_input <- function(x)
+plot.rcat_input <- function(x, ...)
 {
   #Nodes <- x
   links.no <- which(unlist(lapply(x, function(x) class(x)[1])) == "cat_Link")
@@ -43,14 +44,14 @@ plot.rcat_input <- function(x)
   links.edges <- nntab[as.character(unlist(lapply(links, function(x) x$Connect)))]
 
   nodes.pos <- sapply(nodes, function(x) x$Position)
-  library(igraph)
+  #library(igraph)
   g <- make_empty_graph() +
     vertices(name = nodes.name,
              size = nodes.size,
              color = nodes.color) +
     edges(links.edges, arrow.size = 0.3)
   if(class(nodes.pos) == "matrix")
-    plot(g, layout = t(nodes.pos))
+    plot(g, layout = t(nodes.pos), ...)
   else
     plot(g, layout = layout.kamada.kawai)
   #plot(g, layout = layout.gem)

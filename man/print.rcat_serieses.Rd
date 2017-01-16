@@ -9,6 +9,8 @@
 }
 \arguments{
 \item{x}{\code{\link{rcat_serieses}} 클래스의 변수}
+
+\item{...}{\code{\link{print}} 함수 참조}
 }
 \value{
 \code{\link{rcat_serieses}} 형태의 자료

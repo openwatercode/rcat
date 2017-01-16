@@ -9,6 +9,8 @@
 }
 \arguments{
 \item{x}{rcat 모형에서 사용하는 "rcat_series" 클래스의 변수}
+
+\item{...}{\code{\link{plot}} 참조}
 }
 \description{
 "rcat_series" 클래스 자료를 그래프 형태로 보여주는 함수.
