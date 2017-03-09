@@ -13,4 +13,3 @@ StartTime(x)
 \description{
 get the start time of \code{\link{rcat_input}}
 }
-

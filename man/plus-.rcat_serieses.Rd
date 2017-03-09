@@ -19,6 +19,5 @@
 \code{\link{rcat_series}} 클래스 자료를 더해 하나로 만들어 주는 연산자.
 }
 \author{
-박희성 \email{hspark90@i-fam.net}
+Heeseong Park \email{hspark90@i-fam.net}
 }
-

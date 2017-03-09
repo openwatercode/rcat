@@ -4,8 +4,8 @@
 \name{as.rcat_series}
 \alias{as.rcat_series}
 \alias{as.rcat_series.data.frame}
-\alias{as.rcat_series.matrix}
 \alias{as.rcat_series.xts}
+\alias{as.rcat_series.matrix}
 \title{as.rcat_series: convert  a object to rcat_series}
 \usage{
 as.rcat_series(x, ...)
@@ -44,10 +44,10 @@ as.rcat_series(x, ...)
 
 \item \code{matrix}: convert data as \code{\link{matrix}} type to \code{\link{rcat_series}} type
 }}
-\author{
-박희성 \email{hspark90@i-fam.net}
-}
+
 \seealso{
 \code{\link{seriesItemType}}
 }
-
+\author{
+Heeseong Park \email{hspark90@i-fam.net}
+}

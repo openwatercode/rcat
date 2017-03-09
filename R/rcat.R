@@ -5,8 +5,8 @@
 #' \tabular{ll}{
 #' Package: \tab rcat\cr
 #' Type: \tab Package\cr
-#' Version: \tab 0.1.5\cr
-#' Date: \tab 2017-01-11\cr
+#' Version: \tab 0.1.6\cr
+#' Date: \tab 2017-03-08\cr
 #' License: \tab AGPL-3\cr
 #' }
 #'
@@ -17,7 +17,7 @@
 #' @name rcat-package
 #' @aliases rcat
 #' @encoding utf-8
-#' @author \href{http://www.i-fam.net/water/}{박희성} \email{hspark90@@i-fam.net}
+#' @author Heeseong Park \email{hspark90@@i-fam.net}
 #' @references 수자원의지속적확보기술개발사업단(2008), 도시유역 물순환 해석기술 지침서(TR-2008-05)
 #' @references 수자원의지속적확보기술개발사업단(2008), 도시유역 물순환계 정량화 방법(TR-2008-15)
 #' @references 한국건설기술연구원(2005), 건강한 물순환체계 구축을 위한 유역진단기법 개발 연구보고서

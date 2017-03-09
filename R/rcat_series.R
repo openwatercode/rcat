@@ -4,7 +4,7 @@
 #' @docType class
 #' @name rcat_series
 #' @encoding utf-8
-#' @author \href{http://www.i-fam.net/water/}{박희성} \email{hspark90@@i-fam.net}
+#' @author Heeseong Park \email{hspark90@@i-fam.net}
 #' @keywords class
 NULL
 
@@ -14,7 +14,7 @@ NULL
 #' @docType class
 #' @name rcat_seriesItem
 #' @encoding utf-8
-#' @author \href{http://www.i-fam.net/water/}{박희성} \email{hspark90@@i-fam.net}
+#' @author Heeseong Park \email{hspark90@@i-fam.net}
 #' @keywords class
 NULL
 
@@ -23,7 +23,7 @@ NULL
 #' \code{\link{rcat_series}} 클래스인지 아닌지 알려주는 함수
 #' @param x \code{\link{rcat_series}} 클래스인지 확인 하고자하는 임의의 변수
 #' @return \code{\link{rcat_series}} 클래스 자료여부를 알려주는 \code{\link{logical}} 변수
-#' @author 박희성 \email{hspark90@@i-fam.net}
+#' @author Heeseong Park \email{hspark90@@i-fam.net}
 #' @encoding UTF-8
 #' @export
 is.rcat_series <- function(x) inherits(x, "rcat_series")
@@ -31,7 +31,7 @@ is.rcat_series <- function(x) inherits(x, "rcat_series")
 #' seriesItemType:  kinds of seriesItem
 #'
 #' seriesItem의 종류를 구분하는 정수
-#' @author 박희성 \email{hspark90@@i-fam.net}
+#' @author Heeseong Park \email{hspark90@@i-fam.net}
 #' @encoding UTF-8
 #' @docType data
 #' @export
@@ -61,21 +61,21 @@ seriesItemType <- list(precip = 1L,
 #' 컬럼의 번호는 배열을 사용할 수 없으며 배열을 사용하면 해당 배열을 첫번째
 #' 숫자만 인식됩니다.
 #' 즉, 변수들은 테이블 상에 1회씩만 포함될 수 있음에 유의해야합니다.
-#' @param precip 강우에 대한 컬럼 번호
-#' @param eva 증발산에 대한 컬럼 번호
-#' @param rhumi 상대습도에 대한 컬럼 번호
-#' @param solar 일조시간에 대한 컬럼 번호
-#' @param tempavg 평균기온에 대한 컬럼 번호
-#' @param wind 평균풍속에 대한 컬럼 번호
-#' @param user 사용자 데이터에 대한 컬럼 번호
-#' @param tempmin 최저기온에 대한 컬럼 번호
-#' @param tempmax 최고기온에 대한 컬럼 번호
-#' @param evacalc 계산된 증발산에 대한 컬럼 번호
-#' @param date 날짜에 대한 컬럼 번호
+#' @param precip Column number of precipitation data
+#' @param eva Column number of evapotranspiration data
+#' @param rhumi Column number of relative humidity data
+#' @param solar Column number of daylight hours data
+#' @param tempavg Column number of average temperture data
+#' @param wind Column number of windspeed data
+#' @param user Column number of user data
+#' @param tempmin Column number of minimum temperture data
+#' @param tempmax Column number of maximum temperture data
+#' @param evacalc Column number of calculated evapotranspiration data
+#' @param date column number of date time data
 #' @param observe 관측값에 대한 컬럼 번호
 #' @return 주어진 seriesItemType에 해당하는 정수 배열
 #' @seealso \code{\link{as.rcat_series}}
-#' @author 박희성 \email{hspark90@@i-fam.net}
+#' @author Heeseong Park \email{hspark90@@i-fam.net}
 #' @encoding UTF-8
 #' @export
 #' @examples getSeriesItemTypeVals(precip = 1, tempavg = 2, rhumi = 3, wind = 4, solar = 5)
@@ -114,7 +114,7 @@ getSeriesItemTypeVals   <-
 #' \code{\link{seriesItemType}} 정수의 배열
 #' @param ... 기타 매개변수
 #' @return 변환된 \code{\link{rcat_series}} 객체
-#' @author 박희성 \email{hspark90@@i-fam.net}
+#' @author Heeseong Park \email{hspark90@@i-fam.net}
 #' @encoding UTF-8
 #' @seealso \code{\link{seriesItemType}}
 #' @export
@@ -136,8 +136,8 @@ as.rcat_series.data.frame <-
       stop("Error: data_type_vals mismatch!!")
 
     if(is.timeBased(start_time)) t <- as.POSIXlt(start_time)
-    st <- c(1900 + t$year, 1+t$mon, t$mday, t$hour, t$min)
-    ts <- interval
+    st <- as.integer(c(1900 + t$year, 1+t$mon, t$mday, t$hour, t$min))
+    ts <- as.integer(interval)
     for(i in 1:ncol(x))
     {
       attr(x[[i]], "StartTime") <- st
@@ -176,7 +176,7 @@ as.rcat_series.matrix <- function(x, ...)
 #' \code{\link{rcat_serieses}} 형태의 자료로 만드는 함수
 #' @param ... 더하고자 하는 \code{\link{rcat_series}} 클래스 자료를 나열
 #' @return \code{\link{rcat_serieses}} 형태의 자료
-#' @author 박희성 \email{hspark90@@i-fam.net}
+#' @author Heeseong Park \email{hspark90@@i-fam.net}
 #' @encoding UTF-8
 #' @export
 `c.rcat_series` <- function(...)

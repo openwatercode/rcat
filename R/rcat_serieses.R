@@ -1,19 +1,47 @@
 #' rcat_serieses class
 #'
-#' CAT의 출력 파일을 읽어오거나 시계열 입력자료를 읽거나 저장 할 때 사용되는 클래스 입니다.
+#' CAT의 출력 파일을 읽어오거나 시계열 입력자료를 읽거나 저장 할 때 사용되는 클래스
+#' 또는 클래스 생성자
 #' @docType class
 #' @name rcat_serieses
+#' @param x Contents of \code{\link{rcat_serieses}}
+#' @param ... etc. parameters
 #' @encoding utf-8
-#' @author \href{http://www.i-fam.net/water/}{박희성} \email{hspark90@@i-fam.net}
+#' @author Heeseong Park \email{hspark90@@i-fam.net}
 #' @keywords class
-NULL
+#' @export
+rcat_serieses <- function(x, ...) UseMethod("rcat_serieses")
+
+#' rcat_serieses.rcat_series: make rcat_serieses from rcat_series
+#'
+#' \code{\link{rcat_series}} 로 부터 \code{\link{rcat_serieses}}를 생성하는 함수
+#' @param x \code{\link{rcat_series}} 클래스의 변수
+#' @param description Description of the \code{\link{rcat_serieses}} created.
+#' @param name Name of the \code{\link{rcat_serieses}} created.
+#' @param ... \code{\link{rcat_serieses}} 함수 참조
+#' @return \code{\link{rcat_serieses}} 형태의 자료
+#' @author Heeseong Park \email{hspark90@@i-fam.net}
+#' @encoding UTF-8
+#' @export
+rcat_serieses.rcat_series <- function(x, description, name, ...)
+{
+  s <- list()
+  attr(s, "StartTime") <- attr(x, "StartTime")
+  attr(s, "Interval") <- attr(x, "Interval")
+  attr(s, "Description") <- if(missing(description)) "" else description
+  attr(s, "Name") <- if(missing(name)) "" else name
+  attr(s, "class") <- "rcat_serieses"
+  s[[1]] <- x
+  return(s)
+}
+
 
 #' is.rcat_serieses
 #'
 #' \code{\link{rcat_serieses}} 클래스인지 아닌지 알려주는 함수
 #' @param x \code{\link{rcat_serieses}} 클래스인지 확인 하고자하는 임의의 변수
 #' @return \code{\link{rcat_serieses}} 클래스 자료여부를 알려주는 \code{\link{logical}} 변수
-#' @author 박희성 \email{hspark90@@i-fam.net}
+#' @author Heeseong Park \email{hspark90@@i-fam.net}
 #' @encoding UTF-8
 #' @export
 is.rcat_serieses <- function(x) inherits(x, "rcat_serieses")
@@ -25,7 +53,7 @@ is.rcat_serieses <- function(x) inherits(x, "rcat_serieses")
 #' @param x \code{\link{rcat_serieses}} 클래스의 변수
 #' @param ... \code{\link{print}} 함수 참조
 #' @return \code{\link{rcat_serieses}} 형태의 자료
-#' @author 박희성 \email{hspark90@@i-fam.net}
+#' @author Heeseong Park \email{hspark90@@i-fam.net}
 #' @encoding UTF-8
 #' @export
 print.rcat_serieses <- function(x, ...)
@@ -44,7 +72,7 @@ print.rcat_serieses <- function(x, ...)
 #' @param x \code{\link{rcat_serieses}} 클래스의 변수
 #' @param i 인덱스
 #' @return \code{\link{rcat_serieses}} 형태의 자료
-#' @author 박희성 \email{hspark90@@i-fam.net}
+#' @author Heeseong Park \email{hspark90@@i-fam.net}
 #' @encoding UTF-8
 #' @export
 `[.rcat_serieses` <- function(x, i)
@@ -64,7 +92,7 @@ print.rcat_serieses <- function(x, ...)
 #' @param e1 \code{\link{rcat_serieses}} 클래스의 변수
 #' @param e2 \code{\link{rcat_serieses}} 클래스의 변수
 #' @return \code{\link{rcat_serieses}} 형태의 자료
-#' @author 박희성 \email{hspark90@@i-fam.net}
+#' @author Heeseong Park \email{hspark90@@i-fam.net}
 #' @encoding UTF-8
 #' @importFrom stringr str_trim
 #' @export
@@ -105,7 +133,7 @@ print.rcat_serieses <- function(x, ...)
 #' \code{\link{rcat_serieses}} 클래스 자료를 더해 하나로 만드는 함수
 #' @param ... 더하고자 하는 \code{\link{rcat_serieses}} 클래스 자료를 나열
 #' @return \code{\link{rcat_serieses}} 형태의 자료
-#' @author 박희성 \email{hspark90@@i-fam.net}
+#' @author Heeseong Park \email{hspark90@@i-fam.net}
 #' @encoding UTF-8
 #' @export
 `c.rcat_serieses` <- function(...)

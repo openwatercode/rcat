@@ -1,8 +1,8 @@
 Package: rcat
 Type: Package
 Title: It's the Hydrologic Model to simulate the catchment hydrology
-Version: 0.1.5
-Date: 2017-01-11
+Version: 0.1.6
+Date: 2017-03-08
 Author: Heeseong Park
 Maintainer: Heeseong Park <hspark90@i-fam.net>
 Description: R Interface of CAT(Catchment hydrologic cycle Assessment Tool).
@@ -18,4 +18,4 @@ Depends:
     plyr,
     igraph
 LinkingTo: Rcpp
-RoxygenNote: 5.0.1
+RoxygenNote: 6.0.1

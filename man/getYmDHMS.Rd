@@ -2,8 +2,8 @@
 % Please edit documentation in R/getYmD.R
 \encoding{UTF-8}
 \name{getYmDHMS}
-\alias{getYmDHM}
 \alias{getYmDHMS}
+\alias{getYmDHM}
 \title{getYmDHMS: get integer array about time}
 \usage{
 getYmDHMS(x)
@@ -26,10 +26,10 @@ getYmDHM: get integer array(years, mongths, days, hours, minutes) about time
 \itemize{
 \item \code{getYmDHM}: get integer array about time
 }}
+
 \examples{
 getYmDHMS(Sys.time())
 }
 \author{
-박희성 \email{hspark90@i-fam.net}
+Heeseong Park \email{hspark90@i-fam.net}
 }
-

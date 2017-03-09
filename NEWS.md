@@ -1,5 +1,16 @@
 # rcat 개발 소식
 
+## ver 0.1.6
+### 2016-03-09
+  * rcat_series를 이용해 rcat_serieses 생성 함수 추가
+  * csv file을 CAT에서 사용하는 binary data file로 변환 할 수 있는 함수 추가
+
+## ver 0.1.5
+### 2016-01-11
+  * 코드 check를 통한 경고 오류 수정
+  * GiT repository open
+  * LICENSE 변경: file -> AGPL3
+
 ## ver 0.1.4
 ### 2015-10-19
   * Linux 구동 문제 해결

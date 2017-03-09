@@ -19,6 +19,5 @@
 \code{\link{rcat_series}} 클래스 자료에서 특정노드를 선택해 반환하는 연산자.
 }
 \author{
-박희성 \email{hspark90@i-fam.net}
+Heeseong Park \email{hspark90@i-fam.net}
 }
-

@@ -22,10 +22,9 @@ iseri <- readBinCATSerieses("P_climate_1209.dat")
 plot(iseri[[1]]$t)
 lines(iseri[[1]]$t, col = "blue")
 }
-\author{
-박희성 \email{hspark90@i-fam.net}
-}
 \seealso{
 \code{\link{plot.rcat_seriesItem}}
 }
-
+\author{
+Heeseong Park \email{hspark90@i-fam.net}
+}

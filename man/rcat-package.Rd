@@ -3,8 +3,8 @@
 \docType{package}
 \encoding{utf-8}
 \name{rcat-package}
-\alias{rcat}
 \alias{rcat-package}
+\alias{rcat}
 \title{rcat-package: use the CAT(Catchment hylological cycle Assessmet Tool) Model on R Environment}
 \description{
 R 환경에서 CAT모형을 수행하기 위한 함수.
@@ -13,8 +13,8 @@ R 환경에서 CAT모형을 수행하기 위한 함수.
 \tabular{ll}{
 Package: \tab rcat\cr
 Type: \tab Package\cr
-Version: \tab 0.1.5\cr
-Date: \tab 2017-01-11\cr
+Version: \tab 0.1.6\cr
+Date: \tab 2017-03-08\cr
 License: \tab AGPL-3\cr
 }
 
@@ -28,9 +28,6 @@ unzip("rcat_ex.zip")
 # save the output to file
 RunCAT("dist_101208.txt", "dist_101208.out")
 }
-\author{
-\href{http://www.i-fam.net/water/}{박희성} \email{hspark90@i-fam.net}
-}
 \references{
 수자원의지속적확보기술개발사업단(2008), 도시유역 물순환 해석기술 지침서(TR-2008-05)
 
@@ -42,5 +39,7 @@ RunCAT("dist_101208.txt", "dist_101208.out")
 
 한국건설기술연구원(2009), 도시유역 물순환 해석모형 개발 및 적용 연구보고서
 }
+\author{
+Heeseong Park \email{hspark90@i-fam.net}
+}
 \keyword{package}
-

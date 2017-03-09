@@ -22,6 +22,5 @@ iseri <- readBinCATSerieses("P_climate_1209.dat")
 plot(iseri[[1]])
 }
 \author{
-박희성 \email{hspark90@i-fam.net}
+Heeseong Park \email{hspark90@i-fam.net}
 }
-

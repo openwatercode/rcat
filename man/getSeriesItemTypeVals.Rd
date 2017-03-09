@@ -9,27 +9,27 @@ getSeriesItemTypeVals(precip, eva, rhumi, solar, tempavg, wind, user, tempmin,
   tempmax, evacalc, date, observe)
 }
 \arguments{
-\item{precip}{강우에 대한 컬럼 번호}
+\item{precip}{Column number of precipitation data}
 
-\item{eva}{증발산에 대한 컬럼 번호}
+\item{eva}{Column number of evapotranspiration data}
 
-\item{rhumi}{상대습도에 대한 컬럼 번호}
+\item{rhumi}{Column number of relative humidity data}
 
-\item{solar}{일조시간에 대한 컬럼 번호}
+\item{solar}{Column number of daylight hours data}
 
-\item{tempavg}{평균기온에 대한 컬럼 번호}
+\item{tempavg}{Column number of average temperture data}
 
-\item{wind}{평균풍속에 대한 컬럼 번호}
+\item{wind}{Column number of windspeed data}
 
-\item{user}{사용자 데이터에 대한 컬럼 번호}
+\item{user}{Column number of user data}
 
-\item{tempmin}{최저기온에 대한 컬럼 번호}
+\item{tempmin}{Column number of minimum temperture data}
 
-\item{tempmax}{최고기온에 대한 컬럼 번호}
+\item{tempmax}{Column number of maximum temperture data}
 
-\item{evacalc}{계산된 증발산에 대한 컬럼 번호}
+\item{evacalc}{Column number of calculated evapotranspiration data}
 
-\item{date}{날짜에 대한 컬럼 번호}
+\item{date}{column number of date time data}
 
 \item{observe}{관측값에 대한 컬럼 번호}
 }
@@ -50,10 +50,9 @@ series의 각 컬럼에 대한 seriesItem의 번호를 얻어오는 함수로서
 \examples{
 getSeriesItemTypeVals(precip = 1, tempavg = 2, rhumi = 3, wind = 4, solar = 5)
 }
-\author{
-박희성 \email{hspark90@i-fam.net}
-}
 \seealso{
 \code{\link{as.rcat_series}}
 }
-
+\author{
+Heeseong Park \email{hspark90@i-fam.net}
+}

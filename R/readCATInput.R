@@ -4,7 +4,7 @@
 #' @param filename CAT 모형의 텍스트형 입력자료
 #' @param ... \code{\link{file}} 함수 참조
 #' @return 입력파일의 내용이 들어 있는 \code{\link{rcat_input}} 클래스의 변수
-#' @author 박희성 \email{hspark90@@i-fam.net}
+#' @author Heeseong Park \email{hspark90@@i-fam.net}
 #' @import plyr
 #' @importFrom stringr str_split
 #' @importFrom stringr str_detect

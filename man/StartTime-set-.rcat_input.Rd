@@ -19,6 +19,5 @@
 \code{\link{rcat_input}} 클래스의 StartTime 속성을 가져온다.
 }
 \author{
-박희성 \email{hspark90@i-fam.net}
+Heeseong Park \email{hspark90@i-fam.net}
 }
-

@@ -101,7 +101,7 @@
 #'  }
 #' }
 #'
-#' @author 박희성 \email{hspark90@@i-fam.net}
+#' @author Heeseong Park \email{hspark90@@i-fam.net}
 #' @useDynLib rcat
 #' @import Rcpp xts
 #' @encoding UTF-8

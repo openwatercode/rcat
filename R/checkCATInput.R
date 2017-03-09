@@ -5,7 +5,7 @@
 #' \code{\link{readCATInput}} 함수 또는 \code{\link{readCATInput2}} 함수를
 #' 이용해 읽을 수 있는 파일의 경로
 #' @return 체크 결과에 대한 \code{\link{character}} 변수, \code{\link{invisible}}
-#' @author 박희성 \email{hspark90@@i-fam.net}
+#' @author Heeseong Park \email{hspark90@@i-fam.net}
 #' @encoding UTF-8
 #' @export
 checkCATInput <- function(x)

@@ -23,6 +23,5 @@ unzip("rcat_ex.zip")
 climate_data <- readBinCATSerieses("P_climate_1209.dat")
 }
 \author{
-박희성 \email{hspark90@i-fam.net}
+Heeseong Park \email{hspark90@i-fam.net}
 }
-

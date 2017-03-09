@@ -9,7 +9,6 @@
 \code{\link{rcat_serieses}} class 를 구성하는 세부 class
 }
 \author{
-\href{http://www.i-fam.net/water/}{박희성} \email{hspark90@i-fam.net}
+Heeseong Park \email{hspark90@i-fam.net}
 }
 \keyword{class}
-

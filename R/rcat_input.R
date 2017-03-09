@@ -4,7 +4,7 @@
 #' @docType class
 #' @name rcat_input
 #' @encoding utf-8
-#' @author \href{http://www.i-fam.net/water/}{박희성} \email{hspark90@@i-fam.net}
+#' @author Heeseong Park \email{hspark90@@i-fam.net}
 #' @keywords class
 NULL
 
@@ -13,7 +13,7 @@ NULL
 #' \code{\link{rcat_input}} 클래스인지 아닌지 알려주는 함수
 #' @param x \code{\link{rcat_input}} 클래스인지 확인 하고자하는 임의의 변수
 #' @return \code{\link{rcat_input}} 클래스 자료여부를 알려주는 \code{\link{logical}} 변수
-#' @author 박희성 \email{hspark90@@i-fam.net}
+#' @author Heeseong Park \email{hspark90@@i-fam.net}
 #' @encoding UTF-8
 #' @export
 is.rcat_input <- function(x) inherits(x, "rcat_input")
@@ -24,7 +24,7 @@ is.rcat_input <- function(x) inherits(x, "rcat_input")
 #' @param x \code{\link{rcat_input}} 클래스의 변수
 #' @param ... \code{\link{print}} 함수 참조
 #' @return \code{\link{rcat_input}} 형태의 자료
-#' @author 박희성 \email{hspark90@@i-fam.net}
+#' @author Heeseong Park \email{hspark90@@i-fam.net}
 #' @encoding UTF-8
 #' @export
 print.rcat_input <- function(x, ...)
@@ -49,7 +49,7 @@ print.rcat_input <- function(x, ...)
 #' @param x \code{\link{rcat_input}} 클래스의 변수
 #' @param i 인덱스
 #' @return \code{\link{rcat_input}} 형태의 자료
-#' @author 박희성 \email{hspark90@@i-fam.net}
+#' @author Heeseong Park \email{hspark90@@i-fam.net}
 #' @encoding UTF-8
 #' @export
 `[.rcat_input` <- function(x, i)
@@ -79,7 +79,7 @@ StartTime <- function(x) UseMethod("StartTime")
 #' \code{\link{rcat_input}} 클래스의 StartTime 속성을 가져온다.
 #' @param x \code{\link{rcat_input}} 클래스의 변수
 #' @return \code{\link{POSIXt}} 형태의 시간 변수
-#' @author 박희성 \email{hspark90@@i-fam.net}
+#' @author Heeseong Park \email{hspark90@@i-fam.net}
 #' @encoding UTF-8
 #' @method StartTime rcat_input
 #' @export
@@ -104,7 +104,7 @@ StartTime.rcat_input <- function(x)
 #' @param x \code{\link{rcat_input}} 클래스의 변수
 #' @param value \code{\link{POSIXt}} 클래스의 변수
 #' @return \code{\link{rcat_input}} 형태의 시간 변수
-#' @author 박희성 \email{hspark90@@i-fam.net}
+#' @author Heeseong Park \email{hspark90@@i-fam.net}
 #' @encoding UTF-8
 #' @export
 `StartTime<-.rcat_input` <- function(x, value)

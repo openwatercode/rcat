@@ -134,6 +134,5 @@ plot(outlet1.flowtotal, main = "Flow Total",
      ylab = names(outlet1.flowtotal), xlab = "Time", type = "l")
 }
 \author{
-박희성 \email{hspark90@i-fam.net}
+Heeseong Park \email{hspark90@i-fam.net}
 }
-

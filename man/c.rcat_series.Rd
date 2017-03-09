@@ -18,6 +18,5 @@
 \code{\link{rcat_serieses}} 형태의 자료로 만드는 함수
 }
 \author{
-박희성 \email{hspark90@i-fam.net}
+Heeseong Park \email{hspark90@i-fam.net}
 }
-

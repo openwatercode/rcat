@@ -26,6 +26,5 @@ climate_data <- readBinCATSerieses("P_climate_1209.dat")
 writeBinCATSerieses(climate_data, "cldata.dat")
 }
 \author{
-박희성 \email{hspark90@i-fam.net}
+Heeseong Park \email{hspark90@i-fam.net}
 }
-

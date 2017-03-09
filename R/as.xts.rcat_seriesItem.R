@@ -5,7 +5,7 @@
 #' @param ... \code{\link{as.xts}} 함수의 매개변수 참조
 #' @return 변환된 \code{\link{xts}} 변수
 #' @seealso \code{\link{as.xts}}
-#' @author 박희성 \email{hspark90@@i-fam.net}
+#' @author Heeseong Park \email{hspark90@@i-fam.net}
 #' @import xts
 #' @encoding UTF-8
 #' @export

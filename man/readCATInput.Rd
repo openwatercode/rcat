@@ -25,6 +25,5 @@ unzip("rcat_ex.zip")
 model <- readCATInput("dist_101208.txt")
 }
 \author{
-박희성 \email{hspark90@i-fam.net}
+Heeseong Park \email{hspark90@i-fam.net}
 }
-

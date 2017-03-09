@@ -19,6 +19,5 @@ checkCATInput(x)
 \code{\link{rcat_input}} 클래스와 연결된 파일 등의 무결성을 확인하는 함수
 }
 \author{
-박희성 \email{hspark90@i-fam.net}
+Heeseong Park \email{hspark90@i-fam.net}
 }
-

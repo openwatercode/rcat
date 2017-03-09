@@ -4,7 +4,7 @@
 #' 연, 월, 일, 시, 분, 초와 같은 값을 얻어 정수 배열로 반환합니다.
 #' @param x \code{\link{POSIXt}}로 변환 될 수 있는 시간변수나 문자열
 #' @return 연, 월, 일, 시, 분, 초와 같은 \code{\link{integer}} 배열
-#' @author 박희성 \email{hspark90@@i-fam.net}
+#' @author Heeseong Park \email{hspark90@@i-fam.net}
 #' @encoding UTF-8
 #' @export
 #' @examples getYmDHMS(Sys.time())

@@ -4,7 +4,7 @@
 #' @param x rcat 모형에서 사용하는 "rcat_input" 클래스의 변수
 #' @param ... \code{\link{plot}} 함수 참조
 #' @return NULL
-#' @author 박희성 \email{hspark90@@i-fam.net}
+#' @author Heeseong Park \email{hspark90@@i-fam.net}
 #' @import igraph
 #' @encoding UTF-8
 #' @export

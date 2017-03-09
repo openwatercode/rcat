@@ -27,6 +27,5 @@ clxts <- as.xts(climate_data[[1]])
 plot(clxts[,1])
 }
 \author{
-박희성 \email{hspark90@i-fam.net}
+Heeseong Park \email{hspark90@i-fam.net}
 }
-

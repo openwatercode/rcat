@@ -3,7 +3,7 @@
 #' CAT 모형에서 사용하는 변수계열을 저장한 Binary 파일을 읽어오는 함수.
 #' @param filename 출력파일의 경로
 #' @return rcat 모형에서 사용하는 "rcat_serieses" 클래스의 변수
-#' @author 박희성 \email{hspark90@@i-fam.net}
+#' @author Heeseong Park \email{hspark90@@i-fam.net}
 #' @useDynLib rcat
 #' @import Rcpp
 #' @encoding UTF-8

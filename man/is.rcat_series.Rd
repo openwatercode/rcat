@@ -17,6 +17,5 @@ is.rcat_series(x)
 \code{\link{rcat_series}} 클래스인지 아닌지 알려주는 함수
 }
 \author{
-박희성 \email{hspark90@i-fam.net}
+Heeseong Park \email{hspark90@i-fam.net}
 }
-

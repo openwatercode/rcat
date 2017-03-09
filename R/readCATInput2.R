@@ -3,7 +3,7 @@
 #' 텍스트로 구성된 CAT 모형을 읽어 "rcat_input" 클래스의 변수로 반환
 #' @param filename CAT 모형의 텍스트형 입력자료
 #' @return 입력파일의 내용이 들어 있는 \code{\link{rcat_input}} 클래스의 변수
-#' @author 박희성 \email{hspark90@@i-fam.net}
+#' @author Heeseong Park \email{hspark90@@i-fam.net}
 #' @useDynLib rcat
 #' @import Rcpp
 #' @encoding UTF-8

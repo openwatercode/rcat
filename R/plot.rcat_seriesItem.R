@@ -9,7 +9,7 @@
 #' @param ... \code{\link{plot}} 함수의 매개변수 참조
 #' @return NULL
 #' @seealso \code{\link{lines.rcat_seriesItem}}
-#' @author 박희성 \email{hspark90@@i-fam.net}
+#' @author Heeseong Park \email{hspark90@@i-fam.net}
 #' @import xts
 #' @encoding UTF-8
 #' @export

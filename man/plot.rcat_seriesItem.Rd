@@ -30,10 +30,9 @@ unzip("rcat_ex.zip")
 iseri <- readBinCATSerieses("P_climate_1209.dat")
 plot(iseri[[1]]$t)
 }
-\author{
-박희성 \email{hspark90@i-fam.net}
-}
 \seealso{
 \code{\link{lines.rcat_seriesItem}}
 }
-
+\author{
+Heeseong Park \email{hspark90@i-fam.net}
+}

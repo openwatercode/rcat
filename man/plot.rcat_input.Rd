@@ -24,6 +24,5 @@ model2 <- readCATInput2("dist_101208.txt")
 plot(model2)
 }
 \author{
-박희성 \email{hspark90@i-fam.net}
+Heeseong Park \email{hspark90@i-fam.net}
 }
-

@@ -15,4 +15,3 @@ StartTime(x) <- value
 \description{
 set the start time of \code{\link{rcat_input}}
 }
-

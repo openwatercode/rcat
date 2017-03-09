@@ -19,6 +19,5 @@
 \code{\link{rcat_series}} 클래스 자료의 간단한 내용을 보여주는 함수
 }
 \author{
-박희성 \email{hspark90@i-fam.net}
+Heeseong Park \email{hspark90@i-fam.net}
 }
-

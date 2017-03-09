@@ -5,11 +5,19 @@
 \name{rcat_serieses}
 \alias{rcat_serieses}
 \title{rcat_serieses class}
+\usage{
+rcat_serieses(x, ...)
+}
+\arguments{
+\item{x}{Contents of \code{\link{rcat_serieses}}}
+
+\item{...}{etc. parameters}
+}
 \description{
-CAT의 출력 파일을 읽어오거나 시계열 입력자료를 읽거나 저장 할 때 사용되는 클래스 입니다.
+CAT의 출력 파일을 읽어오거나 시계열 입력자료를 읽거나 저장 할 때 사용되는 클래스
+또는 클래스 생성자
 }
 \author{
-\href{http://www.i-fam.net/water/}{박희성} \email{hspark90@i-fam.net}
+Heeseong Park \email{hspark90@i-fam.net}
 }
 \keyword{class}
-

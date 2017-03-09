@@ -26,10 +26,9 @@ climate_data <- readBinCATSerieses("P_climate_1209.dat")
 clxts <- as.xts(climate_data[[1]]$h)
 plot(clxts[,1])
 }
-\author{
-박희성 \email{hspark90@i-fam.net}
-}
 \seealso{
 \code{\link{as.xts}}
 }
-
+\author{
+Heeseong Park \email{hspark90@i-fam.net}
+}

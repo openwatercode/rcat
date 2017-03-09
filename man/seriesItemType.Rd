@@ -16,7 +16,6 @@ seriesItem의 종류를 구분하는 정수
 with(seriesItemType, c(precip, rhumi, tempavg, wind, solar))
 }
 \author{
-박희성 \email{hspark90@i-fam.net}
+Heeseong Park \email{hspark90@i-fam.net}
 }
 \keyword{datasets}
-
