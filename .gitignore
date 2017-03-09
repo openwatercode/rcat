@@ -19,6 +19,11 @@ P_climate_1209.dat
 climate3.txt
 dist_101208.out
 dist_101208.txt
+*.csv
+*.dat
 *.layout
 *.depend
 .RDataTmp
+inst/*
+pres/*
+vignettes/*
