@@ -23,6 +23,7 @@ This project is to porting CAT Hydrology model to R package.
 install.packages("rskrpatch", repos = "http://kict-r.prj.kr/")
 install.packages(Rcpp)
 install.packages(devtools)
+library(devtools)
 install_github("openwatercode/rcat")
 ```
 
